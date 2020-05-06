@@ -1,18 +1,5 @@
 # Format to write specification documents
 
-## General rule
-
-- write clearly
-- write in English
-- use mark down format
-- update spec. documents when you modify the source codes ASAP
-- commit reference documents together with a spec. documents
-
-___
-
-Description of format starts from here.
-
-___
 
 ## 0. File name
 
