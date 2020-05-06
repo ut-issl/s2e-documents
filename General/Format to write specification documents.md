@@ -17,13 +17,13 @@
    - Enumerate all related codes and input files here
 3. How to use
    
-   - Write how to use the class or functions inside the class
+   - Write how to use the class or functions
    
      
 
 ## 2. Explanation of Algorithm
 
-  Write important algorithm for the class, the library, or the each function. Please use equations, figures, reference papers to for easy understanding.
+  Write important algorithm for the class, the library, or the each function. Please use equations, figures, reference papers for easy understanding.
 
 1. name of function
 
@@ -66,9 +66,6 @@
 
       - please use figures to clearly show the results
 
-        - upload figure files together with a spec documents
-        - Create *figs* folder and use **relative path** like *./figs/figure1.jpg*
-        
       - 
 
         
