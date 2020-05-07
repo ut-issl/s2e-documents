@@ -1,12 +1,11 @@
-# How to make VS project from Cmake
+# How to make VS project from CMake
 
 ## 1.  Overview
 
 1. Functions
 
    - CMake can support multi-platform compiling
-   - 
-
+   
 2. Related files
 
    - ./CmakeLists.txt
@@ -14,8 +13,7 @@
      - Base file for CMake
    - ./CMakeSettings.json
      - Setting file for VS to use CMake
-   - Other CMakeLists.txt
-     - Currently, we don't have, but we will make CMakeLists in sub directories.
+   - Other CMakeLists.txt in subdirectories
 
 
 ## 2. Flow of compiling in VS
@@ -30,7 +28,7 @@
 
    - CMake/Build All
 
-   ![](./figs/CMake_build.png)
+   ![](./figs/CMake_build.jpg)
 
 4. Check errors
 
@@ -38,6 +36,7 @@
 
    - Users can use break point similar with normal sln file based projects.
 
-   ![](./figs/CMake_run.png)
+   ![](./figs/CMake_run.jpg)
 
 6. Check log files
+
