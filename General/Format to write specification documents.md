@@ -66,8 +66,11 @@
 
       - please use figures to clearly show the results
 
-      - 
-
+        - Upload the figure files in `figs` directory
+    - **Note:** the figure size should be smaller than several hundred K Bytes
+            - Smaller is better 
+        - Link the figure file with **relative path**
+      
         
 
 ## 4. References
