@@ -7,10 +7,8 @@
 
 
 ## 2. How to set up CSPICE Library for S2E
-
-
 - Make directories as follow
-
+<pre>   
   ├─ExtLibraries  
   │  └─cspice  
   │      ├─cspice_xxx  
@@ -18,7 +16,7 @@
   │      ├─generic_kernels  
   │      └─include  
   └─s2e_core  
-  
+</pre>  
   - xxx is depends on your compile environment
     - xxx = msvs for Microsoft Visual Studio
     - xxx = cygwin for Cygwin gCC
@@ -37,11 +35,9 @@
             - Move to unzipped directory and execute `makeall.bat`
 
 - Download kernel files
-
     - Download following kernel files from [NAIF Generic Kernels](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/), and copy it to the directories
-
         - Each kernel files can be updated for latest one, but we didn't confirm yet.
-        
+  <pre>         
         ├─generic_kernels  
         │  ├─lsk  
         │      └─naif0010.tls  
@@ -52,6 +48,6 @@
         │  └─spk  
         │      └─planets  
         │  │      └─de430.bsp  
-
+</pre> 
 **Note:** When you change the directory or file name, you should modify `S2E_CORE/CMakeLists` and `PlanetSelect.ini`
 
