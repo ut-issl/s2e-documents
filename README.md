@@ -20,6 +20,7 @@
 	   1. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   1. How to compile with other compilers will be written
 1. Tutorials
+	1. [Getting Started](./Tutorials/GettingStarted.md)
 	1. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
 	1. TBW
 1. Specifications
