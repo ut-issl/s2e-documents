@@ -6,7 +6,7 @@
 - You can start this tutorial just after you clone the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository 
 
 ## 2. Environment
-- This tutorial supports an execution environment with Visual Studio 2017 on a Windows PC.  
+- This tutorial supports an execution environment with Visual Studio 2017 or 2019 on a Windows PC.  
 - However, basic features of S2E is executable for other environment with a small modification of the sequence. 
 - For these environments, I hope someone will write a new *Getting Started tutorial*.  
 
@@ -15,7 +15,7 @@
 2. Read `README.md` to check overview of S2E  
 3. Execute `./script/dowload_cspice_VS32bit.bat` to set up CSPICE library  
   - **Note:** The script is not completely automatic. Users need to input several simple words.  
-  - If you don't use Windows and Visual Studio 2017 or the script doesn't work well in your environment, please see  [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)  
+  - If you don't use Windows and Visual Studio 2017 or 2019, or the script doesn't work well in your environment, please see  [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)  
 4. Compile and execute the S2E_CORE by referring [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)  
 
 ## 4. Check log output
