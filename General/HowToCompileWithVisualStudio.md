@@ -18,7 +18,7 @@
 
 ## 2. Flow of compiling in VS
 
-1. Launch VS 2017
+1. Launch VS 2017 or 2019
 
 2. Select CMakeLists.txt you want to use
 
