@@ -21,6 +21,8 @@
 	   1. How to compile with other compilers will be written
 1. Tutorials
 	1. [Getting Started](./Tutorials/GettingStarted.md)
+	1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
+	1. [How To Add Components](./Tutorials/HowToAddComponents.md)
 	1. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
 	1. TBW
 1. Specifications
