@@ -20,7 +20,7 @@
 3. Add following descriptions at the bottom line of `OBC* obc_;`
 
    ```c++
-   GYRO* gyro_;
+   Gyro* gyro_;
    ```
 
 4. Open `User_Components.cpp`
@@ -85,7 +85,7 @@
 2. Add following descriptions at the bottom line of `GYRO* gyro_;`
 
    ```c++
-   GYRO* gyro2_;
+   Gyro* gyro2_;
    ```
 
 3. Open `User_Components.cpp`
