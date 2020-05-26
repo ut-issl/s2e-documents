@@ -40,3 +40,14 @@
 
 6. Check log files
 
+## 3. Note
+
+1. If you see the error `Generator Visual Studio 15 2017 could not find any instance of Visual Studio`,
+
+   - please install `Visual Studio 15 2017 compiler` into your Visual Studio 2019 environment. (It can be selected when you install the VS2019)
+
+   Or
+
+   - please edit compiler setting in  `CMakeSetting.json` as `"generator": "Visual Studio 16 2019",`
+
+2. 
