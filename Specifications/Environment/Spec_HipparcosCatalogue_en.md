@@ -1,7 +1,7 @@
 # Specification for Hipparcos catalogue
 
 ## 1.  Overview
-- A class to read the csv file of Hipparcos catalog and to eneble other classes to use the data
+- A class to read the csv file of Hipparcos catalog and to enable other classes to use the data
 - Specify the max visual magnitude to read in `Environment.ini`
     1. functions
         + `ReadContents`
@@ -13,7 +13,7 @@
         + `HipparcosCatalogue.cpp` ，`HipparcosCatalogue.h`
             * Definitions and declarations of the class
         + `Init_HipCatalogue.cpp`
-            * Interface functions for the initizalization
+            * Interface functions for the initialization
         + `Environment.ini`
             * Parameters for initialization
         + `hip_main.csv`
@@ -23,7 +23,7 @@
         + `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`:
     ```
     bash download_HIPcatalogue.sh 
-    ``` 
+    ```
     
     4. How to use
         + Set the parameters in `Environment.ini`
