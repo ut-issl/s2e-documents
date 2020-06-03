@@ -73,11 +73,12 @@
    3. 判定処理
         1. 画角内判定処理
         イメージセンサ上での位置を取り扱うため，センサ上に改めて2次元座標系を定義しなおしている．具体的には，コンポ座標系z軸方向がセンサ座標系x軸方向，コンポ座標系y軸方向がセンサ座標系y軸方向に一致するように定義している．
-        
+        <div align="center">
         <figure id="coordinate">
         <img src="./figs/coordinate.JPG" width=400 alt="コンポ座標系(C)とセンサ座標系(imgsensor)の関係">
         <figcaption>コンポ座標系(C)とセンサ座標系(imgsensor)の関係</figcaption>
         </figure>
+        </div>
 
         このとき，コンポ座標系からみた天体の位置 $`(x_c,y_c,z_c)`$ より，コンポ座標系xz平面でみた天体の方向のx軸からの偏角は
 
@@ -166,46 +167,60 @@
    3. 結果
         1. 禁止角判定
         上記の条件下で，太陽・地球・月の視線方向からの角度は，以下のようである．
+        <div align="center">
         <figure id="angle_celes1">
         <img src="./figs/angle_celes1.jpg" width=400 alt="太陽・月・地球の視線方向からの角度">
         <figcaption>太陽・月・地球の視線方向からの角度</figcaption>
         </figure>
+        </div>
         このとき，各禁止角判定結果は以下の通りであった．
+        <div align="center">
         <figure id="forbidden_angle1">
         <img src="./figs/forbidden_angle1.jpg" width=400 alt="太陽・月・地球の禁止角判定">
         <figcaption>太陽・月・地球の禁止角判定</figcaption>
         </figure>
+        </div>
         以上2つの図より、禁止角60度以内に入った場合に正しく禁止角判定されていることがわかる．
 
         2. `Observe`関数の動作
         禁止角判定の結果より，画角内に入っているのは地球および月のみであるから，それらに関して検討する．月のイメージセンサ上の位置の軌跡は，以下の図のようになった．
+        <div align="center">
         <figure id="track_moon1">
         <img src="./figs/track_moon1.jpg" width=400 alt="イメージセンサ上における月の位置の軌跡">
         <figcaption>イメージセンサ上における月の位置の軌跡</figcaption>
         </figure>
+        </div>
         この図より，軌跡が円を描いていることがわかる．本シミュレーション条件では，慣性座標系（I），Body座標系（B），コンポ座標系（C）の方向が一致しているため，Body座標系x軸周りの角速度は，コンポ座標系における視線方向周りの角速度を意味するから，軌跡が真円になるはずであり，正しい．確認のためMOON_POS_Bを3次元プロットした結果は以下のようである．
+        <div align="center">
         <figure id="moon_pos_b1">
         <img src="./figs/moon_pos_b1.jpg" width=400 alt="MOON_POS_Bの3次元プロット">
         <figcaption>MOON_POS_Bの3次元プロット</figcaption>
         </figure>
+        </div>
         望遠鏡の視線はx方向であったから，MOON_POS_Bの軌跡のyz平面への射影がイメージセンサ上における月の位置の軌跡になっており，やはり正しい観測ができていることがわかる．地球に関しても，同様にイメージセンサ上の位置の軌跡を下図に示す．
+        <div align="center">
         <figure id="track_earth1">
         <img src="./figs/track_earth1.jpg" width=400 alt="イメージセンサ上における地球の位置の軌跡">
         <figcaption>イメージセンサ上における地球の位置の軌跡</figcaption>
         </figure>
+        </div>
         また，EARTH_POS_Bの3次元プロットは以下の通りであった．
+        <div align="center">
         <figure id="earth_pos_b1">
         <img src="./figs/earth_pos_b1.jpg" width=400 alt="EARTH_POS_Bの3次元プロット">
         <figcaption>EARTH_POS_Bの3次元プロット</figcaption>
         </figure>
+        </div>
         月の場合と同様に，EARTH_POS_Bの3次元プロットにおける地球の軌跡のyz平面への射影としてイメージセンサ上における地球の位置の軌跡が得られていることがわかり，正しい．
 
         3. `ObserveStars`関数の動作
         出力結果は，1番目，2番目，3番目のHIP IDがそれぞれ113368，9884，3419であった．これらのイメージセンサ上での軌跡は以下の通りであった．
+        <div align="center">
         <figure id="observe_stars1">
         <img src="./figs/observe_stars1.jpg" width=400 alt="ObserveStars関数の出力で得られた各恒星の軌跡">
         <figcaption>ObserveStars関数の出力で得られた各恒星の軌跡</figcaption>
         </figure>
+        </div>
         
         `ObserveStars`　関数の動作確認で述べたのと同様の理由により，軌跡が円を描いており正しい結果が得られていると考えられる．なお，HIP IDが113368，9884，3419に対応する恒星の視等級はそれぞれ1.17，2.01，2.04であることから，視等級の高いものから順番に出力されていることが確認できる．
 
@@ -214,36 +229,44 @@
     1. 結果
         1. 禁止角判定
         太陽・地球・月の視線方向からの角度は，以下のようである．
+        <div align="center">
         <figure id="angle_celes2">
         <img src="./figs/angle_celes2.jpg" width=400 alt="太陽・月・地球の視線方向からの角度">
         <figcaption>太陽・月・地球の視線方向からの角度</figcaption>
         </figure>
+        </div>
         このとき，各禁止角判定は以下の通りであった．
+        <div align="center">
         <figure id="forbidden_angle2">
         <img src="./figs/forbidden_angle2.jpg" width=400 alt="太陽・月・地球の禁止角判定">
         <figcaption>太陽・月・地球の禁止角判定</figcaption>
         </figure>
+        </div>
         以上2つの図より、禁止角60度以内に入った場合に正しく禁止角判定されていることがわかる．
-
         2. `Observe` 関数の動作
         太陽・地球・月の視線方向からの角度をみると，画角内に入っているのは主に地球であるから，これに関して `Observe` 関数の動作を確認する（月や太陽も画角内に入るが，地球の場合と同様の議論で済むため割愛する）．視線方向に直交する軸周りの回転であるから，地球の像が画角内に何度も出入りするが，ここでは簡単のため画角内に入った軌跡のうち4本のみを取り出して表示している．
+        <div align="center">
         <figure id="track_earth2">
         <img src="./figs/track_earth2.jpg" width=400 alt="イメージセンサ上における地球の位置の軌跡">
         <figcaption>イメージセンサ上における地球の位置の軌跡</figcaption>
         </figure>
+        </div>
         このときのEARTH_POS_Bの3次元プロットも同時に示しておく．
+        <div align="center">
         <figure id="earth_pos_b2">
         <img src="./figs/earth_pos_b2.jpg" width=400 alt="EARTH_POS_Bの3次元プロット">
         <figcaption>EARTH_POS_Bの3次元プロット</figcaption>
         </figure>
+        </div>
         EARTH_POS_Bは望遠鏡視線方向と直交する軸を中心とした螺旋を描いていることがわかる．このときイメージセンサ上に投影される軌跡は双曲線であることを示すことができる（証明は割愛）．イメージセンサ上における地球の位置の軌跡は二次曲線の形状をしており，X=1024（イメージセンサの中心軸）を対称軸とした双曲線であり，正しく動作していると考えられる．
-
         3. `ObserveStars`関数の動作
         x軸を中心軸とした回転の場合とは異なり，恒星の視野内の出入りが多いため，それらの一部についてイメージセンサ上の軌跡を示す．
+        <div align="center">
         <figure id="observe_stars2">
         <img src="./figs/observe_stars2.jpg" width=400 alt="ObserveStars関数の出力で得られた各恒星の軌跡">
         <figcaption>ObserveStars関数の出力で得られた各恒星の軌跡</figcaption>
         </figure>
+        </div>
         データ処理の都合上，途切れ途切れになっているが， `Observe` 関数の挙動で述べた通り，Y=1024を対称軸とした双曲線を描いていることがわかる．また，煩雑になるため本ファイルには載せないが，各時刻で視等級の高い順番にデータが出力されていることも確認された．
 
 ## 4. References
