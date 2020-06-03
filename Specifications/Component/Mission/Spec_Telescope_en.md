@@ -238,7 +238,8 @@ In this section, the output of the functions when some angular velocity is input
         The tracks make circles, which are the reasonable outputs because of the same reason stated in the verification of `Observe` function. In addition, the each Vmag of HIP ID=113368，9884，and 3419 is 1.17，2.01，and 2.04, so it is verified that the outputs are in order of brightness.
      
 2. input of angular velocity around y axis of the body coordinate
-    The angular velocity input is $`ω_b=[0.1~0~0]^T`$ ．The other condition is the same as the case of 1. Note that the verification of the case around z axis is omitted because y and z are equivalent under this condition.
+    1. overview
+        The angular velocity input is $`ω_b=[0.1~0~0]^T`$ ．The other condition is the same as the case of 1. Note that the verification of the case around z axis is omitted because y and z are equivalent under this condition.
     1. result
         1. judge for forbidden angle
         The angle from the line of sight about the direction of the Sun, the Earth, the Moon is as follows:
