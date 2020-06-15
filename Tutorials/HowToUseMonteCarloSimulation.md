@@ -4,14 +4,15 @@
 
 - S2E has a framework to execute Monte Carlo Simulation, and it is called MCSim.
 
-- MCSim provides following features
+- MCSim provides a framework to randomize arbitrary parameters in each class. 
 
-  - Input parameters for Monte Carlo simulation as mean value and standard deviation.
-  - 
+- By using the framework, users can set the mean value and standard deviation for the randomized parameters with `MCSim.ini` file
 
-  This tutorial explains how to randomly change the initial value of the angular velocity.
+  - Please see specification document for [MCSim](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for detailed description 
 
-- There are sample codes in `SampleCodes\MCSim`.
+- This tutorial explains how to randomly change the initial value of the angular velocity.
+
+  - There are sample codes in `SampleCodes\MCSim`.
 
 ## 2. Edit CMakeList.txt
 
@@ -34,8 +35,8 @@
   - Add private member variables for MCSimExecutor and string
 
     ```c++
-      MCSimExecutor& mc_sim;
-      string log_path;
+      MCSimExecutor& mc_sim_;
+      string log_path_;
     ```
 
   - Replace the constructor of UserCase class to add arguments
@@ -52,7 +53,7 @@
   
     ```c++
     UserCase::UserCase(string ini_fname, MCSimExecutor& mc_sim, string log_path)
-    :ini_fname(ini_fname), mc_sim(mc_sim), log_path(log_path)
+    :ini_fname(ini_fname), mc_sim_(mc_sim), log_path_(log_path)
     {
   }
     ```
@@ -64,9 +65,9 @@
       - At line 22-24 in the sample codes.
     
       ```c++
-    string fname = "default" + to_string(mc_sim_.GetNumOfExecutionsDone()) + ".csv";
-      default_log = new Logger(fname, log_path, ini_fname, false, mc_sim.LogHistory());
-      Logger& log  = *default_log;
+      string log_file_name = "default" + to_string(mc_sim_.GetNumOfExecutionsDone()) + ".csv";
+        default_log = new Logger(log_file_name, log_path_, ini_fname, false, mc_sim_.LogHistory());
+        SimulationConfig config = {ini_fname, sim_time, default_log};  //config
       ```
       
     - Add MCSim initialization
@@ -74,7 +75,7 @@
       - At line 29-33 in the sample codes.
   
       ```c++
-       //Monte Carlo Simulation
+        //Monte Carlo Simulation
         mc_sim_.SetSeed();
         mc_sim_.RandomizeAllParameters();
         SimulationObject::SetAllParameters(mc_sim_);
@@ -99,6 +100,8 @@
   
     - In this tutorial, time, angular velocity, and quaternion are logged.
   
+      - Users can customize this output depends on their needs.
+      
       ```c++
       string UserCase::GetLogHeader() const
       {
@@ -139,7 +142,7 @@
 
 - Make an instance of Logger to output a log file for MCSim
 
-  - At line 39 in the sample codes.
+  - At line 41 in the sample codes.
 
     `Logger *log_mc_sim = InitLogMC(ini_file);`
 
@@ -164,9 +167,16 @@
     }
   ```
 
-## 5. Ini file for MCSim
+## 5. Initiarize file for MCSim
+
+- Edit `User_SimBase.ini` to add following description in [SIM_SETTING] region
+
+  ```c++
+  mcsim_file	   = ../../data/ini/User_MCSim.ini
+  ```
 
 - Copy `User_MCSim.ini` in the sample code directory to your `data/ini` directory
+
 - In the ini file, you can set following parameters
   - MCSimEnabled: ENABLED or DISABLED
     - `ENABLED`: S2E executes the Monte Carlo Simulation.
@@ -178,11 +188,15 @@
       - **Note**: When `MCSimEnabled=ENABLED`, a default csv log file will be always generated.
   - NumOfExecutions: integer lager than 1
     - The total calculation time is proportional with this value.
+  
 - Randomized parameters
-  - randomization_type
-  - mean_or_min
-  - sigma_or_max
+  - randomization_type: You can chose randomization type. See [MCSim](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for detail.
+  - mean_or_min: Input mean value or minimum value. (Depends on Randomization type)
+  - sigma_or_max: Input standard deviation or maximum value. (Depends on Randomization type)
 
 ## 6. Execute and check logs
 
-- 
+- Build the S2E_USER and execute it.
+- In `data` directory, you can find one `xxxx_mont.csv` file and several `xxxx_default.csv` files, which is depends on your MCSim setting.
+- The initial value of angular velocity is randomly varied by the MCSim.
+
