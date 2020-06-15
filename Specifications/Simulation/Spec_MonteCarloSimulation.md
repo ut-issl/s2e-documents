@@ -7,9 +7,12 @@
    - The `Monte Carlo Simulation` feature of S2E provides a frame work for Monte Carlo simulation
    - 
 
-2. Related files
+2. Related files(TBW)
 
    - `src/Simulation/MCSim`
+     - `InitParameter`: A class to initialize randomized parameters
+     - `MCSimExecutor`: The main class for Monte Carlo simulation
+     - `SimulationObject`: 
    - `data/SampleSat/ini/MCSim.ini`
 
 3. How to use
