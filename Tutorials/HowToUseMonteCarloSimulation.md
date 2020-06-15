@@ -2,13 +2,23 @@
 
 ## 1.  Overview
 
-- S2E has a feature to execute Monte Carlo Simulation (MCSim)
-- This tutorial explains how to use it.
+- S2E has a framework to execute Monte Carlo Simulation, and it is called MCSim.
+
+- MCSim provides following features
+
+  - Input parameters for Monte Carlo simulation as mean value and standard deviation.
+  - 
+
+  This tutorial explains how to randomly change the initial value of the angular velocity.
+
+- There are sample codes in `SampleCodes\MCSim`.
 
 ## 2. Edit CMakeList.txt
 
 - Add following description to add new include directory to access header files for the MCSim
 
+  - At line 45 in the sample codes.
+  
   `include_directories(${S2E_CORE_DIR}/src/Simulation/MCSim)`
 
 ## 3. Edit Simulation Case
@@ -21,11 +31,14 @@
 
     `#include "MCSimExecutor.h"`
 
-  - Add a private member variable of MCSimExecutor
+  - Add private member variables for MCSimExecutor and string
 
-    `MCSimExecutor& mc_sim_;`
+    ```c++
+      MCSimExecutor& mc_sim;
+      string log_path;
+    ```
 
-  - Add an argument in constructor for MCSimExecutor
+  - Replace the constructor of UserCase class to add arguments
 
     `UserCase(string ini_fname, MCSimExecutor& mc_sim, string log_path);`
 
@@ -38,8 +51,8 @@
   - Add the new constructor
   
     ```c++
-    ISSL6UCase::ISSL6UCase(string ini_fname, MCSimExecutor& mc_sim, string log_path)
-    : ini_fname(ini_fname),mc_sim_(mc_sim), log_path_(log_path)
+    UserCase::UserCase(string ini_fname, MCSimExecutor& mc_sim, string log_path)
+    :ini_fname(ini_fname), mc_sim(mc_sim), log_path(log_path)
     {
   }
     ```
@@ -48,13 +61,17 @@
   
     - Edit log file name definition and 
   
+      - At line 22-24 in the sample codes.
+    
       ```c++
     string fname = "default" + to_string(mc_sim_.GetNumOfExecutionsDone()) + ".csv";
-      default_log = new Logger(fname, log_path_, ini_fname_, false, mc_sim_.LogHistory());
-    Logger& log  = *default_log;
+      default_log = new Logger(fname, log_path, ini_fname, false, mc_sim.LogHistory());
+      Logger& log  = *default_log;
       ```
       
     - Add MCSim initialization
+  
+      - At line 29-33 in the sample codes.
   
       ```c++
        //Monte Carlo Simulation
@@ -66,41 +83,74 @@
   
   - Edit Main function
   
-    - Add MC finish process
+    - Add MC finish process at the end of the function
+  
+      - At line 65 in the sample codes.
   
       `mc_sim_.AtTheEndOfEachCase();`
   
-  - Add log for Monte Carlo settings
+  - Add log settings for the Monte Carlo simulation
   
-    - The `GetLogHeader` and `GetLogValue` functions are used for Monte Carlo log output
-    - 
-
-
+    - The `GetLogHeader` and `GetLogValue` functions are used for Monte Carlo log output. 
+  
+      - The log output defined in the function is executed at the beginning and ending of a simulation case.  
+      - The output line will be `2N+1`, where N is sample number of the Monte Carlo simulation.
+        - +1 line is for headers.
+  
+    - In this tutorial, time, angular velocity, and quaternion are logged.
+  
+      ```c++
+      string UserCase::GetLogHeader() const
+      {
+        string str_tmp = "";
+        str_tmp += WriteScalar("time", "s");
+        str_tmp += WriteVector("Omega", "b", "rad/s", 3);
+        str_tmp += WriteVector("quat", "i2b", "-", 4);
+      
+        return str_tmp;
+      }
+      
+      string UserCase::GetLogValue() const
+      {
+        string str_tmp = "";
+        str_tmp += WriteScalar(sim_time->GetElapsedSec());
+        str_tmp += WriteVector(spacecraft->dynamics_->GetAttitude().GetOmega_b(), 3);
+        str_tmp += WriteQuaternion(spacecraft->dynamics_->GetAttitude().GetQuaternion_i2b());
+        return str_tmp;
+      }
+      ```
 
 ## 4. Edit the main code
 
 - To use the MCSim, uses have to edit their `S2E_user.cpp`
 
-- Please copy the 
-
 - Make an instance of MCSimExecutor
 
-  - Add following codes in the main function
+  - At line 38-41 in the sample codes.
 
-    `MCSimExecutor* mc_sim = InitMCSim("data/ini/MCsim.ini");`
+    ```c++
+      IniAccess iniAccess = IniAccess(ini_file);
+      const string mc_file_path = iniAccess.ReadString("SIM_SETTING", "mcsim_file");
+      MCSimExecutor* mc_sim = InitMCSim(mc_file_path);
+      Logger *log_mc_sim = InitLogMC(ini_file,mc_sim->IsEnabled());
+    ```
+    
+    
 
 - Make an instance of Logger to output a log file for MCSim
 
-  - Add following codes in the main function
+  - At line 39 in the sample codes.
 
     `Logger *log_mc_sim = InitLogMC(ini_file);`
 
 - Describe as follows
 
+  - At line 46-59 in the sample codes.
+
   ```c++
     while (mc_sim->WillExecuteNextCase())
     {
-      auto simcase = ISSL6UCase(ini_file, *mc_sim, log_mc_sim->GetLogPath());
+      auto simcase = UserCase(ini_file, *mc_sim, log_mc_sim->GetLogPath());
       // Initialize
       log_mc_sim->AddLoggable(&simcase);
       if (mc_sim->GetNumOfExecutionsDone() == 0) log_mc_sim->WriteHeaders();
@@ -114,10 +164,25 @@
     }
   ```
 
-  
-
-- 
-
 ## 5. Ini file for MCSim
 
-- Copy `MCSim.ini`
+- Copy `User_MCSim.ini` in the sample code directory to your `data/ini` directory
+- In the ini file, you can set following parameters
+  - MCSimEnabled: ENABLED or DISABLED
+    - `ENABLED`: S2E executes the Monte Carlo Simulation.
+    - `DISABLED`: S2E executes a simulation case defined in ini files.  
+  - LogHistory: ENABLED or DISABLED
+    - `ENABLED`: A default csv log file is outputted for each sample case.
+      - **Note**: 100 csv files will be generated when you set `NumOfExecutions=100`.
+    - `DISABLED`:  No default csv log file will be generated. Only a mont csv log file will be generated.
+      - **Note**: When `MCSimEnabled=ENABLED`, a default csv log file will be always generated.
+  - NumOfExecutions: integer lager than 1
+    - The total calculation time is proportional with this value.
+- Randomized parameters
+  - randomization_type
+  - mean_or_min
+  - sigma_or_max
+
+## 6. Execute and check logs
+
+- 
