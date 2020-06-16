@@ -28,22 +28,22 @@
 	1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
 	1. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
 	1. TBW
-1. Specifications
-  1. Component
-     1. Abstract
-     2. AOCS
-     3. CDH
-     4. Logic
-     5. Mission
-        1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
-     6. Power
-     7. Propulsion
-     8. Thermal
-  2. Disturbance
-  3. Dynamics
-  4. Environment
-     1. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
-  5. Interface
-  6. Library
-  10. Simulation
-        1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+3. Specifications
+     1. Component
+        1. Abstract
+        2. AOCS
+        3. CDH
+        4. Logic
+        5. Mission
+           1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
+        6. Power
+        7. Propulsion
+        8. Thermal
+     2. Disturbance
+     3. Dynamics
+     4. Environment
+        1. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+     5. Interface
+     6. Library
+     7. Simulation
+          1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
