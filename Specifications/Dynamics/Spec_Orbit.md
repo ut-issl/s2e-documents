@@ -70,13 +70,13 @@
       
       - At first, the output of STK would be used for a reference. However, it didn't work well. Data were input as follows:
       <div align="center">
-        <img src="./figs/orbit_STKsettings.jpg" alt="orbit_STKsettings">
+        <img src="./figs/orbit_STKsettings.JPG" alt="orbit_STKsettings">
         </figure>
       </div>
       
       - However, the result is as follows:
       <div align="center">
-        <img src="./figs/orbit_STKresult.jpg" alt="orbit_STKresult">
+        <img src="./figs/orbit_STKresult.JPG" alt="orbit_STKresult">
         </figure>
       </div>
 
