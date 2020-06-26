@@ -20,7 +20,7 @@
   - xxx is depends on your compile environment
     - xxx = msvs for Microsoft Visual Studio
     - xxx = cygwin for Cygwin gCC
-    - xxx = unix for Linux gCC
+    - xxx = unix for Linux gCC, and OSX (Apple).
   
 - Download library and compile
 
@@ -33,6 +33,7 @@
                 - 32bit:  `x86 Native tools command prompt for VS2017` 
                 - 64bit:  `x64 Native tools command prompt for VS2017` 
             - Move to unzipped directory and execute `makeall.bat`
+        - For OSX users, there is no need to compile the library. 
 
 - Download kernel files
     - Download following kernel files from [NAIF Generic Kernels](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/), and copy it to the directories
