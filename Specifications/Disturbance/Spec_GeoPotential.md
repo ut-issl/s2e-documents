@@ -12,6 +12,7 @@
    - `src/Disturbance/GeoPotential.h`
    - `ExtLibraries/GeoPotential/egm96_to360.ascii`
      - The EGM96 geopotential coefficients file can be downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html)
+     - You can use `scripts/download_EGM96coefficients.sh` to download the file.
 3. How to use
    
    - Make an instance of the geopotential class in `InitializeInstances` function in `Disturbanmces.cpp`
