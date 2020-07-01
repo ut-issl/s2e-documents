@@ -61,7 +61,7 @@
         ```math
         N_{line}=\frac{1}{2}(n+1)(n+2)-3
         ```
-        where $`nP$ is maximum degree, and -3 is for the coefficients of `n=0,m=0`, `n=1,m=0`, and `n=1,m=1`, which are not in the file. 
+        where $`n`$ is maximum degree, and -3 is for the coefficients of `n=0,m=0`, `n=1,m=0`, and `n=1,m=1`, which are not in the file. 
 
    4. note
 
@@ -72,7 +72,7 @@
    1. overview
       - We chose to use the recursion algorithm written in chapter 3.2.4 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807) since the calculation of the Legendre polynomials for spherical harmonics is time consuming.
         - However, the original equation in the book is unnormalized form and it is not suitable with the normalized coefficients. 
-        - For small degree, you can directly, use the normalized function $N_{n,m}$  to unnormalized the coefficients or to normalize the functions $V_{n,m}$ and $V_{n,m}$ . But for large degree, the factorial calculation in the $N_{n,m}$ reaches huge number, which   cannot be handled by common `double` variables.
+        - For small degree, you can directly, use the normalized function $`N_{n,m}`$  to unnormalized the coefficients or to normalize the functions $`V_{n,m}`$ and $`V_{n,m}`$ . But for large degree, the factorial calculation in the $`N_{n,m}`$ reaches huge number, which   cannot be handled by common `double` variables.
         - To avoid that, the normalized recursion algorithm was derived as described in the section 3.
       - There are following two functions
         - `v_w_nn_update`
@@ -138,13 +138,17 @@ The recurrence relations for normalized V and W are derived as  follows
 ```math
 \bar{V}_{0,0}=\frac{Re}{r}\\
 \bar{W}_{0,0}=0\\
-
 \bar{V}_{1,1}=\sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
-
+```
+```math
 \bar{V}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
 \bar{W}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+```
+```math
 \bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
 \bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+```
+```math
 \bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
 \bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
 ```
@@ -158,8 +162,8 @@ The recurrence relations for normalized V and W are derived as  follows
       
    2. inputs and outputs
       - Input
-        - normalized Coefficients: $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ 
-        - normalized function: $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$
+        - normalized Coefficients: $`\bar{C}_{n,m}`$ and $`\bar{S}_{n,m}`$ 
+        - normalized function: $`\bar{V}_{n,m}`$ and $`\bar{W}_{n,m}`$
       - Output
         - Gravity acceleration in ECEF frame 
    3. algorithm
