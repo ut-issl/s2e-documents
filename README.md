@@ -18,6 +18,7 @@
 	1. Mandatory set up and How to Compile the S2E
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   1. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
+	   1. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
 	   1. How to compile with other compilers will be written
 1. Tutorials
 	1. [Getting Started](./Tutorials/GettingStarted.md)
@@ -40,7 +41,9 @@
         7. Propulsion
         8. Thermal
      2. Disturbance
+          1. [GeoPotential](./Specifications/Environment/Spec_GeoPotential.md)
      3. Dynamics
+          1. [Orbit](./Specifications/Environment/Spec_Orbit.md)
      4. Environment
         1. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
      5. Interface
