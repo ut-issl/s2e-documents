@@ -41,11 +41,12 @@
         7. Propulsion
         8. Thermal
      2. Disturbance
-          1. [GeoPotential](./Specifications/Environment/Spec_GeoPotential.md)
+          1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
      3. Dynamics
-          1. [Orbit](./Specifications/Environment/Spec_Orbit.md)
+          1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
-        1. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+        1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
+        2. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
      5. Interface
      6. Library
      7. Simulation
