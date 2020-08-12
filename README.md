@@ -42,6 +42,7 @@
         8. Thermal
      2. Disturbance
           1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
+          2. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
      3. Dynamics
           1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
