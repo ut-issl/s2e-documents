@@ -109,7 +109,7 @@
 
       - The pressure calculation is verified.
 
-      <img src="./figs/Result_SRP_calculation.jpg" alt="SummaryCalculationTime" style="zoom: 50%;" />
+      <img src="./figs/Result_SRP_calculation.JPG" alt="SummaryCalculationTime" style="zoom: 50%;" />
 
 2. Verification of eclipse calculation in `UpdateAllStates` function
 
@@ -128,7 +128,7 @@
 
       - The eclipse calculation is verified.
 
-      <img src="./figs/Result_eclipse_calculation.jpg" alt="SummaryCalculationTime" style="zoom: 50%;" />
+      <img src="./figs/Result_eclipse_calculation.JPG" alt="SummaryCalculationTime" style="zoom: 50%;" />
 
 ## 4. References
 
