@@ -67,41 +67,42 @@
           - **Note**: There no absorption term for air drag. Thus total reflectivity is set as 1.
         - $`T_{w}`$: Temperature of the surface [K]
         - $`T_{m}`$: Temperature of the atmosphere [K]
-        - $`M`$: Molecular weight of the atmosphere [g/mol]
+        - $`M`$: Molecular weight of the thermosphere [g/mol]
+          - In the default ini file, we use $`M=18`$, and it is a little bit smaller than the molecular weight of atmosphere.  [Structure of the Thermosphere](https://www.sciencedirect.com/science/article/pii/0032063361900368?via%3Dihub) provides a information of the molecular weight of thermosphere. 
       - outputs
-        - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$ 
-
-   3. algorithm
-
-      - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$  are calculated as following equations
-
+     - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$ 
+   
+3. algorithm
+   
+   - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$  are calculated as following equations
+   
       ```math
       C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}
       +\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
       C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
-      ```
-
+   ```
+   
       - $`S, S_{n}, S_{t}`$ are defined as follows
         - $`k=1.38064852E-23`$ is the Boltzmann constant
         - $`theta`$ is angle between normal vector and velocity vector
-        - $`\cos{\theta}`$ and $`\sin{\theta}`$ are calculated in `SurfaceForce` base class.
-
+     - $`\cos{\theta}`$ and $`\sin{\theta}`$ are calculated in `SurfaceForce` base class.
+   
       ```math
       S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
       S_{n}=S\cos{\theta}\\
       S_{t}=S\sin{\theta}\\
-      ```
-
+   ```
+   
       - $`\Pi(x)`$ and $`\chi(x)`$ are defined as follows
-        - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
-
+     - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
+   
       ```math
       \Pi(x)=x e^{-x^{2}}+\sqrt{\pi}(x^2+0.5)(1+erf(x))\\
       \chi(x)=e^{-x^{2}}+\sqrt{\pi}x(1+erf(x))
-      ```
-
-   4. note
-
+   ```
+   
+4. note
+   
       - Please see reference document for more information of detailed calculation.
 
 ## 3. Results of verifications
@@ -151,4 +152,5 @@
 ## 4. References
 
 1. H. Klinkrad and B. Fritsche, "[ORBIT AND ATTITUDE PERTURBATIONS DUE TO AERODYNAMICS AND RADIATION PRESSURE](https://pdfs.semanticscholar.org/a16c/1abab4c081b4434bda9190f4f7be789c246a.pdf)", in *ESA Workshop on Space Weather*, 1998. 
-2. [Gauss error function](https://en.wikipedia.org/wiki/Error_function)
+2. Marcel Nicolet, [Structure of the Thermosphere](https://www.sciencedirect.com/science/article/pii/0032063361900368?via%3Dihub), Planetary and Space Science, 1961
+3. [Gauss error function](https://en.wikipedia.org/wiki/Error_function)
