@@ -31,7 +31,7 @@
 
       - inputs
         - $`v_{s}`$:Direction vector of the sun (s/c -> sun) at the body frame
-        - $`P` Solar pressure at the position of the spacecraft [N/m^2]
+        - $`P`$ Solar pressure at the position of the spacecraft [N/m^2]
       - setting parameters
         - $`\nu`$ : Total reflectance
           - $`\nu = 1-\alpha`$, where $`\alpha`$ is the absorption of the sun spectrum.
