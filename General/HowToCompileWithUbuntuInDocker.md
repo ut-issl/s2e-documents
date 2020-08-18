@@ -53,7 +53,7 @@
   <img src="./figs/Docker_container.png" alt="DockerContainer" style="zoom:30%;" />
 </div>
 
-### 3.2. SSH connect with VS Code
+### 3.3. SSH connect with VS Code
 - Launch `VS Code` and open new window
 - Click `Remote Explorer` icon in the left side  
   note: the icon looks a monitor 
@@ -75,7 +75,7 @@ Host issl-1
   <img src="./figs/VSC_SSH_connect.png" alt="VSC_SSH_connect" style="zoom:30%;" />
 </div>
 
-### 3.3. Setting of build environment
+### 3.4. Setting of build environment
 - S2E has several script files to get external libraries.
 - For this ubuntu/docker platform, users should use script files in `scripts/Common` directory and `scripts/Docker_Ubuntu` directory.
 - Users can execute the most of the script files with `git bush` or `terminal` in the outside of container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use same compiler.
@@ -87,7 +87,7 @@ Host issl-1
 **Note** : This sequence will be integrated within the docker container creation for more easy setting
  
 
-### 3.4. Build S2E
+### 3.5. Build S2E
 - Install following extensions in the `issl-1 SSH connection`  
   the extensions were already installed in local VS code, but you also need install them in the `SSH connection`
   - C/C++
@@ -106,7 +106,7 @@ Host issl-1
 - Execute `run` command or click `run` icon in bottom
 - Check `data/log` directory to confirm log file output
 
-### 3.3. Debug
+## 4. Debug with VS Code
 - Select `Run > Start Debugging` in the menu bar.
 - Select `C++(GDB/LLDB)` debugger  
   `.vscode/launch.json` will be created.
