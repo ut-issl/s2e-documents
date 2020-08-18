@@ -19,6 +19,7 @@
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   1. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   1. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
+	   1. [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
 	   1. How to compile with other compilers will be written
 1. Tutorials
 	1. [Getting Started](./Tutorials/GettingStarted.md)
