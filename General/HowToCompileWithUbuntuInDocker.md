@@ -98,6 +98,11 @@ Host issl-1
   `Cmake Build Directory: ${workspaceFolder}/s2e_core_oss/build/Debug`
 - After `CMake` and `CMake Tools` are installed, VS Code require you to configure build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code require you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
   - This setting is written in `.vscode/setting.json`
+  - You can directly edit the `setting.json` as follows
+  ```json
+  "cmake.sourceDirectory": "${workspaceFolder}/s2e_core_oss",
+  "cmake.buildDirectory": "${workspaceFolder}/s2e_core_oss/build/Debug",
+  ```
 - Select `GCC 9.3.0` as a kit (compiler) 
 - Select `CMake [Debug]` and check the configuration is successfully done.
 - Build S2E
@@ -111,7 +116,7 @@ Host issl-1
 - Select `C++(GDB/LLDB)` debugger  
   `.vscode/launch.json` will be created.
 - Edit as follows
-```
+```json
 "program": "${workspaceFolder}/s2e_core_oss/build/Debug/S2E",
 
 "cwd": "${workspaceFolder}/s2e_core_oss/build/Debug",
