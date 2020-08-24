@@ -61,11 +61,11 @@
         ```
 
 3. Results
-  + Results of S2E
-    <img src="./figs/Result_IGRF_S2E.png"  width="480" />
+   + Results of S2E
+        <img src="./figs/Result_IGRF_S2E.png"  width="360" />
 
-  + Error between S2E and MATLAB
-    <img src="./figs/Error_IGRF_S2E_MATLAB.png"  width="480" />
+   + Error between S2E and MATLAB
+        <img src="./figs/Error_IGRF_S2E_MATLAB.png"  width="360" />
 
 ## 4. References
 1. International Geomagnetic Reference Field: the 12th generation, https://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9
