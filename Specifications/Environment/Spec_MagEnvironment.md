@@ -40,10 +40,10 @@
 1. Overview
   + The  calculated magnetic field is compared with [Matlab's IGRF function](https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html) calculation in ECI.
 2. Conditions for the verification
-  1. input files
-    - Default initialize files
-  2. initial values
-    - Default initialize files
+   1. input files
+      - Default initialize files
+   2. initial values
+      - Default initialize files
    
         ```
         StartYMDHMS=2020/01/01 11:00:00.0
@@ -53,18 +53,19 @@
         LogPeriod = 5
         SimulationSpeed = 0
         ```
-   
-    - Especially, we chose following TLE for orbit calculation
+      - Especially, we chose following TLE for orbit calculation
    
         ```
         tle1=1 25544U 98067A   20076.51604214  .00016717  00000-0  10270-3 0  9005
         tle2=2 25544  51.6412  86.9962 0006063  30.9353 329.2153 15.49228202 17647
         ```
+
 3. Results
   + Results of S2E
-  <img src="./figs/Result_IGRF_S2E" alt="IGRF S2E" style="zoom: 100%;" />
+    ![IGRF S2E](./figs/Result_IGRF_S2E.png)
+
   + Error between S2E and MATLAB
-  <img src="./figs/Error_IGRF_S2E_MATLAB" alt="Error IGRF" style="zoom: 100%;" />
+    ![ERROR IGRF](./figs/Error_IGRF_S2E_MATLAB.png)
 
 ## 4. References
 1. International Geomagnetic Reference Field: the 12th generation, https://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9
