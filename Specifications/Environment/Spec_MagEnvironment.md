@@ -62,10 +62,10 @@
 
 3. Results
   + Results of S2E
-    ![IGRF S2E](./figs/Result_IGRF_S2E.png)
+    <img src="./figs/Result_IGRF_S2E.png"  style="zoom: 60%;" />
 
   + Error between S2E and MATLAB
-    ![ERROR IGRF](./figs/Error_IGRF_S2E_MATLAB.png)
+    <img src="./figs/Error_IGRF_S2E_MATLAB.png"  style="zoom: 60%;" />
 
 ## 4. References
 1. International Geomagnetic Reference Field: the 12th generation, https://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9
