@@ -51,7 +51,7 @@
 STANDARD model assumes the air density as follows.
   
   ```math
-  \rho \left(h \right) = \rho_0 exp \left(-\frac{h - h_0}{H} \right)
+  \rho \left(h \right) = \rho_0 \exp \left(-\frac{h - h_0}{H} \right)
   ```
 where $`\h_0`$ is a reference height, $`\rho_0`$ is an air density at the reference height, and $`H`$ is a scale height. These parameters are refered from the table shown in References [2].
 
@@ -122,9 +122,10 @@ where $`\h_0`$ is a reference height, $`\rho_0`$ is an air density at the refere
       + Case1 : 2.27E-15 kg / m3
       + Case2 : 1.01E-14 kg / m3
     + Web-based NRLMSISE00
-      + Case1
+      + Case1 : 2.454E-15 kg / m3 
       <img src="./figs/Result_NRLMSISE00_Web_2020.png"/>
-      + Case2
+      
+      + Case2 : 1.000E-14 kg / m3 
       <img src="./figs/Result_NRLMSISE00_Web_2015.png"/>
 
 

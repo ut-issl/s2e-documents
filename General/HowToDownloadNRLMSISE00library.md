@@ -1,4 +1,4 @@
-# How to download CSPICE Library
+# How to download and build NRLMSISE00 Library
 
 ## 1.  Overview
 
@@ -8,12 +8,12 @@
 
 ## 2. How to set up NRLMSISE00 for S2E
   
-1. Run `scripts/download_nrlmsise00_src_and_table.sh`.
+1. Run `scripts/Common/download_nrlmsise00_src_and_table.sh`.
   + Source codes of NRLMISE00 and SpaceWeather.txt will be downloaded, and libnrlmsise00.a will be made for Linux and OSX.
   + If you use Windows, bash terminal for Windows (e.g. Git bash, WSL, MSYS) is needed to run this script.
 
-2. If you use Windows, run `scripts/make_nrlmsise00_VS32bit.bat` after 1.
-  + VS command prompt will be launched, then run `scripts/make_libnrlmsise.bat` in VS command prompt.
+2. If you use Windows, run `scripts/VisualStudio/make_nrlmsise00_VS32bit.bat` after 1.
+  + VS command prompt will be launched, then run `scripts/VisualStudio/make_libnrlmsise.bat` in VS command prompt.
   + libnrlmise.lib which is the library for Windows will be made.
 
 3. Check your directories are as follows.
