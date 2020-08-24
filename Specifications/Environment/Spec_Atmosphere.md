@@ -123,9 +123,9 @@ where $`\h_0`$ is a reference height, $`\rho_0`$ is an air density at the refere
       + Case2 : 1.01E-14 kg / m3
     + Web-based NRLMSISE00
       + Case1
-      <img src="./figs/Result_NRLMSISE00_Web_2020.jpg" alt="2020" style="zoom: 90%;" />
+      <img src="./figs/Result_NRLMSISE00_Web_2020.png"/>
       + Case2
-      <img src="./figs/Result_NRLMSISE00_Web_2015.jpg" alt="2015" style="zoom: 90%;" />
+      <img src="./figs/Result_NRLMSISE00_Web_2015.png"/>
 
 
 ## 5. References

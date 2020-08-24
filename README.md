@@ -17,7 +17,7 @@
 	1. [Format of Documents](./General/DocumentFormat.md)
 	1. Mandatory set up and How to Compile the S2E
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
-	   2. [How to download and complie NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00.md)
+	   2. [How to download and complie NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
 	   3. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   4. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
 	   5. [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
