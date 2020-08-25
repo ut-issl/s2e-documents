@@ -1,4 +1,4 @@
-# How to download and build NRLMSISE00 Library
+# How to download and make NRLMSISE00 Library
 
 ## 1.  Overview
 
