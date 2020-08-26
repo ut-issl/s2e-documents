@@ -36,7 +36,7 @@
   + `GetAirDensity` : Return the air density (kg/m3)
 
 ## 2. Installation of NRLMSISE00
-+ Please check [How to download and complie NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00.md)
++ Please check [How to download and complie NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
 
 
 ## 3. Explanation of Algorithm
