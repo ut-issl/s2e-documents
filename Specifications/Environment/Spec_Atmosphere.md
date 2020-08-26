@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 1. Functions 
-  + Atmosphere calculates an air density at satellite's position.
+  + Atmosphere class calculates an air density at satellite's position.
 
 2. Related files
   + `src/Environment/Atmosphere.cpp, .h`
@@ -117,7 +117,7 @@ where $`\h_0`$ is a reference height, $`\rho_0`$ is an air density at the refere
         ```
   
   3. Results
-    + The calculated air density at t = 0.5 was compared with the result of web-based model.
+    + The calculated air density at t = 0.5 [s] was compared with the result of web-based model.
     + S2E
       + Case1 : 2.27E-15 kg / m3
       + Case2 : 1.01E-14 kg / m3
