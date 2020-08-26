@@ -13,23 +13,24 @@
 ## Index
 
 1. General Information
-	1. [Coding Convention](./General/CodingConvention.md)
-	1. [Format of Documents](./General/DocumentFormat.md)
-	1. Mandatory set up and How to Compile the S2E
+   1. [Coding Convention](./General/CodingConvention.md)
+   2. [Format of Documents](./General/DocumentFormat.md)
+   3. Mandatory set up and How to Compile the S2E
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
-	   1. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
-	   1. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
-	   1. [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
-	   1. How to compile with other compilers will be written
-1. Tutorials
-	1. [Getting Started](./Tutorials/GettingStarted.md)
-	1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
-	1. [How To Add Components](./Tutorials/HowToAddComponents.md)
-	1. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
-	1. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
-	1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
-	1. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-	1. TBW
+	   2. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
+	   3. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
+	   4. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
+	   5. [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
+	   6. How to compile with other compilers will be written
+2. Tutorials
+   1. [Getting Started](./Tutorials/GettingStarted.md)
+   2. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
+   3. [How To Add Components](./Tutorials/HowToAddComponents.md)
+   4. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
+   5. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
+   6. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
+   7. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
+   8. TBW
 3. Specifications
      1. Component
         1. Abstract
@@ -51,7 +52,9 @@
           1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
         1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
-        2. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+        2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
+        3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
+        4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
      5. Interface
      6. Library
      7. Simulation
