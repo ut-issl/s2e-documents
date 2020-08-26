@@ -37,7 +37,7 @@ In the Orbit class, the member variables are updated according to the selection 
 ### Propagate function
 　The Propagate function involves the following steps.
 1. The process differs depending on the selection of the propagation function SGP4 or RK4 which is loaded from `orbit.ini`.
-2. [SGP4] Find the difference between the "current Julian day" and the original period in TLE in units of [minutes] (elapse_time_min), and put it in the argument of the sgp4 function of the SGP4 calculation execution function. At the same time, the geodetic system definition (whichconst) and the trajectory information structure (satrec) are also required, which are defined at the call of the constructor. The position [m] and velocity [m/s] of the spacecraft are assigned to the member variables sat_position_i_ and sat_velocity_i_ as the output of the sgp4 function. Note that the values in this case are the values from the ECI coordinate system.
+2. [SGP4]  The difference between the "current Julian day" and the original period in TLE in units of [minutes] (elapse_time_min) is calculated, and it is used  in the argument of the sgp4 function of the SGP4 calculation execution function. At the same time, the geodetic system definition (whichconst) and the trajectory information structure (satrec) are also required, which are defined at the call of the constructor. The position [m] and velocity [m/s] of the spacecraft are assigned to the member variables sat_position_i_ and sat_velocity_i_ as the output of the sgp4 function. Note that the values in this case are the values from the ECI coordinate system.
 3. [RK4] The position and velocity of the satellite are updated by using RK4. As the input of RK4, the 6 state variables are set. Thses state variables are the three-dimensional position [$x, y ,z$] and three-dimensional velocity [$v_x$, $v_y$, $v_z$] at the inertia coordinate. Here, the inertia coordinate is decided by the `PlanetSelect.ini`
 As the force which works to the satellite motion is the external accerelation [$a_x,a_y,a_z$] calculated from the disturbance class or thruster class and the gravity force from the center planet which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
 ```math
@@ -92,30 +92,22 @@ The TransECIToECEF function can convert the position and the velocity of the sat
 
    3. Results
       1. Hodoyoshi orbit : (span:10000 second)
-         1. STK
+         - Left: STK,  Right: S2E
             <div align="center">
-               <img src="./figs/Verification_Hodoyoshi_stk.png" width = 400 alt="orbit_steptimesec_01">
-              </figure>
-            </div>
-         2. S2E
-            <div align="center">
+               <img src="./figs/Verification_Hodoyoshi_stk.png" width = 430 alt="orbit_steptimesec_01">
                <img src="./figs/Verification_Hodoyoshi_s2e.png" width = 400 alt="orbit_steptimesec_01">
               </figure>
             </div>
-         The outputs of the satellite position are almost same between two simulators.
+            The outputs of the satellite position are almost same between two simulators.
 
       2. ISS Release orbit : (span:10000 second)
-         1. STK
+         - Left: STK,  Right: S2E 
             <div align="center">
                <img src="./figs/Verification_ISS_stk.png" width = 400 alt="orbit_steptimesec_01">
+               <img src="./figs/Verification_ISS_s2e.png" width = 480 alt="orbit_steptimesec_01">
               </figure>
             </div>
-         2. S2E
-            <div align="center">
-               <img src="./figs/Verification_ISS_s2e.png" width = 400 alt="orbit_steptimesec_01">
-              </figure>
-            </div>
-         The outputs of the satellite position are almost same between two simulators.
+            The outputs of the satellite position are almost same between two simulators.
 
 
 2. Verification of the error of Fourth Order Runge-Kutta method (RK4)
