@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 1. Functions 
-  + Atmosphere calculates densities of the atomosphere
+  + MagEnvironment class calculates geomagnetic filed at the position of the spacecraft.
 
 2. Related files
   + `src/Environment/MagEnvironment.cpp, .h`
@@ -11,8 +11,8 @@
     + MagEnvironment class is used here as a member variable of Envir class.
   + `src/Environment/Init_Envinronment.cpp`
     + MagEnvironment class is instanced here based on the .ini file for environment.
-  + `src/Library/nrlmsise00/igrf.cpp, .h`
-    + A magnetic field in ECI and body-fixed coordinate is calculated using IGRF model.
+  + `src/Library/igrf/igrf.cpp, .h`
+    + A magnetic field in ECI and body-fixed coordinate is calculated by IGRF model.
 
 3. How to use
   + Set a coefficient file path for IGRF and random walk / white noise in .ini file
@@ -34,7 +34,8 @@
 
 ## 2. Explanation of Algorithm
 + IGRF calculates the magnetic field based on a spherical harmonic expansion of magnetic scalar potential $`V`$.
-+ Please refer [this link](https://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9) for the details of IGRF.
+  + The coefficients of the spherical harmonic expansion of $`V`$ is updated by [IAGA](https://www.ngdc.noaa.gov/IAGA/vmod/index.html). The latest version is 13th generation, and S2E uses this version.
++ Please refer [this link](https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html#:~:text=The%20International%20Association%20of%20Geomagnetism,interior%2C%20its%20crust%20and%20its) for the details of IGRF.
 
 ## 3. Verification
 1. Overview
@@ -47,13 +48,13 @@
    
         ```
         StartYMDHMS=2020/01/01 11:00:00.0
-        EndTimeSec=200
-        StepTimeSec=0.1
+        EndTimeSec=9000
+        StepTimeSec=5
         OrbitPropagateStepTimeSec=0.1
         LogPeriod = 5
         SimulationSpeed = 0
         ```
-      - Especially, we chose following TLE for orbit calculation
+      - Especially, we chose following TLE for orbit calculation (ISS orbit).
    
         ```
         tle1=1 25544U 98067A   20076.51604214  .00016717  00000-0  10270-3 0  9005
@@ -65,7 +66,10 @@
         <img src="./figs/Result_IGRF_S2E.png"  width="360" />
 
    + Error between S2E and MATLAB
+     + The error is approximately 200―500 nT. This may be because the coefficients of S2E are 13th, but on the ohter hand, those of MATLAB are 12th. 
         <img src="./figs/Error_IGRF_S2E_MATLAB.png"  width="360" />
 
 ## 4. References
-1. International Geomagnetic Reference Field: the 12th generation, https://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9
+1. International Geomagnetic Reference Field, https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html#:~:text=The%20International%20Association%20of%20Geomagnetism,interior%2C%20its%20crust%20and%20its
+2. IAGA web page, https://www.ngdc.noaa.gov/IAGA/vmod/index.html
+3. MATLAB igrfmagm, https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html

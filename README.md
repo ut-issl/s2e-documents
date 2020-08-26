@@ -52,7 +52,9 @@
           1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
         1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
-        2. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+        2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
+        3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
+        4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
      5. Interface
      6. Library
      7. Simulation
