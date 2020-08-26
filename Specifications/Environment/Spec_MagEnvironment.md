@@ -44,7 +44,7 @@
    1. input files
       - Default initialize files
    2. initial values
-      - Default initialize files
+      - To check the result in an orbit, the EndTime was changed to 9000 s.
    
         ```
         StartYMDHMS=2020/01/01 11:00:00.0
