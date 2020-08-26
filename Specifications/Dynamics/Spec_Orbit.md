@@ -38,8 +38,8 @@ In the Orbit class, the member variables are updated according to the selection 
 　The Propagate function involves the following steps.
 1. The process differs depending on the selection of the propagation function SGP4 or RK4 which is loaded from `orbit.ini`.
 2. [SGP4]  The difference between the "current Julian day" and the original period in TLE in units of [minutes] (elapse_time_min) is calculated, and it is used  in the argument of the sgp4 function of the SGP4 calculation execution function. At the same time, the geodetic system definition (whichconst) and the trajectory information structure (satrec) are also required, which are defined at the call of the constructor. The position [m] and velocity [m/s] of the spacecraft are assigned to the member variables sat_position_i_ and sat_velocity_i_ as the output of the sgp4 function. Note that the values in this case are the values from the ECI coordinate system.
-3. [RK4] The position and velocity of the satellite are updated by using RK4. As the input of RK4, the 6 state variables are set. Thses state variables are the three-dimensional position [$x, y ,z$] and three-dimensional velocity [$v_x$, $v_y$, $v_z$] at the inertia coordinate. Here, the inertia coordinate is decided by the `PlanetSelect.ini`
-As the force which works to the satellite motion is the external accerelation [$a_x,a_y,a_z$] calculated from the disturbance class or thruster class and the gravity force from the center planet which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
+3. [RK4] The position and velocity of the satellite are updated by using RK4. As the input of RK4, the 6 state variables are set. Thses state variables are the three-dimensional position [$`x`$, $`y`$ ,$`z`$] and three-dimensional velocity [$`v_x`$, $`v_y`$, $`v_z`$] at the inertia coordinate. Here, the inertia coordinate is decided by the `PlanetSelect.ini`
+As the force which works to the satellite motion is the external accerelation [$`a_x`$,$`a_y`$,$`a_z`$] calculated from the disturbance class or thruster class and the gravity force from the center planet which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
 ```math
 \dot{x} = v_x\\
 \dot{y} = v_y\\
@@ -78,16 +78,19 @@ The TransECIToECEF function can convert the position and the velocity of the sat
    2. Conditions for the verification
       - Conduct verification using the two different initial TLE cases with different time spans.
       1. Hodoyoshi orbit : (span:10000 second)
-         - TLE\
-         40299U 14070B   20001.00000000 -.00003285  00000-0 -13738-3 0 00007\
+         - TLE
+         ```
+         40299U 14070B   20001.00000000 -.00003285  00000-0 -13738-3 0 00007
          40299 097.3451 081.6192 0014521 069.5674 178.3972 15.23569636286180
+         ```
          
          
       2. ISS Release orbt (span:10 days)
-         - TLE\
-         99999U   20001.00000000  .00000007  00000-0  93906-7 0 00002\
+         - TLE
+         ```
+         99999U   20001.00000000  .00000007  00000-0  93906-7 0 00002
          99999 053.4260 297.1689 0008542 245.4975 274.8981 15.55688139000015
-         
+         ```
       
 
    3. Results
