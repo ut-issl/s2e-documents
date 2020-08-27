@@ -3,11 +3,11 @@
 
 ## 0. General rule
 
-- File name should be "Spec_***.md"
+- The file name should be "Spec_***.md"
 - Please use the markdown format, which compatible with `Gitlab` web preview.
   - For equations, you should use KaTex format.
-  - I recommend to use `Visual Studio Code` with `Markdown+Math` extension  
-    - you need to change the delimiter setup to use same math format with `Gitlab`. 
+  - I recommend using `Visual Studio Code` with `Markdown+Math` extension  
+    - you need to change the delimiter setup to use the same math format with `Gitlab`. 
 - Please check the rendered document in `Gitlab` web page before merge requests.
 
 ## 1.  Overview
