@@ -1,11 +1,14 @@
 # Format to write specification documents
 
 
-## 0. File name
+## 0. General rule
 
-- File name should be "Spec_***.md"
-
-
+- The file name should be "Spec_***.md"
+- Please use the markdown format, which compatible with `Gitlab` web preview.
+  - For equations, you should use KaTex format.
+  - I recommend using `Visual Studio Code` with `Markdown+Math` extension  
+    - you need to change the delimiter setup to use the same math format with `Gitlab`. 
+- Please check the rendered document in `Gitlab` web page before merge requests.
 
 ## 1.  Overview
 
@@ -33,10 +36,11 @@
 
    3. algorithm
 
-      - please use equations
-        $$
+      - please use equations as
+        ```math
         \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
-        $$
+        ```
+      - you can also use inline equation as $`x=y`$
 
    4. note
 
