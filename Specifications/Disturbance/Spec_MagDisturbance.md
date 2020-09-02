@@ -4,7 +4,7 @@
 
 1. functions
    
-   - Calculate the magnetic disturbance torque in "Disturbances" class
+   - Calculate the magnetic disturbance torque in `Disturbances` class
    - This function receives the geomagnetic vector in the body-fixed coordinate system, calculates the cross product with the residual magnetic moment, and returns the residual magnetic torque in the body coordinate system.
 
 2. related files
@@ -14,16 +14,16 @@
    - Disturbance.ini : Initialization file
 3. how to use
    
-   - Set the parameters in "Disturbance.ini"
-   - Create instance by using initialization function "InitMagDisturbance"
-   - Execute disturbance torque by "CalcTorque" function
-   - Use "Get*" function to get attitude information
+   - Set the parameters in `Disturbance.ini`
+   - Create instance by using initialization function `InitMagDisturbance`
+   - Execute disturbance torque by `CalcTorque` function
+   - Use `Get*` function to get attitude information
    
      
 
 ## 2. Explanation of Algorithm
 
-1. "CalcTorque" function
+1. `CalcTorque` function
 
    1. overview
 
@@ -37,9 +37,9 @@
          \tag{1}
     ```
 
-      where $\boldsymbol{M}$ is the residual magnetic moment in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field in the body-fixed frame.
+      where $`\boldsymbol{M}`$ is the residual magnetic moment in the body-fixed frame, $`\boldsymbol{B}`$ is the magnetic field in the body-fixed frame.
 
-2. "CalcRMM" function
+2. `CalcRMM` function
 
    1. overview
 
@@ -63,7 +63,7 @@
          \tag{2}
       ```
 
-      where $\boldsymbol{M}_0$ is the average residual magnetic moment in the body-fixed frame, $\boldsymbol{r}$ is the random walk of RMM, and $\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)$ is the white noise.
+      where $`\boldsymbol{M}_0`$ is the average residual magnetic moment in the body-fixed frame, $`\boldsymbol{r}`$ is the random walk of RMM, and $`\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)`$ is the white noise.
 
 ## 3. Results of verifications
 

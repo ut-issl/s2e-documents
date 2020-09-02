@@ -15,20 +15,20 @@
    - SimBase.ini : Initialization file
 2. how to use
    
-   - Set the parameters in "SimBase.ini"
-   - Create instance by using initialization function "InitAttitude"
-   - Execute attitude propagation by "Propagate" function
-   - Use "Get*" function to get attitude information
+   - Set the parameters in `SimBase.ini`
+   - Create instance by using initialization function `InitAttitude`
+   - Execute attitude propagation by `Propagate` function
+   - Use `Get*` function to get attitude information
    
      
 
 ## 2. Explanation of Algorithm
 
-1. "Propagate" function
+1. `Propagate` function
 
    1. overview
 
-      - This function manages the timings of 'RungeOneStep' function, which calculates the attitude dynamics and kinematics by 4th Runge-Kutta method.
+      - This function manages the timings of `RungeOneStep` function, which calculates the attitude dynamics and kinematics by 4th Runge-Kutta method.
 
    2. inputs and outputs
       - input
@@ -41,16 +41,15 @@
       There are two time steps related to the attitude propagation.
          1. Time incremented in main function
             - The step to calculate the values of disturbance and component cotrol.
-            - The step is defined as the variable 'prop_step_' in 'sim_time' class.
+            - The step is defined as the variable `prop_step_` in `sim_time` class.
          2. Time incremented in Propagate function
             - The step is much shorter than the time step in main function. 
             - The step determines the accuracy of the attitude propagation.
-            - The step is defined as the variable 'prop_step_' in 'attitude' class.
+            - The step is defined as the variable `prop_step_` in `attitude` class.
 
-      There is a while loop in "Propagate" function, in which Runge-Kutta integration is performed. In addition, there is only one Runge-Kutta integration function outside the while loop, but this is for adjusting the time lapse as shown in the figure below.
-      ![]("")
+There is a while loop in `Propagate` function, in which Runge-Kutta integration is performed. In addition, there is only one Runge-Kutta integration function outside the while loop, but this is for adjusting the time lapse.
 
-2. "RungeOneStep" function
+2. `RungeOneStep` function
 
    1. overview
 
@@ -58,59 +57,59 @@
 
    2. inputs and outputs
       - input
-         - (double) t: Elapsed time from the time when the 'Propagate' function is called.
+         - (double) t: Elapsed time from the time when the `Propagate` function is called.
          - (double) dt: The duration for the attitude propagation
 
    3. algorithm
 
-      If the differencial equation (1) is given, the state quantity in $n+1$ step can be calculated as (2).
+      If the differencial equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
 
-      $$
+       ```math
          \hat{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x},t)
 
          \tag{1}
-      $$
-      $$
+       ```
+       ```math
          \boldsymbol{x_{n+1}} = \boldsymbol{x_{n}} + \cfrac{\Delta t}{6}(\boldsymbol{k_1}+2\boldsymbol{k_2}
          +2\boldsymbol{k_3}+\boldsymbol{k_4})
 
          \tag{2}
-      $$
-      where $\Delta t$ is a time step, which meets the equation (3).
+       ```
+      where $`\Delta t`$ is a time step, which meets the equation (3).
 
-      $$
+       ```math
          t_{n+1} = t_{n} + \Delta t
 
          \tag{3}
-      $$
+       ```
 
-      $k_i \, (i=1,2,3,4)$, which has the same number of elements, can be calculated as the equations (4).
+      $`k_i \, (i=1,2,3,4)`$, which has the same number of elements, can be calculated as the equations (4).
 
-      $$
+       ```math
          \boldsymbol{k_{1}} = \boldsymbol{f}(\boldsymbol{x_n},t_n) \\
          \boldsymbol{k_{2}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_1},t_n+\frac{\Delta t}{2} \right) \\
          \boldsymbol{k_{3}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_2},t_n+\frac{\Delta t}{2} \right)  \\
          \boldsymbol{k_{4}} = \boldsymbol{f}\left(\boldsymbol{x_n} + \Delta t \boldsymbol{k_3},t_n+\Delta t \right)
 
          \tag{4}
-      $$
+       ```
 
-      In this attitude propagation, the quantity of state $\boldsymbol{x}$ consists of 7 elements, including 'Quaternion_i2b' and angular velocity $\boldsymbol{\omega}_b$.
+      In this attitude propagation, the quantity of state $`\boldsymbol{x}`$ consists of 7 elements, including `Quaternion_i2b` and angular velocity $`\boldsymbol{\omega}_b`$.
 
-      $$
+       ```math
          \boldsymbol{\omega}_b = [\omega_{bx} \, \omega_{by} \, \omega_{bz}]^T \\
          \boldsymbol{q}_{i2b} = [q_x \, q_y \, q_z \, q_w]^T \\
          \boldsymbol{x} = [\boldsymbol{\omega}_b, \boldsymbol{q}_{i2b}]^T
 
          \tag{5}
-      $$  
+       ```
 
 
    4. note
 
       The one that solves the upper differential equation is implemented in Library, and it is said that it is used in random walk etc. I feel that it should be integrated there. (2016/5/25)
 
-3. 'DynamicsKinematics' function
+3. `DynamicsKinematics` function
 
    1. overview
 
@@ -119,7 +118,7 @@
    2. inputs and outputs
       - input
          - (Vector<7>) x: Quantity of state
-         - (double) t: Elapsed time from the time when the 'Propagate' starts
+         - (double) t: Elapsed time from the time when the `Propagate` starts
       - output
          - (Vector<7>) dxdt: Differentiation of quantity of state.
 
@@ -127,16 +126,16 @@
 
       Equation of attitude motion is calculated as the equation (6), which is written in Chapter 6 of Reference 1,
 
-      $$
+       ```math
          \dot{\boldsymbol{\omega}}_b = \boldsymbol{I}_b^{-1}(\boldsymbol{T}_b - \boldsymbol{\omega}_b \times \boldsymbol{h}_b)
 
          \tag{6}
-      $$
+       ```
 
-      where $\boldsymbol{\omega}_b$[rad/s] is angular velocity in the body-fixed coordinate, $\boldsymbol{I}_b$[kgm$^2$] is inertia tensor of the satellite, $\boldsymbol{T}_b$[Nm] is torque in the body-fixed coordinate, $\boldsymbol{h}_b$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
-      Quarternion_i2b is calculated from the kinematics equation (7). This equation is executed in 'Omega4Kinematics' function.
+      where $`\boldsymbol{\omega}_b`$[rad/s] is angular velocity in the body-fixed coordinate, $`\boldsymbol{I}_b`$[kgm$`^2`$] is inertia tensor of the satellite, $`\boldsymbol{T}_b`$[Nm] is torque in the body-fixed coordinate, $`\boldsymbol{h}_b`$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
+      Quarternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
 
-      $$
+       ```math
          \dot{\boldsymbol{q}}_{i2b} = \cfrac{1}{2}
          \begin{bmatrix}
             0 & \omega_{bz} & -\omega_{by} & \omega_{bx} \\
@@ -146,7 +145,7 @@
          \end{bmatrix}\boldsymbol{q}_{i2b}
 
          \tag{7}
-      $$
+       ```
 
 ## 3. Results of verifications
 
