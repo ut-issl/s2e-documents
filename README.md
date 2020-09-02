@@ -49,7 +49,9 @@
              2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
           3. TBW
      3. Dynamics
-          1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+          1. Attitude
+             1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+          2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
         1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
         2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
