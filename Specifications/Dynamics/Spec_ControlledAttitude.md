@@ -139,6 +139,9 @@
    4. note
       - NA   
 
+3. note
+   - Currently, the `ControlledAttitude` class doen't calculate angular velocity, and it is set as 0. The feature will be implemented in near future. 
+
 
 ## 3. Results of verifications
 
@@ -174,15 +177,22 @@
    3. results
       1. Case 1
          - The spacecraft +X axis correctly directs to the sun, and its +Y axis roughly directs to the earth.  
+
       <img src="./figs/CtrlAtt_case1.jpg" alt="Case1" style="zoom: 90%;" />  
+
       1. Case 2
          - The spacecraft -Z axis correctly directs to the sun, and its -X axis roughly directs to the earth.  
+
       <img src="./figs/CtrlAtt_case2.jpg" alt="Case2" style="zoom: 90%;" />  
+      
       1. Case 3
          - The spacecraft -Y axis correctly directs to the earth, and its +Z axis roughly directs to the velocity direction.  
+      
       <img src="./figs/CtrlAtt_case3.jpg" alt="Case3" style="zoom: 90%;" />  
+      
       1. Case 4
          - The spacecraft +XY direction correctly directs to the velocity direction, and its +Z axis roughly directs to the sun.  
+      
       <img src="./figs/CtrlAtt_case4.jpg" alt="Case4" style="zoom: 90%;" />  
         
 ## 4. References
