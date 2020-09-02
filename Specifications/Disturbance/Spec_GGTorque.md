@@ -34,7 +34,7 @@
        ```math
          \boldsymbol{T}_{GG} = \cfrac{3 \mu}{R_0^5} \boldsymbol{R}_0 \times (\boldsymbol{I}\cdot \boldsymbol{R}_o)
          \tag{1}
-    ```
+        ```
 
      ```math
          \boldsymbol{T}_{GG} = \cfrac{3 \mu}{R_0^3} \boldsymbol{u} \times (\boldsymbol{I}\cdot \boldsymbol{u})
@@ -62,6 +62,7 @@
 
    3. results
       - The order of the gg torque is $`10^7`$, which seems a proper value.
+      
          ![](./figs/test_ggtorque.png)
 
 ## 4. References
