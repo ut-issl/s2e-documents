@@ -4,7 +4,7 @@
 
 1. functions
    
-   - Calculate the gravity gradient torque in "Disturbances" class
+   - Calculate the gravity gradient torque in `Disturbances` class
 
 2. related files
    
@@ -13,16 +13,16 @@
    - Disturbance.ini : Initialization file
 3. how to use
    
-   - Set the parameters in "Disturbance.ini"
-   - Create instance by using initialization function "InitGGdist"
-   - Execute disturbance torque by "CalcTorque" function
-   - Use "Get*" function to get attitude information
+   - Set the parameters in `Disturbance.ini`
+   - Create instance by using initialization function `InitGGdist`
+   - Execute disturbance torque by `CalcTorque` function
+   - Use `Get*` function to get attitude information
    
      
 
 ## 2. Explanation of Algorithm
 
-1. "CalcTorque" function
+1. `CalcTorque` function
 
    1. overview
 
@@ -41,7 +41,7 @@
          \tag{2}
      ```
 
-      where $\mu$ is gravitational constant of the Earth, $R_0$ is the distance between the Earth center and the satellite, $\boldsymbol{R_0}$ is the vector from Earth center to the satellite, $\boldsymbol{I}$ is the inertia tensor of the satellite.
+      where $`\mu`$ is gravitational constant of the Earth, $`R_0`$ is the distance between the Earth center and the satellite, $`\boldsymbol{R_0}`$ is the vector from Earth center to the satellite, $`\boldsymbol{I}`$ is the inertia tensor of the satellite.
 
 ## 3. Results of verifications
 
@@ -61,7 +61,7 @@
       - Disturbance torque: All Disable except GGTorque
 
    3. results
-      - The order of the gg torque is $10^7$, which seems a proper value.
+      - The order of the gg torque is $`10^7`$, which seems a proper value.
          ![](./figs/test_ggtorque.png)
 
 ## 4. References
