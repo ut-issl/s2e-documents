@@ -110,13 +110,18 @@
 
    3. results
 
-      [WIP] The orders of RMM are a little larger than that of the inputs [stddev_rw, limit_rw, stddev_wn]. In order to verify the RMM settings, further investigation for Random Walk Library.
-      -  [stddev_rw, limit_rw, stddev_wn] =  [1E-5,0,0]
-         ![](./figs/test_rmm_randomwalk.png)
-      - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,1E-4,0]
-         ![](./figs/test_rmm_randomwalk_2.png)
-      - [stddev_rw, limit_rw, stddev_wn] =  [0,0,1E-5]
-         ![](./figs/test_rmm_whitenoise.png)
+   -  [stddev_rw, limit_rw, stddev_wn] =  [1E-5,0,0]
+      - RMM random walk value is much smaller than 1E-5, because random walk limit is 0. 
+
+      ![](./figs/test_rmm_randomwalk.png)
+      
+   - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,1E-4,0]
+   
+      ![](./figs/test_rmm_randomwalk_2.png)
+      
+   - [stddev_rw, limit_rw, stddev_wn] =  [0,0,1E-5]
+   
+      ![](./figs/test_rmm_whitenoise.png)
 
 ## 4. References
 
