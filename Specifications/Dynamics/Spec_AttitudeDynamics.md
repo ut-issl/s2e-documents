@@ -4,25 +4,30 @@
 
 1. functions
    
-   - A class with the function to propagate the attitude motion equation that forms the basis of the attitude simulator
-   - Use the 4th Runge-Kutta equation for the propagation
-   - This class also calculates the angular momentum
+   - A class with the function to propagate the attitude motion equation that forms the basis of the attitude simulator.
+   - Use the 4th Runge-Kutta equation for the propagation or set the attitude as determined values.
+   - This class also calculates the angular momentum.
 
 2. files
    
    - Attitude.cpp, Attitude.h : Definitions and declarations of the class
-   - Init_Attitude.cpp : Interface functions for the initizalization
+   - ControlledAttitude.h, .cpp : `ControlledAttitude` class is defined. The detail is described in `Spec_ControlledAttitude.md`
+   - AttitudeRK4.h, .cpp : Normal free motion dynamics propagator `AttitudeRK4` class is defined here.
+   - Init_Attitude.cpp : Interface functions for the initizalization of `Attitude` class
+   - ControlledAttitude.ini:  Interface functions for the initizalization of `ControlledAttitude` class.
    - SimBase.ini : Initialization file
-2. how to use
+
+3. how to use
    
    - Set the parameters in `SimBase.ini`
+        - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = 0` at the ATTITUDE section in the `SimBase.ini` file.
+        -  If you want to apply the pre-determined condition to attitude dynamics, please set  `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file.
    - Create instance by using initialization function `InitAttitude`
    - Execute attitude propagation by `Propagate` function
    - Use `Get*` function to get attitude information
-   
      
 
-## 2. Explanation of Algorithm
+## 2. Explanation of RK4 Algorithm 
 
 1. `Propagate` function
 
@@ -169,13 +174,20 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
          ![](./figs/test_kinematics_0.png)
 
       - Initial angular velocity = [0.314, 0, 0] rad/s
+      
          ![](./figs/test_kinematics_px.png)
+      
       - Initial angular velocity = [0, 0.314, 0] rad/s
+      
          ![](./figs/test_kinematics_py.png)
+      
       - Initial angular velocity = [0, 0, 0.314] rad/s
+    
          ![](./figs/test_kinematics_pz.png)
+      
       - Initial angular velocity = [0, 0, -0.314] rad/s
-         ![](./figs/test_kinematics_mz.png)
+      
+        ![](./figs/test_kinematics_mz.png)
 
 2. verification of dynamics equation
    1. overview
