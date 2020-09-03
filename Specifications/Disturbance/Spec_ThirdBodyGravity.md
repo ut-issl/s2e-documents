@@ -36,7 +36,9 @@
             - $`\bm{r}`$: the position of the spacecraft (written as `sat_pos_i` in the code)
             - $`\bm{s}`$: the position of the third body (written as `third_body_pos_i` in the code)
             - $`\bm{s}-\bm{r}`$: the position of the third body seen from the spacecraft (written as `third_body_pos_from_sc_i` in the code)
+
             <img src="./figs/ThirdbodyGravity_general.jpg" alt="ThirdbodyGravity_general" style="zoom: 90%;" />
+
         - The acceleration disturbance effect by the third body is written as follows:
 
         ```math
@@ -63,6 +65,7 @@
         SimulationSpeed = 0
         ```
         - Since the effect of third body gravity increases as one moves away from the central object, it is verified for GEO.
+
         ```
         init_position(0) = 42241095.67425744
         init_position(1) = 0
@@ -74,6 +77,7 @@
         ```
 
         - All the calculations of disturbance, except for the third-object gravity, are set to DISABLE.
+
         - The following cases are tested.
             1. Only the gravity of the Sun is taken into account
             2. Only the gravity of the Moon is taken into account
@@ -82,24 +86,34 @@
 
     3. results
         - Without the third body, S2E and STK show the same result.
+
          <img src="./figs/ThirdbodyGravity_result1.jpg" alt="ThirdbodyGravity_result1" style="zoom: 90%;" />
 
         1. Only the gravity of the Sun is taken into account
             - The deformation of the orbit compared to GEO is shown in the following figure.
+
             <img src="./figs/ThirdbodyGravity_s2e_stk_sun.jpg" alt="ThirdbodyGravity_s2e_stk_sun" style="zoom: 90%;" />
+
             - The acceleration disturbance caused by the Sun's gravity is shown in the following figure.
+
             <img src="./figs/ThirdbodyGravity_acc_sun.jpg" alt="ThirdbodyGravity_acc_sun" style="zoom: 90%;" />
 
         2. Only the gravity of the Moon is taken into account
             - The deformation of the orbit compared to GEO is shown in the following figure.
+
             <img src="./figs/ThirdbodyGravity_s2e_stk_moon.jpg" alt="ThirdbodyGravity_s2e_stk_moon" style="zoom: 90%;" />
+
             - The acceleration disturbance caused by the Moon's gravity is shown in the following figure.
+
             <img src="./figs/ThirdbodyGravity_acc_moon.jpg" alt="ThirdbodyGravity_acc_moon" style="zoom: 90%;" />
         
         3. Both the gravity of the Sun and the Moon are taken into account
             - The deformation of the orbit compared to GEO is shown in the following figure.
+
             <img src="./figs/ThirdbodyGravity_s2e_stk_sun_moon.jpg" alt="ThirdbodyGravity_s2e_stk_sun_moon" style="zoom: 90%;" />
+
             - The gravitational disturbance of both the Sun and the Moon is shown in the following figure.
+            
             <img src="./figs/ThirdbodyGravity_acc_sun_moon.jpg" alt="ThirdbodyGravity_acc_sun" style="zoom: 90%;" />
 
         - In all of the above cases, the S2E and STK results are consistent with each other.
