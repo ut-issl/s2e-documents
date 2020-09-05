@@ -14,6 +14,10 @@
 - Chose RK4 orbit propagator
 - Select `ENABLE` and specify `num_of_other_body` and `other_body` in `Disturbance.ini`
   - **NOTE**: All of the `other_body` objects must be included in the `selected_body` of `PlanetSelect.ini`
+  - **NOTE**: When the class `ThirdBodyGravity` is instantiated, the class reports an error in the following cases.
+    1. The target specified by `center_object` in `PlanetSelect.ini` is included in the list of `third_body`.
+    2. The list of `third_body` includes objects which are not in the list of `selected_body` in `PlanetSelect.ini`.
+  - **NOTE**: If the same body is specified more than once in the list of `third_body` in `Disturbance.ini`, the second and subsequent entries of the body are ignored.
 
 ## 2.Explanation of Algorithm
 - The base algorithm is referred to [Satellite Orbits](https://www.springer.com/jp/book/9783540672807) chapter 3.3. 
