@@ -4,7 +4,7 @@
 
 1. functions
    
-   - Calculate the magnetic disturbance torque in "Disturbances" class
+   - Calculate the magnetic disturbance torque in `Disturbances` class
    - This function receives the geomagnetic vector in the body-fixed coordinate system, calculates the cross product with the residual magnetic moment, and returns the residual magnetic torque in the body coordinate system.
 
 2. related files
@@ -14,16 +14,16 @@
    - Disturbance.ini : Initialization file
 3. how to use
    
-   - Set the parameters in "Disturbance.ini"
-   - Create instance by using initialization function "InitMagDisturbance"
-   - Execute disturbance torque by "CalcTorque" function
-   - Use "Get*" function to get attitude information
+   - Set the parameters in `Disturbance.ini`
+   - Create an instance by using initialization function `InitMagDisturbance`
+   - Execute disturbance torque by `CalcTorque` function
+   - Use `Get*` function to get attitude information
    
      
 
 ## 2. Explanation of Algorithm
 
-1. "CalcTorque" function
+1. `CalcTorque` function
 
    1. overview
 
@@ -37,13 +37,13 @@
          \tag{1}
     ```
 
-      where $\boldsymbol{M}$ is the residual magnetic moment in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field in the body-fixed frame.
+      where $`\boldsymbol{M}`$ is the residual magnetic moment in the body-fixed frame, $`\boldsymbol{B}`$ is the magnetic field in the body-fixed frame.
 
-2. "CalcRMM" function
+2. `CalcRMM` function
 
    1. overview
 
-      This function calculate residual magnetic moment.
+      This function calculates residual magnetic moment.
 
    2. inputs and outputs
       - inputs
@@ -55,7 +55,7 @@
 
    3. algorithm
 
-      Residual magnetic moment is calculated by the following equations (2). 
+      The residual magnetic moment is calculated by the following equations (2). 
 
        ```math
          \boldsymbol{M}(t_{k+1}) = \boldsymbol{M}_0 + \boldsymbol{r}(t_{k+1}) + \boldsymbol{w}_1(t_{k+1}) \\
@@ -63,7 +63,7 @@
          \tag{2}
       ```
 
-      where $\boldsymbol{M}_0$ is the average residual magnetic moment in the body-fixed frame, $\boldsymbol{r}$ is the random walk of RMM, and $\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)$ is the white noise.
+      where $`\boldsymbol{M}_0`$ is the average residual magnetic moment in the body-fixed frame, $`\boldsymbol{r}`$ is the random walk of RMM, and $`\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)`$ is the white noise.
 
 ## 3. Results of verifications
 
@@ -110,13 +110,18 @@
 
    3. results
 
-      [WIP] The orders of RMM are a little larger than that of the inputs [stddev_rw, limit_rw, stddev_wn]. In order to verify the RMM settings, further investigation for Random Walk Library.
-      -  [stddev_rw, limit_rw, stddev_wn] =  [1E-5,0,0]
-         ![](./figs/test_rmm_randomwalk.png)
-      - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,1E-4,0]
-         ![](./figs/test_rmm_randomwalk_2.png)
-      - [stddev_rw, limit_rw, stddev_wn] =  [0,0,1E-5]
-         ![](./figs/test_rmm_whitenoise.png)
+   -  [stddev_rw, limit_rw, stddev_wn] =  [1E-5,0,0]
+      - RMM random walk value is much smaller than 1E-5, because random walk limit is 0. 
+
+      ![](./figs/test_rmm_randomwalk.png)
+      
+   - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,1E-4,0]
+   
+      ![](./figs/test_rmm_randomwalk_2.png)
+      
+   - [stddev_rw, limit_rw, stddev_wn] =  [0,0,1E-5]
+   
+      ![](./figs/test_rmm_whitenoise.png)
 
 ## 4. References
 
