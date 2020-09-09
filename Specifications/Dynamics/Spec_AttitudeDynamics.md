@@ -45,10 +45,10 @@
 
       There are two time steps related to the attitude propagation.
          1. Time incremented in main function
-            - The step to calculate the values of disturbance and component cotrol.
+            - The step to calculate the values of disturbance and component control.
             - The step is defined as the variable `prop_step_` in `sim_time` class.
          2. Time incremented in Propagate function
-            - The step is much shorter than the time step in main function. 
+            - The step is much shorter than the time step in the main function. 
             - The step determines the accuracy of the attitude propagation.
             - The step is defined as the variable `prop_step_` in `attitude` class.
 
@@ -67,7 +67,7 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
 
    3. algorithm
 
-      If the differencial equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
+      If the differential equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
 
        ```math
          \hat{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x},t)
