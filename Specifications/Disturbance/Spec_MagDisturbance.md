@@ -15,7 +15,7 @@
 3. how to use
    
    - Set the parameters in `Disturbance.ini`
-   - Create instance by using initialization function `InitMagDisturbance`
+   - Create an instance by using initialization function `InitMagDisturbance`
    - Execute disturbance torque by `CalcTorque` function
    - Use `Get*` function to get attitude information
    
@@ -43,7 +43,7 @@
 
    1. overview
 
-      This function calculate residual magnetic moment.
+      This function calculates residual magnetic moment.
 
    2. inputs and outputs
       - inputs
@@ -55,7 +55,7 @@
 
    3. algorithm
 
-      Residual magnetic moment is calculated by the following equations (2). 
+      The residual magnetic moment is calculated by the following equations (2). 
 
        ```math
          \boldsymbol{M}(t_{k+1}) = \boldsymbol{M}_0 + \boldsymbol{r}(t_{k+1}) + \boldsymbol{w}_1(t_{k+1}) \\
