@@ -37,14 +37,14 @@
 
    2. inputs and outputs
       - input
-         - (double) endtime: Time incremented in main function
+         - (double) endtime: Time incremented in the main function
       - output
          - (void)
 
    3. algorithm
 
       There are two time steps related to the attitude propagation.
-         1. Time incremented in main function
+         1. Time incremented in the main function
             - The step to calculate the values of disturbance and component control.
             - The step is defined as the variable `prop_step_` in `sim_time` class.
          2. Time incremented in Propagate function
