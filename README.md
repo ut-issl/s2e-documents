@@ -49,7 +49,8 @@
           4. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
              1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
              2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-          5. TBW
+          5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+          6. TBW
      3. Dynamics
           1. Attitude
              1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
