@@ -1,27 +1,27 @@
 #pragma once
 
 #include "Spacecraft.h"
-#include "Disturbances.h"
+#include "User_Components.h"
 
-class Envir;
-class Disturbances;
 class UserComponents;
 
 class UserSat : public Spacecraft
 {
 public:
-  UserSat(SimulationConfig config);
+  UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id);
   ~UserSat();
 
   // 初期化
-  virtual void Initialize();
+  virtual void Initialize(SimulationConfig* sim_config, const int sat_id);
   // ログ保存機能
   virtual void LogSetup(Logger& logger);
   // 状態量の更新
-  virtual void Update();
+  virtual void Update(const SimTime* sim_time);
+
+  //ダイナミクスへの力・トルク出力
+  void GenerateTorque_b();
+  void GenerateForce_b();
 
 private:
-  Envir* environments_;
-  Disturbances* disturbances_;
   UserComponents* components_;
 };
