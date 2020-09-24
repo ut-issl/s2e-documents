@@ -3,14 +3,12 @@
 #include "SimulationCase.h"
 #include "../Spacecraft/User_sat.h"
 
-class SimTime;
-class Logger;
-
 class UserCase : public SimulationCase
 {
 public:
   UserCase(string ini_fname);
   virtual ~UserCase();
+  
   void Initialize();
   void Main();
 
@@ -18,8 +16,5 @@ public:
   virtual string GetLogValue() const;
 
 private:
-  string ini_fname;
-  SimTime* sim_time;
-  Logger* default_log;
-  UserSat* spacecraft;
+  UserSat* spacecraft_;
 };
