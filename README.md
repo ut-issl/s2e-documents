@@ -44,12 +44,18 @@
         8. Thermal
      2. Disturbance
           1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
-          2. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
+          2. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
+          3. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
+          4. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
              1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
              2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-          3. TBW
+          5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+          6. TBW
      3. Dynamics
-          1. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+          1. Attitude
+             1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
+             2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+          2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
      4. Environment
         1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
         2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
