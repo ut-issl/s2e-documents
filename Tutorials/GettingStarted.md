@@ -4,6 +4,8 @@
 
 - This tutorial explains how to use the S2E simulator without any source code modification.   
 - You can start this tutorial just after you clone the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository 
+- Supported version of this document
+  - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
 
 ## 2. Environment
 - This tutorial supports an execution environment with Visual Studio 2017 or 2019 on a Windows PC.  

@@ -11,6 +11,8 @@
     - Initialize files
     - Compile setting files as [CMake files](https://cmake.org/), [Visual Studio Solution files](https://visualstudio.microsoft.com/downloads/), and others. 
 - This tutorial explains how to make S2E_USER repository and execute it.   
+- Supported version of this document
+  - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
 
 **Note:** For ISSL members, [S2E_6U](https://gitlab.com/ut_issl/s2e/s2e_6u) and [S2E_EQUULEUS](https://gitlab.com/ut_issl/s2e/s2e_equuleus) are good examples to make S2E_USER repository, so please check them.
 
