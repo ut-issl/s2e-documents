@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 
-- In the [Getting Started](./Tutorials/GettingStarted.md) tutorial, we can directory build and execute S2E_CORE_OSS, but for **source code sharing** and practical usage of S2E, we **strongly recommend to manage S2E_CORE_OSS and S2E_USER repository separately**.
+- In the [Getting Started](./Tutorials/GettingStarted.md) tutorial, we can directly build and execute S2E_CORE_OSS, but for **source code sharing** and practical usage of S2E, we **strongly recommend to manage S2E_CORE_OSS and S2E_USER repository separately**.
   - [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository is shared with other ISSL_OSS users. Most of the source files are in this repository. The codes are used as a library by the S2E_USER repository.
     - If you don't want to be affected by updates from other users, please use the `fork` function of Git. If you have some updates in the forked repository, we recommend merging it into the original S2E_CORE repository.
   - S2E_USER repository is an independent repository  for **each spacecraft project or research project**. This repository includes the following parts:
