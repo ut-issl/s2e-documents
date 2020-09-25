@@ -2,8 +2,10 @@
 
 ## 1.  Overview
 
-- In [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md) tutorial, we have made a `S2E_USER` directory to create own simulation scenario.
+- In the [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md) tutorial, we have made an `S2E_USER` directory for our own simulation scenario.
 - This tutorial explains how to add components in your scenario.
+- Supported version of this document
+  - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
 
 ## 2. Add a Gyro sensor
 
@@ -11,13 +13,13 @@
 
 1. Open `User_Components.h`
 
-2. Add following descriptions at the bottom line of `#include "OBC.h"`
+2. Add the following descriptions at the bottom line of `#include "OBC.h"`
 
    ```c++
    #include "Gyro.h"
    ```
 
-3. Add following descriptions at the bottom line of `OBC* obc_;`
+3. Add the following descriptions at the bottom line of `OBC* obc_;`
 
    ```c++
    Gyro* gyro_;
@@ -25,21 +27,20 @@
 
 4. Open `User_Components.cpp`
 
-5. Edit the constructor function as follows to create instance of the GYRO class
+5. Edit the constructor function as follows to create an instance of the GYRO class
 
    ``` c++
-   UserComponents::UserComponents(const Dynamics* dynamics, const SimulationConfig* config)
-     :dynamics_(dynamics), config_(config)
-   {
-     IniAccess iniAccess = IniAccess(config_->mainIniPath);
-     obc_ = new OBC();
-     
-     string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
-     gyro_ = new Gyro(InitGyro(1, 1, gyro_ini_path, dynamics_));
-   }
+   UserComponents::UserComponents(const Dynamics *dynamics, const SimulationConfig *config, ClockGenerator *clock_gen, const int sat_id)
+    : dynamics_(dynamics), config_(config)
+    {
+      IniAccess iniAccess = IniAccess(config->sat_file_[0]);
+      obc_ = new OBC(clock_gen);
+      string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
+      gyro_ = new Gyro(InitGyro(clock_gen,1, 1, gyro_ini_path, dynamics));
+      }
    ```
 
-6. Add following descriptions at the bottom line of `delete obc_;` in the destructor
+6. Add the following descriptions at the bottom line of `delete obc_;` in the destructor
 
    ```c++
    delete gyro_;
@@ -54,9 +55,9 @@
    }
    ```
 
-8. Open `User_SimBase.ini`
+8. Open `UserSat.ini` and edit `omega_b` to add initial angular velocity.
 
-9. Add following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor
+9. Add the following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor
 
    ```c++
    gyro_file = ../../data/ini/components/Gyro_xxx.ini
@@ -66,9 +67,9 @@
 
 11. Check the log output file to find `gyro_omega1_c` that is the gyro sensor's output angular velocity value in the component frame.
 
-    - Since the default initialize file is described as the sensor has no noise, the value of `gyro_omega1_c` and `omega_t_b` is completely same.
+    - Since the default initializing file is described as that the sensor has no noise, the value of `gyro_omega1_c` and `omega_t_b` is completely the same.
 
-12. Edit the `data/ini/components/Gyro_xxx.ini` file to add several noise, and rerun the `S2E_USER`
+12. Edit the `data/ini/components/Gyro_xxx.ini` file to add several noises, and rerun the `S2E_USER`
 
 13. Check the log output file to find `gyro_omega1_c`. Now the sensor output has several errors you set in the initialize file like the following figure.
 
@@ -78,11 +79,11 @@
 
 ## 3. Add another Gyro sensor
 
-- You can add multiple components in your `S2E_USER` simulation case similar with above sequence.
+- You can add multiple components in your `S2E_USER` simulation case similar to the above sequence.
 
 1. Open `User_Components.h`
 
-2. Add following descriptions at the bottom line of `GYRO* gyro_;`
+2. Add the following descriptions at the bottom line of `GYRO* gyro_;`
 
    ```c++
    Gyro* gyro2_;
@@ -90,7 +91,7 @@
 
 3. Open `User_Components.cpp`
 
-4. Edit the constructor function as follows to create instance of the GYRO class
+4. Edit the constructor function as follows to create an instance of the GYRO class
 
    ``` c++
    UserComponents::UserComponents(const Dynamics* dynamics, const SimulationConfig* config)
@@ -102,11 +103,11 @@
      string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
      gyro_ = new Gyro(InitGyro(1, 1, gyro_ini_path, dynamics_));
      gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file_2");
-     gyro2_ = new Gyro(InitGyro(2, 2, gyro_ini_path, dynamics_));
+     gyro2_ = new Gyro(InitGyro(clock_gen,2, 2, gyro_ini_path, dynamics));
    }
    ```
 
-5. Add following descriptions at the bottom line of `delete gyro_;` in the destructor
+5. Add the following descriptions at the bottom line of `delete gyro_;` in the destructor
 
    ```c++
    delete gyro2_;
@@ -122,9 +123,9 @@
    }
    ```
 
-7. Open `User_SimBase.ini`
+7. Open `UserSat.ini`
 
-8. Add following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor
+8. Add the following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor
 
    ```c++
    gyro_file_2 = ../../data/ini/components/Gyro_yyy.ini

@@ -1,13 +1,3 @@
-#ifdef WIN32
-	#define _WINSOCKAPI_    // stops windows.h including winsock.h
-	#include <windows.h>
-#endif
-
-#include <cstdio>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
 // Simulator includes
 #include "Initialize.h"
 #include "Logger.h"

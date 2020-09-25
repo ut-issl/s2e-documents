@@ -1,64 +1,57 @@
 #include "User_case.h"
 #include "Initialize.h"
-#include "SimulationConfig.h"
-#include "Disturbances.h"
-#include "Environment.h"
-#include "../Spacecraft/User_sat.h"
 
-UserCase::UserCase(string ini_fname)
-  : ini_fname(ini_fname)
+UserCase::UserCase(string ini_fname):SimulationCase(ini_fname)
 {
 }
 
 UserCase::~UserCase()
 {
-  delete sim_time;
-  delete default_log;
-  delete spacecraft;
+  delete spacecraft_;
 }
 
 void UserCase::Initialize()
 {
-  //Setting simulation condition
-	sim_time = InitSimTime(ini_fname);  //simulation time
-  default_log = InitLog(ini_fname);  // file name of log output
-  SimulationConfig config = {ini_fname, sim_time, default_log};  //config
+  //Instantiate the target of the simulation
+  const int sat_id = 0;//`sat_id=0` corresponds to the index of `sat_file` in Simbase.ini
+  spacecraft_ = new UserSat(&sim_config_, glo_env_, sat_id); 
 
-  //Instantiation
-  spacecraft = new UserSat(config);
-  
-  //Register log output
-  default_log->AddLoggable(sim_time);
-  spacecraft->LogSetup(*default_log);
+  //Register the log output
+  glo_env_->LogSetup(*(sim_config_.main_logger_));
+  spacecraft_->LogSetup(*(sim_config_.main_logger_));
 
-  //Write Log headers
-  default_log->WriteHeaders();
+  //Write headers to the log
+  sim_config_.main_logger_->WriteHeaders();
 
-  //Start simulation
+  //Start the simulation
   cout << "\nSimulationDateTime \n";
-  sim_time->PrintStartDateTime();
+  glo_env_->GetSimTime().PrintStartDateTime();
+
 }
 
 void UserCase::Main()
 {
-  sim_time->ResetClock();
-  while (!sim_time->GetState().finish)
+  glo_env_->Reset(); //for MonteCarlo Sim
+  while (!glo_env_->GetSimTime().GetState().finish)
   {
-    //logging
-    if (sim_time->GetState().log_output) default_log->WriteValues();
-    // Update Time
-    sim_time->UpdateTime();
-    // Update spacecraft dynamics and components
-    spacecraft->Update();
-    // debug output
-    if (sim_time->GetState().disp_output)
+    //Logging
+    if (glo_env_->GetSimTime().GetState().log_output)
     {
-      cout << "Progresss: " << sim_time->GetProgressionRate() << "%\r";
+      sim_config_.main_logger_->WriteValues();
+    }
+    // Global Environment Update
+    glo_env_->Update();
+    // Spacecraft Update
+    spacecraft_->Clear(); //Zero clear force and torque for dynamics
+    spacecraft_->Update(&(glo_env_->GetSimTime()));
+    // Debug output
+    if (glo_env_->GetSimTime().GetState().disp_output)
+    {
+      cout << "Progresss: " << glo_env_->GetSimTime().GetProgressionRate() << "%\r";
     }
   }
 }
 
-//TODO log definition in Simulation Case is not necessary?
 string UserCase::GetLogHeader() const
 {
   string str_tmp = "";
