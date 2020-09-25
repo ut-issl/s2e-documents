@@ -1,7 +1,6 @@
 #include "User_Components.h"
 
 UserComponents::UserComponents(const Dynamics* dynamics, const SimulationConfig* config, ClockGenerator* clock_gen, const int sat_id)
-  :dynamics_(dynamics), config_(config)
 {
   obc_ = new OBC(clock_gen);
 }

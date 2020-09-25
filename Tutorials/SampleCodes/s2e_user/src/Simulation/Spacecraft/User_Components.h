@@ -16,6 +16,4 @@ public:
   void CompoLogSetUp(Logger& logger);
 private:
   OBC* obc_;
-  const SimulationConfig* config_;
-  const Dynamics* dynamics_;
 };
