@@ -92,7 +92,7 @@
 1.  Move to `./data/SampleSat/ini`  directory  
 2.  Open `SampleLocalEnvironment.ini` which defines conditions to calculate the environment around the spacecraft
     - Currently, S2E supports the following environment models
-      - Celestial informations: CSPICE
+      - Celestial information: CSPICE
       - Geomagnetic field model: IGRF with random variation
       - Solar power model: Considering solar distance and eclipse
       - Air density: NRLMSISE-00 model with random variation
