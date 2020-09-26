@@ -42,7 +42,8 @@
    - `prescaler` and `bias_sec` are user setting parameters for the sensor, and you can choose their value.
    - `clock_gen` is an argument for the `ComponentBase` class.
    - `sim_time` is a specific argument for the clock sensor to get time information. `SimTime` class is managed in the `GlobalEnvironment`, and the `GlobalEnvironment` is instantiated in the `SimulationCase` class.
-   - To access the `SimTime`, the following edits are required
+   - To access the `SimTime`, the following edits are required.  
+      **Note:** You can find the edited codes in `SampleCodes/ClockSensor/edited codes`
    - `User_Components.h` and `User_Components.cpp`
      - Add the argument `const GlobalEnvironment* glo_env` in the constructor
      ```c++
