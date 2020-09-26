@@ -1,17 +1,8 @@
-#ifdef WIN32
-	#define _WINSOCKAPI_    // stops windows.h including winsock.h
-	#include <windows.h>
-#endif
-
-#include <cstdio>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-
 // Simulator includes
 #include "Initialize.h"
 #include "Logger.h"
 #include "SimulationCase.h"
+#include "MCSimExecutor.h"
 
 //Add custom include files
 #include "./Simulation/Case/User_case.h"
@@ -23,7 +14,8 @@ void print_path(std::string path)
   std::cout << path << std::endl;
 #else
   const char *rpath = realpath(path.c_str(), NULL);
-  if(rpath) {
+  if (rpath)
+  {
     std::cout << rpath << std::endl;
     free((void *)rpath);
   }
@@ -31,17 +23,16 @@ void print_path(std::string path)
 }
 
 // Main function
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
   //Set initialize file
   std::string ini_file = "../../data/ini/User_SimBase.ini";
-  IniAccess iniAccess = IniAccess(ini_file);
-  const string mc_file_path = iniAccess.ReadString("SIM_SETTING", "mcsim_file");
-  MCSimExecutor* mc_sim = InitMCSim(mc_file_path);
+  MCSimExecutor *mc_sim = InitMCSim(ini_file);
   Logger *log_mc_sim = InitLogMC(ini_file, mc_sim->IsEnabled());
 
   std::cout << "Starting simulation..." << std::endl;
-  std::cout << "\tIni file: "; print_path(ini_file);
+  std::cout << "\tIni file: ";
+  print_path(ini_file);
 
   while (mc_sim->WillExecuteNextCase())
   {
@@ -52,9 +43,9 @@ int main(int argc, char* argv[])
     simcase.Initialize();
 
     //Main
-    log_mc_sim->WriteValues(); //write initial value
+    log_mc_sim->WriteValues(); //log initial value
     simcase.Main();
-    log_mc_sim->WriteValues(); //write final value
+    log_mc_sim->WriteValues(); //log final value
     log_mc_sim->ClearLoggables();
   }
 
