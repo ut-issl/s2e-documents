@@ -1,14 +1,13 @@
 #include "ClockSensor.h"
 
-ClockSensor::ClockSensor(SimTime* sim_time_) : ComponentBase(),sim_time(sim_time_)
+ClockSensor::ClockSensor(int prescaler, ClockGenerator* clock_gen, const SimTime* sim_time, double bias_sec)
+ : ComponentBase(prescaler, clock_gen), sim_time_(sim_time), bias_sec_(bias_sec), time_output_sec_(0.0)
 {
-  time_output_sec = 0.0;
-  bias_sec = 0.001;
 }
 
 void ClockSensor::MainRoutine(int count)
 {
-  time_output_sec = sim_time->GetElapsedSec() + bias_sec;
+  time_output_sec_ = sim_time_->GetElapsedSec() + bias_sec_;
 }
 
 string ClockSensor::GetLogHeader() const
@@ -24,7 +23,7 @@ string ClockSensor::GetLogValue() const
 {
   string str_tmp = "";
 
-  str_tmp += WriteScalar(time_output_sec);
+  str_tmp += WriteScalar(time_output_sec_);
 
   return str_tmp;
 }
