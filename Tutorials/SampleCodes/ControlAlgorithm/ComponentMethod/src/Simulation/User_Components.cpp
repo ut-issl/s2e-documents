@@ -1,5 +1,4 @@
 #include "User_Components.h"
-#include "../../Components/Initialize_UserComponent.h"
 
 UserComponents::UserComponents(const Dynamics *dynamics, const GlobalEnvironment* glo_env, const SimulationConfig *config, ClockGenerator *clock_gen, const int sat_id)
 {
