@@ -16,7 +16,7 @@
   - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
 
 ## 2. Direct method
-- In this chapter, a simplest way to add control algorithm without sensors and actuators.
+- In this chapter, a simplest way to add control algorithm without sensors and actuators is introduced.
 - This method directly measures satellite physical quantity, and directly generate torque and force acting on the satellite.
 - To do that, users need to edit the `Update` function in the `UserSat.cpp`.
 - The `UserSat` class already has satellite attitude, orbit, and local environment information since it inherits `Spacecraft` base class. So users can easily access these values.
@@ -25,12 +25,27 @@
 - The sample codes are in `SampleCodes/ControlAlgorithm/DirectMethod/`, and you can see very simple detumbling control with proportional control method.
 - To use the sample code, you need to copy the `User_sat_with_control.cpp` and `User_sat_with_control.h` and build them instead of `User_sat.cpp`.
   - You need to edit `CMakeLists.txt` to add the copied `User_sat_with_control.cpp` to the `SOURCE_FILES`.
-- By using the sample code, the following result is given.
+- By using the sample code, the following results are given.
     <img src="./figs/ControlAlgorithm_DirectControl_result1.png" alt="CA_DC_1" style="zoom: 80%;" />
+    <img src="./figs/ControlAlgorithm_DirectControl_result2.png" alt="CA_DC_2" style="zoom: 80%;" />
+    <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />
 
 ## 3. Component method
-- 
-
+- In this chapter, a method to add control algorithm using sensors and actuators is introduced.
+- This method measures satellite physical quantity via sensors, and generate torque and force via actuators, and control algorithms are executed on OBC.
+- We assume the spacecraft has a three-axis gyro sensor, a reaction wheel, and a OBC in this tutorial.
+- The sample codes are in `SampleCodes/ControlAlgorithm/ComponentMethod/`
+- Firstly, users need to make `User_OBC` class to emulate the OBC.
+  - Copy the `User_OBC` files to the `S2E_USER/src/Components` from the `ComponentMethod/src/Components`
+  - The `User_OBC` class has the `UserComponent` class as a member, and users can access the all components to get sensing information or to set output of actuators.
+  - In this tutorial, the angular velocity is measured by the gyro sensor. The output torque for RW is calculated by using the X-axis of the measured angular velocity, and the torque is set to RW.
+- Next, users need to add the `User_OBC` into the `User_Component` class. You can copy the `User_Components` files to the `S2E_USER/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
+- Finally, users need to add a code into the `UserSat.cpp` to generate torque and force from the components. You can copy the `UserSat` files to the `S2E_USER/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
+- By using the sample code, the following results are given.
+  - The X-axis angular velocity is controlled, but other axes are not controlled well since the satellite only has a RW on X-axis.
+    <img src="./figs/ControlAlgorithm_ComponentControl_result1.png" alt="CA_CC_1" style="zoom: 80%;" />
+    <img src="./figs/ControlAlgorithm_ComponentControl_result2.png" alt="CA_CC_2" style="zoom: 80%;" />
+    <img src="./figs/ControlAlgorithm_ComponentControl_result3.png" alt="CA_CC_3" style="zoom: 80%;" />
 
 ## 4. FlightSW method ~Control algorithm within C2A~
 - TBW
