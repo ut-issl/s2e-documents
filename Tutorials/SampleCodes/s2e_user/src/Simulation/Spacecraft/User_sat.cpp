@@ -28,13 +28,13 @@ void UserSat::LogSetup(Logger & logger)
 
 void UserSat::Update(const SimTime* sim_time)
 {
-  // Update Dynamics
-  Spacecraft::Update(sim_time);
   // Update Components
   for (int i = 0; i < sim_time->GetStepSec() * 1000; i++)
   {
     clock_gen_.TickToComponents();
   }
+  // Update Dynamics
+  Spacecraft::Update(sim_time);
 }
 
 void UserSat::GenerateTorque_b()
