@@ -32,36 +32,37 @@
    7. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
    8. TBW
 3. Specifications
-     1. Component
-        1. Abstract
-        2. AOCS
-        3. CDH
-        4. Logic
-        5. Mission
-           1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
-        6. Power
-        7. Propulsion
-        8. Thermal
-     2. Disturbance
-          1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
-          2. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
-          3. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
-          4. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
-             1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
-             2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-          5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
-          6. TBW
-     3. Dynamics
-          1. Attitude
-             1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
-             2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
-          2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
-     4. Environment
-        1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
-        2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-        3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
-        4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
-     5. Interface
-     6. Library
-     7. Simulation
-          1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+   1. [Overall Structure](./Specigications/OverallStructure/OverallStructure.md)
+   1. Component
+      1. Abstract
+      2. AOCS
+      3. CDH
+      4. Logic
+      5. Mission
+         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
+      6. Power
+      7. Propulsion
+      8. Thermal
+   2. Disturbance
+      1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
+      2. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
+      3. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
+      4. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
+         1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
+         2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
+      5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+   3. Dynamics
+      1. Attitude
+         1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
+         2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+      2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+      3. Thermal
+   4. Environment
+      1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
+      2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
+      3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
+      4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+   5. Interface
+   6. Library
+   7. Simulation
+      1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
