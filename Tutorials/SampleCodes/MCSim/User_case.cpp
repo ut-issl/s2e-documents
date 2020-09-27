@@ -1,64 +1,60 @@
 #include "User_case.h"
 #include "Initialize.h"
-#include "SimulationConfig.h"
-#include "../Spacecraft/User_sat.h"
+#include "SimulationObject.h"
 
-UserCase::UserCase(string ini_fname, MCSimExecutor& mc_sim, string log_path)
-  :ini_fname(ini_fname), mc_sim_(mc_sim), log_path_(log_path)
+UserCase::UserCase(string ini_fname, MCSimExecutor &mc_sim, const string log_path)
+    : SimulationCase(ini_fname, mc_sim, log_path), mc_sim_(mc_sim)
 {
 }
 
 UserCase::~UserCase()
 {
-  delete sim_time;
-  delete default_log;
-  delete spacecraft;
+  delete spacecraft_;
 }
 
 void UserCase::Initialize()
 {
-  //Setting simulation condition
-	sim_time = InitSimTime(ini_fname);  //simulation time
-  string log_file_name = "default" + to_string(mc_sim_.GetNumOfExecutionsDone()) + ".csv";
-  default_log = new Logger(log_file_name, log_path_, ini_fname, false, mc_sim_.LogHistory());
-  SimulationConfig config = {ini_fname, sim_time, default_log};  //config
-
-  //Instantiation
-  spacecraft = new UserSat(config);
+  //Instantiate the target of the simulation
+  const int sat_id = 0; //`sat_id=0` corresponds to the index of `sat_file` in Simbase.ini
+  spacecraft_ = new UserSat(&sim_config_, glo_env_, sat_id);
 
   //Monte Carlo Simulation
   mc_sim_.SetSeed();
   mc_sim_.RandomizeAllParameters();
   SimulationObject::SetAllParameters(mc_sim_);
   mc_sim_.AtTheBeginningOfEachCase();
-  
-  //Register log output
-  default_log->AddLoggable(sim_time);
-  spacecraft->LogSetup(*default_log);
 
-  //Write Log headers
-  default_log->WriteHeaders();
+  //Register the log output
+  glo_env_->LogSetup(*(sim_config_.main_logger_));
+  spacecraft_->LogSetup(*(sim_config_.main_logger_));
 
-  //Start simulation
+  //Write headers to the log
+  sim_config_.main_logger_->WriteHeaders();
+
+  //Start the simulation
   cout << "\nSimulationDateTime \n";
-  sim_time->PrintStartDateTime();
+  glo_env_->GetSimTime().PrintStartDateTime();
 }
 
 void UserCase::Main()
 {
-  sim_time->ResetClock();
-  while (!sim_time->GetState().finish)
+  glo_env_->Reset(); //for MonteCarlo Sim
+  while (!glo_env_->GetSimTime().GetState().finish)
   {
-    //logging
-    if (sim_time->GetState().log_output) default_log->WriteValues();
-    // Update Time
-    sim_time->UpdateTime();
-    // Update spacecraft dynamics and components
-    spacecraft->Update();
-    // debug output
-    if (sim_time->GetState().disp_output)
+    //Logging
+    if (glo_env_->GetSimTime().GetState().log_output)
     {
-      cout << "Progresss: " << sim_time->GetProgressionRate() << "%\r";
+      sim_config_.main_logger_->WriteValues();
+    }
+    // Global Environment Update
+    glo_env_->Update();
+    // Spacecraft Update
+    spacecraft_->Clear(); //Zero clear force and torque for dynamics
+    spacecraft_->Update(&(glo_env_->GetSimTime()));
+    // Debug output
+    if (glo_env_->GetSimTime().GetState().disp_output)
+    {
+      cout << "Progresss: " << glo_env_->GetSimTime().GetProgressionRate() << "%\r";
     }
   }
   //MC finish
@@ -71,15 +67,14 @@ string UserCase::GetLogHeader() const
   str_tmp += WriteScalar("time", "s");
   str_tmp += WriteVector("Omega", "b", "rad/s", 3);
   str_tmp += WriteVector("quat", "i2b", "-", 4);
-
   return str_tmp;
 }
 
 string UserCase::GetLogValue() const
 {
   string str_tmp = "";
-  str_tmp += WriteScalar(sim_time->GetElapsedSec());
-  str_tmp += WriteVector(spacecraft->dynamics_->GetAttitude().GetOmega_b(), 3);
-  str_tmp += WriteQuaternion(spacecraft->dynamics_->GetAttitude().GetQuaternion_i2b());
+  str_tmp += WriteScalar(glo_env_->GetSimTime().GetElapsedSec());
+  str_tmp += WriteVector(spacecraft_->GetDynamics().GetAttitude().GetOmega_b(), 3);
+  str_tmp += WriteQuaternion(spacecraft_->GetDynamics().GetAttitude().GetQuaternion_i2b());
   return str_tmp;
 }

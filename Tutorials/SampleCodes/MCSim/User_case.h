@@ -1,17 +1,15 @@
 #pragma once
 
 #include "SimulationCase.h"
-#include "MCSimExecutor.h"
 #include "../Spacecraft/User_sat.h"
-
-class SimTime;
-class Logger;
+#include "MCSimExecutor.h"
 
 class UserCase : public SimulationCase
 {
 public:
-  UserCase(string ini_fname, MCSimExecutor& mc_sim, string log_path);
+  UserCase(string ini_fname, MCSimExecutor& mc_sim, const string log_path);
   virtual ~UserCase();
+  
   void Initialize();
   void Main();
 
@@ -19,10 +17,6 @@ public:
   virtual string GetLogValue() const;
 
 private:
-  string ini_fname;
-  SimTime* sim_time;
-  Logger* default_log;
-  UserSat* spacecraft;
+  UserSat* spacecraft_;
   MCSimExecutor& mc_sim_;
-  string log_path_;
 };

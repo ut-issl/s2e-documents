@@ -1,13 +1,14 @@
 #include "Initialize.h"
 #include <string.h>
-#include "../../../Component/Abstract/ClockSensor.h"
+#include "ClockSensor.h"
 
-ClockSensor InitClockSensor(SimTime* sim_time_, string file_name_)
+ClockSensor InitClockSensor(ClockGenerator* clock_gen, const SimTime* sim_time, string file_name)
 {
-  IniAccess ini_file(file_name_);
+  IniAccess ini_file(file_name);
 
-  double bias_sec_ = ini_file.ReadDouble("ClockSensor", "bias_sec");
-  ClockSensor clock_sensor_(sim_time_, bias_sec_);
+  double bias_sec = ini_file.ReadDouble("ClockSensor", "bias_sec");
+  int prescaler = ini_file.ReadInt("ClockSensor", "prescaler");
+  ClockSensor clock_sensor(prescaler, clock_gen, sim_time, bias_sec);
 
-  return clock_sensor_;
+  return clock_sensor;
 }
