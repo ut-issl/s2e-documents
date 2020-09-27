@@ -27,9 +27,9 @@
   - You need to edit `CMakeLists.txt` to add the copied `User_sat_with_control.cpp` to the `SOURCE_FILES`.
 - By using the sample code, the following results are given.
 
-    <img src="./figs/ControlAlgorithm_DirectControl_result1.png" alt="CA_DC_1" style="zoom: 80%;" />
-    <img src="./figs/ControlAlgorithm_DirectControl_result2.png" alt="CA_DC_2" style="zoom: 80%;" />
-    <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />
+   <img src="./figs/ControlAlgorithm_DirectControl_result1.png" alt="CA_DC_1" style="zoom: 80%;" />  
+   <img src="./figs/ControlAlgorithm_DirectControl_result2.png" alt="CA_DC_2" style="zoom: 80%;" />  
+   <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />  
 
 ## 3. Component method
 - In this chapter, a method to add control algorithm using sensors and actuators is introduced.
@@ -44,10 +44,10 @@
 - Finally, users need to add a code into the `UserSat.cpp` to generate torque and force from the components. You can copy the `UserSat` files to the `S2E_USER/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
 - By using the sample code, the following results are given.
   - The X-axis angular velocity is controlled, but other axes are not controlled well since the satellite only has an RW on X-axis.
-  
-    <img src="./figs/ControlAlgorithm_ComponentControl_result1.png" alt="CA_CC_1" style="zoom: 80%;" />
-    <img src="./figs/ControlAlgorithm_ComponentControl_result2.png" alt="CA_CC_2" style="zoom: 80%;" />
-    <img src="./figs/ControlAlgorithm_ComponentControl_result3.png" alt="CA_CC_3" style="zoom: 80%;" />
+
+    <img src="./figs/ControlAlgorithm_ComponentControl_result1.png" alt="CA_CC_1" style="zoom: 80%;" />  
+    <img src="./figs/ControlAlgorithm_ComponentControl_result2.png" alt="CA_CC_2" style="zoom: 80%;" />  
+    <img src="./figs/ControlAlgorithm_ComponentControl_result3.png" alt="CA_CC_3" style="zoom: 80%;" />  
 
 ## 4. FlightSW method ~Control algorithm within C2A~
 - TBW
