@@ -28,7 +28,9 @@
 - By using the sample code, the following results are given.
 
    <img src="./figs/ControlAlgorithm_DirectControl_result1.png" alt="CA_DC_1" style="zoom: 80%;" />  
+
    <img src="./figs/ControlAlgorithm_DirectControl_result2.png" alt="CA_DC_2" style="zoom: 80%;" />  
+   
    <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />  
 
 ## 3. Component method
