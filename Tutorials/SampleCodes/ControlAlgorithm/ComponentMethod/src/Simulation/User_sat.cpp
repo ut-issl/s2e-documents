@@ -7,7 +7,7 @@
 UserSat::UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 :Spacecraft(sim_config, glo_env, sat_id)
 {
-  Initialize(sim_config, sat_id);
+  Initialize(sim_config, glo_env, sat_id);
 }
 
 UserSat::~UserSat()
@@ -15,9 +15,9 @@ UserSat::~UserSat()
   delete components_;
 }
 
-void UserSat::Initialize(SimulationConfig* sim_config, const int sat_id)
+void UserSat::Initialize(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 {
-  components_ = new UserComponents(dynamics_, sim_config, &clock_gen_, sat_id);
+  components_ = new UserComponents(dynamics_, glo_env, sim_config, &clock_gen_, sat_id);
 }
 
 void UserSat::LogSetup(Logger & logger)
@@ -33,6 +33,7 @@ void UserSat::Update(const SimTime* sim_time)
   {
     clock_gen_.TickToComponents();
   }
+  GenerateTorque_b();
   // Update Dynamics
   Spacecraft::Update(sim_time);
 }
