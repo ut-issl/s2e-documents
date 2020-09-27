@@ -32,7 +32,7 @@
    7. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
    8. TBW
 3. Specifications
-   1. [Overall Structure](./Specigications/OverallStructure/OverallStructure.md)
+   1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
       1. Abstract
       2. AOCS
