@@ -7,13 +7,13 @@
    - `SimpleThruster`
       + Initialize an instance
    - `set_duty`
-      + Set a thrust magnitude (0 if valve is closed.)
+      + Set a thrust magnitude (0 if the valve is closed.)
    - `calc_thrust`
       + Calculate thruster
    - `calc_torque`
       + Calculate torque
    - `GetLogHeader`, `GetLogValue`
-      + Write log header and value
+      + Write the log header and value
 
 
 2. files
@@ -27,7 +27,7 @@
     - Create an instance by `SimpleThruster` function.
     - Add `calc_thrust` function to `GenerateForce_b()` in `SatComponents` class and`calc_torque` function to `GenerateTorque_b()` in `SatComponents` class
     - When a thruster is open, set the duty to 1 by `set_duty(1)` function.
-        + Duty can be set to the value between 0 and 1.
+        + Users can set duty to the value between 0 and 1.
    
     
 ## 2. Results of verifications
