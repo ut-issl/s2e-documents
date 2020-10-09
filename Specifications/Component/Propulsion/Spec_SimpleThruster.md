@@ -55,7 +55,7 @@
         Thrust magnitude can be calculated as follows:
 
         ```math
-        F_{thrust}  = \epsilon \dot F_{max} + n_{f}
+        F_{thrust}  = \epsilon * F_{max} + n_{f}
          \tag{1}
         ```
 
@@ -65,6 +65,9 @@
 
         ```math
         \boldsymbol{d}_{err} = \boldsymbol{q}(\boldsymbol{d}_{true},n) * \boldsymbol{d}_x
+        ```
+
+        ```math
         \boldsymbol{d}_{thrust} = \boldsymbol{q}(\boldsymbol{d}_{err},n_{d}) * \boldsymbol{d}_{true}
          \tag{2}
         ```
