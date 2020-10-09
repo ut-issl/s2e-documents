@@ -31,7 +31,8 @@
     - Set the parameters writen in `Thruster.ini` by `InitSimpleThruster.cpp`.
         + Users can set multiple thrusters.
     - Create an instance by `SimpleThruster` function.
-    - Add `calc_thrust` function to `GenerateForce_b()` in `SatComponents` class and`calc_torque` function to `GenerateTorque_b()` in `SatComponents` class
+    - Add `calc_thrust` function to `GenerateForce_b()` in `SatComponents` class and `calc_torque` function to `GenerateTorque_b()` in `SatComponents` class
+        + `calc_torque` function requires a position of spacecraft's mass center as an argument.
     - When a thruster is open, set the duty to 1 by `set_duty(1)` function.
         + Users can set duty to the value between 0 and 1.
 
