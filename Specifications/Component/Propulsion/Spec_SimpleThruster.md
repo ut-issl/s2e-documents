@@ -4,8 +4,8 @@
 - This class simulates a thruster and contains functions for it.
 
 1. functions
-   - By setting the thruster valve open and close, thruster torque and force are calculated.
-   - The thruster model includes the magitude error and the directional error which set in ini file.
+   - By setting the thruster valve open and close, thruster torque and force are generated.
+   - The thruster model includes the magnitude error and the directional error set in the ini file.
    - Users can set the thrust duty to the value between 0 and 1 according to the thruster output. 
    - Examples of public functions in this class:
         + `SimpleThruster`
@@ -28,11 +28,11 @@
         +  Parameters for a/multiple thruster(s)
 
 3. how to use
-    - Set the parameters writen in `Thruster.ini` by `InitSimpleThruster.cpp`.
+    - Set the parameters written in `Thruster.ini` by `InitSimpleThruster.cpp`.
         + Users can set multiple thrusters.
     - Create an instance by `SimpleThruster` function.
     - Add `calc_thrust` function to `GenerateForce_b()` in `SatComponents` class and `calc_torque` function to `GenerateTorque_b()` in `SatComponents` class
-        + `calc_torque` function requires a position of spacecraft's mass center as an argument.
+        + `calc_torque` function requires a position of the spacecraft's mass center as an argument.
     - When a thruster is open, set the duty to 1 by `set_duty(1)` function.
         + Users can set duty to the value between 0 and 1.
 
@@ -40,7 +40,7 @@
 1. Thrust
     1. overview
         - Thrust magnitude is a scalar value of thrust.
-        - Thrust contains the magnitude error and direction error according to the setting in ini file.
+        - Thrust contains the magnitude error and direction error according to the setting in the ini file.
         - Thrust magnitude calculation considers the duty of thruster. If the thruster valve is closed, the thrust magnitude is 0. 
     2. input and output
         - input
@@ -51,7 +51,7 @@
             + Thrust direction error `deg_err `
         - output
             + Thrust magnitude and direction
-    3. algorythms
+    3. algorithms
         Thrust magnitude can be calculated as follows:
 
         ```math
@@ -85,7 +85,7 @@
  
 2. Torque
     1. overview
-        - Torque by thruster is calculated from the thrust vector and the vector betweeen mass center of spacecraft and thruster.
+        - Torque by thruster is calculated from the thrust vector and the vector between the center of mass of the spacecraft and thruster.
     2. input and output
         - input
             + Thruster position `thruster_pos`
@@ -93,7 +93,7 @@
             + Thrust magnitude and direction
         - output
             + Torque
-    3. algorythms
+    3. algorithms
         Torque by the thruster can be calculated as follows:
 
         ```math
