@@ -42,6 +42,7 @@
          1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
       6. Power
       7. Propulsion
+         1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
       8. Thermal
    2. Disturbance
       1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
