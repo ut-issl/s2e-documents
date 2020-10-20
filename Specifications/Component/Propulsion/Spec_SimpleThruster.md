@@ -20,7 +20,7 @@
             * Write the log header and value
 
 2. files
-    - `SimpleThruster.cpp` , `SimpleTelescope.h`
+    - `SimpleThruster.cpp` , `SimpleThruster.h`
         + Definitions and declarations of the class
     - `InitSimpleThruster.cpp`
         + Interface functions for the initialization
