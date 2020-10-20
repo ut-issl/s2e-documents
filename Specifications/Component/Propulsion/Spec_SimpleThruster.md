@@ -7,17 +7,6 @@
    - By setting the thruster valve open and close, thruster torque and force are generated.
    - The thruster model includes the magnitude error and the directional error set in the ini file.
    - Users can set the thrust duty to the value between 0 and 1 according to the thruster output. 
-   - Examples of public functions in this class:
-        + `SimpleThruster`
-            * Initialize an instance
-        + `set_duty`
-            * Set a thrust magnitude (0 if the valve is closed.)
-        + `calc_thrust`
-            * Calculate thrust
-        + `calc_torque`
-            * Calculate torque
-        + `GetLogHeader`, `GetLogValue`
-            * Write the log header and value
 
 2. files
     - `SimpleThruster.cpp` , `SimpleThruster.h`
