@@ -61,7 +61,7 @@
          \tag{2}
         ```
 
-        where $`\boldsymbol{d}_{true}`$ is the thrust vector without errors, $`n`$ is the random angles to rotate the direction of error $`\boldsymbol{d}_{err}`$, $`\boldsymbol{d}_{x}`$ is the vector which is not equal to $`\boldsymbol{d}_{true}`$, $`n_d`$ is the directional error, and  $`\boldsymbol{d}_{thrust}`$ is the thrust vector with errors.
+        where $`\boldsymbol{d}_{true}`$ is the thrust vector without errors, $`n`$ is the random angles to rotate the direction of error $`\boldsymbol{d}_{err}`$, $`\boldsymbol{d}_{x}`$ is the vector which is not equal to $`\boldsymbol{d}_{true}`$, $`n_d`$ is the directional error, and  $`\boldsymbol{d}_{thrust}`$ is the thrust vector with errors. $`\boldsymbol{q}(\boldsymbol{d},n)`$ is the quaternion which has the rotation axis $`\boldsymbol{d}`$ and the rotation angle $`n`$.
 
         Thrust can be calculated as follows:
 
