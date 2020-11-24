@@ -42,7 +42,13 @@
 
 ## 3. Note
 
-1. If you see the error `Generator Visual Studio 15 2017 could not find any instance of Visual Studio`,
+- Difference from the above compiling procedure when using VS2019
+
+   - After opening CMakeLists.txt, `CMake` tab does not appear in the menu bar.
+
+      - So, you should bulid by right-clicking CMakeLists.txt in Solution Explorer after rewiting from `"generator": "Visual Studio 15 2017",` to `"generator": "Visual Studio 16 2019",` in `CMakeSetting.json`.
+
+- If you see the error `Generator Visual Studio 15 2017 could not find any instance of Visual Studio`,
 
    - please install `Visual Studio 15 2017 compiler` into your Visual Studio 2019 environment. (It can be selected when you install the VS2019)
 
@@ -50,4 +56,3 @@
 
    - please edit compiler setting in  `CMakeSetting.json` as `"generator": "Visual Studio 16 2019",`
 
-2. 
