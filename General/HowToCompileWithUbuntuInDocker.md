@@ -43,9 +43,9 @@
 - Edit `Dockerfile` or `setup_docker.sh` if you need.  
   when you want to change directory name, user name of the container, and so on.
 - Execute `./setup_docker.sh build` to make images
-- Check created image (`ubuntu` and `issl`)  
+- Check created image (`issl` (and `ubuntu`))  
   command: `docker images`
-- Execute `./setup_docker.sh run` to make a container
+- Execute `./setup_docker.sh run_core` to make a container
 - Check created container (`issl:latest`)  
   command: `docker ps -a`
 - Check dashboard of Docker 
@@ -97,8 +97,8 @@ Host issl-1
 - Edit setting of `CMake Tools` in `issl-1`  
   `Cmake Build Directory: ${workspaceFolder}/s2e_core_oss/build/Debug`
 - After `CMake` and `CMake Tools` are installed, VS Code require you to configure build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code require you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
-  - This setting is written in `.vscode/setting.json`
-  - You can directly edit the `setting.json` as follows
+  - This setting is written in `.vscode/settings.json`
+  - You can directly edit the `settings.json` as follows
   ```json
   "cmake.sourceDirectory": "${workspaceFolder}/s2e_core_oss",
   "cmake.buildDirectory": "${workspaceFolder}/s2e_core_oss/build/Debug",
