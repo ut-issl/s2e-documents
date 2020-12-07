@@ -3,8 +3,8 @@
 ## 1.  Overview
 - [Docker](https://www.docker.com/) is useful for easy setup of the compile environment for S2E.
 - *Both Windows and Mac* users can use same environment and get same result by using the docker container.
-- We selected [Ubuntu](https://ubuntu.com/) as an OS in the docker and [GCC/G++](https://gcc.gnu.org/) as an compiler for S2E.
-  - **Note**: Currently, we use 32bit compiler for S2E since flight S/Ws are usually executed on 32 bit micro-computers. 
+- We selected [Ubuntu](https://ubuntu.com/) as an OS in the docker image and [GCC/G++](https://gcc.gnu.org/) as an compiler for S2E.  
+  **Note**: Currently, we use 32bit compiler for S2E since flight S/Ws are usually executed on 32 bit micro-computers. 
 - We recommend to use [Visual Studio Code](https://code.visualstudio.com/) as an editor for the environment.
 - This document explains a sequence of setup the docker environment for S2E. 
 
@@ -22,20 +22,20 @@
   - CMake Tools
   - C/C++
 - Following extensions are also useful
-  - Markdown+Math  
+  - Markdown+Math   
     please change the delimiter setup to use same math format with `Gitlab`. 
   - Code Spell Checker
 
 ### 2.3. **For Mac users**
 - Install `coreutils` to use `realpath` command in `setup_docker.sh`
-- Use the bottom command when you have `Homebrew`  
-  `brew install coreutils`
+- Use the `brew install coreutils` command when you have `Homebrew`  
 
 ## 3. Sequence of environment setting
 ### 3.1. Working directory setting
 - Create `work` directory as a working directory.
 - Clone [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) in the `work` directory.
-- Add the `work` directory in the `file sharing` directory of Docker.
+- Add the `work` directory in the `file sharing` directory of Docker.  
+  **Note**: This setting does not exist in the latest Doceker and WSL2 environments in Windows, so it is not necessary.
 
 ### 3.2. Make Docker image and container
 - Launch `git bush` (for windows users) or `terminal` (for Mac users)
@@ -43,9 +43,9 @@
 - Edit `Dockerfile` or `setup_docker.sh` if you need.  
   when you want to change directory name, user name of the container, and so on.
 - Execute `./setup_docker.sh build` to make images
-- Check created image (`ubuntu` and `issl`)  
+- Check created image (`issl` (and `ubuntu`))  
   command: `docker images`
-- Execute `./setup_docker.sh run` to make a container
+- Execute `./setup_docker.sh run_core` to make a container
 - Check created container (`issl:latest`)  
   command: `docker ps -a`
 - Check dashboard of Docker 
@@ -56,7 +56,7 @@
 ### 3.3. SSH connect with VS Code
 - Launch `VS Code` and open new window
 - Click `Remote Explorer` icon in the left side  
-  note: the icon looks a monitor 
+  Note: the icon looks a monitor 
 - Click `gear` icon of `SSH TARGETS` and select config file you want to edit  
   Default: `C:\Users\UserName\ssh\config` or `User/UserName/ssh/config`
 - Edit the config file as follows
@@ -84,7 +84,7 @@ Host issl-1
 - execute `./s2e_core_oss/scripts/Common/download_nrlmsise00_src_and_table.sh`
 - See `ExtLibraries` to confirm the NRLMSISE library is generated.
 
-**Note** : This sequence will be integrated within the docker container creation for more easy setting
+**Note** : This sequence was integrated within the docker build process, so this is currently unnecessary.
  
 
 ### 3.5. Build S2E
@@ -97,18 +97,20 @@ Host issl-1
 - Edit setting of `CMake Tools` in `issl-1`  
   `Cmake Build Directory: ${workspaceFolder}/s2e_core_oss/build/Debug`
 - After `CMake` and `CMake Tools` are installed, VS Code require you to configure build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code require you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
-  - This setting is written in `.vscode/setting.json`
-  - You can directly edit the `setting.json` as follows
-  ```json
-  "cmake.sourceDirectory": "${workspaceFolder}/s2e_core_oss",
-  "cmake.buildDirectory": "${workspaceFolder}/s2e_core_oss/build/Debug",
-  ```
+  - This setting is written in `.vscode/settings.json`
+  - You can directly edit the `settings.json` as follows
+    ```json
+    {
+      "cmake.sourceDirectory": "${workspaceFolder}/s2e_core_oss",
+      "cmake.buildDirectory": "${workspaceFolder}/s2e_core_oss/build/Debug"
+    }
+    ```
 - Select `GCC 9.3.0` as a kit (compiler) 
 - Select `CMake [Debug]` and check the configuration is successfully done.
 - Build S2E
   - If you want clean up build, please use `CMake: Clean` command
 - Move `build/Debug` directory with `Terminal` in VS Code
-- Execute `run` command or click `run` icon in bottom
+- Execute `./S2E` or click `run` icon in bottom
 - Check `data/log` directory to confirm log file output
 
 ## 4. Debug with VS Code
@@ -116,11 +118,11 @@ Host issl-1
 - Select `C++(GDB/LLDB)` debugger  
   `.vscode/launch.json` will be created.
 - Edit as follows
-```json
-"program": "${workspaceFolder}/s2e_core_oss/build/Debug/S2E",
+  ```json
+  "program": "${workspaceFolder}/s2e_core_oss/build/Debug/S2E",
 
-"cwd": "${workspaceFolder}/s2e_core_oss/build/Debug",
-```
+  "cwd": "${workspaceFolder}/s2e_core_oss/build/Debug",
+  ```
 - Select `Run > Start Debugging` again
 - Check `data/log` directory to confirm log file output
 - You can use break point in the VS Code editor
