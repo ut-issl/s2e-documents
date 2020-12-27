@@ -100,6 +100,7 @@
     ```
 - C2A side
   - Edit `AppRegistry.c,h`, `rs422_dummy.c,h`, and `driver_update.c` with reference to the sample codes.
+  - **Note** Character encoding of C2A is `SJIS` and the sample codes in this tutorial is `UTF-8`, so do not copy the files directly.
 - Execution and Result
   - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
     - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
