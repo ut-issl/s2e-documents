@@ -65,6 +65,7 @@
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
       4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+         *  [Hipparicos Catalogue (Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
    5. Interface
    6. Library
    7. Simulation
