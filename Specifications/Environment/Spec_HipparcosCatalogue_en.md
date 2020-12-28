@@ -20,7 +20,8 @@
             * This is the original data of Hipparcos catalogue. It is in `ExtLibralies` directory. This date is sorted in the of the visual magnitude, not in the order of HIP ID.
 
     3. How to download `hip_main.csv`
-        + `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`:
+        + `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`．
+            * **NOTE for Mac OS user: Run the following script not from the Mac terminal, but from the Ubuntu terminal in Docker.** (Because the specification of `sed` is different between Mac and Linux, the file cannot be generated correctly) 
     ```
     bash download_HIPcatalogue.sh 
     ```
