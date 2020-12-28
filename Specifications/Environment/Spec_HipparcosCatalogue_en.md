@@ -21,7 +21,7 @@
 
     3. How to download `hip_main.csv`
         + `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`．
-            * **NOTE for Mac OS user: Run the following script not from the Mac terminal, but from the Ubuntu terminal in Docker.** (Because the specification of `sed` is different between Mac and Linux, the file cannot be generated correctly) 
+            * **NOTE for Mac OS user: Run the following script not from the Mac terminal, but from the Ubuntu terminal in Docker.** (Because the specification of `sed` is different between Mac and Linux, the file cannot be generated correctly. Reference: <https://qiita.com/catfist/items/1156ae0c7875f61417ee>) 
     ```
     bash download_HIPcatalogue.sh 
     ```
