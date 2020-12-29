@@ -74,8 +74,8 @@
   virtual int SendFromCompo(int port_id, unsigned char* buffer, int offset, int count);
   virtual int ReceivedByObc(int port_id, unsigned char* buffer, int offset, int count);
   ```
-- Components without the OBC can use the `SendFromCompo` and `ReceivedByCompo` for communication with the flight software. Driver functions in the flight software can use `SendFromObc` and `ReceivedByOBC` for communication with the components. It is essential to use the same `port_id`.
-- However, C2A cannot directly use `SendFromObc` and `ReceivedByOBC` since it is written in C, and it is difficult to pass the `OBC` class as an argument to C2A. So `OBC_C2A` has static functions for C2A. 
+- Components without the OBC can use the `SendFromCompo` and `ReceivedByCompo` for communication with the flight software. Driver functions in the flight software can use `SendFromObc` and `ReceivedByObc` for communication with the components. It is essential to use the same `port_id`.
+- However, C2A cannot directly use `SendFromObc` and `ReceivedByObc` since it is written in C, and it is difficult to pass the `OBC` class as an argument to C2A. So `OBC_C2A` has static functions for C2A. 
   ```cpp
   // Static function for C2A
   static int SendFromObc_C2A(int port_id, unsigned char* buffer, int offset, int count);
@@ -100,7 +100,15 @@
     ```
 - C2A side
   - Edit `AppRegistry.c,h`, `rs422_dummy.c,h`, and `driver_update.c` with reference to the sample codes.
-  - **Note** Character encoding of C2A is `SJIS` and the sample codes in this tutorial is `UTF-8`, so do not copy the files directly.
+    - `AppRegistry.h`: Add `AR_DI_RS422_DUMMY,` .
+    - `AppRegistry.c`: Add `add_application_(AR_DI_RS422_DUMMY, RS422_create_dummy);`. 
+    - `rs422_dummy.c,h`: Replace most of the codes.
+    - `driver_update.c`: Add the `AR_DI_RS422_DUMMY` execution command in block commands.
+      ```cpp
+      CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
+      BCT_register_cmd(&temp); 
+      ```
+  - **Note** Currentlym the character encoding of C2A is `SJIS` and the sample codes in this tutorial are writtn in `UTF-8`, so please carefully copy the files, and convert the encoding if you need.
 - Execution and Result
   - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
     - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
