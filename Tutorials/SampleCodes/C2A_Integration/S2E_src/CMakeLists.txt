@@ -20,7 +20,7 @@ endif()
 
 ## options to use C2A
 option(USE_C2A "Use C2A")
-set(USE_C2A OFF)
+set(USE_C2A ON)
 if(USE_C2A)
   add_definitions(-DUSE_C2A)
   add_definitions(-DSILS_FW)

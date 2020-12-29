@@ -15,13 +15,15 @@
 1. General Information
    1. [Coding Convention](./General/CodingConvention.md)
    2. [Format of Documents](./General/DocumentFormat.md)
-   3. Mandatory set up and How to Compile the S2E
+   3. Mandatory set up and How to Build the S2E
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   2. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
-	   3. [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
-	   4. [How to compile with OSX](./General/HowToCompileWith_OSX.md)
-	   5. [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
-	   6. How to compile with other compilers will be written
+	   3. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
+	   4. ~~[How to build with OSX](./General/HowToCompileWith_OSX.md)~~  
+        This configuration doesn't work now since the OSX doesn't support 32bit applications.  
+        Mac users can use Ubuntu in Docker.
+	   5. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
+	   6. How to build with other compilers will be written
 2. Tutorials
    1. [Getting Started](./Tutorials/GettingStarted.md)
    2. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
@@ -63,7 +65,9 @@
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
       4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
+         *  [Hipparicos Catalogue (Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
       5. [Gnss Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md)
+         *  [Gnss Satellites (Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
    5. Interface
    6. Library
    7. Simulation
