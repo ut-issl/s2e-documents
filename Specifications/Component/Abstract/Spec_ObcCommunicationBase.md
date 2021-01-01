@@ -26,6 +26,7 @@
 1. Constructors
    1. overview
       - In the constructors, the communication port for the `OBC` is connected.
+      - If the port is already connected by another component, the connection function returns error, and the constructors output a message.
    2. inputs and outputs
       - Both constructors require `port_id` and target `OBC`.
       - Users can set the communication data buffer size. When users doesn't put the size, the value is automatically set as the maximum value.
@@ -37,6 +38,7 @@
 2. Destructor
    1. overview
       - In the destructor, the communication port is closed.
+      - If the port is already closed by another component, the close function returns error, and the constructors output a message.
    2. inputs and outputs
       - N/A
    3. algorithm
