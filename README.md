@@ -37,6 +37,7 @@
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
       1. Abstract
+         1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
       2. AOCS
       3. CDH
       4. Logic
