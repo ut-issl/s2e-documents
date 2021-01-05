@@ -43,7 +43,7 @@
       5. Mission
          1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
       6. Power
-         1. [Power Port](./Specifications/Environment/Spec_PCU.md)
+         1. [PCU](./Specifications/Environment/Spec_PCU.md)
       7. Propulsion
          1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
       8. Thermal
