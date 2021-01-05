@@ -43,7 +43,7 @@
       5. Mission
          1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
       6. Power
-         1. [PCU](./Specifications/Environment/Spec_PCU.md)
+         1. [PCU](./Specifications/Component/Power/Spec_PCU.md)
       7. Propulsion
          1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
       8. Thermal
@@ -68,7 +68,7 @@
       4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
          *  [Hipparicos Catalogue (Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
    5. Interface
-      1. [Power Port](./Specifications/Environment/Spec_PowerPort.md)
+      1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
    6. Library
    7. Simulation
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
