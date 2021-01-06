@@ -38,6 +38,7 @@
    1. Component
       1. Abstract
          1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
+         1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
       2. AOCS
       3. CDH
       4. Logic
