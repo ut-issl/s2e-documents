@@ -22,7 +22,8 @@
    1. overview
       - Users can set sensor noise parameters by using the Constructor.
    2. inputs
-      - `scale_factor`: Scale factor matrix to express scale factor noise and cross-talk      - Range related parameters
+      - `scale_factor`: Scale factor matrix to express scale factor noise and cross-talk      
+      - Range related parameters
         - `range_to_const_c`: The output value cannot over this value
         - `range_to_zero_c`: When the output value is larger than this value, the output is set as zero. 
         - This feature is optional. If you don't want to use the value, please set this huge value.
@@ -38,7 +39,7 @@
       - **Note**: All parameters are defined in the component frame.
       - **Note**: Normally, the unit of the parameters is the same as the unit of true value. Users also can change the unit by using the scale factor matrix.
    3. algorithm
-      - The value of the `range_to_const_c` and `range_to_zero_c` are checked here with the `RangeCheck` function.
+      - The values of the `range_to_const_c` and `range_to_zero_c` are checked here with the `RangeCheck` function.
    4. note
       - N/A
 2. Measure
@@ -52,7 +53,7 @@
    4. note
       - N/A
 ## 3. Results of verifications
-- We verified the `SencorBase` class with the following parameters.
+- We verified the `SensorBase` class with the following parameters.
 - Default parameters
   - `scale_factor` = Unit matrix
   - `range_to_const_c` = 5
