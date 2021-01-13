@@ -32,16 +32,13 @@
       - Calculate the angle $`\theta_{es}`$ between the sight direction $`\boldsymbol{r_{sight}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$.
       - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`$, the STT status is judged as OK.
 
-        ```math
-          \theta_{ce} = \atan{|\boldsymbol{r_se}|/R_e}
-          \\
-          \theta_{cs} = \acos{\boldsymbol{r_se}*\boldsymbol{r_{sight}}}
-          \\
-          \theta_{es} = \theta_{ce} - \theta_{cs}
-          \tag{1}
-        ```
+      ```math
+         \theta_{ce} = \arctan{\left(|\boldsymbol{r}_{se}|/R_e \right)} \\
+         \theta_{cs} = \arccos{\left(\boldsymbol{r}_{se}*\boldsymbol{r}_{sight} \right)} \\
+         \theta_{es} = \theta_{ce} - \theta_{cs}
+      ```
 
-        ![](./figs/stt_earth_judgement.png)
+      ![](./figs/stt_earth_judgement.png)
         
 ## 3. Results of verifications
 
