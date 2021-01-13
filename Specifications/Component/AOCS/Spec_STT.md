@@ -33,12 +33,12 @@
       - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`$, the STT status is judged as OK.
 
         ```math
-         \theta_{ce} = \atan{|\boldsymbol{r_se}|/R_e}
-         \tag{1} \\
-         \theta_{cs} = \acos{\boldsymbol{r_se}*\boldsymbol{r_{sight}}}
-         \tag{2} \\
-         \theta_{es} = \theta_{ce} - \theta_{cs}
-         \tag{3} \\
+          \theta_{ce} = \atan{|\boldsymbol{r_se}|/R_e}
+          \\
+          \theta_{cs} = \acos{\boldsymbol{r_se}*\boldsymbol{r_{sight}}}
+          \\
+          \theta_{es} = \theta_{ce} - \theta_{cs}
+          \tag{1}
         ```
 
         ![](./figs/stt_earth_judgement.png)
