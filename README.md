@@ -40,6 +40,7 @@
          1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
          1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
       2. AOCS
+         1. [STT](./Specifications/Component/AOCS/Spec_STT.md)
       3. CDH
       4. Logic
       5. Mission
