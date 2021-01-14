@@ -4,8 +4,8 @@
 
 1. functions
    
-   - A class which simulates a star tracker sensor
-   - The class calcurates and returns the observed quaternions and its error flags.
+   - A class that simulates a star tracker sensor
+   - The class calculates and returns the observed quaternions and its error flags.
 
 2. files
    
@@ -16,7 +16,7 @@
 3. how to use
    
    - Set the parameters in `STT.ini`.
-   - Create instance by using initialization function `InitSTT`
+   - Create an instance by using the initialization function `InitSTT`
    - Use `Get*` function to get quaternion information
      
 
@@ -30,25 +30,25 @@
       
       - Calculate the angle $`\theta_{ce}`$ between the earth's center direction $`\boldsymbol{r_{sc}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$. `R_e` is the earth's radius.
       - Calculate the angle $`\theta_{es}`$ between the sight direction $`\boldsymbol{r_{sight}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$.
-      - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`$, the STT status is judged as OK.
+      - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`, the earth is completely outside the earth forbidden angle.
 
       ```math
-         \theta_{ce} = \arctan{\left(|\boldsymbol{r}_{se}|/R_e \right)} \\
-         \theta_{cs} = \arccos{\left(\boldsymbol{r}_{se}*\boldsymbol{r}_{sight} \right)} \\
-         \theta_{es} = \theta_{ce} - \theta_{cs}
+        \theta_{ce} = \atan{|\boldsymbol{r_se}|/R_e}
+        \\
+        \theta_{cs} = \acos{\boldsymbol{r_se}*\boldsymbol{r_{sight}}}
+        \\
+        \theta_{es} = \theta_{ce} - \theta_{cs}
+        \tag{1}
       ```
 
-      ![](./figs/stt_earth_judgement.png)
+        ![](./figs/stt_earth_judgement.png)
         
 ## 3. Results of verifications
-
 1. verification of Earth judgement
    1. overview
-      
       - Check that Earth judgement is performed correctly
 
    2. conditions for the verification
-   
       - PropStepSec: 0.001
       - StepTimeSec: 0.1
       - EndTimeSec: 200
@@ -58,7 +58,7 @@
         - main mode = EARTH_CENTER_POINTING: the pointing direction is determined by each case
         - sub mode = SUN_POINTING: [0,0,1]
       - STT quaternion from body frame to component frame: [0,0,0,1]
-      - Earth forbidden harf angle: 10deg
+      - Earth forbidden half angle: 10deg
       - The angle between the earth's center and edge direction: 8.6deg
 
    3. results
