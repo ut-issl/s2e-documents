@@ -28,14 +28,15 @@
 
     1. `EarthJudgement`
       
-      - Calculate the angle $`\theta_{ce}`$ between the earth's center direction $`\boldsymbol{r_{sc}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$. `R_e` is the earth's radius.
+      - Calculate the angle $`\theta_{ce}`$ between the earth's center direction $`\boldsymbol{r_{sc}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$. $`R_e`$ is the earth's radius.
       - Calculate the angle $`\theta_{es}`$ between the sight direction $`\boldsymbol{r_{sight}}`$ and the earth's edge direction $`\boldsymbol{r_{se}}`$.
-      - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`, the earth is completely outside the earth forbidden angle.
+      - Judge the STT error flag by comparing $`\theta_{es}`$ with the earth forbidden angle $`\theta_{efa}`$. If $`\theta_{es} > \theta_{efa}`$, the earth is completely outside the earth forbidden angle.
+
 
       ```math
-        \theta_{ce} = \arctan{|\boldsymbol{r_se}|/R_e}
+        \theta_{ce} = \arctan{|\boldsymbol{r_{se}}|/R_e}
         \\
-        \theta_{cs} = \arccos{\boldsymbol{r_se}*\boldsymbol{r_{sight}}}
+        \theta_{cs} = \arccos{\boldsymbol{r_{se}}*\boldsymbol{r_{sight}}}
         \\
         \theta_{es} = \theta_{ce} - \theta_{cs}
         \tag{1}
