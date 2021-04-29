@@ -41,6 +41,7 @@
          1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
       2. AOCS
          1. [STT](./Specifications/Component/AOCS/Spec_STT.md)
+         1. [RW Jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
       3. CDH
       4. Logic
       5. Mission
