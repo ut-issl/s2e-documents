@@ -12,7 +12,7 @@
 1. functions
     - `CalcJitter(double angular_velocity)` is the main function. `CalcJitter` does:
         + Simulation of high-frequency disturbances
-        + (If Enabled) Calling `AddStructuralResonance()`. This function adds the effect of structural resonance to the high frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
+        + (If Enabled) Calling `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
 
 2. files
     - `RWJitter.cpp`, `RWJitter.h`
@@ -21,12 +21,12 @@
         + These files contains the harmonic coefficients from experiments.
 
 3. how to use
-    - Set the harmonics coeffecients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
+    - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
     - Set parameters in `RW.ini`
     - Set the jitter update period to an appropriate value.
         + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `Simbase.ini` and `fast_prescaler` in `RW.ini`.
         + For correct calculation, the update period of the jitter should be set to approximately 0.1ms.
-        + A larger update period is not a problem, but it will cause aliasing in the jitter waveform.
+        + A larger update period is not a problem, but it will cause an aliasing in the jitter waveform.
 
 ## 2. Explanation of Algorithm
 1. `CalcJitter`
@@ -37,7 +37,7 @@
         - input
             + angular velocity of the RW
         - output
-            + jitter force and torque in component frame
+            + jitter force and torque in the component frame
             + jitter force and torque in body frame
     
     3. algorithm
@@ -69,7 +69,7 @@
         ```math
         Y(s)=G(s)U(s)
         ```
-        - where $`\omega_n`$ is the angular frequency on the stuructural resonance. Other parameters such as $`\zeta`$, $`d`$ are determined by the result of experiments.
+        - where $`\omega_n`$ is the angular frequency on the structural resonance. Other parameters such as $`\zeta`$, $`d`$ are determined by the result of experiments.
         - To perform the simulation in discrete time, A bi-linear transformation $`G(s)\rightarrow H(z)`$ is applied. $`T`$ is the jitter update period. 
 
         ```math
@@ -108,9 +108,9 @@
 
 ## 3. Results of verifications
 - In this section, jitter output when the RW is rotated at a constant speed is verified.
-    1. X-axis torque data in time domain 
+    1. X-axis torque data in the time domain 
         1. overview
-            -   The RW model is rotated at 4000 rpm, 6000 rpm and 8000 rpm and the disturbance torque is compared with the actual experiment.
+            -   The RW model is rotated at 4000 rpm, 6000 rpm, and 8000 rpm, and the disturbance torque is compared with the actual experiment.
         2. initial condition
             1. input files
                 - `SampleSimbase.ini`
@@ -143,11 +143,11 @@
                 </div>
 
                 - At all speeds, the characteristics of the actual RW are well simulated.
-                -  At 8000 rpm, the noise is more prominent in the S2E simulation than in the experimental results.
+                -  At 8000rpm, the noise is more prominent in the S2E simulation than in the experimental results.
 
     2. X-axis torque waterfall
         1. overview
-            - The RW model is rotated at 1000, 2000, ... , 9000rpm, and the jitter torque time domain data was extracted. Then, FFT was applied the data by Matlab, and the waterfall plot was plotted.
+            - The RW model is rotated at 1000, 2000, ..., 9000rpm, and the jitter torque time-domain data was extracted. Then, FFT was applied to the data by Matlab, and the waterfall plot was plotted.
         2. initial condition
             - same as the initial condition of the verification about the time domain data
         3. result
@@ -160,5 +160,5 @@
 
 ## 4. References
     1. Masterson, R. A. (1999). Development and validation of empirical and analytical reaction wheel disturbance models (Doctoral dissertation, Massachusetts Institute of Technology).
-    2. 細沼貴之．Summary of Reserach Acticities during FY2020 Winter (2020年度中須賀・船瀬研究室輪講資料)
+    2. 細沼貴之．Summary of Research Activities during FY2020 Winter (2020年度中須賀・船瀬研究室輪講資料)
 
