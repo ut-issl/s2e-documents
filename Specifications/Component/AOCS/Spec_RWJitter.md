@@ -1,24 +1,24 @@
 # Specification for RW jitter
 
 ## 1.  Overview
-- A class for simulation of jitter of RW.
+- A class to simulate the high-frequency jitter of RWs.
 - This class uses:
     + Angular velocity of the RW
-    + Parameters of RW disturbance obtained by experiments
+    + Parameters of RW disturbance measured by experiments
 - This class returns:
-    + RW jitter forces and torques in component frame
+    + RW jitter forces and torques in the component frame
     + RW jitter forces and torques in body frame
 
 1. functions
-    - `CalcJitter(double angular_velocity)` is the main function. `CalcJitter` does:
-        + Simulation of high-frequency disturbances
-        + (If Enabled) Calling `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
+    - `CalcJitter(double angular_velocity)` 
+        + Simulates the jitter
+        + (If Enabled) Calls `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
 
 2. files
     - `RWJitter.cpp`, `RWJitter.h`
     - `RW.ini`
-    - `ini/component/RWDisturbance/radial_force_harmonics_coef.csv`,`ini/component/RWDisturbance/radial_torque_harmonics_coef.csv` 
-        + These files contains the harmonic coefficients from experiments.
+    - `radial_force_harmonics_coef.csv`,`radial_torque_harmonics_coef.csv` 
+        + These files contain the harmonic coefficients from experiments.
 
 3. how to use
     - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
@@ -26,7 +26,7 @@
     - Set the jitter update period to an appropriate value.
         + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `Simbase.ini` and `fast_prescaler` in `RW.ini`.
         + For correct calculation, the update period of the jitter should be set to approximately 0.1ms.
-        + A larger update period is not a problem, but it will cause an aliasing in the jitter waveform.
+        + A larger update period is not a problem, but it will cause aliasing in the jitter waveform.
 
 ## 2. Explanation of Algorithm
 1. `CalcJitter`
@@ -38,7 +38,7 @@
             + angular velocity of the RW
         - output
             + jitter force and torque in the component frame
-            + jitter force and torque in body frame
+            + jitter force and torque in the body frame
     
     3. algorithm
         - The disturbances consist of discrete harmonics of reaction wheel speed with amplitudes proportional to the square of the wheel speed:
@@ -49,13 +49,13 @@
         
         -  where $`u(t)`$ is the disturbance force and torque in Newton (N) or Newton-meters (Nm), $`n`$ is the number of harmonics included in the model, $`C_i`$ is the amplitude of the $`i`$th harmonic in $`\mathrm{N^2/Hz}`$ (or $`\mathrm{(Nm)^2/Hz}`$), $`\Omega`$ is the wheel speed in Hz, $`h_i`$ is the $`i`$th harmonic number and $`\alpha_i`$ is a random phase (assumed to be uniform over $`[0, 2\pi]`$) [1].
         - $`\alpha_i`$ is generated as a uniform random number in the constructor.
-        - If you want to use a more precise model, set `considers_structural_resonance` to ENABLE in `RW.ini` and use a model that takes structural resonance into account.
+        - When users want to use a more precise model, set `considers_structural_resonance` to ENABLE in `RW.ini` and use a model that takes structural resonance inside the RW into account.
             + If structural resonances are not taken into account, the RW disturbance will be underestimated, but it is not a significant change in general.
             + See the description of `AddStructuralResonance()` for the algorithm to calculate the structural resonance.
 
 2. `AddStructuralResonance()`
     1. overview
-        - Function to add stuructural resonance on the disturbance by harmonics of RW
+        - Function to add structural resonance inside the RW on the disturbance by harmonics of RW
     2. input and output
         - input:
             + N/A
@@ -137,13 +137,13 @@
                 bandwidth = 0.001 //[ ]
                 ```
             3. result
-                - The simulation result is compared with the disturbance experiment result[2] of Sinclair RW0.003.
+                - The simulation result is compared with the disturbance experiment result of Sinclair RW0.003.
                 <div align="center">
-                <img src="./figs/rw_jitter_torque_time_domain_experiment.JPG" width=45% alt="Simulated and experimented RW jitter in time domain"><img src="./figs/rw_jitter_torque_time_domain_sim.jpg" width=50% alt="Simulated RW jitter in time domain">
+                <img src="./figs/rw_jitter_torque_time_domain_sim.jpg" width=80% alt="Simulated RW jitter in time domain">
                 </div>
 
                 - At all speeds, the characteristics of the actual RW are well simulated.
-                -  At 8000rpm, the noise is more prominent in the S2E simulation than in the experimental results.
+                
 
     2. X-axis torque waterfall
         1. overview
@@ -151,14 +151,14 @@
         2. initial condition
             - same as the initial condition of the verification about the time domain data
         3. result
-            - The simulation result is compared with the disturbance experiment result[2] of Sinclair RW0.003.
+            - The simulation result is compared with the disturbance experiment result of Sinclair RW0.003.
              <div align="center">
-            <img src="./figs/rw_waterfall_experiment.JPG" width=47% alt="Simulated and experimented RW jitter in time domain"><img src="./figs/rw_waterfall_sim.jpg" width=50% alt="Simulated RW jitter in time domain">
+            <img src="./figs/rw_waterfall_sim.jpg" width=80% alt="Simulated RW jitter in time domain">
             </div>
             
             - Both the first-order mode and the structural resonance ($`\omega_n=585\mathrm{Hz}`$) are approximately simulated.
 
 ## 4. References
     1. Masterson, R. A. (1999). Development and validation of empirical and analytical reaction wheel disturbance models (Doctoral dissertation, Massachusetts Institute of Technology).
-    2. 細沼貴之．Summary of Research Activities during FY2020 Winter (2020年度中須賀・船瀬研究室輪講資料)
+    2. Shields, J., Pong, C., Lo, K., Jones, L., Mohan, S., Marom, C., ... & Andrade, L. (2017). Characterization of CubeSat reaction wheel assemblies. Journal of Small Satellites, 6(1), 565-580.
 
