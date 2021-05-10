@@ -2,10 +2,10 @@
 
 ## 1.  Overview
 1. Functions
-    - The `ComponentBase` class is an abstract class to handle the power and time of components.
-    -  This class has two virtual functions: `MainRoutine` and `FastUpdate`. Both are called periodically, but you can change the calling period between the two functions.
+    - The `ComponentBase` class is an abstract class to handle the electrical power and the update timing of components.
+    -  This class has two virtual functions: `MainRoutine` and `FastUpdate`. Both are called periodically. Users can select the functions according to the required calling period.
         + The `MainRoutine` function is the components' main function. Most of the processing is handled in this function.
-        + The `FastUpdate` function handles the processes that need to be computed in a particularly fast cycle. So, you will use this function only when high-frequency disturbances need to be calculated (e.g. RW jitter).
+        + The `FastUpdate` function handles the processes that need to be computed in a particularly fast cycle. So, you will use this function only when high-frequency disturbances need to be calculated (e.g., RW jitter).
 
 2. Related Files
     - Main file: `ComponentBase.h`, `ComponentBase.cpp`
@@ -24,10 +24,10 @@
             + This determines the execution cycle of `MainRoutine`.
             + The period of `MainRoutine` equals to `SimTime::compo_update_interval_sec` $`\times`$ `prescaler`.
         - clock generator
-            + instance that simulates the clock of a component
+            + an instance that simulates the clock of a component
             + Basically, users don't need to care about this.
         - power port
-            + instance that simulates the power supply
+            + an instance that simulates the power supply
         - fast prescaler
             + parameter to divide the execution cycle of the component
             + This determines the execution cycle of `FastUpdate`.
@@ -79,7 +79,7 @@
         - `ClockGenerator` class call this function.
     2. inputs
         - timer count
-            + value that incremented each time the `Tick` function is called
+            + the value that incremented each time the `Tick` function is called
     3. algorithm
         - Execute `FastUpdate` only if `count` is divisible by `fast_prescaler`. By this mechanism, the execution period of `FastUpdate` is divided.
     4. note
