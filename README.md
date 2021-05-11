@@ -37,6 +37,7 @@
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
       1. Abstract
+         1. [Component Base](./Specifications/Component/Abstract/Spec_ComponentBase.md)
          1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
          1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
       2. AOCS
