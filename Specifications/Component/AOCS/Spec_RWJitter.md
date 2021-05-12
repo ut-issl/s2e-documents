@@ -24,7 +24,7 @@
     - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
     - The first column is an array of the $`h_i`$($`i`$th harmonic number). The second column is an array of the $`C_i`$(amplitude of the $`i`$th harmonic).
     - Set parameters in `RW.ini`
-    - When only the first term of static imbalance and dynamic imbalance is known according to the spec sheet, edit the files as follows.
+    - When only the static imbalance and dynamic imbalance(correspond to $`C_i`$ at $`h_i`$≒1) is known according to the spec sheet, edit the files as follows.
         + `radial_force_harmonics_coef.csv`
             * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
             * Set $`C_1`$(the line 1 of the second column) as the static imbalance on the spec sheet.
@@ -170,5 +170,5 @@
 
 ## 4. References
     1. Masterson, R. A. (1999). Development and validation of empirical and analytical reaction wheel disturbance models (Doctoral dissertation, Massachusetts Institute of Technology).
-    2. Shields, J., Pong, C., Lo, K., Jones, L., Mohan, S., Marom, C., ... & Andrade, L. (2017). Characterization of CubeSat reaction wheel assemblies. Journal of Small Satellites, 6(1), 565-580.
+    2. Shields, et al., (2017). Characterization of CubeSat reaction wheel assemblies. Journal of Small Satellites, 6(1), 565-580.
 
