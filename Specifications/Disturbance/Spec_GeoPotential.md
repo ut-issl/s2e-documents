@@ -15,7 +15,7 @@
      - You can use `scripts/download_EGM96coefficients.sh` to download the file.
 3. How to use
    
-   - Make an instance of the geopotential class in `InitializeInstances` function in `Disturbanmces.cpp`
+   - Make an instance of the geopotential class in `InitializeInstances` function in `Disturbances.cpp`
    
    - Chose RK4 orbit propagator
    
