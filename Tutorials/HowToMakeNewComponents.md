@@ -74,7 +74,7 @@
        components_ = new UserComponents(dynamics_, glo_env, sim_config, &clock_gen_, sat_id);
      }
      ```
-  - The modified codes for this tutorial are stored in the `./Tutorial/SampleCodes/ClockGenerator/`
+  - The modified codes for this tutorial are stored in the `./Tutorial/SampleCodes/ClockSensor/`
 5. Compile `S2E_USER` and execute it
 
 6. Check the log file to confirm the output of the `clock_sensor`
