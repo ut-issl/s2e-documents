@@ -7,6 +7,7 @@
 - **Note**: You can move the source files for the new component into the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository if the component is useful for all S2E users.
 - Supported version of this document
   - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
+  - Documents_OSS:80af890e5615fbc0f2b49d591118bd46f14a40c8
 
 ## 2. Overview of S2E/Components
 
