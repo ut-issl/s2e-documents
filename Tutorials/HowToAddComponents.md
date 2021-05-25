@@ -98,7 +98,7 @@
      :dynamics_(dynamics), config_(config)
    {
      IniAccess iniAccess = IniAccess(config_->mainIniPath);
-     obc_ = new OBC();
+     obc_ = new OBC(clock_gen);
      
      string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
      gyro_ = new Gyro(InitGyro(1, 1, gyro_ini_path, dynamics_));
