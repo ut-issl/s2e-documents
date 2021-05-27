@@ -24,6 +24,8 @@
 
    ```c++
    Gyro* gyro_;
+   const SimulationConfig* config_;
+   const Dynamics* dynamics_;
    ```
 
 4. Open `User_Components.cpp`
