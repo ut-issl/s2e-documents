@@ -4,7 +4,7 @@
 
 1. functions
    
-   - The Orbit class calculates the position and velocity of satellites with SGP4 or  Forth Order Runge-Kutta method)(RK4)
+   - The Orbit class calculates the position and velocity of satellites with SGP4 or  Forth Order Runge-Kutta method)(RK4) or relative dynamics propagation.
 
 2. files
 - `src/Dynamics/Orbit/EarthCenteredOrbit.cpp`
@@ -13,6 +13,9 @@
 - `src/Dynamics/Orbit/SimpleCircularOrbit.cpp`
 - `src/Dynamics/Orbit/SimpleCircularOrbit.h`
 	- Methods of  Orbit class which uses RK4 for orbit propagation.
+- `src/Dynamics/Orbit/RelativeOrbit.cpp`
+- `src/Dynamics/Orbit/RelativeOrbit.h`
+	- Methods of  Orbit class which propagates relative dynamics.
 - `src/Dynamics/Orbit/Orbit.h`
 	-  Definition of Orbit Class
 - `src/Interface/nitInput/Init_Orbit.cpp`
@@ -25,10 +28,11 @@
 
 3. How to use
 - Make an instance of the orbit class in `Initialize` function in `Dynamics.cpp`
-- In the orbit.ini file,  Select propagation mode (SGP4 or RK4)
+- In the orbit.ini file,  Select propagation mode (SGP4 or RK4 or RelativeOrbit)
 	- If you chose SGP4, set TLE2 to decide the orbit elements of the satellite	
 	- If you chose RK4, set the initial position and velocity of the satellite
 		- The definition of the coordinate is decided in `PlanetSelect.ini`
+   - For the information about Relative Orbit, see the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
    
 ## 2. Explanation of Algorithm
 In the Orbit class, the member variables are updated according to the selection of orbit propagation methodologies: SGP4 or RK4 as defined in the ini file.  The Propagate function is the one that computes the orbital information and the UpdateAtt function is the one that computes the notation in the body coordinate system based on the current orientation.
@@ -49,8 +53,8 @@ As the force which works to the satellite motion is the external accerelation [$
 \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
 r = \sqrt{x^2+y^2+z^2}
 ```
-
-4. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables lat_rad_, lon_rad_, and alt_m_.
+4. [RelativeOrbit] See the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
+5. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables lat_rad_, lon_rad_, and alt_m_.
 
 
 ### UpdateAtt function

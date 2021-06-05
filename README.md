@@ -65,6 +65,7 @@
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+         1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       3. Thermal
    4. Environment
       1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
