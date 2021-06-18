@@ -215,11 +215,11 @@
 
     - Results of S2E
 
-        <img src="./figs/Result_ECIECEF_S2E.png"  width="360" />
+        <img src="./figs/Result_ECIECEF_S2E.png"  style = "zoom: 75%" />
 
     - Results of Matlab
 
-        <img src="./figs/Result_ECIECEF_Matlab.png"  width="360" />
+        <img src="./figs/Result_ECIECEF_Matlab.png"  style = "zoom: 75%" />
 
     The results agree well. Note that Matlab is based on the IAU-2000/2005 reference system, while S2E is based on IERS Conventions 2003.
       
@@ -230,4 +230,4 @@
 1. 天体の回転運動理論入門講義ノート, 福島 登志夫, 2007.
 2. 天体の位置計算, 長沢 工, 2001.
 3. IERS Conventions 2003, D. D. McCarthy and G Petit, 2003.
-4. MATLAB dcmeci2ecef, retrieved June 17, 2021, from https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055.
+4. [MATLAB dcmeci2ecef](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055), retrieved June 18, 2021.

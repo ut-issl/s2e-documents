@@ -74,6 +74,7 @@
          *  [Hipparicos Catalogue (Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
       5. [Gnss Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md)
          *  [Gnss Satellites (Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
+      6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
    5. Interface
       1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
    6. Library
