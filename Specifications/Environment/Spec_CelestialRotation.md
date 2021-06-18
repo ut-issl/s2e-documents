@@ -15,8 +15,9 @@
    
    - Make an instance of the `CelestialRotation` class in `CelestialInformation` class
    - Select rotation mode in `SampleSimBase.ini`
-     - `Simple` : axial rotation only 
-     - `Full` : Precession and Nutation are taken into account
+     - `Simple` : axial rotation only ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}`$)
+     - `Full` : Precession and Nutation are taken into account ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}`$)
+       - $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
 ## 2. Explanation of Algorithm
 
@@ -94,8 +95,8 @@
    \bf{R} = 
    \begin{pmatrix}
    1 & 0 & 0 \\
-   0 & \cos{\mathrm{GAST}} & \sin{\mathrm{GAST}} \\
-   0 & - \sin{\mathrm{GAST}} & \cos{\mathrm{GAST}}
+   0 & \cos{\mathrm{(GAST)}} & \sin{\mathrm{(GAST)}} \\
+   0 & - \sin{\mathrm{(GAST)}} & \cos{\mathrm{(GAST)}}
    \end{pmatrix}
    ```
 3. `Precession`
@@ -210,18 +211,23 @@
 
    2. conditions for the verification
       1. input value
-       - UTC = 2020/01/01 00:00:00
+       - default initialize files
+         - UTC = 2020/01/01 12:00:00
    3. results
 
-    - Results of S2E
+    - Results of S2E in `Simple` rotation mode
 
-        <img src="./figs/Result_ECIECEF_S2E.png"  style = "zoom: 75%" />
+        <img src="./figs/Result_ECIECEF_S2E_Simple.png"  style = "zoom: 75%" />
+
+    - Results of S2E in `Full` rotation mode
+
+        <img src="./figs/Result_ECIECEF_S2E_Full.png"  style = "zoom: 75%" />
 
     - Results of Matlab
 
         <img src="./figs/Result_ECIECEF_Matlab.png"  style = "zoom: 75%" />
 
-    The results agree well. Note that Matlab is based on the IAU-2000/2005 reference system, while S2E is based on IERS Conventions 2003.
+    The results of `Full` rotation mode and Matlab agree well. Note that Matlab is based on the IAU-2000/2005 reference system, while S2E is based on IERS Conventions 2003.
       
         
 
