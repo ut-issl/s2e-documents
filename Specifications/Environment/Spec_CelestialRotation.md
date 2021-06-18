@@ -221,7 +221,7 @@
 
         <img src="./figs/Result_ECIECEF_Matlab.png"  width="360" />
 
-    The results agree well. Note that Matlab is based on the reference system of IAU-2000, while S2E is based on IERS Conventions 2003.
+    The results agree well. Note that Matlab is based on the IAU-2000/2005 reference system, while S2E is based on IERS Conventions 2003.
       
         
 
