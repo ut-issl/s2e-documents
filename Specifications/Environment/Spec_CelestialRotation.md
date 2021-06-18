@@ -29,7 +29,7 @@
       ```math
       \mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
       ```
-       - where $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, precession, nutation, respectively.
+       - where $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
    2. inputs and outputs
     - Input
@@ -43,7 +43,7 @@
       \mathrm{jdTT} = \mathrm{julian\, date} + \mathrm{dtUT1UTC}
       ```
        - where julian date is the input, dtUT1UTC is the time difference between UT1 and UTC
-          - dtUT1UTC = 32.184 [sec]
+          - dtUT1UTC = 32.184 [s]
 
       ```math
       \mathrm{tTT} = \frac{\mathrm{jdTT} - \mathrm{JDJ2000}}{\mathrm{JC}}
@@ -56,12 +56,12 @@
        - $`\varepsilon`$，$`\Delta \varepsilon`$，$`\Delta \psi`$ are calculated in `Nutation` function.
 
       ```math
-      \mathrm{E_q} = \Delta \psi + \cos{(\varepsilon + \Delta \varepsilon)} \\
-      \mathrm{GMST} = \mathrm{GAST} + \mathrm{E_q}
+      \mathrm{E_q} = \Delta \psi \cos{(\varepsilon + \Delta \varepsilon)} \\
+      \mathrm{GAST} = \mathrm{GMST} + \mathrm{E_q}
       ```
-       - where GMST is Greenwich Mean Sidereal Time, GAST is Greenwich Apparent Sidereal Time
+       - where GAST is Greenwich Apparent Sidereal Time, GMST is Greenwich Mean Sidereal Time
 
-       - GAST is calculated from julian date in `gstime` function in `../../Library/sgp4/sgp4unit.h`.
+       - GAST is calculated from julian date in `gstime` function in `src/Library/sgp4/sgp4unit.h`.
 
       By using GMST, We get the DCM of axial rotation ($`\bf{R}`$) with `Rotation` function.
       
@@ -78,12 +78,12 @@
 
    1. overview
 
-    - This function calculates the axial rotation of the center orbit.
+    - This function calculates the axial rotation of the central object.
 
    2. inputs and outputs
 
     - Input 
-       - Greenwich Mean Sidereal Time (GMST)
+       - Greenwich Apparent Sidereal Time (GAST)
 
     - Output
        - the DCM of axial rotation ($`\bf{R}`$)
@@ -102,7 +102,7 @@
 
    1. overview
 
-    - This function calculates the precession of the center orbit.
+    - This function calculates the precession of the central object.
 
    2. inputs and outputs
 
@@ -136,15 +136,12 @@
    0 & 0 & 1
    \end{pmatrix}
    ```
-   4. note
-
-    - " in equations mean [arcsec]
 
 4. `Nutation`
 
    1. overview
 
-    - This function calculates the nutation of the center orbit.
+    - This function calculates the nutation of the central object.
 
    2. inputs and outputs
 
@@ -163,7 +160,7 @@
     ```math
     l = 134.96340251^\circ + 1717915923.2178"\mathrm{tTT} + 31.8792"\mathrm{tTT}^2 + 0.051635"\mathrm{tTT}^3 - 0.00024470"\mathrm{tTT}^4 \\
     l' = 357.52910918^\circ + 129596581.0481"\mathrm{tTT} - 0.5532"\mathrm{tTT}^2 + 0.000136"\mathrm{tTT}^3 - 0.00001149"\mathrm{tTT}^4 \\
-    F  = 93.27209062^\circ + 1739527262.8478\mathrm{tTT} - 12.7512"\mathrm{tTT}^2 - 0.001037"\mathrm{tTT}^3 + 0.00000417\mathrm{tTT}^4 \\
+    F  = 93.27209062^\circ + 1739527262.8478"\mathrm{tTT} - 12.7512"\mathrm{tTT}^2 - 0.001037"\mathrm{tTT}^3 + 0.00000417"\mathrm{tTT}^4 \\
     D  = 297.85019547^\circ + 1602961601.2090"\mathrm{tTT} - 6.3706"\mathrm{tTT}^2+0.006593"\mathrm{tTT}^3 -0.00003169"\mathrm{tTT}^4 \\
     \Omega  = 125.04455501^\circ - 6962890.5431"\mathrm{tTT} + 7.4722"\mathrm{tTT}^2+0.007702"\mathrm{tTT}^3-0.00005939"\mathrm{tTT}^4 \\
     ```
@@ -178,18 +175,18 @@
 
    ```math
    \varepsilon = 23^\circ26'21".448 - 46".8150\mathrm{tTT} - 0".00059\mathrm{tTT}^2 + 0".001813\mathrm{tTT}^3 \\
-   \Delta \epsilon = 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}+0.007\cos{l'} - 0.001\cos{l} + 0.02\cos{(2L'+l')} + 0.013\cos{(2L+l)}-0.010\cos({2L'-l')} \, [\mathrm{arcsec}] \\
-
-   \Delta \psi = 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}
-   +0.007\cos{l'} - 0.001\cos{l} + 0.022\cos{2L'+l'} + 0.013\cos{(2L+l)}-0.010\cos{(2L'-l')} \, [\mathrm{arcsec}] \\
+   \Delta \epsilon = 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}+0.007\cos{l'} - 0.001\cos{l} + 0.022\cos{(2L'+l')} + 0.013\cos{(2L+l)}-0.010\cos({2L'-l')} \, [\mathrm{arcsec}] \\
+   \Delta \psi = -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} \, [\mathrm{arcsec}] \\
    ```
+
+   - where $`L = F + \Omega`$，$`L' = L - D`$
 
    ```math
    \bf{N} = 
    \begin{pmatrix}
    1 & 0 & 0 \\
-   0 & \cos{-(\varepsilon + \Delta \varepsilon)} & \sin{-(\varepsilon + \Delta \varepsilon)} \\
-   0 & - \sin{-(\varepsilon + \Delta \varepsilon)} & \cos{-(\varepsilon + \Delta \varepsilon)}
+   0 & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} \\
+   0 & - \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)}
    \end{pmatrix}
    \begin{pmatrix}
    \cos{(-\Delta \psi)} & \sin{(-\Delta \psi)} & 0 \\
@@ -204,16 +201,12 @@
    ```
 
 
-   4. note
-    - $`^\circ`$ and " in equations mean [deg] and [arcsec], respectively.
-
-
 ## 3. Results of verifications
 
 1. $`\mathrm{DCM_{ECItoECEF}}`$ calculation in `Update` function
    1. overview
       
-      - The $`\mathrm{DCM_{ECItoECEF}}`$ calculation is compared with [Matlab's demeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
+      - The $`\mathrm{DCM_{ECItoECEF}}`$ calculation is compared with [Matlab's dcmeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
 
    2. conditions for the verification
       1. input value
