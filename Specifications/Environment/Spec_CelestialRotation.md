@@ -16,7 +16,7 @@
    - Make an instance of the `CelestialRotation` class in `CelestialInformation` class
    - Select rotation mode in `SampleSimBase.ini`
      - `Idle` : no motion ($`\mathrm{DCM_{ECItoECEF}}`$ is set as the unit matrix)
-       - If the rotation mode input is neither full nor simple, the idle mode is set.
+       - If the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
      - `Simple` : axial rotation only ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}`$)
      - `Full` : Precession and Nutation are taken into account ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}`$)
        - $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
@@ -222,9 +222,10 @@
    3. results
 
     - Results of calculation time in S2E
+
         <img src="./figs/Result_ECIECEF_S2E_time.png"  style = "zoom: 75%" />
    
-   If you want to reduce the calculation time, it is recommended to select `simple` mode rather than `idle` mode. Note again that if the rotation mode input is neither `full` nor `simple`, the `idle` mode is set.
+   If you want to reduce the calculation time, it is recommended to select `Simple` mode rather than `Idle` mode. Note again that if the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
 
     - Results of S2E in `Simple` rotation mode
 
