@@ -6,6 +6,7 @@
 - This tutorial explains how to add components in your scenario.
 - Supported version of this document
   - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
+  - Documents_OSS:80af890e5615fbc0f2b49d591118bd46f14a40c8
 
 ## 2. Add a Gyro sensor
 
@@ -23,6 +24,8 @@
 
    ```c++
    Gyro* gyro_;
+   const SimulationConfig* config_;
+   const Dynamics* dynamics_;
    ```
 
 4. Open `User_Components.cpp`
@@ -98,7 +101,7 @@
      :dynamics_(dynamics), config_(config)
    {
      IniAccess iniAccess = IniAccess(config_->mainIniPath);
-     obc_ = new OBC();
+     obc_ = new OBC(clock_gen);
      
      string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
      gyro_ = new Gyro(InitGyro(1, 1, gyro_ini_path, dynamics_));

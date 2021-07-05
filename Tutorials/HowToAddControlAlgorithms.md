@@ -14,6 +14,7 @@
     - For actual satellite projects.
 - Supported version of this document
   - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
+  - Documents_OSS:80af890e5615fbc0f2b49d591118bd46f14a40c8
 
 ## 2. Direct method
 - In this chapter, the simplest way to add a control algorithm without sensors and actuators is introduced.
