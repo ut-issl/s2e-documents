@@ -51,7 +51,7 @@
         - maximum degree for geopotential calculation
       - Output
         - **Return**: reading is succeeded or not .
-        - Unnormalized coefficient  $`C_{n,m}`$ and $`S_{n,m}`$ 
+        - Normalized coefficient  $`C_{n,m}`$ and $`S_{n,m}`$ 
 
    3. algorithm
 
