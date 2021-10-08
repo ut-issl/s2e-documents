@@ -31,4 +31,5 @@ We recommend using VS2019, but users can use VS2017 with small modifications.
 ## 3. Note
 - For VS2017 users
   - Please edit compiler setting in `CMakeSetting.json` as `"generator": "Visual Studio 15 2017"`.
+  - You also need to edit the `cmake_minimum_required` version from 3.13 to 3.10 in all CMakeList, including the files in subdirectories. The VS 2017 does not support version 3.13, and you may see many `warnings` when you use CMake Version 3.10. 
 
