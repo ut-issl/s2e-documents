@@ -3,13 +3,13 @@
 ## 1.  Overview
 
 - This tutorial explains how to use the S2E simulator without any source code modification.   
-- You can start this tutorial just after you clone the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository 
-- Supported version of this document
-  - S2E_CORE_OSS:c4c7cf6567c077f0918f07a9a82c2d7e4531ceb7
+- You can start this tutorial just after you clone the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository. 
+- The supported version of this document
+  - S2E_CORE_OSS: latest `develop` branch
 
 ## 2. Environment
-- This tutorial supports an execution environment with Visual Studio 2017 or 2019 on a Windows PC.  
-- However, the basic feature of S2E is executable for other environments with a small modification of the sequence. 
+- This tutorial supports an execution environment with Visual Studio 2019 on a Windows PC.  
+- However, the basic features of S2E are executable for other environments with a small modification of the sequence. 
 - For example, you can find a document like [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md) in the General directory.
 - For these environments, I hope someone will write a new *Getting Started tutorial*.  
 
@@ -18,15 +18,15 @@
 2. Read `README.md` to check the overview of S2E  
 3. Execute `./scripts/VisualStudio/dowload_cspice_VS32bit.bat` to set up CSPICE library  
   - **Note:** The script is not completely automatic. Users need to input several simple words.  
-  - If you don't use Windows and Visual Studio 2017 or 2019, or the script doesn't work well in your environment, please see  [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)  
+  - If you don't use Windows and Visual Studio, or the script doesn't work well in your environment, please see  [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md) and download the CSPICE files by yourself.  
 4. Execute `./scripts/Common/download_nrlmsise00_src_and_table.sh` to download the atmosphere model table.
 4. Execute `./scripts/VisualStudio/make_nrlmsise00_VS32bit.bat` to generate library files for the atmosphere model.
-4. Compile and execute the S2E_CORE by referring [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)  
+4. Compile and execute the S2E_CORE_OSS by referring [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)  
 
 ## 4. Check log output
 
-1.  Check `./data/SampleSat/logs` to find CSV log output file  
-   - The fine name includes executed time as `YYMMDD_HHMMSS_default.csv`  
+1. Check `./data/SampleSat/logs` to find CSV log output file  
+   - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`  
 2. Open the CSV log file  
 3. You can see the simulation output  
 4. The meaning of each value is described in the first row  
@@ -44,7 +44,7 @@
 3.  Open `SampleSimBase.ini`, which is the base file of the initialize files.
     - In this base file, other initialize files are defined.
     - You can see simulation conditions as time definitions, randomize seed definitions, etc. 
-4.  Open `SampleSat.ini`, which is the file for spacecraft related parameters.
+4.  Open `SampleSat.ini`, which is the file to set the spacecraft parameters.
 4.  Edit the value of angular momentum `Omega_b(0-2)` in the `[Attitude]` section as you want.
 5.  Rerun the S2E_CORE **without a rebuild**
 6.  Check the new log file in `./data/SampleSat/logs` to confirm the initial angular velocity is changed as you want.
