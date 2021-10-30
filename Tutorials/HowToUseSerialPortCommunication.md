@@ -36,6 +36,5 @@
   - There are two ExpHils components, a sender component and a responder component.
     - The sender component sends out a new massage like `ABC`, `BCD`, ....
     - The responder component returns the message as received.
-    - Data returned from the responder to the sender is output.
-    <img src="./figs/SerialPortCommunicationConfirmation.png" alt="SerialPortCommunicationConfirmation" style="zoom: 100%;" />
+    - Data returned from the responder to the sender is output.<img src="./figs/SerialPortCommunicationConfirmation.png" alt="SerialPortCommunicationConfirmation" style="zoom: 100%;" />
     - If the comment `Error: the specified step_sec is too small for this computer.` appears, comment out it in `s2e_core_oss/src/Environment/Global/SimTime.cpp`.
