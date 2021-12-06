@@ -1,8 +1,7 @@
 # How to compile with Visual Studio
 
 ## 1.  Overview
-This document explains how to construct a build and execute environment for Visual Studio with CMake.  
-We recommend using VS2019, but users can use VS2017 with small modifications.
+This document explains how to build and execute the Visual Studio environment with CMake. Currently, we recommend using VS2019, but users can use VS2017 with minor modifications.
 
 - Related files
   - ./CmakeLists.txt
@@ -11,19 +10,19 @@ We recommend using VS2019, but users can use VS2017 with small modifications.
     - Setting file for VS to use CMake
   - Other CMakeLists.txt in subdirectories
 
-## 2. The flow of build and execute in Visual Studio
+## 2. The flow of building and execution in Visual Studio
 1. Launch VS 2019
 
-2. Select `CMakeLists.txt` you want to use
+2. Select `./CMakeLists.txt` for the S2E
    - Files/Open/CMake
 
 3. Build the CMake file
-   - Select `CMakeLists.txt` with right-clicking, and 
+   - Select `CMakeLists.txt` with right-clicking, and build
 
 4. Check errors
 
 5. Run the program
-   - Users can use a `breakpoint` similar with normal `sln` file based projects.
+   - Users can use a `breakpoint` similar to normal `sln` file based projects.
    ![](./figs/CMake_run.jpg)
 
 6. Check log files
