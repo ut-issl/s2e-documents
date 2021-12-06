@@ -1,11 +1,8 @@
 # Documents_OSS
 ## Overview
 
-- This is the repository for documents of S2E (Spacecraft Simulation Environment) CORE OSS.
-- Every ISSL_OSS member can see the documents in this repository.
-  - Documents only for ISSL project members should be stored in the [Documents](https://gitlab.com/ut_issl/s2e/documents "Documents") repository.
+- This repository summarizes documents of S2E (Spacecraft Simulation Environment) CORE.
 - The Documents should be 
-  - written clearly
   - written in English
   - written as markdown format
   - updated ASAP when the source codes are modified
