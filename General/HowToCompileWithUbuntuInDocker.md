@@ -1,21 +1,21 @@
 # How to compile with Ubuntu in Docker 
 
 ## 1.  Overview
-- [Docker](https://www.docker.com/) is useful for easy setup of the compile environment for S2E.
-- *Both Windows and Mac* users can use same environment and get same result by using the docker container.
-- We selected [Ubuntu](https://ubuntu.com/) as an OS in the docker image and [GCC/G++](https://gcc.gnu.org/) as an compiler for S2E.  
-  **Note**: Currently, we use 32bit compiler for S2E since flight S/Ws are usually executed on 32 bit micro-computers. 
-- We recommend to use [Visual Studio Code](https://code.visualstudio.com/) as an editor for the environment.
-- This document explains a sequence of setup the docker environment for S2E. 
+- [Docker](https://www.docker.com/) is useful for the easy setup of the compile environment for S2E.
+- *Both Windows and Mac* users can use the same environment and get the same result by using the docker container.
+- We selected [Ubuntu](https://ubuntu.com/) as an OS in the docker image and [GCC/G++](https://gcc.gnu.org/) as a compiler for S2E.  
+  **Note**: Currently, we use a 32bit compiler for S2E since flight S/Ws are usually executed on a 32bit microcomputers. 
+- We recommend using [Visual Studio Code](https://code.visualstudio.com/) as an editor for the environment.
+- This document explains a setup sequence of the docker environment for S2E.
 
 ## 2.  Install Required Application
 ### 2.1. Docker
 - Go [install web page of Docker](https://docs.docker.com/get-docker/)
-- Install `Docker for Windows` or `Docker for Mac` to suit with your platform.
+- Install `Docker for Windows` or `Docker for Mac` to suit your platform.
 
 ### 2.2. Visual Studio Code (VS Code)
 - Go [install web page of VS Code](https://code.visualstudio.com/)
-- Install `Visual Studio Code` to suit with your platform.
+- Install `Visual Studio Code` to suit your platform.
 - Install following extensions
   - Remote-SSH
   - CMake
@@ -23,25 +23,24 @@
   - C/C++
 - Following extensions are also useful
   - Markdown+Math   
-    please change the delimiter setup to use same math format with `Gitlab`. 
+    please change the delimiter setting to use the same math format with `Gitlab`.
   - Code Spell Checker
 
 ### 2.3. **For Mac users**
 - Install `coreutils` to use `realpath` command in `setup_docker.sh`
 - Use the `brew install coreutils` command when you have `Homebrew`  
 
-## 3. Sequence of environment setting
+## 3. A Sequence of environment setting
 ### 3.1. Working directory setting
 - Create `work` directory as a working directory.
 - Clone [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) in the `work` directory.
 - Add the `work` directory in the `file sharing` directory of Docker.  
-  **Note**: This setting does not exist in the latest Doceker and WSL2 environments in Windows, so it is not necessary.
+  **Note**: This setting does not exist in the latest Docker and WSL2 environments in Windows, so it is not necessary.
 
 ### 3.2. Make Docker image and container
 - Launch `git bush` (for windows users) or `terminal` (for Mac users)
 - Move `/s2e_core_oss/scripts/Docker_Ubuntu` directory
-- Edit `Dockerfile` or `setup_docker.sh` if you need.  
-  when you want to change directory name, user name of the container, and so on.
+- Edit `Dockerfile` or `setup_docker.sh` when you want to change the directory name, the user name of the container, and other settings.
 - Execute `./setup_docker.sh build` to make images
 - Check created image (`issl` (and `ubuntu`))  
   command: `docker images`
@@ -55,9 +54,9 @@
 
 ### 3.3. SSH connect with VS Code
 - Launch `VS Code` and open new window
-- Click `Remote Explorer` icon in the left side  
-  Note: the icon looks a monitor 
-- Click `gear` icon of `SSH TARGETS` and select config file you want to edit  
+- Click the `Remote Explorer` icon on the left side  
+  Note: the icon looks like a monitor
+- Click the `gear` icon of `SSH TARGETS` and select the config file you want to edit  
   Default: `C:\Users\UserName\ssh\config` or `User/UserName/ssh/config`
 - Edit the config file as follows
 ``` 
@@ -70,33 +69,33 @@ Host issl-1
 - Click `Connect to Host in New Window` icon on right side of `issl-1`
 - Enter the password `s2e` when required
 - See left bottom icon `SSH:issl-1` to confirm the connection
-- Open `work` directory in the container by using `Open folder`
+- Open the `work` directory in the container by using `Open folder`
 <div align="center">
   <img src="./figs/VSC_SSH_connect.png" alt="VSC_SSH_connect" style="zoom:30%;" />
 </div>
 
 ### 3.4. Setting of build environment
+**Note** : This sequence was integrated within the docker build process, so this is currently unnecessary.
+
 - S2E has several script files to get external libraries.
 - For this ubuntu/docker platform, users should use script files in `scripts/Common` directory and `scripts/Docker_Ubuntu` directory.
-- Users can execute the most of the script files with `git bush` or `terminal` in the outside of container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use same compiler.
+- Users can execute most of the script files with `git bush` or `terminal` in the outside of the container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use the same compiler.
 - Click `Terminal > New terminal` in the menu bar of VS Code
 - Select `bash` terminal at the bottom window
 - execute `./s2e_core_oss/scripts/Common/download_nrlmsise00_src_and_table.sh`
 - See `ExtLibraries` to confirm the NRLMSISE library is generated.
-
-**Note** : This sequence was integrated within the docker build process, so this is currently unnecessary.
  
 
 ### 3.5. Build S2E
 - Install following extensions in the `issl-1 SSH connection`  
-  the extensions were already installed in local VS code, but you also need install them in the `SSH connection`
+  Even if the extensions were already installed in local VS code, you also need to install them in the `SSH connection`
   - C/C++
   - CMake
   - CMake Tools  
-**Note** : you need to reload VS Code after install new extensions
+**Note** : You need to reload VS Code after installing new extensions
 - Edit setting of `CMake Tools` in `issl-1`  
   `Cmake Build Directory: ${workspaceFolder}/s2e_core_oss/build/Debug`
-- After `CMake` and `CMake Tools` are installed, VS Code require you to configure build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code require you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
+- After `CMake` and `CMake Tools` are installed, VS Code requires you to configure the build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code requires you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
   - This setting is written in `.vscode/settings.json`
   - You can directly edit the `settings.json` as follows
     ```json
@@ -108,7 +107,7 @@ Host issl-1
 - Select `GCC 9.3.0` as a kit (compiler) 
 - Select `CMake [Debug]` and check the configuration is successfully done.
 - Build S2E
-  - If you want clean up build, please use `CMake: Clean` command
+  - If you want clean up, please use `CMake: Clean` command
 - Move `build/Debug` directory with `Terminal` in VS Code
 - Execute `./S2E` or click `run` icon in bottom
 - Check `data/log` directory to confirm log file output

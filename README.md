@@ -1,11 +1,8 @@
 # Documents_OSS
 ## Overview
 
-- This is the repository for documents of S2E (Spacecraft Simulation Environment) CORE OSS.
-- Every ISSL_OSS member can see the documents in this repository.
-  - Documents only for ISSL project members should be stored in the [Documents](https://gitlab.com/ut_issl/s2e/documents "Documents") repository.
+- This repository summarizes documents of S2E (Spacecraft Simulation Environment) CORE.
 - The Documents should be 
-  - written clearly
   - written in English
   - written as markdown format
   - updated ASAP when the source codes are modified
@@ -71,7 +68,7 @@
       1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
-      4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md) [(Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
+      4. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md) [(Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
       5. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md) [(Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
       6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
    5. Interface
