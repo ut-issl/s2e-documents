@@ -68,7 +68,7 @@
       1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
-      4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md) [(Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
+      4. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md) [(Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
       5. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md) [(Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
       6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
    5. Interface
