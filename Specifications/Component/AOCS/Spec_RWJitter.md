@@ -1,42 +1,42 @@
 # Specification for RW jitter
 
 ## 1.  Overview
-- A class to simulate the high-frequency jitter of RWs.
+- `RWJitter` class simulates the high-frequency jitter of Reaction Wheels.
 - This class uses:
-    + Angular velocity of the RW
-    + Parameters of RW disturbance measured by experiments
+  + Angular velocity of the RW
+  + Parameters of RW disturbance measured by experiments
 - This class returns:
-    + RW jitter forces and torques in the component frame
-    + RW jitter forces and torques in body frame
+  + RW jitter forces and torques in the component frame
+  + RW jitter forces and torques in the body frame
 
 1. functions
-    - `CalcJitter(double angular_velocity)` 
-        + Simulates the jitter
-        + (If Enabled) Calls `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
+   - `CalcJitter(double angular_velocity)` 
+     + Simulates the jitter
+     + (If Enabled) Calls `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
 
 2. files
-    - `RWJitter.cpp`, `RWJitter.h`
-    - `RW.ini`
-    - `radial_force_harmonics_coef.csv`,`radial_torque_harmonics_coef.csv` 
-        + These files contain the harmonic coefficients from experiments.
+   - `RWJitter.cpp`, `RWJitter.h`
+   - `RW.ini`
+   - `radial_force_harmonics_coef.csv`,`radial_torque_harmonics_coef.csv` 
+     + These files contain the harmonic coefficients from experiments.
 
 3. how to use
-    - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
-    - The first column is an array of the $`h_i`$($`i`$th harmonic number). The second column is an array of the $`C_i`$(amplitude of the $`i`$th harmonic).
-    - Set parameters in `RW.ini`
-    - When only the static imbalance and dynamic imbalance(correspond to $`C_i`$ at $`h_i`$≒1) is known according to the spec sheet, edit the files as follows.
-        + `radial_force_harmonics_coef.csv`
-            * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
-            * Set $`C_1`$(the line 1 of the second column) as the static imbalance on the spec sheet.
-        + `radial_torque_harmonics_coef.csv`
-            * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
-            * Set $`C_1`$(the line 1 of the second column) as the dynamic imbalance on the spec sheet.
-        + `RW.ini`
-            * Set `harmonics_degree = 1`.
+   - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
+   - The first column is an array of the $`h_i`$($`i`$-th harmonic number). The second column is an array of the $`C_i`$(amplitude of the $`i`$-th harmonic).
+   - Set parameters in `RW.ini`
+   - When only the static imbalance and dynamic imbalance(correspond to $`C_i`$ at $`h_i`$≒1) is known according to the spec sheet, edit the files as follows.
+     + `radial_force_harmonics_coef.csv`
+       * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
+       * Set $`C_1`$(the line 1 of the second column) as the static imbalance on the spec sheet.
+     + `radial_torque_harmonics_coef.csv`
+       * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
+       * Set $`C_1`$(the line 1 of the second column) as the dynamic imbalance on the spec sheet.
+     + `RW.ini`
+       * Set `harmonics_degree = 1`.
     - Set the jitter update period to an appropriate value.
-        + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `Simbase.ini` and `fast_prescaler` in `RW.ini`.
-        + For correct calculation, the update period of the jitter should be set to approximately 0.1ms.
-        + A larger update period is not a problem, but it will cause aliasing in the jitter waveform.
+      + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `Simbase.ini` and `fast_prescaler` in `RW.ini`.
+      + For correct calculation, the update period of the jitter should be set to approximately 0.1ms.
+      + A larger update period is not a problem, but it will cause aliasing in the jitter waveform.
 
 ## 2. Explanation of Algorithm
 1. `CalcJitter`
