@@ -4,14 +4,14 @@
 1. Functions
    - The `ObcCommunicationBase` class is an abstract class to communicate with `OBC`.
    - Component classes can use this abstract class to emulate telemetry/command communication with an `OBC`.
-   - This class also supports communication with `C2A` in the `OBC_C2A` class
+   - This class also supports communication with `C2A` in the `OBC_C2A` class.
 2. Related files
    - OBC.c, h
    - EXP.c, h
-     - You can find an example of using this class.
+     - Users can find an example of using this class.
 3. How to use
-   - Inherit this class by your component class.
-     - You need to set `port_id` and target `OBC` for the communication.
+   - Inherit this class by component class.
+     - Users need to set `port_id` and target `OBC` for the communication.
    - This class has the following protected functions for telemetry/command communication. Users can call these functions in the `MainRoutine` of the component.
      ```cpp
      int ReceiveCommand(const int offset, const int rec_size);
@@ -22,14 +22,15 @@
      virtual int ParseCommand(const int cmd_size)=0;
      virtual int GenerateTelemetry()=0;
      ```
+
 ## 2. Explanation of Algorithm
 1. Constructors
    1. overview
       - In the constructors, the communication port for the `OBC` is connected.
-      - If the port is already connected by another component, the connection function returns error, and the constructors output a message.
+      - If another component already connects the port, the connection function returns an error, and the constructors output a message.
    2. inputs and outputs
       - Both constructors require `port_id` and target `OBC`.
-      - Users can set the communication data buffer size. When users doesn't put the size, the value is automatically set as the maximum value.
+      - Users can set the communication data buffer size. When users do not put the size, the value is automatically set as the maximum value.
         - The maximum value is 1024, and it is defined in `SCIPort.h`  
    3. algorithm
       - N/A
@@ -38,7 +39,7 @@
 2. Destructor
    1. overview
       - In the destructor, the communication port is closed.
-      - If the port is already closed by another component, the close function returns error, and the constructors output a message.
+      - If another component has closed the port, the close function returns an error, and the constructors output a message.
    2. inputs and outputs
       - N/A
    3. algorithm
@@ -72,7 +73,7 @@
       - N/A
 5. ParseCommand
    1. overview
-      - Users need to define this function to analyze command.
+      - Users need to define this function to analyze the command.
    2. inputs and outputs
       - input
         - cmd_size: command side [Byte]
