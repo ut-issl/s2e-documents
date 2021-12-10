@@ -20,7 +20,7 @@
 ## 2. Explanation of Algorithm
 1. `CalcTorque` function
    1. overview
-      - This function performs disturbance calculation and torque output simultaneously. The GG torque is added to the disturbance torque when this function is called. This process is performed in each loop of the posture calculation. The CalTorque function has two ways to specify the values used in the calculation. The function with two arguments takes the earth center direction vector and the inertia tensor of the satellite as arguments. The function with three arguments uses the unit vector and the distance of and the inertia tensor of the body as arguments.
+      - This function performs disturbance calculation and torque output simultaneously. The GG torque is added to the disturbance torque when this function is called. This process is performed in each loop of the attitude calculation. The CalTorque function has two ways to specify the values used in the calculation. The function with two arguments takes the earth center direction vector and the inertia tensor of the satellite as arguments. The function with three arguments uses the unit vector and the distance of and the inertia tensor of the body as arguments.
 
    2. algorithm  
       Gravity gradient torque is calculated by the following equations (1) and (2). When two arguments are given, (1) is applied. When three arguments are given, (2) is used.
