@@ -8,15 +8,14 @@
    - This class also calculates the angular momentum.
 
 2. files
-   - Attitude.cpp, Attitude.h : Definitions and declarations of the class
+   - Attitude.h : Definitions and declarations of the class
    - ControlledAttitude.h, .cpp : `ControlledAttitude` class is defined. The detail is described in `Spec_ControlledAttitude.md`
    - AttitudeRK4.h, .cpp : Normal free motion dynamics propagator `AttitudeRK4` class is defined here.
    - Init_Attitude.cpp : Interface functions for the initialization of `Attitude` class
-   - ControlledAttitude.ini:  Interface functions for the initialization of `ControlledAttitude` class.
-   - SimBase.ini : Initialization file
+   - SampleSat.ini : Initialization file
 
 3. how to use
-   - Set the parameters in `SimBase.ini`
+   - Set the parameters in `SampleSat.ini` or user defined satellite initialize file
      - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = 0` at the ATTITUDE section in the `SimBase.ini` file.
      -  If you want to apply the predetermined condition to attitude dynamics, please set  `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file.
    - Create an instance by using initialization function `InitAttitude`
