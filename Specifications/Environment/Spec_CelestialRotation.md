@@ -142,7 +142,7 @@
         - $`\Delta \psi`$: nutation in longitude
 
    3. algorithm  
-      Delauney angles are calculated as follows.
+      Delaunay angles are calculated as follows.
 
     ```math
     l = 134.96340251^\circ + 1717915923.2178"\mathrm{tTT} + 31.8792"\mathrm{tTT}^2 + 0.051635"\mathrm{tTT}^3 - 0.00024470"\mathrm{tTT}^4 \\

@@ -17,7 +17,7 @@
      + `Environment.ini`
        * Parameters for initialization
      + `hip_main.csv`
-       * This is the original data of the Hipparcos catalogue. It is in the `ExtLibralies` directory. This data is sorted in of the visual magnitude, not in the order of HIP ID.
+       * This is the original data of the Hipparcos catalogue. It is in the `ExtLibraries` directory. This data is sorted in of the visual magnitude, not in the order of HIP ID.
 
   3. How to download `hip_main.csv`
      + `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`．

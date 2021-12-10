@@ -60,7 +60,7 @@
      + F10.7 and Kp/Ap index, which indicates the solar activity cycle, are necessary as inputs for NRLMSISE00.  
      These parameters, which are only during the simulation period, are read from SpaceWeather.txt.
      + Note
-       + If SpaceWeater.txt cannot be read, the atmosphere model is automatically set to STANDARD.
+       + If SpaceWeather.txt cannot be read, the atmosphere model is automatically set to STANDARD.
        + SpaceWeather.txt includes data between 2015 and 2044. If the simulation date is out of range, the air density cannot be calculated accurately.
 
   2. Air density calculation

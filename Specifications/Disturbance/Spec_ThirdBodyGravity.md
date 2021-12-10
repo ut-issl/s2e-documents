@@ -10,7 +10,7 @@
    - `src/Disturbance/ThirdBodyGravity.h`
 
 3. How to use
-   - Make an instance of the `ThirdBodyGravity` class in `InitializeInstances` function in `Disturbanmces.cpp`
+   - Make an instance of the `ThirdBodyGravity` class in `InitializeInstances` function in `Disturbances.cpp`
    - Chose RK4 orbit propagator
    - Select `ENABLE` and specify `num_of_other_body` and `other_body` in `Disturbance.ini`
      - **NOTE**: All of the `other_body` objects must be included in the `selected_body` of `PlanetSelect.ini`
