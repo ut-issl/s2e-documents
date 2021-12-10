@@ -23,7 +23,7 @@
     - This class handles the structure information of the spacecraft, such as the mass, the inertia tensor, surface information, and residual magnetic moment.
     - The information is used to calculate disturbance and propagate dynamics.
   - `LocalEnvironment`
-    - This class handles space environment information around the spacecraft, such as air density, magnetic field, solar energy, and eclips.
+    - This class handles space environment information around the spacecraft, such as air density, magnetic field, solar energy, and eclipse.
     - The information is used to calculate disturbance and emulate environment sensors.
   - `Disturbance`
     - This class handles disturbances forces(accelerations) and torques.
