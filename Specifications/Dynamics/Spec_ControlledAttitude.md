@@ -3,9 +3,9 @@
 ## 1.  Overview
 
 1. Functions  
-   - `ControlledAttitude` class provides a perfectly controlled attitude instead of the free motion attitude dynamics by other numerical propagations. 
-    - Users can set the attitude as sun pointing, earth pointing, and others for any direction in the spacecraft body frame. Of course , users can select an inertial stabilized attitude.
-    - It is useful for power, communication, and orbit analyses with S2E.
+   - The `ControlledAttitude` class provides a perfectly controlled attitude instead of free motion attitude dynamics by numerical propagation.
+   - Users can set the attitude as sun pointing, earth pointing, and others for any direction in the spacecraft body frame. Of course, users can select an inertial stabilized attitude.
+   - It is useful for power, communication, and orbit analyses with S2E.
 
 2. Related files
    - ControlledAttitude.h, .cpp
@@ -23,14 +23,14 @@
    - Inside the codes
      - `ControlledAttitude` class inherits the `Attitude` class, so other functions can access the `ControlledAttitude` class by using get functions in the `Attitude` class.
    - User I/F
-     - Firstly, users should set `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file and define file path to the `ControlledAttitude.ini` file.
+     - Firstly, users should set `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file and define the file path to the `ControlledAttitude.ini` file.
      - Users can set a target attitude in the initialize file. There are the following setting parameters: `main_mode`, `sub_mode`, `quaternion_i2t`, `pointing_t_b`, and `pointing_sub_t_b`.
      - Firstly, users select the control mode by using `main_mode` and `sub_mode`. For the control mode, we have two categories, `INERTIAL_STABILIZE` and `POINTING`.  
      - When `main_mode` is set as `INERTIAL_STABILIZE`, `sub_mode` is ignored, and the spacecraft attitude is fixed to the `quaternion_i2t` value in the simulation.
      - When `main_mode` is set as `POINTING` modes, the direction of the body-fixed frame defined by `pointing_t_b` is controlled to point the specific direction of the modes. 
        - Ex. 1, the body-fixed +X axis directs to the sun when `main_mode = SUN_POINTING` and `pointing_t_b = [1.0,0.0,0.0]`.
        - Ex. 2, the body-fixed -Z axis directs to the earth center when `main_mode = EARTH_CENTER_POINTING` and `pointing_t_b = [0.0,0.0,-1.0]`.
-     - `sub_mode` is only used when users select `POINTING` modes for `main_mode`. `sub_mode` is defined to stop rotation around the pointing direction of `main_mode`. The selected sub-direction in the body-fixed frame cannot perfectly direct the target direction since the primary target and sub-target usually don't satisfy the vertical relationship.
+     - `sub_mode` is only used when users select `POINTING` modes for `main_mode`. `sub_mode` is defined to stop rotation around the pointing direction of `main_mode`. The selected sub-direction in the body-fixed frame cannot perfectly direct the target direction since the primary target and sub-target usually do not satisfy the vertical relationship.
      - `sub_mode` cannot be `INERTIAL_STABILIZE` and the same mode with `main_mode`.
      - The angle between `pointing_t_b` and `pointing_sub_t_b` should be larger than 30 degrees. (90 degrees is recommended)
   - List of attitude control mode
@@ -49,7 +49,7 @@
    1. overview
       - This function initializes the target attitude and confirms that the setting parameters are correct. 
       - The parameter checklist
-        - Out of range check for both mode definition.
+        - Out of range check for both mode definitions.
         - `main_mode` and `sub_mode` is not the same
         - The angle between `pointing_t_b` and `pointing_sub_t_b` should be larger than 30 degrees.
    2. inputs and outputs
@@ -62,14 +62,17 @@
 2. Propagate function
 
    1. overview
-      - This is the main function and executed in every loop of attitude dynamics calculation.
+      - This is the main function executed in every loop of attitude dynamics calculation.
+
    2. inputs and outputs
       - inputs 
         - setting parameters
       - outputs
         - quaternion_i2b
+
    3. algorithm
-      - Detail algorithm is described in next function.
+      - Detail algorithm is described in the next function.
+
    4. note
       - NA   
 
@@ -77,15 +80,18 @@
 
    1. overview
       - This function calculates the target direction according to the pointing mode.
+
    2. inputs and outputs
       - inputs 
         - control mode
         - orbit class
         - celestial information class
       - outputs
-        - direction of target object
+        - the direction of the target object
+
    3. algorithm
       - As written in the code.
+
    4. note
       - NA   
 
@@ -93,14 +99,16 @@
 
    1. overview
       - This function calculates the `quaternion_i2b`.
+
    2. inputs and outputs
       - inputs 
-        - main direction of target object in ECI frame $`t_m^i`$
-        - sub direction of target object  in ECI frame $`t_s^i`$
-        - main controlled direction in body frame $`d_m^b`$
-        - sub controlled direction in body frame $`d_s^b`$
+        - the main direction of the target object in ECI frame $`t_m^i`$
+        - the sub direction of the target object  in ECI frame $`t_s^i`$
+        - the main controlled direction in the body frame $`d_m^b`$
+        - the sub controlled direction in the body frame $`d_s^b`$
       - outputs
         - quaternion_i2b
+
    3. algorithm
       - Firstly, the $`DCM_{t2i}`$, which is the frame transformation from the target frame to the inertial frame, is calculated using $`t_m^i`$ and $`t_s^i`$ with `CalcDCM`.
       - Next, the $`DCM_{t2b}`$, which is the frame transformation from the target frame to the body-fixed frame, is calculated using $`d_m^b`$ and $`d_s^b`$ with `CalcDCM`.
@@ -109,38 +117,42 @@
         DCM_{i2b} = DCM_{t2b} \cdot DCM_{t2i}'
         ```
         and `quaternion_i2b` is calculated from the $`DCM_{i2b}`$.
+
    4. note
       - NA   
 
 3. CalcDCM
 
    1. overview
-      - This function calculates a DCM from two given direction.
+      - This function calculates a DCM from two given directions.
       - The DCM represents the coordinate transform matrix from the new frame defined by the two directions to the original frame.
+
    2. inputs and outputs
       - inputs 
-        - main direction in the frame $`a`$ : $`d_m^a`$
-        - sub direction in the frame $`a`$ : $`d_s^a`$
+        - the main direction in the frame $`a`$ : $`d_m^a`$
+        - the sub direction in the frame $`a`$ : $`d_s^a`$
       - outputs
         - Coordinate transform matrix from the new frame to the original frame $`a`$
+
    3. algorithm
       - The first basis vector of the new frame is defined as the main direction.
         ```math
         e_1=d_m^a
         ```
-      - The second basis vector needs to direct to the sub direction, but it should be vertical with $`e_1`$.
+      - The second basis vector needs to be direct to the sub direction, but it should be vertical with $`e_1`$.
         ```math
         e_2 = \frac{(e_1\times d_s^a) \times e_1}{|(e_1\times d_s^a) \times e_1|}
         ```
-      - The third basis vector is defined as right-hand coordinate
+      - The third basis vector is defined as right-hand coordinate.
         ```math
         e_3=\frac{e_1\times e_2}{|e_1\times e_2|}
         ```
+
    4. note
       - NA   
 
 3. note
-   - Currently, the `ControlledAttitude` class doen't calculate angular velocity, and it is set as 0. The feature will be implemented in near future. 
+   - Currently, the `ControlledAttitude` class does not calculate angular velocity, and it is set as 0. The feature will be implemented in the near future. 
 
 
 ## 3. Results of verifications
@@ -160,7 +172,7 @@
 
 1. Pointing Control 
    1. overview      
-      - To verify the correctness of pointing control, several cases described in bottom were checked.
+      - Several cases described at the bottom were checked to verify the correctness of pointing control.
    2. conditions for the verification
       1. input files
          - default files
