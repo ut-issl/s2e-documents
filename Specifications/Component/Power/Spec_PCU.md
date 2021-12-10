@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 1. Functions
-   - This is a base class of power control units and manages multiple `PowerPorts`.
+   - `PCU` class is a base class of power control units and manages multiple `PowerPorts`.
 2. Related files
    - Main file: `PCU.cpp, .h`
    - Related file: `PowerPort.cpp, .h`

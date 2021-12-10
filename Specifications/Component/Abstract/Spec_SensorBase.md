@@ -2,8 +2,8 @@
 
 ## 1.  Overview
 1. Functions
-   - The `SensorBase` class is a base class to provide the general feature for sensors.
-   - This class adds the following noises and output limit.
+   - The `SensorBase` class is a base class to provide common features for sensors.
+   - This class adds the following noises and output limits.
      - Constant offset noise
      - Normal random noise
      - Random Walk noise
@@ -25,7 +25,7 @@
       - `scale_factor`: Scale factor matrix to express scale factor noise and cross-talk      
       - Range related parameters
         - `range_to_const_c`: The output value cannot over this value
-        - `range_to_zero_c`: When the output value is larger than this value, the output is set as zero. 
+        - `range_to_zero_c`: The output is set as zero when the true value is larger than this value.
         - This feature is optional. If you don't want to use the value, please set this huge value.
         - `range_to_zero_c` should be larger than `range_to_const_c`.
       - `bias_c`: Constant offset noise
