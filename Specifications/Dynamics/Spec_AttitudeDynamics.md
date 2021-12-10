@@ -125,7 +125,7 @@
        ```
 
       where $`\boldsymbol{\omega}_b`$[rad/s] is angular velocity in the body-fixed coordinate, $`\boldsymbol{I}_b`$[kgm$`^2`$] is inertia tensor of the satellite, $`\boldsymbol{T}_b`$[Nm] is torque in the body-fixed coordinate, $`\boldsymbol{h}_b`$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
-      Quarternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
+      Quaternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
 
        ```math
          \dot{\boldsymbol{q}}_{i2b} = \cfrac{1}{2}

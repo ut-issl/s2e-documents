@@ -8,7 +8,7 @@
 
 2. related files
    - MagDisturbance.cpp, MagDisturbance.h : Definitions and declarations of the class
-   - Init_Disturbance.cpp : Interface functions for the initizalization
+   - Init_Disturbance.cpp : Interface functions for the initialization
    - Disturbance.ini : Initialization file
 
 3. how to use   
