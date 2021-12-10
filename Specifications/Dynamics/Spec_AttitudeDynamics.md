@@ -191,30 +191,27 @@
       - Disturbance torque: All Disable
 
    3. results
-      - Initial torque: [0,0,0] Nm
+      - Add constant torque: [0,0,0] Nm
          - body frame
          ![](./figs/test_dynamics_0_b.png)
 
          - inertial frame
          ![](./figs/test_dynamics_0_i.png)
 
-      - Initial torque = [0.1,0,0] Nm
-         - Fail to output as fixed torque even when input in ini file. At the end of Dynamics-> Update (), torqie_b is updated to (0,0,0) every time, but it may still be reflected as 0sec torque.
-         - Interim solution: change the value in NatakuComponents-> GenerateTorque ().
-         - The X-axis is constant at inertial coordinates, and the body-fixed coordinates  
+      - Add constant torque = [0.1,0,0] Nm
            -  body frame
                ![](./figs/test_dynamics_px_b.png)
 
            - inertial frame
                ![](./figs/test_dynamics_px_i.png)
-      - Initial torque = [0,0.1,0] Nm
+      - Add constant torque = [0,0.1,0] Nm
         -  body frame
          ![](./figs/test_dynamics_py_b.png)
 
         - inertial frame
          ![](./figs/test_dynamics_py_i.png)
 
-      - Initial torque = [0,0,0.1] Nm
+      - Add constant torque = [0,0,0.1] Nm
         - body frame
          ![](./figs/test_dynamics_pz_b.png)
 
