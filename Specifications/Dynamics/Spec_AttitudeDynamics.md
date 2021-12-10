@@ -3,37 +3,32 @@
 ## 1.  Overview
 
 1. functions
-   
-   - A class with the function to propagate the attitude motion equation that forms the basis of the attitude simulator.
+   - This class has the function to propagate the attitude motion equation that forms the basis of the attitude simulator.
    - Use the 4th Runge-Kutta equation for the propagation or set the attitude as determined values.
    - This class also calculates the angular momentum.
 
 2. files
-   
    - Attitude.cpp, Attitude.h : Definitions and declarations of the class
    - ControlledAttitude.h, .cpp : `ControlledAttitude` class is defined. The detail is described in `Spec_ControlledAttitude.md`
    - AttitudeRK4.h, .cpp : Normal free motion dynamics propagator `AttitudeRK4` class is defined here.
-   - Init_Attitude.cpp : Interface functions for the initizalization of `Attitude` class
-   - ControlledAttitude.ini:  Interface functions for the initizalization of `ControlledAttitude` class.
+   - Init_Attitude.cpp : Interface functions for the initialization of `Attitude` class
+   - ControlledAttitude.ini:  Interface functions for the initialization of `ControlledAttitude` class.
    - SimBase.ini : Initialization file
 
 3. how to use
-   
    - Set the parameters in `SimBase.ini`
-        - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = 0` at the ATTITUDE section in the `SimBase.ini` file.
-        -  If you want to apply the pre-determined condition to attitude dynamics, please set  `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file.
-   - Create instance by using initialization function `InitAttitude`
+     - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = 0` at the ATTITUDE section in the `SimBase.ini` file.
+     -  If you want to apply the predetermined condition to attitude dynamics, please set  `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file.
+   - Create an instance by using initialization function `InitAttitude`
    - Execute attitude propagation by `Propagate` function
-   - Use `Get*` function to get attitude information
+   - Use `Get*` function to get attitude information.
      
 
 ## 2. Explanation of RK4 Algorithm 
 
 1. `Propagate` function
-
    1. overview
-
-      - This function manages the timings of `RungeOneStep` function, which calculates the attitude dynamics and kinematics by 4th Runge-Kutta method.
+      - This function manages the timings of `RungeOneStep` function, which calculates the attitude dynamics and kinematics by the 4th Runge-Kutta method.
 
    2. inputs and outputs
       - input
@@ -41,32 +36,29 @@
       - output
          - (void)
 
-   3. algorithm
+   3. algorithm  
+      There are two-time steps definition related to attitude propagation.
+      1. Time incremented in the main function
+         - This time step decides the timing to update the torque input values by disturbances and actuator outputs.
+         - The step is defined as the variable `prop_step_` in the `sim_time` class.
+      2. Time incremented in Propagate function
+         - This time step is much shorter than the time step in the main function. 
+         - This step determines the accuracy of the attitude propagation.
+         - The step is defined as the variable `prop_step_` in the `attitude` class.
 
-      There are two time steps related to the attitude propagation.
-         1. Time incremented in the main function
-            - The step to calculate the values of disturbance and component control.
-            - The step is defined as the variable `prop_step_` in `sim_time` class.
-         2. Time incremented in Propagate function
-            - The step is much shorter than the time step in the main function. 
-            - The step determines the accuracy of the attitude propagation.
-            - The step is defined as the variable `prop_step_` in `attitude` class.
-
-There is a while loop in `Propagate` function, in which Runge-Kutta integration is performed. In addition, there is only one Runge-Kutta integration function outside the while loop, but this is for adjusting the time lapse.
+   There is a `while loop` in the `Propagate` function, in which Runge-Kutta integration is performed. In addition, there is only one Runge-Kutta integration function outside the while loop, but this is for adjusting the time-lapse.
 
 2. `RungeOneStep` function
 
-   1. overview
-
+   1. overview  
       Calculate the attitude propagation by 4th Runge-Kutta integration.
 
    2. inputs and outputs
       - input
-         - (double) t: Elapsed time from the time when the `Propagate` function is called.
-         - (double) dt: The duration for the attitude propagation
+        - (double) t: Elapsed time from the time when the `Propagate` function is called.
+        - (double) dt: The duration for the attitude propagation
 
-   3. algorithm
-
+   3. algorithm  
       If the differential equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
 
        ```math
@@ -109,16 +101,13 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
          \tag{5}
        ```
 
-
-   4. note
-
-      The one that solves the upper differential equation is implemented in Library, and it is said that it is used in random walk etc. I feel that it should be integrated there. (2016/5/25)
+   4. note  
+      The one that solves the upper differential equation is implemented in Library.
 
 3. `DynamicsKinematics` function
 
-   1. overview
-
-      Equation of attitude motion is described in this function.
+   1. overview  
+      The equation of attitude motion is described in this function.
 
    2. inputs and outputs
       - input
@@ -127,8 +116,7 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
       - output
          - (Vector<7>) dxdt: Differentiation of quantity of state.
 
-   3. algorithm
-
+   3. algorithm  
       Equation of attitude motion is calculated as the equation (6), which is written in Chapter 6 of Reference 1,
 
        ```math
@@ -156,7 +144,6 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
 
 1. verification of kinematics equation
    1. overview
-      
       - Check that the integral propagation of kinematics equations is performed correctly
 
    2. conditions for the verification
@@ -168,6 +155,7 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
       - Initial torque: [0,0,0]
       - Initial angular velocity: Set by each case
       - Disturbance torque: All Disable
+
    3. results
       - Initial angular velocity = [0,0,0]
   
@@ -191,7 +179,6 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
 
 2. verification of dynamics equation
    1. overview
-
       Confirm that the integral propagation of the dynamics equation is performed correctly
 
    2. conditions of the verification
@@ -212,11 +199,10 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
          - inertial frame
          ![](./figs/test_dynamics_0_i.png)
 
-
       - Initial torque = [0.1,0,0] Nm
          - Fail to output as fixed torque even when input in ini file. At the end of Dynamics-> Update (), torqie_b is updated to (0,0,0) every time, but it may still be reflected as 0sec torque.
          - Interim solution: change the value in NatakuComponents-> GenerateTorque ().
-         - X axis is constant at inertial coordinates and aircraft fixed coordinates  
+         - The X-axis is constant at inertial coordinates, and the body-fixed coordinates  
            -  body frame
                ![](./figs/test_dynamics_px_b.png)
 
@@ -238,7 +224,6 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
 
 3. validation of attitude dynamics propagation time step
    1. overview
-
       Validate the time step of the attitude dynamics propagation
 
    2. conditions of the verification
@@ -253,8 +238,6 @@ There is a while loop in `Propagate` function, in which Runge-Kutta integration 
 
    3. results
       - No difference between two results in PropStepSec = 0.001 / 0.01 sec. 
-        
 
 ## 4. References
-
-1. 嘉. 狼, 信. 冨田, 真. 中須賀 , 三. 松永, 宇宙ステーション入門第二版, 文京区: 東京大学出版会, 2008. 
+1. 狼, 冨田, 中須賀, 松永, 宇宙ステーション入門第二版, 東京大学出版会, 2008. (Written in Japanese)
