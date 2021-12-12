@@ -51,7 +51,7 @@
 6.  Check the new log file in `./data/SampleSat/logs` to confirm the initial angular velocity is changed as you want.
 7.  Of course, you can change other values similarly.
 
-## 6. Edit Simulation Conditions ~Disturbances~
+## 6. Edit Simulation Conditions: Disturbances
 
 1.  Move to `./data/SampleSat/ini`  directory  
 2.  Open `SampleDisturbance.ini`, which defines conditions to calculate orbital disturbance torques and forces
@@ -74,7 +74,7 @@
 12.  Of course, you can change other values similarly.
      - Detail description of initializing values are written in `Specifications`.
 
-## 7. Edit Simulation Conditions ~Orbit~
+## 7. Edit Simulation Conditions: Orbit
 
 1.  Move to `./data/SampleSat/ini`  directory  
 2.  Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
@@ -88,7 +88,7 @@
 5.  Rerun the S2E_CORE **without a rebuild**
 6.  Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
 
-## 8. Edit Simulation Conditions ~Environment~
+## 8. Edit Simulation Conditions: Environment
 
 1.  Move to `./data/SampleSat/ini`  directory  
 2.  Open `SampleLocalEnvironment.ini`, which defines conditions to calculate the environment around the spacecraft
