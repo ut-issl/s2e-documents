@@ -1,7 +1,8 @@
 #include "User_case.h"
 #include "Initialize.h"
 
-UserCase::UserCase(string ini_fname):SimulationCase(ini_fname)
+UserCase::UserCase(std::string ini_fname)
+: SimulationCase(ini_fname)
 {
 }
 
@@ -24,7 +25,7 @@ void UserCase::Initialize()
   sim_config_.main_logger_->WriteHeaders();
 
   //Start the simulation
-  cout << "\nSimulationDateTime \n";
+  std::cout << "\nSimulationDateTime \n";
   glo_env_->GetSimTime().PrintStartDateTime();
 
 }
@@ -42,26 +43,25 @@ void UserCase::Main()
     // Global Environment Update
     glo_env_->Update();
     // Spacecraft Update
-    spacecraft_->Clear(); //Zero clear force and torque for dynamics
     spacecraft_->Update(&(glo_env_->GetSimTime()));
     // Debug output
     if (glo_env_->GetSimTime().GetState().disp_output)
     {
-      cout << "Progresss: " << glo_env_->GetSimTime().GetProgressionRate() << "%\r";
+      std::cout << "Progresss: " << glo_env_->GetSimTime().GetProgressionRate() << "%\r";
     }
   }
 }
 
-string UserCase::GetLogHeader() const
+std::string UserCase::GetLogHeader() const
 {
-  string str_tmp = "";
+  std::string str_tmp = "";
 
   return str_tmp;
 }
 
-string UserCase::GetLogValue() const
+std::string UserCase::GetLogValue() const
 {
-  string str_tmp = "";
+  std::string str_tmp = "";
 
   return str_tmp;
 }
