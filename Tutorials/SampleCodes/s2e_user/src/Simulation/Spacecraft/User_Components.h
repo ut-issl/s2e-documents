@@ -25,5 +25,13 @@ public:
   libra::Vector<3> GenerateTorque_b();
   void CompoLogSetUp(Logger& logger);
 private:
+  // Components
   OBC* obc_;
+
+  // References
+  const Dynamics* dynamics_;
+  const Structure* structure_;
+  const LocalEnvironment* local_env_;
+  const GlobalEnvironment* glo_env_;
+  const SimulationConfig* config_;
 };

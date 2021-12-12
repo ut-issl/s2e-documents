@@ -8,7 +8,7 @@ UserComponents::UserComponents(
   const SimulationConfig* config,
   ClockGenerator* clock_gen,
   const int sat_id
-)
+):dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config)
 {
   obc_ = new OBC(clock_gen);
 }
