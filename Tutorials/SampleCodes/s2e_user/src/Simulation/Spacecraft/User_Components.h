@@ -6,11 +6,7 @@
 #include "LocalEnvironment.h"
 
 // include for component
-#include "OBC_C2A.h"
-#include "../../../Component/Abstract/EXP.h"
-
-class OBC_C2A;
-class EXP;
+#include "OBC.h"
 
 class UserComponents
 {
@@ -29,6 +25,5 @@ public:
   libra::Vector<3> GenerateTorque_b();
   void CompoLogSetUp(Logger& logger);
 private:
-  OBC_C2A* obc_;
-  EXP *exp_;
+  OBC* obc_;
 };

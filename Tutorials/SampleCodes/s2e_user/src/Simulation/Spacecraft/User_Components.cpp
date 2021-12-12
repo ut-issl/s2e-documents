@@ -10,13 +10,11 @@ UserComponents::UserComponents(
   const int sat_id
 )
 {
-  obc_ = new OBC_C2A(clock_gen);
-  exp_ = new EXP(clock_gen, 0, obc_);
+  obc_ = new OBC(clock_gen);
 }
 
 UserComponents::~UserComponents()
 {
-  delete exp_;
   delete obc_;
   // OBC must be deleted the last since it has com ports
 }
