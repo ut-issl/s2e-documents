@@ -1,4 +1,5 @@
 #include "User_Components.h"
+#include "Initialize.h"
 
 UserComponents::UserComponents(
   const Dynamics* dynamics, 
@@ -10,6 +11,9 @@ UserComponents::UserComponents(
   const int sat_id
 ):dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config)
 {
+  IniAccess iniAccess = IniAccess(config->sat_file_[0]);
+  double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
+
   obc_ = new OBC(clock_gen);
 }
 
