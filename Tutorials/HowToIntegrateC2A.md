@@ -5,7 +5,7 @@
 - S2E can execute [C2A](https://gitlab.com/ut_issl/c2a) as flight software for flight software development and debugging.
 - This document describes how to integrate the C2A.
 - You can find sample codes for this tutorial in `Tutorials/SampleCodes/C2A_Integration`.
-- **Note**: Currently, both the C2A and S2E are moving to Github, so that this document and the sample codes will be updated after finishing the moving.
+- **Note**: Currently, both the C2A and S2E are moving to Github and updating frequently, so that this document and the sample codes will be updated after finishing the moving.
 
 ## 2. How to build C2A in S2E
 - Notes
@@ -111,7 +111,7 @@
       CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
       BCT_register_cmd(&temp); 
       ```
-  - **Note** Currently, the character encoding of C2A is `SJIS` and the sample codes in this tutorial are writtn in `UTF-8`, so please carefully copy the files, and convert the encoding if you need.
+  - **Note**: Currently, the character encoding of C2A is `SJIS`, and the sample codes in this tutorial are written in `UTF-8`, so please carefully copy the files and convert the encoding if you need.
 - Execution and Result
   - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
     - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
