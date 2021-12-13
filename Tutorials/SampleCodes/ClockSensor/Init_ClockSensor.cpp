@@ -2,7 +2,9 @@
 #include <string.h>
 #include "ClockSensor.h"
 
-ClockSensor InitClockSensor(ClockGenerator* clock_gen, const SimTime* sim_time, string file_name)
+ClockSensor InitClockSensor(ClockGenerator* clock_gen,
+                            const SimTime* sim_time,
+                            std::string file_name)
 {
   IniAccess ini_file(file_name);
 
