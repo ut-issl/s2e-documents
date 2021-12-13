@@ -2,13 +2,15 @@
 
 ## 1.  Overview
 - [C2A](https://gitlab.com/ut_issl/c2a) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
-- S2E can optionally execute [C2A](https://gitlab.com/ut_issl/c2a) as a flight software for flight software development and debugging.
+- S2E can execute [C2A](https://gitlab.com/ut_issl/c2a) as flight software for flight software development and debugging.
 - This document describes how to integrate the C2A.
 - You can find sample codes for this tutorial in `Tutorials/SampleCodes/C2A_Integration`.
+- **Note**: Currently, both the C2A and S2E are moving to Github, so that this document and the sample codes will be updated after finishing the moving.
 
 ## 2. How to build C2A in S2E
-- C2A is written in C language, but S2E builds C2A in C++ language.
-  - **Note** The character encoding of C2A is `JSIS` and is different from S2E's `UTF-8`.
+- Notes
+  - C2A is written in C language, but S2E builds C2A in C++.
+  - The character encoding of C2A is `JSIS` and is different from S2E's `UTF-8`.
 - When users want to use C2A, complete the following steps
   - Make `FlightSW` directory at same directory with `s2e_core_oss` and `s2e_user`.
   - Make a `c2a_user_oss` directory in `FlighSW` and clone a [C2A_USER repository](https://gitlab.com/ut_issl/c2a/c2a_user_oss) you want to use
@@ -17,6 +19,7 @@
     │  └─ c2a_user_oss
     ├─s2e_core_oss
     └─s2e_user  
+    ```
   - Edit `s2e_user/CMakeLists.txt`
     - `set(C2A_DIR ${FLIGHT_SW_DIR}/c2a_user_oss)` -> edit the directory name according with your situation
     - `set(USE_C2A OFF)` -> `set(USE_C2A ON)`
@@ -108,7 +111,7 @@
       CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
       BCT_register_cmd(&temp); 
       ```
-  - **Note** Currentlym the character encoding of C2A is `SJIS` and the sample codes in this tutorial are writtn in `UTF-8`, so please carefully copy the files, and convert the encoding if you need.
+  - **Note** Currently, the character encoding of C2A is `SJIS` and the sample codes in this tutorial are writtn in `UTF-8`, so please carefully copy the files, and convert the encoding if you need.
 - Execution and Result
   - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
     - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
