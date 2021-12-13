@@ -1,4 +1,4 @@
-#include "User_sat_with_control.h"
+#include "User_sat.h"
 
 UserSat::UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 :Spacecraft(sim_config, glo_env, sat_id)
@@ -9,7 +9,7 @@ UserSat::~UserSat()
 {
 }
 
-void UserSat::Initialize(void)
+void UserSat::Initialize(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 {
 }
 
