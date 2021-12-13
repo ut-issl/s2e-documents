@@ -4,7 +4,7 @@
 #include "SimulationCase.h"
 #include "MCSimExecutor.h"
 
-//Add custom include files
+// Add custom include files
 #include "./Simulation/Case/User_case.h"
 
 // degub print of initialize file path
@@ -14,8 +14,7 @@ void print_path(std::string path)
   std::cout << path << std::endl;
 #else
   const char *rpath = realpath(path.c_str(), NULL);
-  if (rpath)
-  {
+  if(rpath) {
     std::cout << rpath << std::endl;
     free((void *)rpath);
   }
@@ -23,11 +22,11 @@ void print_path(std::string path)
 }
 
 // Main function
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-  //Set initialize file
+  // Set initialize file
   std::string ini_file = "../../data/ini/User_SimBase.ini";
-  MCSimExecutor *mc_sim = InitMCSim(ini_file);
+  MCSimExecutor* mc_sim = InitMCSim(ini_file);
   Logger *log_mc_sim = InitLogMC(ini_file, mc_sim->IsEnabled());
 
   std::cout << "Starting simulation..." << std::endl;
@@ -42,10 +41,10 @@ int main(int argc, char *argv[])
     if (mc_sim->GetNumOfExecutionsDone() == 0) log_mc_sim->WriteHeaders();
     simcase.Initialize();
 
-    //Main
-    log_mc_sim->WriteValues(); //log initial value
+    // Main
+    log_mc_sim->WriteValues(); // log initial value
     simcase.Main();
-    log_mc_sim->WriteValues(); //log final value
+    log_mc_sim->WriteValues(); // log final value
     log_mc_sim->ClearLoggables();
   }
 
