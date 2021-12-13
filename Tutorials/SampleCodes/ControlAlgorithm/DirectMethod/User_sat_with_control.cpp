@@ -20,6 +20,11 @@ void UserSat::LogSetup(Logger & logger)
 
 void UserSat::Update(const SimTime* sim_time)
 {
+  // Update Dynamics
+  Spacecraft::Update(sim_time);
+  // clear force and torques
+  Clear();
+  
   // Sensing
   Vector<3> observed_omega_b = dynamics_->GetAttitude().GetOmega_b();
   
@@ -32,7 +37,4 @@ void UserSat::Update(const SimTime* sim_time)
   // Generate force and torque
   dynamics_->AddTorque_b(control_torque_b);
   dynamics_->AddForce_b(control_force_b);
-
-  // Update Dynamics
-  Spacecraft::Update(sim_time);
 }
