@@ -5,7 +5,7 @@
 #include "GlobalEnvironment.h"
 #include "LocalEnvironment.h"
 
-// include for component
+// include for components
 #include "OBC.h"
 
 class UserComponents
