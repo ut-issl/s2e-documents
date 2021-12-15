@@ -1,23 +1,39 @@
 #pragma once
+
 #include "Vector.hpp"
 #include "Dynamics.h"
 #include "GlobalEnvironment.h"
-#include "OBC.h"
-#include "Gyro.h"
-#include "../../Components/ClockSensor.h"
+#include "LocalEnvironment.h"
 
-using libra::Vector;
-class OBC;
+// include for component
+#include "OBC.h"
+#include "../../Components/ClockSensor.h"
 
 class UserComponents
 {
 public:
-  UserComponents(const Dynamics* dynamics, const GlobalEnvironment* glo_env, const SimulationConfig* config, ClockGenerator* clock_gen, const int sat_id);
+  UserComponents(
+    const Dynamics* dynamics, 
+    const Structure* structure, 
+    const LocalEnvironment* local_env, 
+    const GlobalEnvironment* glo_env,
+    const SimulationConfig* config,
+    ClockGenerator* clock_gen,
+    const int sat_id
+  );
   ~UserComponents();
-  Vector<3> GenerateForce_b();
-  Vector<3> GenerateTorque_b();
+  libra::Vector<3> GenerateForce_b();
+  libra::Vector<3> GenerateTorque_b();
   void CompoLogSetUp(Logger& logger);
 private:
+  // Components
   OBC* obc_;
   ClockSensor* clock_sensor_;
+
+  // References
+  const Dynamics* dynamics_;
+  const Structure* structure_;
+  const LocalEnvironment* local_env_;
+  const GlobalEnvironment* glo_env_;
+  const SimulationConfig* config_;
 };

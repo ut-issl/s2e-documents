@@ -3,7 +3,7 @@
 #include "Logger.h"
 #include "SimulationCase.h"
 
-//Add custom include files
+// Add custom include files
 #include "./Simulation/Case/User_case.h"
 
 // degub print of initialize file path
@@ -23,11 +23,12 @@ void print_path(std::string path)
 // Main function
 int main(int argc, char* argv[])
 {
-  //Set initialize file
+  // Set initialize file
   std::string ini_file = "../../data/ini/User_SimBase.ini";
 
   std::cout << "Starting simulation..." << std::endl;
-  std::cout << "\tIni file: "; print_path(ini_file);
+  std::cout << "\tIni file: ";
+  print_path(ini_file);
 
   auto simcase = UserCase(ini_file);
   simcase.Initialize();

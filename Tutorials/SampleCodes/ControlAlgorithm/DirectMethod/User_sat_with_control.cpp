@@ -1,4 +1,4 @@
-#include "User_sat_with_control.h"
+#include "User_sat.h"
 
 UserSat::UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 :Spacecraft(sim_config, glo_env, sat_id)
@@ -9,7 +9,7 @@ UserSat::~UserSat()
 {
 }
 
-void UserSat::Initialize(void)
+void UserSat::Initialize(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
 {
 }
 
@@ -20,6 +20,11 @@ void UserSat::LogSetup(Logger & logger)
 
 void UserSat::Update(const SimTime* sim_time)
 {
+  // Update Dynamics
+  Spacecraft::Update(sim_time);
+  // clear force and torques
+  Clear();
+  
   // Sensing
   Vector<3> observed_omega_b = dynamics_->GetAttitude().GetOmega_b();
   
@@ -32,7 +37,4 @@ void UserSat::Update(const SimTime* sim_time)
   // Generate force and torque
   dynamics_->AddTorque_b(control_torque_b);
   dynamics_->AddForce_b(control_force_b);
-
-  // Update Dynamics
-  Spacecraft::Update(sim_time);
 }
