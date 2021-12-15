@@ -10,10 +10,10 @@
 ## 2. How to build C2A in S2E
 - Notes
   - C2A is written in C language, but S2E builds C2A in C++.
-  - The character encoding of C2A is `JSIS` and is different from S2E's `UTF-8`.
+  - The character encoding of C2A is `SJIS` and is different from S2E's `UTF-8`.
 - When users want to use C2A, complete the following steps
   - Make `FlightSW` directory at same directory with `s2e_core_oss` and `s2e_user`.
-  - Make a `c2a_user_oss` directory in `FlighSW` and clone a [C2A_USER repository](https://gitlab.com/ut_issl/c2a/c2a_user_oss) you want to use
+  - Make a `c2a_user_oss` directory in `FlightSW` and clone a [C2A_USER repository](https://gitlab.com/ut_issl/c2a/c2a_user_oss) you want to use
     ```
     ├─FlightSW  
     │  └─ c2a_user_oss
