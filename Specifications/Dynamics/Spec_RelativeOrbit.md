@@ -28,7 +28,7 @@
         + The sample case in S2E_CORE_OSS simulates a single satellite. For an example of simulating multiple satellites, please refer to the [tutorial](../../Tutorials/HowToSimulateMultipleSatellites.md). 
    - Confirm the instance of `RelativeInformation` is the member of each satellite.
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
-        + Set `propagate_mode =2` to use relatibe orbit propagation
+        + Set `propagate_mode =2` to use the relative orbit propagation
         + Choose `update_method`.
             * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($`\dot{\bm{x}}=\bm{Ax}+\bm{Bu}`$, i.e., Hill equation).
             * `update_method = 1` means the orbit is updated with the STM($`\bm{x}(t)=\bm{\Phi}(t,t_0)\bm{x}(t_0)`$, i.e., Clohessy-Wiltshire solution).
@@ -158,7 +158,7 @@
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\bm{A}`$) is calulated as follows:
+        + Then, the system matrix ($`\bm{A}`$) is calculated as follows:
 
         ```math
         \bm{A}=
@@ -199,7 +199,7 @@
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\bm{A}`$) is calulated as follows:
+        + Then, the system matrix ($`\bm{A}`$) is calculated as follows:
 
         ```math
         \bm{\Phi}(t,t0)=
