@@ -4,7 +4,7 @@
 
 1. functions
 
-    - The `RelativeOrbit` class calculates the position of a satellite relative to the reference satellite. This class calculates the position both in the LVLH frame and inertial frame. Users can choose the update method between:
+    - The RelativeOrbit class calculates the position of a satellite with respect to a reference satellite. This class calculates the position both in the LVLH frame and inertial frame. Users can choose the update method between:
         + relative dynamics propagation using RK4
         + update using STM(State Transition Matrix)
 
@@ -13,6 +13,9 @@
    - `RelativeOrbit.cpp`
    - `RelativeOrbit.h`
         + Definition of the class
+   - `RelativeOrbitModels.cpp`
+   - `RelativeOrbitModels.h`
+        + Library to store equations for various relative dynamics
    - `orbit.h`
         + Definition of the parent class
    - `Init_Orbit.cpp`
@@ -22,18 +25,18 @@
 3. How to use
    
    - Relative orbit propagation is available only when multiple satellites are simulated.
-        + The sample case in S2E_CORE_OSS simulates the single satellite. See S2E_FF code. 
+        + The sample case in S2E_CORE_OSS simulates a single satellite. For an example of simulating multiple satellites, please refer to the [tutorial](../../Tutorials/HowToSimulateMultipleSatellites.md). 
    - Confirm the instance of `RelativeInformation` is the member of each satellite.
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
         + Set `propagate_mode =2` to use relatibe orbit propagation
         + Choose `update_method`.
             * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($`\dot{\bm{x}}=\bm{Ax}+\bm{Bu}`$, i.e., Hill equation).
             * `update_method = 1` means the orbit is updated with the STM($`\bm{x}(t)=\bm{\Phi}(t,t_0)\bm{x}(t_0)`$, i.e., Clohessy-Wiltshire solution).
-        + If you choose `update_method = 0`, set `relative_dynamics_model_type`.
-        + If you choose `update_method = 1`, set `stm_model_type`.
-        + Set the initial relative position of the satellite in LVLH frame. LVLH frame definition is:
-            * $`\bm{x}`$ is directed from the reference satellite ("chief" in the figure) radially outward.
-            * The direction of $`\bm{z}`$ is correspond to the angular momentum vector of the reference satellite orbit.
+        + When you choose `update_method = 0`, set `relative_dynamics_model_type`.
+        + When you choose `update_method = 1`, set `stm_model_type`.
+        + Set the initial relative position of the satellite in the LVLH frame. LVLH frame definition is:
+            * $`\bm{x}`$ is a direction vector from the reference satellite ("chief" in the figure) radially outward.
+            * The direction of $`\bm{z}`$ corresponds to the angular momentum vector of the reference satellite orbit.
             * The direction of $`\bm{y}`$ is determined by $`\bm{z}\times\bm{x}`$.
         <figure>
         <div align="center">
@@ -43,20 +46,20 @@
         </figure>
 
         + Set the ID and ini file name of the reference satellite.
-            * NOTE: Confirm the `propagate_mode` of the reference satellite is not 2. The orbit of the reference satellite must be propagated by the RK4 method or SGP4 method.
+            * NOTE: Confirm the `propagate_mode` of the reference satellite is not 2. The orbit of the reference satellite must be propagated by the methods other than the relative orbit propagation.
 
 4. How to add a new relative dynamics model
 
     1. New Relative Dynamics equation
 
         + Add the name of the dynamics model to the `RelativeDynamicsModel` enum.
-        + Add function to calculate system matrix like `CalculateHillSystemMatrix`.
+        + Add the function to calculate the system matrix like `CalculateHillSystemMatrix`.
         + Edit the `CalculateSystemMatrix` function.
 
     2. New STM
 
-        + Add the name of dynamics model to `STMModel` enum.
-        + Add function to calculate system matrix like `CalculateHCWSTM`.
+        + Add the name of the dynamics model to `STMModel` enum.
+        + Add the function to calculate the system matrix as `CalculateHCWSTM`.
         + Edit the `CalculateSTM` function.
 
 ## 2. Explanation of Algorithm
@@ -64,7 +67,7 @@
 1. `InitializeState`
 
    1. overview
-        + The `InitializeState` function initialize the orbit of the satellite.
+        + The `InitializeState` function initializes the orbit of the satellite.
 
    2. inputs and outputs
         + input
@@ -72,11 +75,11 @@
                 - The initial state of the satellite
             * `reference_sat_initial_orbit`
                 - The initial orbit of the reference satellite
-                - NOTE: this is used only for the initialization.
+                - NOTE: This is used only for the initialization.
             * `current_jd`
                 - The initial Julian day
             * `mu`
-                - The gravity constant $`\mu`$
+                - The gravity constant of the reference celestial body $`\mu`$
             * `timestep`
                 - RK4 propagation timestep
             * `wgs`
@@ -93,7 +96,7 @@
 1. `CalculateSystemMatrix`
 
    1. overview
-        + The `CalculateSystemMatrix` function used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `relative_dynamics_model_type`.
+        + The `CalculateSystemMatrix` function is used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `relative_dynamics_model_type`.
 
    2. inputs and outputs
         + input
@@ -113,7 +116,7 @@
 1. `CalculateSTM`
 
    1. overview
-        + The `CalculateSTM` function used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `stm_model_type`.
+        + The `CalculateSTM` function is used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `stm_model_type`.
 
    2. inputs and outputs
         + input
@@ -136,6 +139,7 @@
 
    1. overview
         + The `CalculateHillSystemMatrix` function calculates the system matrix of the Hill equation. 
+        + This function is declared in `RelativeOrbitModels.h` and is used by the
 
    2. inputs and outputs
         + input
@@ -169,12 +173,12 @@
         ```
 
    4. note
-        + This function can be called from outside the class to use in estimation and control. Since this function is static, this can not rewrite the `system_matrix_` member. The update of `system_matrix_` is run by `CalculateSystemMatrix` function.
 
 1. `CalculateHCWSTM`
 
    1. overview
         + The `CalculateHCWSTM` function calculates the Hill-Clohessy-Wiltshire STM. 
+        + This function is declared in `RelativeOrbitModels.h` and is used by the
 
    2. inputs and outputs
         + input
@@ -210,7 +214,6 @@
         ```
 
    4. note
-        + This function can be called from outside the class to use in estimation and control. Since this function is static, this can not rewrite the `stm_` member. The update of `stm_` is run by `CalculateSTM` function.
 
 ## 3. Results of verifications
 
@@ -221,8 +224,9 @@
        
    2. conditions for the verification
       1. input files
-            - `Sat0.ini` (S2E_FF)
-            - `Sat1.ini` (S2E_FF)
+            - Initialization files for the two satellites were prepared.
+                - `Sat0.ini`
+                - `Sat1.ini`
       2. initial values
             - The orbit of the reference satellite (Sat0) is GEO. The initial position of the satellite (Sat1) is $`(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}`$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).  
             - `Sat0.ini`
@@ -286,6 +290,7 @@
         </div>
 
       - They correctly move periodically.
+      - In this example of verification, the RK4 method is used to propagate relative orbits, but the results were the same when using STM.
       
         
 
