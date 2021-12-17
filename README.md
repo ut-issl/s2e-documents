@@ -30,7 +30,8 @@
    6. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
    7. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
    8. [How To Perform HILS Test](./Tutorials/HowToUseSerialPortCommunication.md)
-   9. TBW
+   9. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+   10. TBW
 3. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
@@ -63,6 +64,7 @@
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+         1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       3. Thermal
    4. Environment
       1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
