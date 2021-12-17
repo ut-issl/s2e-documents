@@ -1,58 +1,34 @@
 # How to compile with Visual Studio
 
 ## 1.  Overview
+This document explains how to build and execute the Visual Studio environment with CMake. Currently, we recommend using VS2019, but users can use VS2017 with minor modifications.
 
-1. Functions
+- Related files
+  - ./CmakeLists.txt
+    - Base file for CMake
+  - ./CMakeSettings.json
+    - Setting file for VS to use CMake
+  - Other CMakeLists.txt in subdirectories
 
-   - CMake can support multi-platform compiling
-   
-2. Related files
+## 2. The flow of building and execution in Visual Studio
+1. Launch VS 2019
 
-   - ./CmakeLists.txt
-
-     - Base file for CMake
-   - ./CMakeSettings.json
-     - Setting file for VS to use CMake
-   - Other CMakeLists.txt in subdirectories
-
-
-## 2. Flow of compiling in VS
-
-1. Launch VS 2017 or 2019
-
-2. Select CMakeLists.txt you want to use
-
+2. Select `./CMakeLists.txt` for the S2E
    - Files/Open/CMake
 
 3. Build the CMake file
-
-   - CMake/Build All
-
-   ![](./figs/CMake_build.jpg)
+   - Select `CMakeLists.txt` with right-clicking, and build
 
 4. Check errors
 
 5. Run the program
-
-   - Users can use break point similar with normal sln file based projects.
-
+   - Users can use a `breakpoint` similar to normal `sln` file based projects.
    ![](./figs/CMake_run.jpg)
 
 6. Check log files
 
 ## 3. Note
-
-- The difference from the above compiling procedure when using VS2019
-
-   - After opening `CMakeLists.txt`, `CMake(K)` tab does not appear in the menu bar.
-
-      - So, you should build by right-clicking `CMakeLists.txt` in Solution Explorer after rewriting from `"generator": "Visual Studio 15 2017",` to `"generator": "Visual Studio 16 2019",` in `CMakeSetting.json`.
-
-- If you see the error `Generator Visual Studio 15 2017 could not find any instance of Visual Studio`,
-
-   - Please install `Visual Studio 15 2017 compiler` into your Visual Studio 2019 environment. (It can be selected when you install the VS2019)
-
-   Or
-
-   - Please edit compiler setting in `CMakeSetting.json` as `"generator": "Visual Studio 16 2019",`
+- For VS2017 users
+  - Please edit compiler setting in `CMakeSetting.json` as `"generator": "Visual Studio 15 2017"`.
+  - You also need to edit the `cmake_minimum_required` version from 3.13 to 3.10 in all CMakeList, including the files in subdirectories. The VS 2017 does not support version 3.13, and you may see many `warnings` when you use CMake Version 3.10. 
 
