@@ -4,17 +4,17 @@
 #include "../Spacecraft/User_sat.h"
 #include "MCSimExecutor.h"
 
-class UserCase : public SimulationCase
+class UserCase: public SimulationCase
 {
 public:
-  UserCase(string ini_fname, MCSimExecutor& mc_sim, const string log_path);
+  UserCase(std::string ini_fname, MCSimExecutor& mc_sim, const std::string log_path);
   virtual ~UserCase();
   
   void Initialize();
   void Main();
 
-  virtual string GetLogHeader() const;
-  virtual string GetLogValue() const;
+  virtual std::string GetLogHeader() const;
+  virtual std::string GetLogValue() const;
 
 private:
   UserSat* spacecraft_;

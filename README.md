@@ -1,13 +1,10 @@
 # Documents_OSS
 ## Overview
 
-- This is the repository for documents of S2E (Spacecraft Simulation Environment) CORE OSS.
-- Every ISSL_OSS members can see the documents in this repository.
-  - Documents only for ISSL project members should be stored in [Documents](https://gitlab.com/ut_issl/s2e/documents "Documents") repository.
+- This repository summarizes documents of S2E (Spacecraft Simulation Environment) CORE.
 - The Documents should be 
-  - written clearly
   - written in English
-  - written as mark down format
+  - written as markdown format
   - updated ASAP when the source codes are modified
 
 ## Index
@@ -31,9 +28,10 @@
    4. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
    5. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
    6. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
-   7. [How to integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-   8. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
-   9. TBW
+   7. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
+   8. [How To Perform HILS Test](./Tutorials/HowToUseSerialPortCommunication.md)
+   9. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+   10. TBW
 3. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
@@ -72,10 +70,9 @@
       1. [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
-      4. [Hipparicos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md)
-         *  [Hipparicos Catalogue (Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
-      5. [Gnss Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md)
-         *  [Gnss Satellites (Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
+      4. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md) [(Japanese)](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md)
+      5. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md) [(Japanese)](./Specifications/Environment/Spec_GnssSatellites_ja.md)
+      6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
    5. Interface
       1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
    6. Library
