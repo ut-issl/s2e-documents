@@ -11,7 +11,9 @@
 	   - Methods of  Orbit class which uses SGP4 for orbit propagation.
    - `src/Dynamics/Orbit/SimpleCircularOrbit.cpp`
    - `src/Dynamics/Orbit/SimpleCircularOrbit.h`
-	   - Methods of  Orbit class which uses RK4 for orbit propagation.
+		- Methods of  Orbit class which uses RK4 for orbit propagation.
+   - `src/Dynamics/Orbit/RelativeOrbit.cpp`
+   - `src/Dynamics/Orbit/RelativeOrbit.h`
    - `src/Dynamics/Orbit/Orbit.h`
 	   -  Definition of Orbit Class
    - `src/Interface/InitInput/Init_Orbit.cpp`
@@ -20,13 +22,13 @@
      - `src/Library/sgp4/sgp4unit.h`
      - `src/Library/sgp4/sgp4io.h`
      - `srcLibrary/sgp4/sgp4ext.h`
-
 3. How to use
    - Make an instance of the orbit class in `Initialize` function in `Dynamics.cpp`
    - In the orbit.ini file,  Select propagation mode (SGP4 or RK4)
 	   - When users choose SGP4, set TLE2 to decide the orbit elements of the satellite	
 	   - When users choose RK4, set the initial position and velocity of the satellite
    - The definition of the coordinate is decided in `PlanetSelect.ini`
+   - For the information about Relative Orbit, see the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
    
 ## 2. Explanation of Algorithm
 In the Orbit class, the member variables are updated according to the selection of orbit propagation methodologies: SGP4 or RK4, as defined in the ini file.  
@@ -50,9 +52,10 @@ The Propagate function is the one that computes the orbital information, and the
       \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
       r = \sqrt{x^2+y^2+z^2}
       ```
+4. [RelativeOrbit] See the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
+5. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables lat_rad_, lon_rad_, and alt_m_.
 
    4. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables `lat_rad_`, `lon_rad_`, and `alt_m_`.
-
 
 2. UpdateAtt function  
    The UpdateAtt function simply converts the velocity vector of the spacecraft (in ECI coordinate system) to body coordinate system notation using the argument: `Quaternion_i2b`.
