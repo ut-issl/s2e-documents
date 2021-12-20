@@ -8,19 +8,19 @@ assignees: ''
 ---
 
 ## Overview
-Write briefly
+Write briefly.
 
 ## Details
-Write in detail
+Write in detail.
 
 ## Conditions for close
-When xxx is complete
+When xxx is complete.
 
 ## Supplement
-If there is anything additional that should be mentioned
+Write additional comments if you need.
 
 ## Note
-- If there are related Projects, tie them together
-- Set `priority` label if possible
-- Assignees should be set if possible
-- Write a conclusion when closing the issue
+- If there are related Projects, tie them together.
+- Set `priority` label if possible.
+- Assignees should be set if possible.
+- Write a conclusion when closing the issue.

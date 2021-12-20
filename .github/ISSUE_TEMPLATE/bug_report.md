@@ -8,30 +8,30 @@ assignees: ''
 ---
 
 ## Overview
-Write briefly
+Write briefly.
 
 ## Details
 ### Description
-How is it a bug?
+What kind of bug?
 
 ### Conditions of occurrence
 The environment in which the bug occurs, the condition, parameters, etc.
 
 ###  Additional information
-files, link, etc, if any
+files, link, etc, if any.
 
 ## Task
 - [ ] Fix xxx
 - [ ] Do yyy
 
 ## Scope of influence
-eg. All tools are not working
+eg. All tools are not working.
 
 ## Supplement
-If there is anything additional that should be mentioned
+Write additional comments if you need.
 
 ## Note
-- If there are related Projects, tie them together
-- Set `priority` label if possible
-- Assignees should be set if possible
-- Write a conclusion when closing the issue
+- If there are related Projects, tie them together.
+- Set `priority` label if possible.
+- Assignees should be set if possible.
+- Write a conclusion when closing the issue.
