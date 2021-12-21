@@ -1,3 +1,7 @@
+# mdbook
+src/
+book/
+
 # OSX
 .DS_Store
 .AppleDouble

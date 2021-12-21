@@ -1,0 +1,14 @@
+[book]
+language = "en"
+multilingual = false
+
+authors = ["sksat"]
+
+src = "src"
+title = "S2E documents"
+
+[output.html]
+mathjax-support = true
+
+#[preprocessor.foo]
+#command = "bash prepro.sh"
