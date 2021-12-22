@@ -1,0 +1,26 @@
+name: mdbook
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  mdbook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup mdbook
+        uses: peaceiris/actions-mdbook@v1.1.14
+        with:
+          mdbook-version: 'latest'
+
+      - name: preprocess
+        shell: bash
+        run: ./prepro.sh
+
+      - name: build
+        run: mdbook build
