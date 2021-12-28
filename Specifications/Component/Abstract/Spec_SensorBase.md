@@ -15,7 +15,7 @@
 
 3. How to use
    - Inherit this class by your sensor class.
-   - The `GYRO` and `MagSensor` in `S2E_CORE_OSS` are useful as usage examples.
+   - The `GYRO` and `MagSensor` in `S2E_CORE` are useful as usage examples.
 
 ## 2. Explanation of Algorithm
 1. Constructor
