@@ -8,7 +8,7 @@
    - Main files: `PowerPort.cpp, .h`
    - Referenced files: `ComponentBase.cpp, .h` and `PCU.cpp, .h`
 3. How to use
-   - **Example**: The `SampleComponents` in the `S2E_CORE_OSS/Simulation/Spacecraft/SampleSpacecraft` is helpful to know how to use the feature.
+   - **Example**: The `SampleComponents` in the `s2e-core/Simulation/Spacecraft/SampleSpacecraft` is helpful to know how to use the feature.
    - Make a component class that inherits the `ComponentBase` class.
      - The `ComponentBase` class has the `PowerPort` class as a member and controls the component's action according to the electrical power switches.
    - Make an instance of `PCU` and connect the power port.
