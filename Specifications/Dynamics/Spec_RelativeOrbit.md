@@ -25,7 +25,7 @@
 3. How to use
    
    - Relative orbit propagation is available only when multiple satellites are simulated.
-        + The sample case in S2E_CORE_OSS simulates a single satellite. For an example of simulating multiple satellites, please refer to the [tutorial](../../Tutorials/HowToSimulateMultipleSatellites.md). 
+        + The sample case in S2E_CORE simulates a single satellite. For an example of simulating multiple satellites, please refer to the [tutorial](../../Tutorials/HowToSimulateMultipleSatellites.md). 
    - Confirm the instance of `RelativeInformation` is the member of each satellite.
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
         + Set `propagate_mode =2` to use the relative orbit propagation
