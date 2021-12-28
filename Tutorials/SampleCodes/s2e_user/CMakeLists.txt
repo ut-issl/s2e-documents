@@ -8,7 +8,7 @@ if(WIN32)
 endif()
 
 ## set directory path
-set(S2E_CORE_DIR ../s2e_core_oss)
+set(S2E_CORE_DIR ../s2e-core)
 set(CSPICE_DIR ../ExtLibraries/cspice)
 set(NRLMSISE00_DIR ../ExtLibraries/nrlmsise00)
 set(FLIGHT_SW_DIR ../FlightSW)
@@ -57,7 +57,7 @@ if(USE_HILS AND WIN32)
   message(${WS2_32_LIB})
 endif()
 
-## include directories of S2E_CORE_OSS
+## include directories of S2E_CORE
 include_directories(${CSPICE_DIR}/include)
 include_directories(${NRLMSISE00_DIR}/src)
 include_directories(${S2E_CORE_DIR}/src/Library/math)
