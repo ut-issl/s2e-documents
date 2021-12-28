@@ -3,9 +3,9 @@
 ## 1.  Overview
 
 - This tutorial explains how to use the S2E simulator without any source code modification.   
-- Users can start this tutorial just after users clone the [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) repository. 
+- Users can start this tutorial just after users clone the [s2e-core](https://github.com/ut-issl/s2e-core) repository. 
 - The supported version of this document
-  - S2E_CORE_OSS: the latest `develop` branch
+  - s2e-core: the latest `develop` branch
 
 ## 2. Environment
 - This tutorial supports an execution environment with Visual Studio 2019 on a Windows PC.  
@@ -14,7 +14,7 @@
 - The author hopes someone will write a new *Getting Started tutorial* for these environments.
 
 ## 3. Clone & Compile
-1. Clone  [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss).  
+1. Clone [s2e-core](https://github.com/ut-issl/s2e-core).  
 2. Read `README.md` to check the overview of S2E.
 3. Execute `./scripts/VisualStudio/dowload_cspice_VS32bit.bat` to set up CSPICE library.
    - **Note:** The script is not completely automatic. Users need to input several simple words.  
@@ -22,7 +22,7 @@
 4. Execute `./scripts/Common/download_nrlmsise00_src_and_table.sh` to download the atmosphere model table.
    - If you do not use Windows Visual Studio, or the script does not work well in your environment, please see  [How to download and make NRLMSISE00 Library](../General/HowToDownloadNRLMSISE00library.md) and download the NRLMSISE00 files by yourself.
 4. Execute `./scripts/VisualStudio/make_nrlmsise00_VS32bit.bat` to generate library files for the atmosphere model.
-4. Build and execute the S2E_CORE_OSS by referring [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)  
+4. Build and execute the S2E_CORE by referring [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)  
 
 ## 4. Check log output
 
