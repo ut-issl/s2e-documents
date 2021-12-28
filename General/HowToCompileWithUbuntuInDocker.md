@@ -33,13 +33,13 @@
 ## 3. A Sequence of environment setting
 ### 3.1. Working directory setting
 - Create `work` directory as a working directory.
-- Clone [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) in the `work` directory.
+- Clone [s2e-core](https://github.com/ut-issl/s2e-core) in the `work` directory.
 - Add the `work` directory in the `file sharing` directory of Docker.  
   **Note**: This setting does not exist in the latest Docker and WSL2 environments in Windows, so it is not necessary.
 
 ### 3.2. Make Docker image and container
 - Launch `git bush` (for windows users) or `terminal` (for Mac users)
-- Move `/s2e_core_oss/scripts/Docker_Ubuntu` directory
+- Move `/s2e-core/scripts/Docker_Ubuntu` directory
 - Edit `Dockerfile` or `setup_docker.sh` when you want to change the directory name, the user name of the container, and other settings.
 - Execute `./setup_docker.sh build` to make images
 - Check created image (`issl` (and `ubuntu`))  
@@ -82,7 +82,7 @@ Host issl-1
 - Users can execute most of the script files with `git bush` or `terminal` in the outside of the container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use the same compiler.
 - Click `Terminal > New terminal` in the menu bar of VS Code
 - Select `bash` terminal at the bottom window
-- execute `./s2e_core_oss/scripts/Common/download_nrlmsise00_src_and_table.sh`
+- execute `./s2e-core/scripts/Common/download_nrlmsise00_src_and_table.sh`
 - See `ExtLibraries` to confirm the NRLMSISE library is generated.
  
 
@@ -94,14 +94,14 @@ Host issl-1
   - CMake Tools  
 **Note** : You need to reload VS Code after installing new extensions
 - Edit setting of `CMake Tools` in `issl-1`  
-  `Cmake Build Directory: ${workspaceFolder}/s2e_core_oss/build/Debug`
-- After `CMake` and `CMake Tools` are installed, VS Code requires you to configure the build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code requires you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e_core_oss` directory.
+  `Cmake Build Directory: ${workspaceFolder}/s2e-core/build/Debug`
+- After `CMake` and `CMake Tools` are installed, VS Code requires you to configure the build environment with `CMakeList.txt`. Please select `yes`. But there is no `CMakeList.txt` file in the `work` directory, and VS Code requires you to locate `CMakeList.txt`, so please select the `CMakeList.txt` file in `s2e-core` directory.
   - This setting is written in `.vscode/settings.json`
   - You can directly edit the `settings.json` as follows
     ```json
     {
-      "cmake.sourceDirectory": "${workspaceFolder}/s2e_core_oss",
-      "cmake.buildDirectory": "${workspaceFolder}/s2e_core_oss/build/Debug"
+      "cmake.sourceDirectory": "${workspaceFolder}/s2e-core",
+      "cmake.buildDirectory": "${workspaceFolder}/s2e-core/build/Debug"
     }
     ```
 - Select `GCC 9.3.0` as a kit (compiler) 
@@ -118,9 +118,9 @@ Host issl-1
   `.vscode/launch.json` will be created.
 - Edit as follows
   ```json
-  "program": "${workspaceFolder}/s2e_core_oss/build/Debug/S2E",
+  "program": "${workspaceFolder}/s2e-core/build/Debug/S2E",
 
-  "cwd": "${workspaceFolder}/s2e_core_oss/build/Debug",
+  "cwd": "${workspaceFolder}/s2e-core/build/Debug",
   ```
 - Select `Run > Start Debugging` again
 - Check `data/log` directory to confirm log file output

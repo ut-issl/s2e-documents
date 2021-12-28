@@ -12,7 +12,7 @@
 
 3. How to use
   - Inherit this class by the user's component class.
-  - The `RWModel` in `S2E_CORE_OSS` is useful as a usage example of the `FastUpdate`.
+  - The `RWModel` in `S2E_CORE` is useful as a usage example of the `FastUpdate`.
 
 ## 2. Explanation of Algorithm
 1. Constructor

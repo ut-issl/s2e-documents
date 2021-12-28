@@ -7,7 +7,7 @@
    - Main file: `PCU.cpp, .h`
    - Related file: `PowerPort.cpp, .h`
 3. How to use
-   - **Example**: The `SampleComponents` in the `S2E_CORE_OSS/Simulation/Spacecraft/SampleSpacecraft` is useful to know how to use this class.
+   - **Example**: The `SampleComponents` in the `s2e-core/Simulation/Spacecraft/SampleSpacecraft` is useful to know how to use this class.
    - Users can make their original `PCU` class by inheriting this base class.
    - Users need to override the `MainRoutine`, `GetLogHeader`, and `GetLogValue` functions to define the behavior of their PCUs. 
 ## 2. Explanation of Algorithm

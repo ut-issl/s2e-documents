@@ -5,7 +5,7 @@
 - [CSPICE](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/index.html) is the C language version of SPICE and mandatory library for S2E to get planet information.
 
 ## 2. How to set up CSPICE Library for S2E
-**Note**: Users can use the script file to automatically set up the following process in the `s2e_core_oss/script` directory. If the script does not work, please see the following process.
+**Note**: Users can use the script file to automatically set up the following process in the `s2e-core/script` directory. If the script does not work, please see the following process.
 
 - Make directories as follow
 <pre>   
@@ -15,7 +15,7 @@
   │      │  └─lib  
   │      ├─generic_kernels  
   │      └─include  
-  └─s2e_core  
+  └─s2e-core  
 </pre>  
   - xxx is depends on your compile environment
     - `xxx = msvs` for Microsoft Visual Studio
@@ -48,5 +48,5 @@
         │      └─planets  
         │  │      └─de430.bsp  
   </pre>
-**Note:** When you change the directory or file name, you should modify `S2E_CORE/CMakeLists` and `PlanetSelect.ini`
+**Note:** When you change the directory or file name, you should modify `s2e-core/CMakeLists` and `PlanetSelect.ini`
 

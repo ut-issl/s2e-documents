@@ -34,7 +34,7 @@
     - Set the parameters in `Telescope.ini`
     - Create instance by using initialization function `InitTelescope`
       + Each telescope is numbered as "Telescope1,…"
-    - To use `HipparcosCatalogue` data, `hip_main.csv` is necessary. `s2e_core_oss/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e_core_oss/scripts/`:
+    - To use `HipparcosCatalogue` data, `hip_main.csv` is necessary. `s2e-core/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e-core/scripts/`:
     ```
     bash download_HIPcatalogue.sh 
     ```

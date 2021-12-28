@@ -28,7 +28,7 @@
     - Telescope.iniで定数を入力する．
     - 初期化関数 `InitTelescope` を利用し，インスタンスを生成．
         + Telescope1,…のように，個々の望遠鏡に番号が振ってある．
-    - `HipparcosCatalogue` のデータを利用するために，`hip_main.csv` のダウンロードを済ませる必要がある．このためのスクリプトとして `s2e_core_oss/scripts/download_HIPcatalogue.sh`を用意した．Git Bashなどを利用して，このスクリプトがあるディレクトリで以下を実行することで，必要なcsvファイルをダウンロードすることができる．
+    - `HipparcosCatalogue` のデータを利用するために，`hip_main.csv` のダウンロードを済ませる必要がある．このためのスクリプトとして `s2e-core/scripts/download_HIPcatalogue.sh`を用意した．Git Bashなどを利用して，このスクリプトがあるディレクトリで以下を実行することで，必要なcsvファイルをダウンロードすることができる．
     ```
     bash download_HIPcatalogue.sh 
     ``` 
