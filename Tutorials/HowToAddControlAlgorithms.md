@@ -1,10 +1,10 @@
 # How To Add Control Algorithms
 
 ## 1.  Overview
-- In the [How To Make New Components](./Tutorials/HowToMakeNewComponents.md) tutorial, we have newly made components emulating codes in [S2E_CORE_OSS](https://gitlab.com/ut_issl/s2e/s2e_core_oss) and adding the new components into our simulation scenario.
+- In the [How To Make New Components](./Tutorials/HowToMakeNewComponents.md) tutorial, we have newly made components emulating codes in [s2e-core](https://github.com/ut-issl/s2e-core) and adding the new components into our simulation scenario.
 - Now we can simulate the behavior of spacecraft **free motion** and emulate the behavior of sensors and actuators. 
 - This tutorial explains how to add a **Control Algorithm** into the simulation scenario. 
-- For a practical satellite project, we should implement the control algorithm as actual flight software like [C2A](https://gitlab.com/ut_issl/c2a/c2a_core_oss) into the S2E. However, using actual flight software is usually overdoing for use cases as research, the initial phase of satellite projects.
+- For a practical satellite project, we should implement the control algorithm as actual flight software like [C2A](https://github.com/ut-issl/c2a-core) into the S2E. However, using actual flight software is usually overdoing for use cases as research, the initial phase of satellite projects.
 - So, we introduce the following three methods, and users can choose a suitable method.
   - Direct: Directly control physical quantity without sensors, actuators, and their noises
     - For theoretical researches and preliminary analysis for satellite projects
@@ -13,7 +13,7 @@
   - FlightSW: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
 - The Supported version of this document
-  - S2E_CORE_OSS: [c3ba](https://gitlab.com/ut_issl/s2e/s2e_core_oss/-/commit/c3ba6d93418998b91efc0a8ca57ff63e350d2636)
+  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
 
 ## 2. Direct method
 - This chapter introduces the simplest way to add a control algorithm without sensors and actuators.

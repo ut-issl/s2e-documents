@@ -5,8 +5,8 @@
 - This tutorial explains how to use the S2E simulator without any source code modification.   
 - Users can start this tutorial just after users clone the [s2e-core](https://github.com/ut-issl/s2e-core) repository. 
 - The supported version of this document
-  - s2e-core: the latest `develop` branch
-
+  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
+  
 ## 2. Environment
 - This tutorial supports an execution environment with Visual Studio 2019 on a Windows PC.  
 - However, the basic features of S2E are executable for other environments with a small modification of the sequence. 
