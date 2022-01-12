@@ -1,10 +1,10 @@
 # S2E-Documents
 ## Overview
 
-- This repository summarizes documents of S2E (Spacecraft Simulation Environment) CORE.
+- This repository summarizes documents of [S2E (Spacecraft Simulation Environment)](https://github.com/ut-issl/s2e-core/).
 - The Documents should be 
   - written in English
-  - written as markdown format
+  - written in the markdown format
   - updated ASAP when the source codes are modified
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of S2E-CORE](https://github.com/ut-issl/s2e-core/discussions).
 
