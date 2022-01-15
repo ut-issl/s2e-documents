@@ -41,7 +41,6 @@ jobs:
           git commit -m "Deploy $GITHUB_SHA to gh-pages"
 
       - name: deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
         working-directory: ./gh-pages
         run: |
           git push origin gh-pages
