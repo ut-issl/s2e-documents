@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: setup mdbook
         uses: peaceiris/actions-mdbook@v1.1.14
@@ -24,3 +26,22 @@ jobs:
 
       - name: build
         run: mdbook build
+
+      - name: prepare deploy
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git worktree add gh-pages gh-pages
+          cd gh-pages
+          # Delete the ref to avoid keeping history.
+          git update-ref -d refs/heads/gh-pages
+          rm -rf ./*
+          mv ../book/* .
+          git add .
+          git commit -m "Deploy $GITHUB_SHA to gh-pages"
+
+      - name: deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        working-directory: ./gh-pages
+        run: |
+          git push origin gh-pages
