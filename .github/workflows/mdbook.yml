@@ -43,4 +43,4 @@ jobs:
       - name: deploy
         working-directory: ./gh-pages
         run: |
-          git push origin gh-pages
+          git push -f origin gh-pages
