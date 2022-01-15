@@ -1,5 +1,6 @@
+rm -rf src
 mkdir -p src
-cp SUMMARY.md src/
+cp *.md src/
 cp -r General src/
 cp -r Specifications src/
 cp -r Tutorials src/
