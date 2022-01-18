@@ -165,7 +165,7 @@ The division of normalized function $`\frac{N_{n,0}}{N_{n+1,1}}`$ should be remo
 When $m=0$, following correction factors are useful for x and y acceleration
 ```math
 \frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
-``
+```
 When $`m=1`$, following correction factors are useful for x and y acceleration
 ```math
 \frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
