@@ -38,7 +38,7 @@
   **Note**: This setting does not exist in the latest Docker and WSL2 environments in Windows, so it is not necessary.
 
 ### 3.2. Make Docker image and container
-- Launch `git bush` (for windows users) or `terminal` (for Mac users)
+- Launch `git bash` (for windows users) or `terminal` (for Mac users)
 - Move `/s2e-core/scripts/Docker_Ubuntu` directory
 - Edit `Dockerfile` or `setup_docker.sh` when you want to change the directory name, the user name of the container, and other settings.
 - Execute `./setup_docker.sh build` to make images
@@ -79,7 +79,7 @@ Host issl-1
 
 - S2E has several script files to get external libraries.
 - For this ubuntu/docker platform, users should use script files in `scripts/Common` directory and `scripts/Docker_Ubuntu` directory.
-- Users can execute most of the script files with `git bush` or `terminal` in the outside of the container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use the same compiler.
+- Users can execute most of the script files with `git bash` or `terminal` in the outside of the container, but users should execute `scripts/Common/download_nrlmsise00_src_and_table.sh` inside the container to use the same compiler.
 - Click `Terminal > New terminal` in the menu bar of VS Code
 - Select `bash` terminal at the bottom window
 - execute `./s2e-core/scripts/Common/download_nrlmsise00_src_and_table.sh`
@@ -119,7 +119,6 @@ Host issl-1
 - Edit as follows
   ```json
   "program": "${workspaceFolder}/s2e-core/build/Debug/S2E",
-
   "cwd": "${workspaceFolder}/s2e-core/build/Debug",
   ```
 - Select `Run > Start Debugging` again
