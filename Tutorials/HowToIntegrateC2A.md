@@ -1,8 +1,8 @@
 # How to integrate C2A
 
 ## 1.  Overview
-- [C2A](https://gitlab.com/ut_issl/c2a) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
-- S2E can execute [C2A](https://gitlab.com/ut_issl/c2a) as flight software for flight software development and debugging.
+- [C2A](https://github.com/ut-issl/c2a-core) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
+- S2E can execute [C2A](https://github.com/ut-issl/c2a-core) as flight software for flight software development and debugging.
 - This document describes how to integrate the C2A.
 - You can find sample codes for this tutorial in `Tutorials/SampleCodes/C2A_Integration`.
 - **Note**: Currently, both the C2A and S2E are moving to Github and updating frequently, so that this document and the sample codes will be updated after finishing the moving.
