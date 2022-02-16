@@ -59,7 +59,6 @@
     #endif
   }
   ```
-
 - Users can use the `OBC_C2A` class in the `User_components` class, same with other components.
 
 
@@ -120,6 +119,6 @@
     // Receive
     RS422_RX(&rs422_dummy_ch_[test_ch], &test_rx_data_[0], 100);
     } //<- breakpoint
-    ``` 
-  
+    ```
+
   <img src="./figs/C2aCommunicationConfirmation.png" alt="C2aCommunicationConfirmation" style="zoom: 100%;" />
