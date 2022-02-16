@@ -10,15 +10,15 @@
 ## 2. How to build C2A in S2E
 - Notes
   - C2A is written in C language, but S2E builds C2A in C++.
-  - The character encoding of C2A is `SJIS` and is different from S2E's `UTF-8`.
 - When users want to use C2A, complete the following steps
-  - Make `FlightSW` directory at same directory with `s2e_core_oss` and `s2e_user`.
-  - Make a `c2a_user_oss` directory in `FlightSW` and clone a [C2A_USER repository](https://gitlab.com/ut_issl/c2a/c2a_user_oss) you want to use
+  - Make `FlightSW` directory at same directory with `s2e-core` and `s2e_user`.
+  - Make a `c2a_user` directory in `FlightSW` and set C2A source code you want to use (e.g. [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)).
     ```
-    ├─FlightSW  
-    │  └─ c2a_user_oss
-    ├─s2e_core_oss
-    └─s2e_user  
+    ├─ExtLibraries
+    ├─FlightSW
+    │  └─c2a_user
+    ├─s2e-core
+    └─s2e_user
     ```
   - Edit `s2e_user/CMakeLists.txt`
     - `set(C2A_DIR ${FLIGHT_SW_DIR}/c2a_user_oss)` -> edit the directory name according with your situation
@@ -111,7 +111,6 @@
       CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
       BCT_register_cmd(&temp); 
       ```
-  - **Note**: Currently, the character encoding of C2A is `SJIS`, and the sample codes in this tutorial are written in `UTF-8`, so please carefully copy the files and convert the encoding if you need.
 - Execution and Result
   - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
     - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
