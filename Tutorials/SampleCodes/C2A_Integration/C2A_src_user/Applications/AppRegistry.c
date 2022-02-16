@@ -32,7 +32,7 @@ void AR_load_initial_settings(void)
   add_application_(AR_ANOMALY_HANDLER, AH_create_app);
   add_application_(AR_MEM_DUMP, MEM_create_app);
   add_application_(AR_FLASH_UTILITY, FLASH_create_app);
-  add_application_(AR_FLASH_PARTITIONING, FLASH_PTN_create_app);  // DR‚È‚ÇCFLASH PTN‚ğg‚¤ƒAƒvƒŠ‚æ‚èæ‚É‰Šú‰»‚·‚é‚±‚Æ
+  add_application_(AR_FLASH_PARTITIONING, FLASH_PTN_create_app);  // DRãªã©ï¼ŒFLASH PTNã‚’ä½¿ã†ã‚¢ãƒ—ãƒªã‚ˆã‚Šå…ˆã«åˆæœŸåŒ–ã™ã‚‹ã“ã¨
   add_application_(AR_FLASH_BIG_DATA, FLASH_BD_create_app);
   add_application_(AR_DR_RECORDER, DR_recorder);
   add_application_(AR_UTILITY_CMD, init_util_cmd_status);
@@ -49,7 +49,7 @@ void AR_load_initial_settings(void)
   add_application_(AR_DBG_AH_STATUS, print_ah_status);
   add_application_(AR_DBG_PRINT_XTRP_STATUS, print_xtrp_status);
   add_application_(AR_DBG_ONE_BIT, one_bit_communication_print);
-  add_application_(AR_RECORD_TI, RTI_create_app);    // MRAM‚æ‚è‚ ‚Æ
+  add_application_(AR_RECORD_TI, RTI_create_app);    // MRAMã‚ˆã‚Šã‚ã¨
   add_application_(AR_UART_FAULT_RECOVERY, UART_FAULT_RECOVERY_create_app);
   add_application_(AR_DI_HILS_UPDATE, hils_update);
 }

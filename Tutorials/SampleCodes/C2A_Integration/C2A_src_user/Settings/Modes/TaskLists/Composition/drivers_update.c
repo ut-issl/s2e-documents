@@ -43,7 +43,7 @@ void BC_load_drivers_update_initial(bct_id_t pos)
   CCP_form_app_cmd(&temp, 8, AR_NOP);
   BCT_register_cmd(&temp);
 
-  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driver‚Å‚Í‚È‚­Middleware‚¾‚ªCƒRƒs[‚·‚é‚¾‚¯‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚±‚±‚Éi2018/10/02 —é–{j
+  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driverã§ã¯ãªãMiddlewareã ãŒï¼Œã‚³ãƒ”ãƒ¼ã™ã‚‹ã ã‘ãªã®ã§ã¨ã‚Šã‚ãˆãšã“ã“ã«ï¼ˆ2018/10/02 éˆ´æœ¬ï¼‰
   BCT_register_cmd(&temp);
 
   BCT_activate_block();
@@ -87,7 +87,7 @@ void BC_load_drivers_update_ground_test(bct_id_t pos)
   CCP_form_app_cmd(&temp, 8, AR_NOP);
   BCT_register_cmd(&temp);
 
-  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driver‚Å‚Í‚È‚­Middleware‚¾‚ªCƒRƒs[‚·‚é‚¾‚¯‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚±‚±‚Éi2018/10/02 —é–{j
+  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driverã§ã¯ãªãMiddlewareã ãŒï¼Œã‚³ãƒ”ãƒ¼ã™ã‚‹ã ã‘ãªã®ã§ã¨ã‚Šã‚ãˆãšã“ã“ã«ï¼ˆ2018/10/02 éˆ´æœ¬ï¼‰
   BCT_register_cmd(&temp);
 
   BCT_activate_block();
@@ -128,7 +128,7 @@ void BC_load_drivers_update_dv1(bct_id_t pos)
   CCP_form_app_cmd(&temp, 8, AR_NOP);
   BCT_register_cmd(&temp);
 
-  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driver‚Å‚Í‚È‚­Middleware‚¾‚ªCƒRƒs[‚·‚é‚¾‚¯‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚±‚±‚Éi2018/10/02 —é–{j
+  CCP_form_app_cmd(&temp, 9, AR_MW_FLASH);   // driverã§ã¯ãªãMiddlewareã ãŒï¼Œã‚³ãƒ”ãƒ¼ã™ã‚‹ã ã‘ãªã®ã§ã¨ã‚Šã‚ãˆãšã“ã“ã«ï¼ˆ2018/10/02 éˆ´æœ¬ï¼‰
   BCT_register_cmd(&temp);
 
   BCT_activate_block();
