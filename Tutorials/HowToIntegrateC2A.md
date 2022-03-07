@@ -5,7 +5,6 @@
 - S2E can execute [C2A](https://github.com/ut-issl/c2a-core) as flight software for flight software development and debugging.
 - This document describes how to integrate the C2A.
 - You can find sample codes for this tutorial in `Tutorials/SampleCodes/C2A_Integration`.
-- **Note**: Currently, both the C2A and S2E are moving to Github and updating frequently, so that this document and the sample codes will be updated after finishing the moving.
 
 ## 2. How to build C2A in S2E
 - Notes
