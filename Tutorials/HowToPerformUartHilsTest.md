@@ -16,7 +16,7 @@
 - **Note**: Currently, breakpoints do not work if you build c++/cli and c++ files simultaneously.
 
 ## 3. Sample codes for UART communication
-- The supported version of this section
+- The supported version of this document
   - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
 - Hardware Settings
   - Set loopback connection of two USB-UART converters using two USB ports of your computer.
@@ -35,13 +35,13 @@
   delete exp_hils_uart_responder_;
   delete exp_hils_uart_sender_;
    ```
+    - Edit the constructor's argument based on the COM port number checked above.
+      - The fourth argument of ExpHils constructor is COM port number.
     - Uncomment as follows in `s2e-core/src/Simulation/Spacecraft/SampleComponents.h`.
    ```c++
   ExpHils* exp_hils_uart_responder_;
   ExpHils* exp_hils_uart_sender_;
    ```
-   - Edit the constructor's argument based on the COM port number checked above.
-     - The fourth argument of ExpHils constructor is COM port number.
    - For the HILS test, edit the setting of simulation speed in `s2e-core/data/SampleSat/ini/SampleSimBase.ini`.
    ```ini
    // Simulation speed. 0: as fast as possible, 1: real-time, >1: faster than real-time, <1: slower than real-time

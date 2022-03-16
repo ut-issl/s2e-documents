@@ -17,7 +17,7 @@
 
 ## 3. Sample codes for I2C communication
 - The SerialPort class can also be used to perform HILS tests on simulated I2C components. It is assumed that USB-I2C converters will be used and that serial communication will be performed between the COM port and the converter.
-- The supported version of this section
+- The supported version of this document
   - s2e-core: the latest develop
 - Hardware Settings
   - Set loopback connection of a USB-I2C controller converter and a USB-I2C target converter using two USB ports of your computer.<img src="./figs/SerialPortCommunication_I2CLoopback.png" alt="SerialPortCommunicationConfirmation" style="zoom: 30%;" />
@@ -39,13 +39,16 @@
   delete exp_hils_i2c_controller_;
   delete exp_hils_i2c_target_;
    ```
+    - Edit the constructor's argument based on the COM port number checked above.
+      - The third argument of ExpHilsI2cController constructor and the sixth argument of ExpHilsI2cTarget constructor are COM port numbers.
+    - Edit the baud rate and I2C address according to the converter and simulation conditions.
+      - The baud rate is specified by the fourth argument of the ExpHilsI2cController constructor and the I2C address by the fourth argument of the ExpHilsI2cTarget constructor.
     - Uncomment as follows in `s2e-core/src/Simulation/Spacecraft/SampleComponents.h`.
    ```c++
   ExpHilsI2cController* exp_hils_i2c_controller_;
   ExpHilsI2cTarget* exp_hils_i2c_target_;
    ```
-   - Edit the constructor's argument based on the COM port number checked above.
-   - Edit the baud rate and I2C address according to the converter and simulation conditions.
+   - If necessary, modify ExpHilsI2cController and ExpHilsI2cTarget files to adjust to the converter.
    - For the HILS test, edit the setting of simulation speed in `s2e-core/data/SampleSat/ini/SampleSimBase.ini`.
    ```ini
    // Simulation speed. 0: as fast as possible, 1: real-time, >1: faster than real-time, <1: slower than real-time
