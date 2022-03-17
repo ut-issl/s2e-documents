@@ -16,7 +16,8 @@
 - [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
 - [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
 - [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-- [How To Perform HILS Test](./Tutorials/HowToUseSerialPortCommunication.md)
+- [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
+- [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
 - [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
 
 # Specifications
