@@ -6,6 +6,12 @@
 
 - [Coding Convention](./General/CodingConvention.md)
 - [Format of Documents](./General/DocumentFormat.md)
+- [Setup Environment]()
+  - [How to compile with Visual Studio](./General/HowToCompileWithVisualStudio.md)
+  - [How to compile with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md)
+  - [How to compile with OSX Environment](./General/HowToCompileWith_OSX.md)
+  - [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
+  - [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 
 # Tutorials
 
