@@ -1,7 +1,7 @@
 # How To Add Control Algorithms
 
 ## 1.  Overview
-- In the [How To Make New Components](./Tutorials/HowToMakeNewComponents.md) tutorial, we have newly made components emulating codes in [s2e-core](https://github.com/ut-issl/s2e-core) and adding the new components into our simulation scenario.
+- In the [How To Make New Components](./HowToMakeNewComponents.md) tutorial, we have newly made components emulating codes in [s2e-core](https://github.com/ut-issl/s2e-core) and adding the new components into our simulation scenario.
 - Now we can simulate the behavior of spacecraft **free motion** and emulate the behavior of sensors and actuators. 
 - This tutorial explains how to add a **Control Algorithm** into the simulation scenario. 
 - For a practical satellite project, we should implement the control algorithm as actual flight software like [C2A](https://github.com/ut-issl/c2a-core) into the S2E. However, using actual flight software is usually overdoing for use cases as research, the initial phase of satellite projects.

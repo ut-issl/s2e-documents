@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 
-- In the [Getting Started](./Tutorials/GettingStarted.md) tutorial, we can directly build and execute S2E_CORE_OSS, but for **source code sharing** and practical usage of S2E, we **strongly recommend managing S2E_CORE_OSS and S2E_USER repository separately**.
+- In the [Getting Started](./GettingStarted.md) tutorial, we can directly build and execute S2E_CORE_OSS, but for **source code sharing** and practical usage of S2E, we **strongly recommend managing S2E_CORE_OSS and S2E_USER repository separately**.
   - [s2e-core](https://github.com/ut-issl/s2e-core) repository is shared with other users. Most of the source files are in this repository. The codes are used as a library by the S2E_USER repository.
   - S2E_USER repository is an independent repository  for **each spacecraft project or research project**. This repository includes the following parts:
     - Source codes for `simulation scenario` and the `main`
@@ -80,7 +80,7 @@
      - Other initialize files are defined in this base initialize file. So you need to edit the file names in the base file when you modify the name of other initialize files.
        - When you change the name of the base file, you have to edit `S2E_USER.cpp`.
      - Details of the initialize files are described in `Specifications`.
-       - Basic files are described in [Getting Started](./Tutorials/GettingStarted.md).
+       - Basic files are described in [Getting Started](./GettingStarted.md).
    - `logs`
      - CSV log files will be outputted here. The output directory is also defined in `User_SimBase.ini`, so that you can change it.
 3. `src/S2E_USER.cpp`
