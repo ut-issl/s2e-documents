@@ -31,9 +31,10 @@
    5. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
    6. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
    7. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-   8. [How To Perform HILS Test](./Tutorials/HowToUseSerialPortCommunication.md)
-   9. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
-   10. TBW
+   8. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
+   9. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
+   10. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+   11. TBW
 3. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
    1. Component
