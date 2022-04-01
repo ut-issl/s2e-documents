@@ -25,7 +25,7 @@
       - `CalcCoef` calculates the normal and in-plane coefficients for `SurfaceForce` calculation. The air drag force acting on a surface is expressed as the following equation
 
         ```math
-        \bm{F}=-C_{n}\bm{n}+C_{t}\bm{t}\\
+        \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
         C_{n}=\frac{1}{2}\rho A v^2 C_{n}^{\prime}\\
         C_{t}=\frac{1}{2}\rho A v^2 C_{t}^{\prime}
         ```
@@ -51,7 +51,7 @@
 
    2. inputs and outputs
       - input variables
-        - $`\bm{v}`$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
+        - $`\boldsymbol{v}`$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
           - Currently, we assume that this value equals spacecraft velocity in the body-fixed frame.
       - input parameters 
         - $`\sigma_{d}`$: Diffuse coefficients for air drag

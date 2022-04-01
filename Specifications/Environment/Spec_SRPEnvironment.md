@@ -38,8 +38,8 @@
         - Speed of light: $`c = 299792458`$ m/s
         - Astronomical Unit: $`AU = 149597870700`$ m
       - Input variables
-        -  The sun position in the body-fixed frame of the spacecraft: $`\bm{r}_{\odot-sc}`$ m
-           -  Unbold $`r_{\odot-sc}`$ is the norm of $`\bm{r}_{\odot-sc}`$
+        -  The sun position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\odot-sc}`$ m
+           -  Unbold $`r_{\odot-sc}`$ is the norm of $`\boldsymbol{r}_{\odot-sc}`$
       - Output
      - Solar radiation pressure: $`P_{sc}`$ N/m2
 
@@ -60,8 +60,8 @@
         - Radius of the earth: $`r_{\oplus}=6378137`$ m
         - Radius of the sun: $`r_{\odot}=6.96\times10^{8}`$ m
       - Input variables
-        - The sun position in the body-fixed frame of the spacecraft: $`\bm{r}_{\odot-sc}`$ m
-        - The earth position in the body-fixed frame of the spacecraft: $`\bm{r}_{\oplus-sc}`$ m
+        - The sun position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\odot-sc}`$ m
+        - The earth position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\oplus-sc}`$ m
       - Output
         - none
 
@@ -69,7 +69,7 @@
    ```math
    A_{\odot} = \sin^{-1}\left(\frac{r_{\odot}}{r_{\odot-sc}}\right)\\
    A_{\oplus} = \sin^{-1}\left(\frac{r_{\oplus}}{r_{\oplus-sc}}\right)\\
-   \delta = \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \bm{r}_{\oplus-sc}\cdot(\bm{r}_{\odot-sc}-\bm{r}_{\oplus-sc})\right)\\
+   \delta = \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \boldsymbol{r}_{\oplus-sc}\cdot(\boldsymbol{r}_{\odot-sc}-\boldsymbol{r}_{\oplus-sc})\right)\\
    ```
    
    4. note

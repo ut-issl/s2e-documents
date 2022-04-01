@@ -30,14 +30,14 @@
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
         + Set `propagate_mode =2` to use the relative orbit propagation
         + Choose `update_method`.
-            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($`\dot{\bm{x}}=\bm{Ax}+\bm{Bu}`$, i.e., Hill equation).
-            * `update_method = 1` means the orbit is updated with the STM($`\bm{x}(t)=\bm{\Phi}(t,t_0)\bm{x}(t_0)`$, i.e., Clohessy-Wiltshire solution).
+            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($`\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}`$, i.e., Hill equation).
+            * `update_method = 1` means the orbit is updated with the STM($`\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)`$, i.e., Clohessy-Wiltshire solution).
         + When you choose `update_method = 0`, set `relative_dynamics_model_type`.
         + When you choose `update_method = 1`, set `stm_model_type`.
         + Set the initial relative position of the satellite in the LVLH frame. LVLH frame definition is:
-            * $`\bm{x}`$ is a direction vector from the reference satellite ("chief" in the figure) radially outward.
-            * The direction of $`\bm{z}`$ corresponds to the angular momentum vector of the reference satellite orbit.
-            * The direction of $`\bm{y}`$ is determined by $`\bm{z}\times\bm{x}`$.
+            * $`\boldsymbol{x}`$ is a direction vector from the reference satellite ("chief" in the figure) radially outward.
+            * The direction of $`\boldsymbol{z}`$ corresponds to the angular momentum vector of the reference satellite orbit.
+            * The direction of $`\boldsymbol{y}`$ is determined by $`\boldsymbol{z}\times\boldsymbol{x}`$.
         <figure>
         <div align="center">
         <img src="./figs/RelativeOrbit_LVLHdefinition.JPG" width=70% alt="">
@@ -158,10 +158,10 @@
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\bm{A}`$) is calculated as follows:
+        + Then, the system matrix ($`\boldsymbol{A}`$) is calculated as follows:
 
         ```math
-        \bm{A}=
+        \boldsymbol{A}=
         \begin{pmatrix}
         0 & 0 & 0 & 1 & 0 & 0 \\
         0 & 0 & 0 & 0 & 1 & 0 \\
@@ -199,10 +199,10 @@
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\bm{A}`$) is calculated as follows:
+        + Then, the system matrix ($`\boldsymbol{A}`$) is calculated as follows:
 
         ```math
-        \bm{\Phi}(t,t0)=
+        \boldsymbol{\Phi}(t,t0)=
         \begin{pmatrix}
         4-3\cos(nt) & 0 & 0 & \frac{\sin(nt)}{n} & \frac{2}{n}-\frac{2\cos(nt)}{n} & 0 \\
         -6nt+6\sin(nt) & 1 & 0 & -\frac{2}{n}+\frac{2\cos(nt)}{n} & \frac{4\sin(nt)}{n}-3t & 0 \\

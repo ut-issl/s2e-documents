@@ -38,16 +38,16 @@
 
     3. algorithm
         - Definition of the variables
-          - $`\bm{r}`$: the position of the spacecraft (written as `sat_pos_i` in the code)
-          - $`\bm{s}`$: the position of the third body (written as `third_body_pos_i` in the code)
-          - $`\bm{s}-\bm{r}`$: the position of the third body seen from the spacecraft (written as `third_body_pos_from_sc_i` in the code)
+          - \boldsymbol{r}`$: the position of the spacecraft (written as `sat_pos_i` in the code)
+          - $`\boldsymbol{s}`$: the position of the third body (written as `third_body_pos_i` in the code)
+          - $`\boldsymbol{s}-\boldsymbol{r}`$: the position of the third body seen from the spacecraft (written as `third_body_pos_from_sc_i` in the code)
 
           <img src="./figs/ThirdBodyGravity_general.jpg" alt="ThirdBodyGravity_general" style="zoom: 90%;" />
 
         - The acceleration disturbance effect by the third body is written as follows:
 
         ```math
-        \ddot{\bm{r}}=GM\left(\frac{\bm{s}-\bm{r}}{|\bm{s}-\bm{r}|^3}-\frac{\bm{s}}{|\bm{s}|^3}\right)
+        \ddot{\boldsymbol{r}}=GM\left(\frac{\boldsymbol{s}-\boldsymbol{r}}{|\boldsymbol{s}-\boldsymbol{r}|^3}-\frac{\boldsymbol{s}}{|\boldsymbol{s}|^3}\right)
         ```
 
         - See section 3.3.1 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807) for a detailed explanation.

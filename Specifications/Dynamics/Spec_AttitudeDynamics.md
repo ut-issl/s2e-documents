@@ -60,45 +60,40 @@
    3. algorithm  
       If the differential equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
 
-       ```math
-         \hat{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x},t)
-
-         \tag{1}
-       ```
-       ```math
-         \boldsymbol{x_{n+1}} = \boldsymbol{x_{n}} + \cfrac{\Delta t}{6}(\boldsymbol{k_1}+2\boldsymbol{k_2}
-         +2\boldsymbol{k_3}+\boldsymbol{k_4})
-
-         \tag{2}
-       ```
+      ```math
+      \hat{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x},t)
+      \tag{1}
+      ```
+      ```math
+      \boldsymbol{x_{n+1}} = \boldsymbol{x_{n}} + \cfrac{\Delta t}{6}(\boldsymbol{k_1}+2\boldsymbol{k_2}
+       +2\boldsymbol{k_3}+\boldsymbol{k_4})
+      \tag{2}
+      ```
       where $`\Delta t`$ is a time step, which meets the equation (3).
 
-       ```math
-         t_{n+1} = t_{n} + \Delta t
-
-         \tag{3}
-       ```
+      ```math
+      t_{n+1} = t_{n} + \Delta t
+      \tag{3}
+      ```
 
       $`k_i \, (i=1,2,3,4)`$, which has the same number of elements, can be calculated as the equations (4).
 
-       ```math
-         \boldsymbol{k_{1}} = \boldsymbol{f}(\boldsymbol{x_n},t_n) \\
-         \boldsymbol{k_{2}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_1},t_n+\frac{\Delta t}{2} \right) \\
-         \boldsymbol{k_{3}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_2},t_n+\frac{\Delta t}{2} \right)  \\
-         \boldsymbol{k_{4}} = \boldsymbol{f}\left(\boldsymbol{x_n} + \Delta t \boldsymbol{k_3},t_n+\Delta t \right)
-
-         \tag{4}
-       ```
+      ```math
+      \boldsymbol{k_{1}} = \boldsymbol{f}(\boldsymbol{x_n},t_n) \\
+      \boldsymbol{k_{2}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_1},t_n+\frac{\Delta t}{2} \right) \\
+      \boldsymbol{k_{3}} = \boldsymbol{f}\left(\boldsymbol{x_n}+\frac{\Delta t}{2} \boldsymbol{k_2},t_n+\frac{\Delta t}{2} \right)  \\
+      \boldsymbol{k_{4}} = \boldsymbol{f}\left(\boldsymbol{x_n} + \Delta t \boldsymbol{k_3},t_n+\Delta t \right)
+      \tag{4}
+      ```
 
       In this attitude propagation, the quantity of state $`\boldsymbol{x}`$ consists of 7 elements, including `Quaternion_i2b` and angular velocity $`\boldsymbol{\omega}_b`$.
 
-       ```math
-         \boldsymbol{\omega}_b = [\omega_{bx} \, \omega_{by} \, \omega_{bz}]^T \\
-         \boldsymbol{q}_{i2b} = [q_x \, q_y \, q_z \, q_w]^T \\
-         \boldsymbol{x} = [\boldsymbol{\omega}_b, \boldsymbol{q}_{i2b}]^T
-
-         \tag{5}
-       ```
+      ```math
+      \boldsymbol{\omega}_b = [\omega_{bx} \, \omega_{by} \, \omega_{bz}]^T \\
+      \boldsymbol{q}_{i2b} = [q_x \, q_y \, q_z \, q_w]^T \\
+      \boldsymbol{x} = [\boldsymbol{\omega}_b, \boldsymbol{q}_{i2b}]^T
+      \tag{5}
+      ```
 
    4. note  
       The one that solves the upper differential equation is implemented in Library.
