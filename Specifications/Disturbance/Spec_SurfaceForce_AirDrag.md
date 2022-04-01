@@ -70,7 +70,7 @@
      ```math
      C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}+\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
      C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
-      ```  
+      ```
 
    - $`S, S_{n}, S_{t}`$ are defined as follows
       - $`k=1.38064852E-23`$ is the Boltzmann constant
@@ -81,7 +81,7 @@
         S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
         S_{n}=S\cos{\theta}\\
         S_{t}=S\sin{\theta}\\
-        ```  
+        ```
    
    - $`\Pi(x)`$ and $`\chi(x)`$ are defined as follows
      - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
