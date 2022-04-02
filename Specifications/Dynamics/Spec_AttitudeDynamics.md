@@ -89,7 +89,7 @@
       In this attitude propagation, the quantity of state $`\boldsymbol{x}`$ consists of 7 elements, including `Quaternion_i2b` and angular velocity $`\boldsymbol{\omega}_b`$.
 
       ```math
-      \boldsymbol{\omega}_b = [\omega_{bx} \, \omega_{by} \, \omega_{bz}]^T \\
+      \boldsymbol{\omega}_b = [{\omega}_{bx} \, {\omega}_{by} \, {\omega}_{bz}]^T \\
       \boldsymbol{q}_{i2b} = [q_x \, q_y \, q_z \, q_w]^T \\
       \boldsymbol{x} = [\boldsymbol{\omega}_b, \boldsymbol{q}_{i2b}]^T
       \tag{5}
@@ -114,24 +114,23 @@
       Equation of attitude motion is calculated as the equation (6), which is written in Chapter 6 of Reference 1,
 
        ```math
-         \dot{\boldsymbol{\omega}}_b = \boldsymbol{I}_b^{-1}(\boldsymbol{T}_b - \boldsymbol{\omega}_b \times \boldsymbol{h}_b)
-
-         \tag{6}
+       \dot{\boldsymbol{\omega}}_b = \boldsymbol{I}_b^{-1}(\boldsymbol{T}_b - \boldsymbol{\omega}_b \times \boldsymbol{h}_b)
+       \tag{6}
        ```
 
       where $`\boldsymbol{\omega}_b`$[rad/s] is angular velocity in the body-fixed coordinate, $`\boldsymbol{I}_b`$[kgm$`^2`$] is inertia tensor of the satellite, $`\boldsymbol{T}_b`$[Nm] is torque in the body-fixed coordinate, $`\boldsymbol{h}_b`$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
       Quaternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
 
        ```math
-         \dot{\boldsymbol{q}}_{i2b} = \cfrac{1}{2}
-         \begin{bmatrix}
-            0 & \omega_{bz} & -\omega_{by} & \omega_{bx} \\
-            -\omega_{bz} & 0 & \omega_{bx} & \omega_{by} \\
-            \omega_{by} & -\omega_{bx} &0 & \omega_{bz} \\
-            - \omega_{bx} & -\omega_{by} & -\omega_{bz} & 0
-         \end{bmatrix}\boldsymbol{q}_{i2b}
-
-         \tag{7}
+       \dot{\boldsymbol{q}}_{i2b} = \cfrac{1}{2}
+       \begin{bmatrix}
+         0                &  {\omega}_{bz} & -{\omega}_{by} & {\omega}_{bx} \\
+         \- {\omega}_{bz} & 0              &  {\omega}_{bx} & {\omega}_{by} \\
+            {\omega}_{by} & -{\omega}_{bx} & 0              & {\omega}_{bz} \\
+         \- {\omega}_{bx} & -{\omega}_{by} & -{\omega}_{bz} & 0
+       \end{bmatrix}
+       \boldsymbol{q}_{i2b}
+       \tag{7}
        ```
 
 ## 3. Results of verifications
