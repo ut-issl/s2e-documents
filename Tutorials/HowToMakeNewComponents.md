@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 
-- In the [How To Add Components](./Tutorials/HowToAddComponents.md) tutorial, we have added existing components to the simulation scenario.
+- In the [How To Add Components](./HowToAddComponents.md) tutorial, we have added existing components to the simulation scenario.
 - This tutorial explains how to make a new component into the S2E_USER directory.
 - **Note**: You can move the source files for the new component into the [s2e-core](https://github.com/ut-issl/s2e-core) repository if the component is useful for all S2E users.
 - The Supported version of this document
@@ -36,7 +36,7 @@
 
 3. Build `S2E_USER` and check there is no error.
 
-4. Edit `User_component.h` and `User_component.cpp` as referring [How To Add Components](./Tutorials/HowToAddComponents.md)
+4. Edit `User_component.h` and `User_component.cpp` as referring [How To Add Components](./HowToAddComponents.md)
 
    - The constructor of the `ClockSensor` requires arguments as `prescaler`, `clock_gen`, `sim_time`, and `bias_sec`.
    - `prescaler` and `bias_sec` are user setting parameters for the sensor, and you can set these value.
