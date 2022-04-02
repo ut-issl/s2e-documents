@@ -103,29 +103,30 @@
         - the DCM of precession ($`\bf{P}`$)
 
    3. algorithm
-      - Precession angles are calculated as follows.
-
-   ```math
-   \zeta = 2306.2181" \mathrm{tTT} + 0.30188" \mathrm{tTT}^2 + 0.017998" \mathrm{tTT}^3 \\
-   \theta = 2004.3109" \mathrm{tTT} - 0.42665" \mathrm{tTT}^2 - 0.041833" \mathrm{tTT}^3 \\
-   z = 2306.2181" \mathrm{tTT} + 1.09468" \mathrm{tTT}^2 + 0.018203" \mathrm{tTT}^3 \\
-   \bf{P} = 
-   \begin{pmatrix}
-   \cos{(-z)} & \sin{(-z)} & 0 \\
-   - \sin{(-z)} & \cos{(-z)} & 0 \\
-   0 & 0 & 1
-   \end{pmatrix}
-   \begin{pmatrix}
-   \cos{\theta} & 0 & - \sin{\theta} \\
-   0 & 1 & 0 \\
-   \sin{\theta} & 0 & \cos{\theta}
-   \end{pmatrix}
-   \begin{pmatrix}
-   \cos{(-\zeta)} & \sin{(-\zeta)} & 0  \\
-   - \sin{(-\zeta)} & \cos{(-\zeta)} & 0 \\
-   0 & 0 & 1
-   \end{pmatrix}
-   ```
+      - Precession angles are calculated as follows.  
+        ```math
+        \zeta = 2306.2181" \mathrm{tTT} + 0.30188" \mathrm{tTT}^2 + 0.017998" \mathrm{tTT}^3 \\
+        \theta = 2004.3109" \mathrm{tTT} - 0.42665" \mathrm{tTT}^2 - 0.041833" \mathrm{tTT}^3 \\
+        z = 2306.2181" \mathrm{tTT} + 1.09468" \mathrm{tTT}^2 + 0.018203" \mathrm{tTT}^3 \\
+        ```
+        ```math
+        \bf{P} = 
+        \begin{pmatrix}
+          \cos{(-z)} & \sin{(-z)} & 0 \\
+          \- \sin{(-z)} & \cos{(-z)} & 0 \\
+          0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+          \cos{\theta} & 0 & - \sin{\theta} \\
+          0 & 1 & 0 \\
+          \sin{\theta} & 0 & \cos{\theta}
+        \end{pmatrix}
+        \begin{pmatrix}
+          \cos{(-\zeta)} & \sin{(-\zeta)} & 0  \\
+          \- \sin{(-\zeta)} & \cos{(-\zeta)} & 0 \\
+          0 & 0 & 1
+        \end{pmatrix}
+        ```
 
 4. `Nutation`
 
@@ -166,24 +167,24 @@
    \Delta \psi = -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} \, [\mathrm{arcsec}] \\
    ```
 
-     - where $`L = F + \Omega`$，$`L' = L - D`$
+   where $`L = F + \Omega`$，$`L' = L - D`$
 
    ```math
    \bf{N} = 
    \begin{pmatrix}
-   1 & 0 & 0 \\
-   0 & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} \\
-   0 & - \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)}
+     1 & 0 & 0 \\
+     0 & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} \\
+     0 & - \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} & \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)}
    \end{pmatrix}
    \begin{pmatrix}
-   \cos{(-\Delta \psi)} & \sin{(-\Delta \psi)} & 0 \\
-   - \sin{(-\Delta \psi)} & \cos{(-\Delta \psi)} & 0 \\
-   0 & 0 & 1
+     \cos{(-\Delta \psi)} & \sin{(-\Delta \psi)} & 0 \\
+     \- \sin{(-\Delta \psi)} & \cos{(-\Delta \psi)} & 0 \\
+     0 & 0 & 1
    \end{pmatrix}
    \begin{pmatrix}
-   1 & 0 & 0 \\
-   0 & \cos{\varepsilon} & \sin{\varepsilon} \\ 
-   0 & - \sin{\varepsilon} & \cos{\varepsilon}
+     1 & 0 & 0 \\
+     0 & \cos{\varepsilon} & \sin{\varepsilon} \\ 
+     0 & - \sin{\varepsilon} & \cos{\varepsilon}
    \end{pmatrix}
    ```
 

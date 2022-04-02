@@ -25,7 +25,7 @@
       - `CalcCoef` calculates the normal and in-plane coefficients for `SurfaceForce` calculation. The air drag force acting on a surface is expressed as the following equation
 
         ```math
-        \bm{F}=-C_{n}\bm{n}+C_{t}\bm{t}\\
+        \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
         C_{n}=\frac{1}{2}\rho A v^2 C_{n}^{\prime}\\
         C_{t}=\frac{1}{2}\rho A v^2 C_{t}^{\prime}
         ```
@@ -51,7 +51,7 @@
 
    2. inputs and outputs
       - input variables
-        - $`\bm{v}`$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
+        - $`\boldsymbol{v}`$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
           - Currently, we assume that this value equals spacecraft velocity in the body-fixed frame.
       - input parameters 
         - $`\sigma_{d}`$: Diffuse coefficients for air drag
@@ -66,23 +66,22 @@
    
 3. algorithm
    - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$  are calculated as following equations
-   
-      ```math
-      C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}
-      +\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
-      C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
-      ```  
+
+     ```math
+     C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}+\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
+     C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
+      ```
 
    - $`S, S_{n}, S_{t}`$ are defined as follows
       - $`k=1.38064852E-23`$ is the Boltzmann constant
       - $`\theta`$ is the angle between the normal vector and the velocity vector
       - $`\cos{\theta}`$ and $`\sin{\theta}`$ are calculated in `SurfaceForce` base class.
-   
-      ```math
-      S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
-      S_{n}=S\cos{\theta}\\
-      S_{t}=S\sin{\theta}\\
-      ```  
+
+        ```math
+        S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
+        S_{n}=S\cos{\theta}\\
+        S_{t}=S\sin{\theta}\\
+        ```
    
    - $`\Pi(x)`$ and $`\chi(x)`$ are defined as follows
      - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
@@ -106,15 +105,15 @@
 3. results
    - The calculation result is completely the same as the other calculation.
    
-      |                             | Case 1  | Case 2  | Case 3  |
-      | --------------------------- | ------- | ------- | ------- |
-      | $`\sigma_{d}`$              | 0.8     | 0.6     | 0.4     |
-      | $`\theta`$ rad              | 0.202   | 0.202   | 0.202   |
-      | $`v`$ m/s                   | 7420    | 7420    | 7420    |
-      | Out-plane force (S2E)       | 2.30297 | 2.68680 | 3.07062 |
-      | Out-plane force (reference) | 2.30297 | 2.68680 | 3.07062 |
-      | Out-plane force (S2E)       | 0.31514 | 0.23636 | 0.15757 |
-      | Out-plane force (reference) | 0.31514 | 0.23636 | 0.15757 |
+     | parameters/results          | Case 1  | Case 2  | Case 3  |
+     | --------------------------- | ------- | ------- | ------- |
+     | $`\sigma_{d}`$              | 0.8     | 0.6     | 0.4     |
+     | $`\theta`$ rad              | 0.202   | 0.202   | 0.202   |
+     | $`v`$ m/s                   | 7420    | 7420    | 7420    |
+     | Out-plane force (S2E)       | 2.30297 | 2.68680 | 3.07062 |
+     | Out-plane force (reference) | 2.30297 | 2.68680 | 3.07062 |
+     | Out-plane force (S2E)       | 0.31514 | 0.23636 | 0.15757 |
+     | Out-plane force (reference) | 0.31514 | 0.23636 | 0.15757 |
     
 1. Verification of direction of the force
    1. overview
