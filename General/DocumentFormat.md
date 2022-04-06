@@ -1,12 +1,12 @@
 # Format to write specification documents
 
 ## 0. General rule
-- The file name should be "Spec_***.md"
-- Please use the markdown format, which is compatible with the `Gitlab` web preview.
-  - For equations, authors need to use the KaTeX format.
-  - I recommend using `Visual Studio Code` with `Markdown+Math` extension.
-    - You need to change the delimiter set up to use the same math format with `Gitlab`. 
-- Please check the rendered document on the `Gitlab` web page before merge requests.
+- The file name should be "Spec_***.md" in the Specifications directory. 
+- Please use the markdown format.
+- The markdown files are converted to a book with [mdBook](https://rust-lang.github.io/mdBook/) and published in Github Pages.
+  - The equations are rendered with [MathJax](https://www.mathjax.org/)
+    - e.g., Please use `\boldsymbol` for bold characters instead of `\bm`.
+- So, please follow the writing rules of mdBook and MathJax.
 
 ## 1.  Overview
 1. Functions
@@ -28,12 +28,21 @@
    2. Inputs and Outputs
 
    3. Algorithm
+      - MathJax description
+        - please use equations as
 
-      - please use equations as
+          \\[
+          \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
+          \\]
+        - you can also use inline equation as \\( x=y \\)
+
+      - Following description is automatically converted to the above style, but do not use this for new files.
+      
         ```math
         \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
         ```
-      - you can also use inline equation as $`x=y`$
+        - inline equation: $`x=y`$
+
 
    4. Note
 
