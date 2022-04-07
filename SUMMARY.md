@@ -60,6 +60,8 @@
     - [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
   - [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
     - [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
+    - [Kepler Orbit Propagation](./Specifications/Dynamics/Spec_KeplerOrbit.md)
+    - [Orbit Propagation with Encke's Method](./Specifications/Dynamics/Spec_EnckeMethod.md)
   - [Thermal]()
 - [Environment]()
   - [SRP Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
