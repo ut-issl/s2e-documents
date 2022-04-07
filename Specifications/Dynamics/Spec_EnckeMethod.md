@@ -4,9 +4,12 @@
 
 1. functions
    - The `EnckeOrbitPropagation` class calculates the satellite position and velocity with Encke's method including disturbances and controlled accelerations by the satellite.
+   - This orbit propagation mode provides an accurate and efficient orbit calculation with disturbance forces.
+   - We can also use it for an accurate relative orbit propagation, and the feature will be implemented soon.
 
 2. files
    - src/Dynamics/Orbit/EnckeOrbitPropagation.cpp, .h
+   - We use [KeplerOrbit](./Spec_KeplerOrbit.md) libraries to calculate the reference orbit.
 
 3. How to use
    - Select `propagate_mode = ENCKE` in the spacecraft's ini file.
