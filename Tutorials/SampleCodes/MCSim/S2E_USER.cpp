@@ -48,5 +48,8 @@ int main(int argc, char* argv[])
     log_mc_sim->ClearLoggables();
   }
 
+  delete log_mc_sim;
+  delete mc_sim;
+
   return EXIT_SUCCESS;
 }

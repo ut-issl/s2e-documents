@@ -105,6 +105,10 @@
     log_mc_sim->WriteValues(); // log final value
     log_mc_sim->ClearLoggables();
   }
+
+  delete log_mc_sim;
+  delete mc_sim;
+
   ```
 
 ## 4. Initialize file for MCSim
