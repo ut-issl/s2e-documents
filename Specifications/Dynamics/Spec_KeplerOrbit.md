@@ -15,15 +15,15 @@
 3. How to use
    - Select `propagate_mode = KEPLER` in the spacecraft's ini file.
    - Choose a way to define the orbit.
-     - Defined by initial position and velocity.
+     - Defined by initial position and velocity
        - Select `init_mode_kepler = INIT_POSVEL`
-       - Set the value `init_position` and `init_velocity` in the ini file.
+       - Set the values `init_position` and `init_velocity` in the ini file.
          - The units are `m`(meter) and `m/s`.
-         - The frame is inertial frame, and the center is defined in the `PlanetSelect`.
+         - The frame is the inertial frame, and the center is defined in the `PlanetSelect`.
          - The details of the calculation is described in `OrbitalElements::CalcOeFromPosVel`
-     - Defined by the orbital elements.
+     - Defined by the orbital elements
        - Select `init_mode_kepler = INIT_OE`
-       - Set the value of following orbital elements
+       - Set the value of the following orbital elements
          - $`a`$ : Semi major axis [m]
          - $`e`$ : Eccentricity
          - $`i`$ : Inclination [rad]
@@ -107,8 +107,8 @@
 
 3. `KeplerOrbit::SolveKeplerFirstOrder` function
    1. Overview
-      - This function solves the Kepler Equation with the first order iterative method.
-      - Note: This method is not suit to the high eccentricity orbit. It is better to use the Newton-Raphson method for such case.
+      - This function solves the Kepler Equation with the first-order iterative method.
+      - Note: This method is not suited to the high eccentricity orbit. It is better to use the Newton-Raphson method for such a case.
 
    2. Inputs and outputs
       - Input
@@ -128,7 +128,7 @@
         ```
       - Iterate the calculation until the following conditions are satisfied
         - $`|u_{n+1} - u_{n}| < \epsilon`$
-        - The iteration number overs the limit of iteration
+        - The iteration number over the limit of iteration
 
 4. `OrbitalElements::CalcOeFromPosVel` function
    1. Overview
@@ -196,55 +196,54 @@
 
 1. Comparison with RK4
    1. Overview
-      - We compared the calculated orbit result between RK4 mode and Kepler mode.
-      - In the Kepler mode, we verified the correctness of the both initialize mode (`INIT_OE` and `INIT_POSVEL`).
+      - We compared the calculated orbit result between RK4 mode and Kepler mode. In the RK4 mode, all disturbances are disabled since the Kepler mode ignores them.
+      - In the Kepler mode, we verified the correctness of both initialize modes (`INIT_OE` and `INIT_POSVEL`).
        
    2. Conditions for the verification
-      1. input files
-         - SampleSimbase.ini
-           - The following values are modified from the default.
-             ```
-             EndTimeSec = 10000
-             LogOutPutIntervalSec = 5
-             ```
-         - SampleDisturbance.ini
-           - All disturbances are disabled.
-         - SampleSat.ini
-           - The following values are modified from the default.
-             - `propagate_mode` is changed for each mode.
-             - Orbital elements for Kepler
-               ```
-               semi_major_axis_m = 6794500.0
-               eccentricity = 0.0015
-               inclination_rad = 0.9012
-               raan_rad = 0.1411
-               arg_perigee_rad = 1.7952
-               epoch_jday = 2.458940966402607e6
-               ```
-             - Initial position and velocity (compatible value with the orbital elements)
-               ```
-               init_position(0) = 1791860.131
-               init_position(1) = 4240666.743
-               init_position(2) = 4985526.129
-               init_velocity(0) = -7349.913889
-               init_velocity(1) = 631.6563971
-               init_velocity(2) = 2095.780148
-               ```
+      - SampleSimbase.ini
+        - The following values are modified from the default.
+          ```
+          EndTimeSec = 10000
+          LogOutPutIntervalSec = 5
+          ```
+      - SampleDisturbance.ini
+        - All disturbances are disabled.
+      - SampleSat.ini
+        - The following values are modified from the default.
+          - `propagate_mode` is changed for each mode.
+          - Orbital elements for Kepler
+            ```
+            semi_major_axis_m = 6794500.0
+            eccentricity = 0.0015
+            inclination_rad = 0.9012
+            raan_rad = 0.1411
+            arg_perigee_rad = 1.7952
+            epoch_jday = 2.458940966402607e6
+            ```
+          - Initial position and velocity (compatible value with the orbital elements)
+            ```
+            init_position(0) = 1791860.131
+            init_position(1) = 4240666.743
+            init_position(2) = 4985526.129
+            init_velocity(0) = -7349.913889
+            init_velocity(1) = 631.6563971
+            init_velocity(2) = 2095.780148
+            ```
 
    3. Results
-      - The orbit calculation result of Kepler mode with `INIT_OE`.
+      - The follwoing figure shows the orbit calculation result of Kepler mode with `INIT_OE`.
         - The result looks correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe.jpg" width=80% alt="">
         </div>
 
-      - The difference between Kepler orbit calculation with `INIT_OE` and RK4 orbit propagation.
+      - The difference between Kepler mode with `INIT_OE` and RK4 mode is shown in the following figure.
         - The error between them is small (less than 10m), and we confirmed that the calculation of Kepler orbit is correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe_vs_rk4.jpg" width=80% alt="">
         </div>
 
-      - The difference between Kepler orbit calculation with `INIT_OE` and `INIT_POSVEL`
+      - The following figure shows the difference between Kepler orbit calculation with `INIT_OE` and `INIT_POSVEL`.
         - The error between them is small (less than 10m), and we confirmed that the initializing method is correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe_vs_posvel.jpg" width=80% alt="">
