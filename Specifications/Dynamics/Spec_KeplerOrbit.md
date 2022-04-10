@@ -20,6 +20,7 @@
        - Set the value `init_position` and `init_velocity` in the ini file.
          - The units are `m`(meter) and `m/s`.
          - The frame is inertial frame, and the center is defined in the `PlanetSelect`.
+         - The details of the calculation is described in `OrbitalElements::CalcOeFromPosVel`
      - Defined by the orbital elements.
        - Select `init_mode_kepler = INIT_OE`
        - Set the value of following orbital elements
@@ -81,8 +82,8 @@
         - Orbital Elements
         - Constants
       - Output
-        - $`r_{eci}`$ : Position in the inertial frame
-        - $`v_{eci}`$ : Velocity in the inertial frame
+        - $`\boldsymbol{r}_{eci}`$ : Position in the inertial frame
+        - $`\boldsymbol{v}_{eci}`$ : Velocity in the inertial frame
 
    3. Algorithm
       - Calculate mean anomaly $`l`$[rad]
@@ -90,7 +91,7 @@
         l = n * (t-t_{epoch})
         ```
       - Calculate eccentric anomaly $`u`$[rad] by solving the Kepler Equation
-        - Details are described in the next sub section
+        - Details are described in `KeplerOrbit::SolveKeplerFirstOrder`
       - Calculate two dimensional position $`x^*, y^*`$ and velocity $`\dot{x}^*, \dot{y}^*`$ in the orbital plane
         ```math
         x^* = a(\cos{u}-e)\\
@@ -100,8 +101,8 @@
         ```
       - Convert to the inertial frame
         ```math
-        r_{eci} = R_{p2eci}\begin{bmatrix} x^* \\ y^* \\ 0 \end{bmatrix}\\
-        v_{eci} = R_{p2eci}\begin{bmatrix} \dot{x}^* \\ \dot{y}^* \\ 0 \end{bmatrix}\\
+        \boldsymbol{r}_{eci} = R_{p2eci}\begin{bmatrix} x^* \\ y^* \\ 0 \end{bmatrix}\\
+        \boldsymbol{v}_{eci} = R_{p2eci}\begin{bmatrix} \dot{x}^* \\ \dot{y}^* \\ 0 \end{bmatrix}\\
         ```
 
 3. `KeplerOrbit::SolveKeplerFirstOrder` function
@@ -128,6 +129,68 @@
       - Iterate the calculation until the following conditions are satisfied
         - $`|u_{n+1} - u_{n}| < \epsilon`$
         - The iteration number overs the limit of iteration
+
+4. `OrbitalElements::CalcOeFromPosVel` function
+   1. Overview
+      - This function calculates the orbital elements from the initial position and velocity in the inertial frame.
+
+   2. Inputs and outputs
+      - Input
+        - $`\mu`$ : The standard gravitational parameter of the central body
+        - $`t`$ : Time in Julian day
+        - $`\boldsymbol{r}_{i}`$ : Initial position in the inertial frame
+        - $`\boldsymbol{v}_{i}`$ : Initial velocity in the inertial frame
+      - Output
+        - orbital element
+
+   3. Algorithm
+      - $`\boldsymbol{h}_{i}`$ : Angular momentum vector of the orbit
+        ```math
+        \boldsymbol{h}_{i} = \boldsymbol{r}_{i} \times \boldsymbol{v}_{i}
+        ```
+      - $`a`$ : Semi-major axis
+        ```math
+        a = \frac{\mu}{2\frac{\mu}{r} - v^2}
+        ```
+      - $`i`$ : Inclination
+        ```math
+        i = \cos^{-1}{h_z}
+        ```
+      - $`\Omega`$ : Right Ascension of the Ascending Node (RAAN)
+        - Note: This equation is not support $`i = 0`$ case.
+        ```math
+        \Omega = \sin^{-1}\left(\frac{h_x}{\sqrt{h_x^2 + h_y^2}}\right)
+        ```
+      - $`x_{p}, y_{p}`$ : Position in the orbital plane
+        ```math
+        x_{p} = r_{ix} \cos{\Omega} + r_{iy} \sin{\Omega};\\
+        y_{p} = (-r_{ix} \sin{\Omega} + r_{iy} \cos{\Omega})\cos{i} + r_{iz}\sin{i};
+        ```
+      - $`\dot{x}_{p}, \dot{y}_{p}`$ : Velocity in the orbital plane
+        ```math
+        \dot{x}_{p} = v_{ix} \cos{\Omega} + v_{iy} \sin{\Omega};\\
+        \dot{y}_{p} = (-v_{ix} \sin{\Omega} + v_{iy} \cos{\Omega})\cos{i} + v_{iz}\sin{i};
+        ```
+      - $`e`$ : Eccentricity
+        ```math
+        c_1 = \frac{h}{\mu}\dot{y}_p - \frac{x_p}{r}\\
+        c_2 = -\frac{h}{\mu}\dot{x}_p - \frac{y_p}{r}\\
+        e = \sqrt{c_1^2 + c_2^2}
+        ```
+      - $`\omega`$ : Argument of Perigee
+        ```math
+        \omega = \tan^{-1}\left(\frac{c_2}{c_1}\right)
+        ```
+      - $`t_{epoch}`$ : Epoch [Julian day]
+        ```math
+        f = \tan^{-1}\left(\frac{y_p}{x_p}\right) - \omega\\
+        u = \tan^{-1}\frac{\frac{r \sin{f}}{\sqrt{1-e^2}}}{r\cos{f} + ae}\\
+        ```
+        ```math
+        n = \sqrt{\frac{\mu}{a^3}}\\
+        dt = \frac{u - e\sin{u}}{n}\\
+        t_{epoch} = t - \frac{dt}{24*60*60}
+        ```
 
 ## 3. Results of verifications
 TBW
