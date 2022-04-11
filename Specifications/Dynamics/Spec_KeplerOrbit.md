@@ -81,8 +81,8 @@
         - Orbital Elements
         - Constants
       - Output
-        - $`\boldsymbol{r}_{eci}`$ : Position in the inertial frame
-        - $`\boldsymbol{v}_{eci}`$ : Velocity in the inertial frame
+        - $`\boldsymbol{r}_{i}`$ : Position in the inertial frame
+        - $`\boldsymbol{v}_{i}`$ : Velocity in the inertial frame
 
    3. Algorithm
       - Calculate mean anomaly $`l`$[rad]
@@ -91,7 +91,7 @@
         ```
       - Calculate eccentric anomaly $`u`$[rad] by solving the Kepler Equation
         - Details are described in `KeplerOrbit::SolveKeplerFirstOrder`
-      - Calculate two dimensional position $`x^*, y^*`$ and velocity $`\dot{x}^*, \dot{y}^*`$ in the orbital plane
+      - Calculate two dimensional position $`x^{\*}`$, $`y^{\*}`$ and velocity $`\dot{x}^{\*}`$, $`\dot{y}^{\*}`$ in the orbital plane
         ```math
         x^* = a(\cos{u}-e)\\
         y^* = a\sqrt{1-e^2}\sin{u}\\
@@ -100,8 +100,14 @@
         ```
       - Convert to the inertial frame
         ```math
-        \boldsymbol{r}_{eci} = R_{p2i}\begin{bmatrix} x^* \\ y^* \\ 0 \end{bmatrix}\\
-        \boldsymbol{v}_{eci} = R_{p2i}\begin{bmatrix} \dot{x}^* \\ \dot{y}^* \\ 0 \end{bmatrix}\\
+        \boldsymbol{r}_{i} = R_{p2i}\begin{bmatrix} x^* \\
+                                                    y^* \\
+                                                    0
+                                    \end{bmatrix}\\
+        \boldsymbol{v}_{i} = R_{p2i}\begin{bmatrix} \dot{x}^* \\
+                                                    \dot{y}^* \\
+                                                    0
+                                    \end{bmatrix}\\
         ```
 
 3. `KeplerOrbit::SolveKeplerFirstOrder` function
