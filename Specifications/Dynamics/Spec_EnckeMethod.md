@@ -119,5 +119,5 @@
       
 
 ## 4. References
-- [1] David A. Vallado, "Fundamental of Astrodynamics and Applications, Third Edition: Chapter 8. Special Perturbation Techniques", 2007.
+- [1] David A. Vallado, "Fundamental of Astrodynamics and Applications, Third Edition", ch.8, 2007.
 - [2] Simon P. Shuster, "A Survey and Performance Analysis of Orbit Propagators for LEO, GEO, and Highly Elliptical Orbits", 2017.

@@ -45,8 +45,7 @@
         - $`\mu`$ : The standard gravitational parameter of the central body
       - Output
         - $`n`$ : Mean motion
-        - $`R_{p2eci}`$ : Frame conversion matrix from in-plane position to the inertial frame position
-          - We use the name ECI here, but `Earth center` is not essential. When users choose the center body as other than the earth, the origin of the frame is changed to the body.
+        - $`R_{p2i}`$ : Frame conversion matrix from in-plane position to the inertial frame position
 
    3. Algorithm
       - Mean motion
@@ -55,7 +54,7 @@
       ```
       - Frame conversion matrix from in-plane position to ECI position
         ```math
-        R_{p2eci} = R_z(-\Omega)R_x(-i)R_z(-\omega)
+        R_{p2i} = R_z(-\Omega)R_x(-i)R_z(-\omega)
         ```
         ```math
         R_x(\theta) = \begin{pmatrix}
@@ -101,8 +100,8 @@
         ```
       - Convert to the inertial frame
         ```math
-        \boldsymbol{r}_{eci} = R_{p2eci}\begin{bmatrix} x^* \\ y^* \\ 0 \end{bmatrix}\\
-        \boldsymbol{v}_{eci} = R_{p2eci}\begin{bmatrix} \dot{x}^* \\ \dot{y}^* \\ 0 \end{bmatrix}\\
+        \boldsymbol{r}_{eci} = R_{p2i}\begin{bmatrix} x^* \\ y^* \\ 0 \end{bmatrix}\\
+        \boldsymbol{v}_{eci} = R_{p2i}\begin{bmatrix} \dot{x}^* \\ \dot{y}^* \\ 0 \end{bmatrix}\\
         ```
 
 3. `KeplerOrbit::SolveKeplerFirstOrder` function
@@ -250,4 +249,4 @@
         </div>
 
 ## 4. References
-- Hiroshi Kinoshita, "Celestial mechanisms and orbital dynamics", 1998 (written in Japanese)
+- Hiroshi Kinoshita, "Celestial mechanisms and orbital dynamics", ch.2, 1998 (written in Japanese)
