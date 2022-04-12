@@ -8,105 +8,43 @@
 2. files
    - `src/Dynamics/Orbit/Orbit.h`
 	   -  Definition of Orbit base class
-   - `src/Dynamics/Orbit/Rk4OrbitPropagation.cpp`
-   - `src/Dynamics/Orbit/Rk4OrbitPropagation.h`
    - `src/Interface/InitInput/Init_Orbit.cpp`
 	   - Make an instance of orbit class.	
+   - `src/Dynamics/Orbit/Rk4OrbitPropagation.cpp`
+   - `src/Dynamics/Orbit/Rk4OrbitPropagation.h`
 
 3. How to use
-   - Make an instance of the orbit class in `Initialize` function in `Dynamics.cpp`
-   - In the orbit.ini file,  Select propagation mode (SGP4 or RK4)
-	   - When users choose SGP4, set TLE2 to decide the orbit elements of the satellite	
-	   - When users choose RK4, set the initial position and velocity of the satellite
-   - The definition of the coordinate is decided in `PlanetSelect.ini`
-   - For the information about Relative Orbit, see the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
+   - Select `propagate_mode = RK4` in the spacecraft's ini file.
+   - Set the initial position [m] and velocity [m/s] in the inertial frame like the following example
+     ```
+     init_position(0) = 4.2164140100E+07  // radius of GEO
+     init_position(1) = 0
+     init_position(2) = 0
+     init_velocity(0) = 0
+     init_velocity(1) = 3.074661E+03  // Speed of a spacecraft in GEO
+     init_velocity(2) = 0
+     ```
    
 ## 2. Explanation of Algorithm
-In the Orbit class, the member variables are updated according to the selection of orbit propagation methodologies: SGP4 or RK4, as defined in the ini file.  
-The Propagate function is the one that computes the orbital information, and the `UpdateAtt` function is the one that computes the notation in the body coordinate system based on the current orientation.
 
-
-1. Propagate function  
-　 The Propagate function involves the following steps.
-   1. The process differs depending on the selection of the propagation function SGP4 or RK4, which is loaded from `orbit.ini`.
-   2. SGP4  
-      The difference between the "current Julian day" and the original period in TLE in units of [minutes] (elapse_time_min) is calculated, and it is used  in the argument of the sgp4 function of the SGP4 calculation execution function. At the same time, the geodetic system definition (`whichconst`) and the trajectory information structure (`satrec`) are also required, which are defined at the call of the constructor. The position [m] and velocity [m/s] of the spacecraft are assigned to the member variables sat_position_i_ and sat_velocity_i_ as the output of the sgp4 function. Note that the values, in this case are the values from the ECI coordinate system.
-   3. RK4   
-      The position and velocity of the satellite are updated by using RK4. As the input of RK4, the six-state variables are set. These state variables are the three-dimensional position [$`x`$, $`y`$ ,$`z`$] and three-dimensional velocity [$`v_x`$, $`v_y`$, $`v_z`$] at the inertia coordinate. Here, the inertia coordinate is decided by the `PlanetSelect.ini`
-      As the force which works to the satellite motion is the external acceleration [$`a_x`$,$`a_y`$,$`a_z`$] calculated from the disturbance class or thruster class and the gravity force from the center planet, which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
-      ```math
-      \dot{x} = v_x\\
-      \dot{y} = v_y\\
-      \dot{z} = v_z\\
-      \dot{v}_x = a_x-\mu\frac{x}{r^3}\\
-      \dot{v}_y = a_y-\mu\frac{y}{r^3}\\
-      \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
-      r = \sqrt{x^2+y^2+z^2}
-      ```
-4. [RelativeOrbit] See the specification of [Relative Orbit](./Spec_RelativeOrbit.md).
-5. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables lat_rad_, lon_rad_, and alt_m_.
-
-   4. The latitude[rad], longitude[rad], and altitude[m] of the spacecraft are calculated by the TransECIToGeo function and are assigned to the member variables `lat_rad_`, `lon_rad_`, and `alt_m_`.
-
-2. UpdateAtt function  
-   The UpdateAtt function simply converts the velocity vector of the spacecraft (in ECI coordinate system) to body coordinate system notation using the argument: `Quaternion_i2b`.
-
-3. TransECIToGeo function  
-   The TransECIGeo function calculates latitude[rad], longitude[rad], and altitude[m] using the arguments: the current Julian day and the position vector of the spacecraft (in the ECI coordinate system). In the computation process, we use the SGP4 function `getwgsconst` to read the earth's radius and squareness for the calculation.  
-   The latitude is calculated from the South Pole to the equator from -π/2 to 0[rad] and from the equator to the North Pole from 0 to π/2[rad], and the longitude is from 0 to 2π[rad] east of the Greenwich meridian. The altitude is in meters.
-
-4. TransECIToECEF function  
-   The TransECIToECEF function can convert the position and the velocity of the satellite from the ECI frame to the ECEF frame, which considers the earth's rotation.
+1. `Propagate` function  
+   - The position and velocity of the satellite are updated by using RK4. As the input of RK4, the six-state variables are set. These state variables are the three-dimensional position [$`x`$, $`y`$ ,$`z`$] and three-dimensional velocity [$`v_x`$, $`v_y`$, $`v_z`$] at the inertial coordinate. Here, the inertial coordinate is decided by the `PlanetSelect.ini`
+   - As the force which works to the satellite motion is the external acceleration [$`a_x`$,$`a_y`$,$`a_z`$] calculated from the disturbance class or thruster class and the gravity force from the center planet, which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
+   ```math
+   \dot{x} = v_x\\
+   \dot{y} = v_y\\
+   \dot{z} = v_z\\
+   \dot{v}_x = a_x-\mu\frac{x}{r^3}\\
+   \dot{v}_y = a_y-\mu\frac{y}{r^3}\\
+   \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
+   r = \sqrt{x^2+y^2+z^2}
+   ```
 
 ## 3. Results of verifications
 
-1. Verification of SGP4
-
+1. Verification of the error of Fourth Order Runge-Kutta method (RK4)
    1. Overview
-      - Verify whether the propagation of SGP4 is correctly installed or not.
-      - By comparing the propagation result of SGP4 in STK simulator and S2E
-      
-   2. Conditions for the verification
-      - Conduct verification using the two different initial TLE cases with different time spans.
-      1. Hodoyoshi orbit : (span:10000 second)
-         - TLE
-         ```
-         40299U 14070B   20001.00000000 -.00003285  00000-0 -13738-3 0 00007
-         40299 097.3451 081.6192 0014521 069.5674 178.3972 15.23569636286180
-         ```
-         
-         
-      2. ISS Release orbit (span:10 days)
-         - TLE
-         ```
-         99999U   20001.00000000  .00000007  00000-0  93906-7 0 00002
-         99999 053.4260 297.1689 0008542 245.4975 274.8981 15.55688139000015
-         ```
-      
-
-   3. Results
-      1. Hodoyoshi orbit : (span:10000 second)
-         - Left: STK,  Right: S2E
-            <div align="center">
-               <img src="./figs/Verification_Hodoyoshi_stk.png" width = 430 alt="orbit_steptimesec_01">
-               <img src="./figs/Verification_Hodoyoshi_s2e.png" width = 400 alt="orbit_steptimesec_01">
-              </figure>
-            </div>
-            The outputs of the satellite position are almost the same between the two simulators.
-
-      2. ISS Release orbit : (span:10000 second)
-         - Left: STK,  Right: S2E 
-            <div align="center">
-               <img src="./figs/Verification_ISS_stk.png" width = 400 alt="orbit_steptimesec_01">
-               <img src="./figs/Verification_ISS_s2e.png" width = 480 alt="orbit_steptimesec_01">
-              </figure>
-            </div>
-            The outputs of the satellite position are almost the same between the two simulators.
-
-
-2. Verification of the error of Fourth Order Runge-Kutta method (RK4)
-   1. Overview
-      - Verify the numerical integration error using Simplified General Perturbations Satellite Orbit Model 4 (SGP4) or the 4th order Runge-Kutta method (RK4).
+      - Verify the numerical integration error of the RK4 method.
       - The output of the simulation was compared with the analytical solution.
       
    2. conditions for the verification
@@ -129,7 +67,6 @@ The Propagate function is the one that computes the orbital information, and the
       - All of the effects of disturbance and environment were disabled.
       - The simulation time is 60120(sec), which is approximately three-period. In addition, for a long-term test, the case in which simulation time is 200400(about 10 periods) was tested. The `OrbitPropagateStepTimeSec` of this case is 1(sec).
     
-
    3. results
       <div align="center">
         <img src="./figs/orbit_steptimesec_01.jpg" width = 400 alt="orbit_steptimesec_01">
