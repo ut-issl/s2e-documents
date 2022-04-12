@@ -60,7 +60,7 @@
     - [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
   - [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
     - [Kepler Orbit Propagation](./Specifications/Dynamics/Spec_KeplerOrbit.md)
-    - [SGP4 Orbit Propagation](./Specifications/Dynamics/Spec_Sgp4Orbit.md)
+    - [SGP4 Orbit Propagation](./Specifications/Dynamics/Spec_Sgp4.md)
     - [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
     - [Orbit Propagation with Encke's Method](./Specifications/Dynamics/Spec_EnckeMethod.md)
     - [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
