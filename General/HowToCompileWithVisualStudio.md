@@ -74,7 +74,13 @@ This document explains how to build and execute the Visual Studio environment wi
 
 ## 4. Note
 - For VS2019 users
-  - Please edit the compiler setting in `CMakeSetting.json` as `"generator": "Visual Studio 16 2019"`.
+  - Please edit the compiler setting in `CMakeSetting.json` as 
+    ```
+    "generator": "Visual Studio 16 2019".
+    ```
 - For VS2017 users
-  - Please edit the compiler setting in `CMakeSetting.json` as `"generator": "Visual Studio 15 2017"`.
+  - Please edit the compiler setting in `CMakeSetting.json` as 
+    ```
+    "generator": "Visual Studio 15 2017".
+    ```  
   - Users also need to edit the `cmake_minimum_required` version from 3.13 to 3.10 in all CMakeList, including the files in subdirectories. The VS 2017 does not support version 3.13, and you may see many `warnings` when you use CMake Version 3.10. 
