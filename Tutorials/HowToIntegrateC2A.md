@@ -75,7 +75,7 @@
 # 5. Example of S2E-C2A communication
 - This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/C2A_Integration`.
 - Preparation
-  - We use the sample codes mentioned above as base of this example.
+  - We use the sample codes mentioned above as the base of this example.
     - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
     - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
   - Clone the `s2e-core` v5.0.0.
@@ -86,22 +86,22 @@
     ```
     set(C2A_NAME "c2a-core/Examples/minimum_user_for_s2e")
     ```
-- Modification of S2E side
+- Modification of the S2E side
   - Users can use the [EXP](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/Abstract/EXP.h) class in `s2e-core` as a test component to communicate with C2A.
   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`. The source codes are stored same directory of the `s2e-user-for-c2a-core`.
   - Add `EXP` as a component in `C2aCoreSampleComponents.cpp` and `C2aCoreSampleComponents.h`.
     - In this example, the `OBC_C2A` is executed as 1kHz, and the `EXP` is executed as 1Hz.
- - Modification of C2A side
+ - Modification of the C2A side
    - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. The source codes are stored same directory of the `c2a-core/Examples/minimum_user_for_s2e`.
-   - We need to add new driver instance application to communicate with the `EXP` component.
+   - We need to add a new driver instance application to communicate with the `EXP` component.
      - Copy `Application/DriverInstances/di_s2e_uart_test.c, .h`
      - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
    - Edit `app_registry.c, h` and `app_headers.h` in the `Application` directory to register the application of `di_s2e_uart_test`.
    - Edit `Setting/Modes/TaskLists/Elements/tl_elem_drivers_update.c` to add the `AR_DI_S2E_UART_TEST` to execute in the tasklist.
 - Execution and Result
   - The `AR_DI_S2E_UART_TEST` application sends characters to the `EXP` component like `SETA, SETB, SETC, ..., SETZ, SETA`
-  - The `EXP` component receives the characters and store the set characters like `A, B, C, ..., Z, A`
-  - The `EXP` component sends the stored characters as a telemetry like `A, BA, CBA, ..., ZYX`
+  - The `EXP` component receives the characters and stores the set characters like `A, B, C, ..., Z, A`
+  - The `EXP` component sends the stored characters as telemetry like `A, BA, CBA, ..., ZYX`
   - The `AR_DI_S2E_UART_TEST` application receives the telemetry and prints the first three characters in the debug output console like the following figure.
     ![](./figs/C2aCommunicationConfirmation.png)
 
