@@ -72,34 +72,36 @@
 - Other interfaces like SPI, etc., will be implemented.
 
 
-# 5. Sample codes for S2E-C2A communication
-- S2E side
-  - Users can use the [EXP](https://gitlab.com/ut_issl/s2e/s2e_core_oss/-/blob/develop/src/Component/Abstract/EXP.h) class in `S2E_CORE_OSS` as a test component to communicate with C2A.
-  - Add `EXP` as a component in `User_Component` with reference to the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`.
-  - Edit the following parameters in `User_SimBase.ini` since the C2A's time update frequency is 1msec.
+# 5. Example of S2E-C2A communication
+- This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/C2A_Integration`.
+- Preparation
+  - We use the sample codes mentioned above as base of this example.
+    - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
+    - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
+  - Clone the `s2e-core` v5.0.0.
+    - Please set the environment for that the s2e-core can work without C2A.
+  - Clone the sample codes in the `FlightSW` directory.
+  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
+  - Edit the `CMakeList.txt` of `s2e-user-for-c2a-core` to modify the C2A name
     ```
-    StepTimeSec=0.001 //sec
-    CompoUpdateIntervalSec = 0.001 //sec 
+    set(C2A_NAME "c2a-core/Examples/minimum_user_for_s2e")
     ```
-- C2A side
-  - Edit `AppRegistry.c,h`, `rs422_dummy.c,h`, and `driver_update.c` with reference to the sample codes.
-    - `AppRegistry.h`: Add `AR_DI_RS422_DUMMY,` .
-    - `AppRegistry.c`: Add `add_application_(AR_DI_RS422_DUMMY, RS422_create_dummy);`. 
-    - `rs422_dummy.c,h`: Replace most of the codes.
-    - `driver_update.c`: Add the `AR_DI_RS422_DUMMY` execution command in block commands.
-      ```cpp
-      CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
-      BCT_register_cmd(&temp); 
-      ```
+- Modification of S2E side
+  - Users can use the [EXP](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/Abstract/EXP.h) class in `s2e-core` as a test component to communicate with C2A.
+  - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`. The source codes are stored same directory of the `s2e-user-for-c2a-core`.
+  - Add `EXP` as a component in `C2aCoreSampleComponents.cpp` and `C2aCoreSampleComponents.h`.
+    - In this example, the `OBC_C2A` is executed as 1kHz, and the `EXP` is executed as 1Hz.
+ - Modification of C2A side
+   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. The source codes are stored same directory of the `c2a-core/Examples/minimum_user_for_s2e`.
+   - We need to add new driver instance application to communicate with the `EXP` component.
+     - Copy `Application/DriverInstances/di_s2e_uart_test.c, .h`
+     - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
+   - Edit `app_registry.c, h` and `app_headers.h` in the `Application` directory to register the application of `di_s2e_uart_test`.
+   - Edit `Setting/Modes/TaskLists/Elements/tl_elem_drivers_update.c` to add the `AR_DI_S2E_UART_TEST` to execute in the tasklist.
 - Execution and Result
-  - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
-    - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
-    - The `EXP` receives the command, stores the received characters in the buffer, and sends the buffer data to `RS422_dummy`.
-    - Users can check the `RS422_dummy`'s received data (test_rx_data_) at the following breakpoint.
-    ```c
-    // Receive
-    RS422_RX(&rs422_dummy_ch_[test_ch], &test_rx_data_[0], 100);
-    } //<- breakpoint
-    ```
+  - The `AR_DI_S2E_UART_TEST` application sends characters to the `EXP` component like `SETA, SETB, SETC, ..., SETZ, SETA`
+  - The `EXP` component receives the characters and store the set characters like `A, B, C, ..., Z, A`
+  - The `EXP` component sends the stored characters as a telemetry like `A, BA, CBA, ..., ZYX`
+  - The `AR_DI_S2E_UART_TEST` application receives the telemetry and prints the first three characters in the debug output console like the following figure.
+    ![](./figs/C2aCommunicationConfirmation.png)
 
-  <img src="./figs/C2aCommunicationConfirmation.png" alt="C2aCommunicationConfirmation" style="zoom: 100%;" />
