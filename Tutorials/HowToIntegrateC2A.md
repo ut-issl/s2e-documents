@@ -1,126 +1,107 @@
 # How to integrate C2A
 
 ## 1.  Overview
-- [C2A](https://gitlab.com/ut_issl/c2a) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
-- S2E can execute [C2A](https://gitlab.com/ut_issl/c2a) as flight software for flight software development and debugging.
+- [C2A](https://github.com/ut-issl/c2a-core) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
+- S2E can execute [C2A](https://github.com/ut-issl/c2a-core) as a flight software for onboard algorithm development and debugging.
 - This document describes how to integrate the C2A.
-- You can find sample codes for this tutorial in `Tutorials/SampleCodes/C2A_Integration`.
-- **Note**: Currently, both the C2A and S2E are moving to Github and updating frequently, so that this document and the sample codes will be updated after finishing the moving.
+- Notes
+  - C2A is written in C language, but S2E builds C2A as C++.
+- Sample codes
+  - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
+  - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
+- Preparation to use the sample codes
+  - Clone the `s2e-core` v5.0.0.
+    - Please set the environment for that the s2e-core can work without C2A.
+  - Clone the sample codes in the `FlightSW` directory.
+  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
+
 
 ## 2. How to build C2A in S2E
-- Notes
-  - C2A is written in C language, but S2E builds C2A in C++.
-  - The character encoding of C2A is `SJIS` and is different from S2E's `UTF-8`.
 - When users want to use C2A, complete the following steps
-  - Make `FlightSW` directory at same directory with `s2e_core_oss` and `s2e_user`.
-  - Make a `c2a_user_oss` directory in `FlightSW` and clone a [C2A_USER repository](https://gitlab.com/ut_issl/c2a/c2a_user_oss) you want to use
+  - Make `FlightSW` directory at same directory with `s2e-core` and `s2e-user`.
+  - Make a `c2a-user` directory in `FlightSW` and set the C2A source code you want to use.
     ```
-    ├─FlightSW  
-    │  └─ c2a_user_oss
-    ├─s2e_core_oss
-    └─s2e_user  
+    ├─ExtLibraries
+    ├─FlightSW
+    │  └─c2a-user
+    │    └─src_user
+    │    └─src_core
+    ├─s2e-core
+    └─s2e-user
     ```
-  - Edit `s2e_user/CMakeLists.txt`
-    - `set(C2A_DIR ${FLIGHT_SW_DIR}/c2a_user_oss)` -> edit the directory name according with your situation
-    - `set(USE_C2A OFF)` -> `set(USE_C2A ON)`
-  - Build `s2e_user`
-  -  **Note:** When you add a new C source file in C2A, you need to modify the `c2a_user_oss/CMakeLists.txt` directory to compile it in S2E.
+  - Edit `s2e-user/CMakeLists.txt`
+    - `set(C2A_NAME "c2a_sample")`
+      - Edit the directory name according to your situation
+      - If you use the sample codes, please edit here as `c2a-core/Examples/minimum_user_for_s2e`
+    - `option(USE_C2A "Use C2A" OFF)`
+      - Turn on the USE_C2A flag as `option(USE_C2A "Use C2A" ON)`
+  - Build the `s2e_user`
+  - **Note:** When you add new source files in the C2A, you need to modify the `c2a-user/CMakeLists.txt` directory to compile them in the S2E.
+    - Users can choose the construction of CMake as users need.
+    - For example, the sample codes have several `CMakeLists.txt` files in each directory to set the compile targets, so users need to modify them to add the target source codes.
+
 
 ## 3. How to execute C2A in S2E
-- In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to implement the execution code.
-- The sample code is in the `S2E_CORE_OSS/src/Component/CDH/OBC_C2A`.
-  - In the `Initialize` function of OBC_C2A, all C2A initialize functions are called as follows.
-  ``` cpp
-  void OBC_C2A::Initialize()
-  {
-    #ifdef USE_C2A
-    CA_initialize();            //Cmd Analyze
-    TF_initialize();            //TLM frame
-    PH_init();                  //Packet Handler
-    TMGR_init();                //Time Manager
-    AL_initialize();            //Anomaly Logger
-    AM_initialize();            //App Manager
-    AR_load_initial_settings();	//App Registry
-    AM_initialize_all_apps();	  //App Managerに登録されてるアプリの初期化
-    BCT_initialize();	          //Block Cmd Table
-    MM_initialize();            //Mode Manager
-    TDSP_initialize();          //Task Dispatcher
-    WDT_init();                 // WDT
-    #endif
-  }
-  ```
-  - In the `MainRoutine` function of OBC_C2A, the time update function and task list execution functions are called as follows. The time update period of the function is 1msec.
-  ``` cpp
-  void OBC_C2A::MainRoutine(int count)
-  {
-    #ifdef USE_C2A
-    TMGR_count_up_master_clock();   //The update time oc C2A clock is 1msec
-    TDSP_execute_pl_as_task_list();
-    #endif
-  }
-  ```
-
-- Users can use the `OBC_C2A` class in the `User_components` class, same with other components.
+- In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to add the `OBC`, which can execute the C2A.
+- The `s2e-core` has the [OBC_C2A](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/CDH/OBC_C2A.cpp) as a component, and users can use it to execute the C2A.
+- Users can use the `OBC_C2A` class in the `User_components` class, the same as other components.
+- The sample `s2e-user-for-c2a-core` already mounts the `OBC_C2A` as a component.
 
 
 ## 4. Communication between C2A and S2E
 - Generally, communication between flight software and S2E is executed via `OBC` class.
-- The `OBC` base class has communication port and communication functions, and other components and flight software can use the communication functions to communicate with each other.
-  ```cpp
-  // Communication port functions
-  virtual int ConnectComPort(int port_id, int tx_buf_size, int rx_buf_size);
-  virtual int CloseComPort(int port_id);
-  // OBC -> Components
-  virtual int SendFromObc(int port_id, unsigned char* buffer, int offset, int count);
-  virtual int ReceivedByCompo(int port_id, unsigned char* buffer, int offset, int count);
-  // Components -> OBC
-  virtual int SendFromCompo(int port_id, unsigned char* buffer, int offset, int count);
-  virtual int ReceivedByObc(int port_id, unsigned char* buffer, int offset, int count);
-  ```
-- Components without the OBC can use the `SendFromCompo` and `ReceivedByCompo` for communication with the flight software. Driver functions in the flight software can use `SendFromObc` and `ReceivedByObc` for communication with the components. It is essential to use the same `port_id`.
-- However, C2A cannot directly use `SendFromObc` and `ReceivedByObc` since it is written in C, and it is difficult to pass the `OBC` class as an argument to C2A. So `OBC_C2A` has static functions for C2A. 
-  ```cpp
-  // Static function for C2A
-  static int SendFromObc_C2A(int port_id, unsigned char* buffer, int offset, int count);
-  static int ReceivedByObc_C2A(int port_id, unsigned char* buffer, int offset, int count);
-  ```
-- Also, because of the difference in character encoding, it is difficult to include S2E header files in C2A codes, so `OBC_C2A` also has the wrapper functions. `C2A` can communicate with components using the wrapper functions.
-  ```cpp
-  int OBC_C2A_SendFromObc(int port_id, unsigned char* buffer, int offset, int count);
-  int OBC_C2A_ReceivedbyObc(int port_id, unsigned char* buffer, int offset, int count);
-  ```
-- Currently, the wrapper functions are used in [src_user/IF_Wrapper/SILS/RS422_SILS.c](https://gitlab.com/ut_issl/c2a/c2a_user_oss/-/blob/develop/SH7254R_C2A/src_user/IF_Wrapper/SILS/RS422_SILS.c). The `RS422_SILS` functions automatically overload the normal `RS422` functions when C2A is executed on the S2E.
-- For other interfaces like I2C, SPI, etc., will be implemented.
+- The `OBC` base class has communication ports and communication functions. Other components and flight software can use the communication functions to communicate.
+- For C2A, the `OBC_C2A` has the following functions for C2A flight software. The driver functions in the flight software can use these functions. It is essential to use the same `port_id` with the component setting in S2E. The details are described in specification documents for each feature. 
+  - Serial communication functions
+    ```cpp
+    int OBC_C2A_SendFromObc(int port_id, unsigned char* buffer, int offset, int count);
+    int OBC_C2A_ReceivedByObc(int port_id, unsigned char* buffer, int offset, int count);
+    ```
+  - I2C communication functions
+    ```cpp
+    int OBC_C2A_I2cWriteCommand(int port_id, const unsigned char i2c_addr, const unsigned char* data, const unsigned char len);
+    int OBC_C2A_I2cWriteRegister(int port_id, const unsigned char i2c_addr, const unsigned char* data, const unsigned char len);
+    int OBC_C2A_I2cReadRegister(int port_id, const unsigned char i2c_addr, unsigned char* data, const unsigned char len);
+    ```
+  - GPIO
+    ```cpp
+    int OBC_C2A_GpioWrite(int port_id, const bool is_high);
+    bool OBC_C2A_GpioRead(int port_id);
+    ```
+- Currently, the C2A uses the wrapper functions in [IfWrapper/Sils](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e/src/src_user/IfWrapper/Sils). The functions automatically overload the normal IfWrapper functions when C2A is executed on the S2E.
+- Other interfaces like SPI, etc., will be implemented.
 
-# 5. Sample codes for S2E-C2A communication
-- S2E side
-  - Users can use the [EXP](https://gitlab.com/ut_issl/s2e/s2e_core_oss/-/blob/develop/src/Component/Abstract/EXP.h) class in `S2E_CORE_OSS` as a test component to communicate with C2A.
-  - Add `EXP` as a component in `User_Component` with reference to the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`.
-  - Edit the following parameters in `User_SimBase.ini` since the C2A's time update frequency is 1msec.
+
+# 5. Example of S2E-C2A communication
+- This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/C2A_Integration`.
+- Preparation
+  - We use the sample codes mentioned above as the base of this example.
+    - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
+    - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
+  - Clone the `s2e-core` v5.0.0.
+    - Please set the environment for that the s2e-core can work without C2A.
+  - Clone the sample codes in the `FlightSW` directory.
+  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
+  - Edit the `CMakeList.txt` of `s2e-user-for-c2a-core` to modify the C2A name
     ```
-    StepTimeSec=0.001 //sec
-    CompoUpdateIntervalSec = 0.001 //sec 
+    set(C2A_NAME "c2a-core/Examples/minimum_user_for_s2e")
     ```
-- C2A side
-  - Edit `AppRegistry.c,h`, `rs422_dummy.c,h`, and `driver_update.c` with reference to the sample codes.
-    - `AppRegistry.h`: Add `AR_DI_RS422_DUMMY,` .
-    - `AppRegistry.c`: Add `add_application_(AR_DI_RS422_DUMMY, RS422_create_dummy);`. 
-    - `rs422_dummy.c,h`: Replace most of the codes.
-    - `driver_update.c`: Add the `AR_DI_RS422_DUMMY` execution command in block commands.
-      ```cpp
-      CCP_form_app_cmd(&temp, 0, AR_DI_RS422_DUMMY);
-      BCT_register_cmd(&temp); 
-      ```
-  - **Note**: Currently, the character encoding of C2A is `SJIS`, and the sample codes in this tutorial are written in `UTF-8`, so please carefully copy the files and convert the encoding if you need.
+- Modification of the S2E side
+  - Users can use the [EXP](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/Abstract/EXP.h) class in `s2e-core` as a test component to communicate with C2A.
+  - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`. The source codes are stored same directory of the `s2e-user-for-c2a-core`.
+  - Add `EXP` as a component in `C2aCoreSampleComponents.cpp` and `C2aCoreSampleComponents.h`.
+    - In this example, the `OBC_C2A` is executed as 1kHz, and the `EXP` is executed as 1Hz.
+ - Modification of the C2A side
+   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. The source codes are stored same directory of the `c2a-core/Examples/minimum_user_for_s2e`.
+   - We need to add a new driver instance application to communicate with the `EXP` component.
+     - Copy `Application/DriverInstances/di_s2e_uart_test.c, .h`
+     - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
+   - Edit `app_registry.c, h` and `app_headers.h` in the `Application` directory to register the application of `di_s2e_uart_test`.
+   - Edit `Setting/Modes/TaskLists/Elements/tl_elem_drivers_update.c` to add the `AR_DI_S2E_UART_TEST` to execute in the tasklist.
 - Execution and Result
-  - Please use the `breakpoint` feature to check that the communication between `EXP` and `RS422_dummy` works well.
-    - The `RS422_dummy` sends capital alphabets from `A` to `Z` with the `SET` command for `EXP`.
-    - The `EXP` receives the command, stores the received characters in the buffer, and sends the buffer data to `RS422_dummy`.
-    - Users can check the `RS422_dummy`'s received data (test_rx_data_) at the following breakpoint.
-    ```c
-    // Receive
-    RS422_RX(&rs422_dummy_ch_[test_ch], &test_rx_data_[0], 100);
-    } //<- breakpoint
-    ``` 
-  
-  <img src="./figs/C2aCommunicationConfirmation.png" alt="C2aCommunicationConfirmation" style="zoom: 100%;" />
+  - The `AR_DI_S2E_UART_TEST` application sends characters to the `EXP` component like `SETA, SETB, SETC, ..., SETZ, SETA`
+  - The `EXP` component receives the characters and stores the set characters like `A, B, C, ..., Z, A`
+  - The `EXP` component sends the stored characters as telemetry like `A, BA, CBA, ..., ZYX`
+  - The `AR_DI_S2E_UART_TEST` application receives the telemetry and prints the first three characters in the debug output console like the following figure.
+    ![](./figs/C2aCommunicationConfirmation.png)
+
