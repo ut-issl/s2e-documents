@@ -7,26 +7,34 @@
 
 
 ## Naming Rules
-- Now discussing)*
-  - The following rules are follows until the naming rule is decided.
+- Now discussing
+  - The following rules are follows until the new naming rule is decided.
+  - Several old files do not follow the rules.
+
+- File and directory Name
+  - `CamelCase`
 
 - Macro (define)
-    - All capital letters, connect between words with _
+  - Snake case with capital case
+  - `SNAKE_CASE`
 
 - Name of the class
-     CamelCase (capitalize only the beginning of words)
+  - `CamelCase`
 
 - Variable name
-    - All lowercase letters, connect between words with _
+  - Snake case with lower case
+  - `snake_case`
 
 - Constant name (not a define but a constant)
-    - Add k at the beginning and the rest is CamelCase
+  - Add k at the beginning and the rest is CamelCase
+  - `kCamelCase`
 
 - Member variables in the class
-    - Lowercase letters, connect between words with _, end with _
+  - Snake case with lower case end with `_`
+  - `snake_case_`
 
 - Methods (functions) in the class
-    - CamelCase
+  - `CamelCase`
 
 
 ## Documentation
