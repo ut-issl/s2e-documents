@@ -2,11 +2,18 @@
 ## Overview
 
 - This repository summarizes documents of [S2E (Spacecraft Simulation Environment)](https://github.com/ut-issl/s2e-core/).
+- The branch construction
+  - main
+    - Documents for the latest stable version of s2e-core
+      - Current version supports [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+    - The old versions are managed with `release/tag/v.*.*.*`
+      - The release version number is compatible with s2e-core's version number
+  - develop
+    - Documents for the latest `develop` branch of s2e-core
+    - This version is only for s2e-core developers
+  - feature/branch-name
+    - Writing documents before merge with the `develop`
 - You can read the documents in the [GitHub Pages of this repository](https://ut-issl.github.io/s2e-documents).
-- The Documents should be 
-  - written in English
-  - written in markdown format
-  - updated ASAP when the source codes are modified
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of s2e-core](https://github.com/ut-issl/s2e-core/discussions).
 
 ## Index
