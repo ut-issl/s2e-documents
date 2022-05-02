@@ -18,11 +18,8 @@
 	   1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   2. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
 	   3. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
-	   4. ~~[How to build with OSX](./General/HowToCompileWith_OSX.md)~~  
-        This configuration doesn't work now since the OSX doesn't support 32bit applications.  
-        Mac users can use Ubuntu in Docker.
-	   5. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
-	   6. How to build with other compilers will be written
+	   4. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
+	   5. How to build with other compilers will be written
 2. Tutorials
    1. [Getting Started](./Tutorials/GettingStarted.md)
    2. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
