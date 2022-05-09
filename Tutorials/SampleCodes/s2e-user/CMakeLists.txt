@@ -1,7 +1,17 @@
 ## General Settings
+cmake_policy(SET CMP0048 NEW)
+project(S2E_USER
+  LANGUAGES CXX
+  DESCRIPTION "s2e-user: A sample of S2E User Side"
+  VERSION 5.0.0
+)
+
 cmake_minimum_required(VERSION 3.13)
-project(S2E_USER)
-set(CMAKE_CXX_STANDARD 14)
+
+# build config
+option(USE_HILS "Use HILS" OFF)
+option(USE_C2A "Use C2A" OFF)
+
 # preprocessor
 if(WIN32)
   add_definitions(-DWIN32)
@@ -9,45 +19,35 @@ endif()
 
 ## set directory path
 set(S2E_CORE_DIR ../s2e-core)
-set(CSPICE_DIR ../ExtLibraries/cspice)
-set(NRLMSISE00_DIR ../ExtLibraries/nrlmsise00)
-set(FLIGHT_SW_DIR ../FlightSW)
-set(C2A_DIR ${FLIGHT_SW_DIR}/c2a_user_oss)
+if(NOT DEFINED EXT_LIB_DIR)
+  set(EXT_LIB_DIR ../ExtLibraries)
+endif()
+set(CSPICE_DIR ${EXT_LIB_DIR}/cspice)
+set(NRLMSISE00_DIR ${EXT_LIB_DIR}/nrlmsise00)
 
-if(WIN32)
-elseif(APPLE)
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ./out)  # set build path
+if(NOT DEFINED FLIGHT_SW_DIR)
+  set(FLIGHT_SW_DIR ../FlightSW)
+endif()
+if(NOT DEFINED C2A_NAME)
+  set(C2A_NAME "c2a_oss")
 endif()
 
-## Options to use C2A
-option(USE_C2A "Use C2A")
-set(USE_C2A OFF)
+## options to use C2A
 if(USE_C2A)
-  # add definition
+  set(C2A_DIR ${FLIGHT_SW_DIR}/${C2A_NAME})
+  message("C2A dir: ${C2A_DIR}")
   add_definitions(-DUSE_C2A)
   add_definitions(-DSILS_FW)
-  
-  # include_directories of C2A
-  include_directories(${C2A_DIR}/src/src_core/System/AnomalyLogger)
-  include_directories(${C2A_DIR}/src/src_core/System/ApplicationManager)
-  include_directories(${C2A_DIR}/src/src_core/System/ModeManager)
-  include_directories(${C2A_DIR}/src/src_core/System/TaskManager)
-  include_directories(${C2A_DIR}/src/src_core/System/WatchdogTimer)
-  include_directories(${C2A_DIR}/src/src_core/System/TimeManager)
-  include_directories(${C2A_DIR}/src/src_core/CmdTlm)
-  include_directories(${C2A_DIR}/src/src_user/Applications)
+  #include_directories of C2A
   include_directories(${C2A_DIR}/src)
   include_directories(${S2E_CORE_DIR}/src/Interface/SpacecraftInOut)
-  
-  # add subdirectory
-  add_subdirectory(${C2A_DIR} C2A_CORE)
-  
-  message("USE C2A")
+
+  #add subdirectory
+  set(BUILD_C2A_AS_CXX ON)
+  add_subdirectory(${C2A_DIR} C2A)
 endif()
 
-## Options to use HILS
-option(USE_HILS "Use HILS")
-set(USE_HILS OFF)
+## options to use HILS
 if(USE_HILS AND WIN32)
   add_definitions(-DUSE_HILS)
   ## winsock2
@@ -57,14 +57,17 @@ if(USE_HILS AND WIN32)
   message(${WS2_32_LIB})
 endif()
 
-## include directories of S2E_CORE
+## include directories of s2e-core
 include_directories(${CSPICE_DIR}/include)
 include_directories(${NRLMSISE00_DIR}/src)
+include_directories(${S2E_CORE_DIR}/src)
 include_directories(${S2E_CORE_DIR}/src/Library/math)
+include_directories(${S2E_CORE_DIR}/src/Library/utils)
 include_directories(${S2E_CORE_DIR}/src/Dynamics)
 include_directories(${S2E_CORE_DIR}/src/Disturbance)
 include_directories(${S2E_CORE_DIR}/src/Interface/InitInput)
 include_directories(${S2E_CORE_DIR}/src/Interface/LogOutput)
+include_directories(${S2E_CORE_DIR}/src/Interface/SpacecraftInOut/Ports)
 include_directories(${S2E_CORE_DIR}/src/Simulation)
 include_directories(${S2E_CORE_DIR}/src/Simulation/MCSim)
 include_directories(${S2E_CORE_DIR}/src/Simulation/Spacecraft)
@@ -74,6 +77,7 @@ include_directories(${S2E_CORE_DIR}/src/Simulation/Case)
 include_directories(${S2E_CORE_DIR}/src/Disturbance)
 include_directories(${S2E_CORE_DIR}/src/Environment/Global)
 include_directories(${S2E_CORE_DIR}/src/Environment/Local)
+include_directories(${S2E_CORE_DIR}/src/Component)
 include_directories(${S2E_CORE_DIR}/src/Component/Abstract)
 include_directories(${S2E_CORE_DIR}/src/Component/AOCS)
 include_directories(${S2E_CORE_DIR}/src/Component/CDH)
@@ -102,26 +106,18 @@ add_subdirectory(${S2E_CORE_DIR}/src/Library/sgp4 S2E_CORE/sgp4)
 add_subdirectory(${S2E_CORE_DIR}/src/Library/utils S2E_CORE/utils)
 add_subdirectory(${S2E_CORE_DIR}/src/Library/optics S2E_CORE/optics)
 add_subdirectory(${S2E_CORE_DIR}/src/Library/RelativeOrbit S2E_CORE/RelativeOrbit)
+add_subdirectory(${S2E_CORE_DIR}/src/Library/Orbit S2E_CORE/Orbit)
+add_subdirectory(${S2E_CORE_DIR}/src/Library/Geodesy S2E_CORE/Geodesy)
 add_subdirectory(${S2E_CORE_DIR}/src/Simulation S2E_CORE/Simulation)
 
 set(SOURCE_FILES
-  src/S2E_USER.cpp
-  src/Simulation/Case/User_case.cpp
-  src/Simulation/Spacecraft/User_sat.cpp
-  src/Simulation/Spacecraft/User_Components.cpp
+  src/S2eUser.cpp
+  src/Simulation/Case/UserCase.cpp
+  src/Simulation/Spacecraft/UserSat.cpp
+  src/Simulation/Spacecraft/UserComponents.cpp
 )
 # Create executable file
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-
-# Compile option
-if(MSVC)
-  target_compile_options(${PROJECT_NAME} PUBLIC "/W4")
-  target_compile_options(${PROJECT_NAME} PUBLIC "/source-charset:utf-8")
-else()
-  target_compile_options(${PROJECT_NAME} PUBLIC "${CMAKE_CXX_FLAGS}-Wall")
-  set(CMAKE_CXX_FLAGS "-m32 -rdynamic -Wall -g")
-  set(CMAKE_C_FLAGS "-m32 -rdynamic -Wall -g")
-endif()
 
 ## cspice library
 if(CYGWIN)
@@ -138,6 +134,9 @@ elseif(WIN32)
   find_library(CSPICE_LIB
     NAMES cspice.lib csupport.lib
     PATHS ${CSPICE_DIR}/cspice_msvs/lib)
+endif()
+if(NOT CSPICE_LIB)
+  message(FATAL_ERROR "cspice not found in ${EXT_LIB_DIR}")
 endif()
 
 ## nrlmsise00 library
@@ -156,20 +155,22 @@ elseif(WIN32)
     NAMES libnrlmsise00.lib
     PATHS ${NRLMSISE00_DIR}/lib)
 endif()
+if(NOT NRLMSISE00_LIB)
+  message(FATAL_ERROR "nrlmsise00 not found in ${EXT_LIB_DIR}")
+endif()
 
 ## Linking libraries
 set(S2E_LIBRARIES
-  IGRF WRAPPER_NRLMSISE00 INIH MATH SGP4 UTIL OPTICS RELATIVE_ORBIT_MODELS
+  IGRF WRAPPER_NRLMSISE00 INIH SGP4 UTIL OPTICS RELATIVE_ORBIT_MODELS ORBIT_MODELS GEODESY MATH
 )
 # Initialize link
-target_link_libraries(COMPONENT INTERFACE INI_IN DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT SC_IO RELATIVE_INFO ${S2E_LIBRARIES})
-target_link_libraries(DYNAMICS INTERFACE INI_IN GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT SIMULATION ${S2E_LIBRARIES})
-target_link_libraries(DISTURBANCE INTERFACE INI_IN DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT ${S2E_LIBRARIES})
-target_link_libraries(SIMULATION INTERFACE INI_IN DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT DISTURBANCE ${S2E_LIBRARIES})
-target_link_libraries(GLOBAL_ENVIRONMENT INTERFACE INI_IN ${CSPICE_LIB} ${S2E_LIBRARIES})
-target_link_libraries(LOCAL_ENVIRONMENT INTERFACE INI_IN GLOBAL_ENVIRONMENT ${CSPICE_LIB} ${S2E_LIBRARIES})
-target_link_libraries(INI_IN INTERFACE DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT ${S2E_LIBRARIES})
-target_link_libraries(WRAPPER_NRLMSISE00 INTERFACE ${NRLMSISE00_LIB})
+target_link_libraries(COMPONENT DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT SC_IO RELATIVE_INFO ${S2E_LIBRARIES})
+target_link_libraries(DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT SIMULATION ${S2E_LIBRARIES})
+target_link_libraries(DISTURBANCE DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT ${S2E_LIBRARIES})
+target_link_libraries(SIMULATION DYNAMICS GLOBAL_ENVIRONMENT LOCAL_ENVIRONMENT DISTURBANCE ${S2E_LIBRARIES})
+target_link_libraries(GLOBAL_ENVIRONMENT ${CSPICE_LIB} ${S2E_LIBRARIES})
+target_link_libraries(LOCAL_ENVIRONMENT GLOBAL_ENVIRONMENT ${CSPICE_LIB} ${S2E_LIBRARIES})
+target_link_libraries(WRAPPER_NRLMSISE00 ${NRLMSISE00_LIB})
 
 target_link_libraries(${PROJECT_NAME} DYNAMICS)
 target_link_libraries(${PROJECT_NAME} DISTURBANCE)
@@ -195,7 +196,6 @@ if(USE_HILS)
   set_target_properties(SIMULATION PROPERTIES COMMON_LANGUAGE_RUNTIME "")
   set_target_properties(GLOBAL_ENVIRONMENT PROPERTIES COMMON_LANGUAGE_RUNTIME "")
   set_target_properties(LOCAL_ENVIRONMENT PROPERTIES COMMON_LANGUAGE_RUNTIME "")
-  set_target_properties(INI_IN PROPERTIES COMMON_LANGUAGE_RUNTIME "")
   set_target_properties(HILS_IO PROPERTIES COMMON_LANGUAGE_RUNTIME "")
   set_target_properties(RELATIVE_INFO PROPERTIES COMMON_LANGUAGE_RUNTIME "")
 endif()
@@ -203,3 +203,5 @@ endif()
 ## Cmake debug
 message("Cspice_LIB:  " ${CSPICE_LIB})
 message("nrlmsise00_LIB:  " ${NRLMSISE00_LIB})
+
+include(${S2E_CORE_DIR}/common.cmake)

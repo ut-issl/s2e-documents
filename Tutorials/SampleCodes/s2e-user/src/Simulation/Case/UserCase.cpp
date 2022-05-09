@@ -1,5 +1,4 @@
-#include "User_case.h"
-#include "Initialize.h"
+#include "UserCase.hpp"
 
 UserCase::UserCase(std::string ini_fname)
 : SimulationCase(ini_fname)

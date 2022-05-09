@@ -1,5 +1,6 @@
-#include "User_Components.h"
-#include "Initialize.h"
+#include "UserComponents.hpp"
+
+#include <Interface/InitInput/IniAccess.h>
 
 UserComponents::UserComponents(
   const Dynamics* dynamics, 
@@ -7,20 +8,16 @@ UserComponents::UserComponents(
   const LocalEnvironment* local_env, 
   const GlobalEnvironment* glo_env,
   const SimulationConfig* config,
-  ClockGenerator* clock_gen,
-  const int sat_id
+  ClockGenerator* clock_gen
 ):dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config)
 {
-  IniAccess iniAccess = IniAccess(config->sat_file_[0]);
-  double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
-
   obc_ = new OBC(clock_gen);
 }
 
 UserComponents::~UserComponents()
 {
-  delete obc_;
   // OBC must be deleted the last since it has com ports
+  delete obc_;
 }
 
 Vector<3> UserComponents::GenerateForce_b()
@@ -28,16 +25,17 @@ Vector<3> UserComponents::GenerateForce_b()
   // There is no orbit control component, so it remains 0
   Vector<3> force_b_(0.0);
   return force_b_;
-};
+}
 
 Vector<3> UserComponents::GenerateTorque_b()
 {
   // No attitude control component
   Vector<3> torque_b_(0.0);
   return torque_b_;
-};
+}
 
 void UserComponents::CompoLogSetUp(Logger & logger)
 {
   // Users can set log output when they need component log
+  UNUSED(logger);
 }

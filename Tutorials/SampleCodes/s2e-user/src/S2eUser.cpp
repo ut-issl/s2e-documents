@@ -1,10 +1,8 @@
 // Simulator includes
-#include "Initialize.h"
-#include "Logger.h"
-#include "SimulationCase.h"
+#include "Interface/LogOutput/Logger.h"
 
 // Add custom include files
-#include "./Simulation/Case/User_case.h"
+#include "./Simulation/Case/UserCase.hpp"
 
 // degub print of initialize file path
 void print_path(std::string path)
@@ -21,10 +19,10 @@ void print_path(std::string path)
 }
 
 // Main function
-int main(int argc, char* argv[])
+int main()
 {
   // Set initialize file
-  std::string ini_file = "../../data/ini/User_SimBase.ini";
+  std::string ini_file = "../../data/ini/UserSimBase.ini";
 
   std::cout << "Starting simulation..." << std::endl;
   std::cout << "\tIni file: ";
