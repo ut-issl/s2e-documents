@@ -6,7 +6,7 @@
 - **Note** The [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0) provides the CMake file to download and install the external libraries, and we recommend to use it since it is simpler. So users do not need to execute the following process.
 
 
-## 2. How to set up CSPICE Library for S2E
+## 2. How to set up CSPICE Library for S2E [OLD Descriptions]
 **Note**: Users can use the script file to automatically set up the following process in the `s2e-core/script` directory. If the script does not work, please see the following process.
 
 - Make directories as follow
