@@ -2,50 +2,43 @@
 
 ## 1.  Overview
 
-- In the [How To Make New Simulation Scenario](./HowToMakeNewSimulationScenario.md) tutorial, we have made an `S2E_USER` directory for our simulation scenario.
+- In the [How To Make New Simulation Scenario](./HowToMakeNewSimulationScenario.md) tutorial, we have made an `s2e-user` directory for our simulation scenario.
 - This tutorial explains how to add components to your scenario.
-- A similar procedure is available for other components in the `S2E_CORE`.
+- A similar procedure is available for other components in the `s2e-core`.
 - The Supported version of this document
-  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
+  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+
 
 ## 2. Add a Gyro sensor
 
-- This chapter explains how to add a gyro component to your `S2E_USER` simulation case.
+- This chapter explains how to add a gyro component to your `s2e-user` simulation case.
 
-1. Open `User_Components.h`
+1. Open & edit `UserComponents.h`
+   - Add the following descriptions at the one line below of `#include "OBC.h"`
+     ```c++
+     #include "InitGyro.hpp"
+     ```
+   - Add the following descriptions at the one line below of `OBC* obc_;`
+     ```c++
+     Gyro* gyro_;
+     ```
 
-2. Add the following descriptions at the one line below of `#include "OBC.h"`
+4. Open and edit `UserComponents.cpp`
+   - Edit the constructor function as follows to create an instance of the `GYRO` class at the one line below of `obc_ = new OBC(clock_gen);`.
+     ``` c++
+     {
+       // Initialize of GYRO class
+       IniAccess iniAccess = IniAccess(config->sat_file_[0]);
+       const double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
+       std::string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
+       gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
+     }
+     ```
 
-   ```c++
-   #include "Gyro.h"
-   ```
-
-3. Add the following descriptions at the one line below of `OBC* obc_;`
-
-   ```c++
-   Gyro* gyro_;
-   ```
-
-4. Open `User_Components.cpp`
-
-5. Edit the constructor function as follows to create an instance of the GYRO class
-
-   ``` c++
-    {
-      IniAccess iniAccess = IniAccess(config->sat_file_[0]);
-      double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
-
-      obc_ = new OBC(clock_gen);
-      std::string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
-      gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
-    }
-   ```
-
-6. Add the following descriptions at the one line up of `delete obc_;` in the destructor.
-
-   ```c++
-   delete gyro_;
-   ```
+   - Add the following descriptions at the one line up of `delete obc_;` in the destructor.
+     ```c++
+     delete gyro_;
+     ```
 
 7. Edit the `CompoLogSetUp` function as follows to register log output
 

@@ -20,21 +20,21 @@ UserComponents::~UserComponents()
   delete obc_;
 }
 
-Vector<3> UserComponents::GenerateForce_b()
+Vector<3> UserComponents::GenerateForce_N_b()
 {
   // There is no orbit control component, so it remains 0
-  Vector<3> force_b_(0.0);
-  return force_b_;
+  Vector<3> force_N_b_(0.0);
+  return force_N_b_;
 }
 
-Vector<3> UserComponents::GenerateTorque_b()
+Vector<3> UserComponents::GenerateTorque_Nm_b()
 {
   // No attitude control component
-  Vector<3> torque_b_(0.0);
-  return torque_b_;
-}
+  Vector<3> torque_Nm_b_(0.0);
+  return torque_Nm_b_;
+};
 
-void UserComponents::CompoLogSetUp(Logger & logger)
+void UserComponents::LogSetup(Logger & logger)
 {
   // Users can set log output when they need component log
   UNUSED(logger);

@@ -22,9 +22,9 @@ public:
     ClockGenerator* clock_gen
   );
   ~UserComponents();
-  libra::Vector<3> GenerateForce_b();
-  libra::Vector<3> GenerateTorque_b();
-  void CompoLogSetUp(Logger& logger);
+  libra::Vector<3> GenerateForce_N_b();
+  libra::Vector<3> GenerateTorque_Nm_b();
+  void LogSetup(Logger& logger);
 
 private:
   // Components
