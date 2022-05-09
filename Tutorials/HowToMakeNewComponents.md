@@ -46,7 +46,7 @@
 4. Edit `UserComponent.hpp` and `UserComponent.cpp` as referring [How To Add Components](./HowToAddComponents.md)
 
    - The constructor of the `ClockSensor` requires arguments as `prescaler`, `clock_gen`, `sim_time`, and `bias_sec`.
-   - `prescaler` and `bias_sec` are user setting parameters for the sensor, and you can set these value.
+   - `prescaler` and `bias_sec` are user setting parameters for the sensor, and you can set these values.
    - `clock_gen` is an argument for the `ComponentBase` class.
    - `sim_time` is a specific argument for the clock sensor to get time information. `SimTime` class is managed in the `GlobalEnvironment`, and the `GlobalEnvironment` is instantiated in the `SimulationCase` class.
    - You need to edit the `UserComponents.cpp` as follows.
@@ -70,7 +70,7 @@
 
 ## 4. Make an initialize file for the clock sensor
 
-- Usually, we want to change the parameters of components without rebuild such as noise properties, mounting coordinates, and so on. So this section explains how to make an initialize file for the `ClockSensor`.
+- Usually, we want to change the parameters of components without rebuilding such as noise properties, mounting coordinates, and so on. So this section explains how to make an initialize file for the `ClockSensor`.
 
 1. Copy the following files in the directory `./Tutorials/SampleCode/ClockSensor` to the directory `s2e-user/src/Components`.
    - `InitClockSensor.cpp`
