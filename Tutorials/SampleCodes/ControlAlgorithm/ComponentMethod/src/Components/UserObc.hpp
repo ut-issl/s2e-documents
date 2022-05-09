@@ -4,11 +4,11 @@
 
 class UserComponents;
 
-class UserOBC: public ComponentBase
+class UserObc: public ComponentBase
 {
 public:
-  UserOBC(ClockGenerator* clock_gen, UserComponents& components);
-  ~UserOBC();
+  UserObc(ClockGenerator* clock_gen, UserComponents& components);
+  ~UserObc();
   void Initialize();
   double GetCurrent(int port_id) const;
 protected:

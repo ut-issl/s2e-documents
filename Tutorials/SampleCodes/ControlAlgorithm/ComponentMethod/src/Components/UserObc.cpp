@@ -1,29 +1,30 @@
-#include "User_OBC.h"
-#include "../Simulation/Spacecraft/User_Components.h"
+#include "UserObc.hpp"
+#include "../Simulation/Spacecraft/UserComponents.hpp"
 
-UserOBC::UserOBC(ClockGenerator* clock_gen, UserComponents& components)
+UserObc::UserObc(ClockGenerator* clock_gen, UserComponents& components)
 : ComponentBase(1, clock_gen), components_(components)
 {
   Initialize();
 }
 
-UserOBC::~UserOBC()
+UserObc::~UserObc()
 {
 }
 
-void UserOBC::Initialize()
+void UserObc::Initialize()
 {
 }
 
-void UserOBC::MainRoutine(int count)
+void UserObc::MainRoutine(int count)
 {
+  UNUSED(count);
   // Sensor inputs
-  libra::Vector<3> gyro_omega_c = components_.GetGyro().GetOmegaC();
-  double rw_rpm = components_.GetRw().GetVelocityRpm();
+  const libra::Vector<3> gyro_omega_c = components_.GetGyro().GetOmegaC();
+  // const double rw_rpm = components_.GetRw().GetVelocityRpm();  // An example of RW rotation speed observation
 
   // Control Algorithm
-  double Kp = 5e-3;
-  double torque = -1.0*Kp*gyro_omega_c(0);
+  const double Kp = 5e-3;
+  double torque = -1.0 * Kp * gyro_omega_c(0);
   
   // Actuator outputs
 	components_.GetRw().SetDriveFlag(true);
