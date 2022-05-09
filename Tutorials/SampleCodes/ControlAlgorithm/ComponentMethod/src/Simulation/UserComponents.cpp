@@ -42,6 +42,7 @@ Vector<3> UserComponents::GenerateTorque_Nm_b()
 {
   // No attitude control component
   Vector<3> torque_Nm_b_(0.0);
+  torque_Nm_b_ = rw_->GetOutputTorqueB();
   return torque_Nm_b_;
 }
 
