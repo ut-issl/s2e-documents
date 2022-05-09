@@ -13,12 +13,13 @@
   - FlightSW: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
 - The Supported version of this document
-  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
+  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
 
 ## 2. Direct method
 - This chapter introduces the simplest way to add a control algorithm without sensors and actuators.
 - This method directly measures the satellite's physical quantity and generates torque and force acting on the satellite.
 - To do that, users need to edit the `Update` function in the `UserSat.cpp`.
+  - A sample code is in `./Tutorials/SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`
 - The `UserSat` class already has satellite attitude, orbit, and local environment information since it inherits the `Spacecraft` base class. So users can easily access these values.
 - To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetOmega_b()`.
 - To generate torque and force, users can use `dynamics_->AddTorque_b` and `dynamics_->AddForce_b`.
