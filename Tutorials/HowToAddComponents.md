@@ -26,13 +26,11 @@
 4. Open and edit `UserComponents.cpp`
    - Edit the constructor function as follows to create an instance of the `GYRO` class at the one line below of `obc_ = new OBC(clock_gen);`.
      ``` c++
-     {
-       // Initialize of GYRO class
-       IniAccess iniAccess = IniAccess(config->sat_file_[0]);
-       const double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
-       std::string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
-       gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
-     }
+     // Initialize of GYRO class
+     IniAccess iniAccess = IniAccess(config->sat_file_[0]);
+     const double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
+     std::string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
+     gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
      ```
 
    - Add the following descriptions at the one line up of `delete obc_;` in the destructor.
@@ -40,30 +38,30 @@
      delete gyro_;
      ```
 
-7. Edit the `CompoLogSetUp` function as follows to register log output
-
-   ``` c++
-   void UserComponents::CompoLogSetUp(Logger & logger)
-   {
-     logger.AddLoggable(gyro_);
-   }
-   ```
+   - Edit the `CompoLogSetUp` function as follows to register log output
+     ``` c++
+     void UserComponents::LogSetup(Logger & logger)
+     {
+       logger.AddLoggable(gyro_);
+     }
+     ```
 
 8. Open `UserSat.ini` and edit `omega_b` to add initial angular velocity.
+   - Users can select any value.
 
 9. Add the following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor.
 
    ```c++
-   gyro_file = ../../data/ini/components/Gyro_xxx.ini
+   gyro_file = ../../data/ini/components/GyroXxx.ini
    ```
 
-10. Compile the `S2E_USER` and execute it
+10. Build the `s2e-user` and execute it
 
 11. Check the log output file to find `gyro_omega1_c`, the gyro sensor's output angular velocity value in the component frame.
 
     - Since the default initializing file is described as that the sensor has no noise, the value of `gyro_omega1_c` and `omega_t_b` is completely the same.
 
-12. Edit the `data/ini/components/Gyro_xxx.ini` file to add several noises, and rerun the `S2E_USER`
+12. Edit the `data/ini/components/GyroXxx.ini` file to add several noises, and rerun the `s2e-user`
 
 13. Check the log output file to find `gyro_omega1_c`. Now the sensor output has several errors you set in the initialize file like the following figure.
 
@@ -73,9 +71,9 @@
 
 ## 3. Add another Gyro sensor
 
-- You can add multiple components in your `S2E_USER` simulation case similar to the above sequence.
+- You can add multiple components in your `s2e-user` simulation case similar to the above sequence.
 
-1. Open `User_Components.h`
+1. Open `UserComponents.h`
 
 2. Add the following descriptions at the one line below of `GYRO* gyro_;`
 
@@ -85,21 +83,12 @@
 
 3. Open `User_Components.cpp`
 
-4. Edit the constructor function as follows to create an instance of the GYRO class
+4. Edit the constructor function to add the following description to create the second instance of the GYRO class
 
-    ``` c++
-    {
-      IniAccess iniAccess = IniAccess(config->sat_file_[0]);
-      double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
-
-      obc_ = new OBC(clock_gen);
-      std::string gyro_ini_path = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file");
-      gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
-
-      std::string gyro_ini_path_2 = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file_2");
-      gyro2_ = new Gyro(InitGyro(clock_gen, 2, gyro_ini_path_2, compo_step_sec, dynamics));
-    }
-    ```
+   ``` c++
+   std::string gyro_ini_path_2 = iniAccess.ReadString("COMPONENTS_FILE", "gyro_file_2");
+   gyro2_ = new Gyro(InitGyro(clock_gen, 2, gyro_ini_path_2, compo_step_sec, dynamics));
+   ```
 
 5. Add the following descriptions at the one line below of `delete gyro_;` in the destructor
 
@@ -122,13 +111,13 @@
 8. Add the following descriptions at the bottom line of `[COMPONENTS_FILE]` to set the initialize file for the gyro sensor
 
    ```c++
-   gyro_file_2 = ../../data/ini/components/Gyro_yyy.ini
+   gyro_file_2 = ../../data/ini/components/GyroYyy.ini
    ```
 
-9. Copy the `data/ini/components/Gyro_xxx.ini` file and rename it as `Gyro_yyy.ini`
+9. Copy the `data/ini/components/GyroXxx.ini` file and rename it as `GyroYyy.ini`
 
-10. Edit `Gyro_yyy.ini` to custom the noise performance of the second gyro sensor
+10. Edit `GyroYyy.ini` to custom the noise performance of the second gyro sensor
 
-11. Compile the `S2E_USER` and execute it
+11. Build the `s2e-user` and execute it
 
 12. Check the log output file to find `gyro_omega2_c`, the second gyro sensor's output angular velocity value in the component frame.
