@@ -1,5 +1,4 @@
-#include "User_case.h"
-#include "Initialize.h"
+#include "UserCase.hpp"
 #include "SimulationObject.h"
 
 UserCase::UserCase(std::string ini_fname, MCSimExecutor& mc_sim, const std::string log_path)
@@ -65,7 +64,7 @@ std::string UserCase::GetLogHeader() const
   std::string str_tmp = "";
   str_tmp += WriteScalar("time", "s");
   str_tmp += WriteVector("Omega", "b", "rad/s", 3);
-  str_tmp += WriteVector("quat", "i2b", "-", 4);
+  str_tmp += WriteVector("Quaternion", "i2b", "-", 4);
   return str_tmp;
 }
 std::string UserCase::GetLogValue() const

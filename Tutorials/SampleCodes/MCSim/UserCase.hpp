@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SimulationCase.h"
-#include "../Spacecraft/User_sat.h"
+#include "../Spacecraft/UserSat.hpp"
 #include "MCSimExecutor.h"
 
 class UserCase: public SimulationCase

@@ -9,7 +9,7 @@
 - This tutorial explains how to randomly change the initial value of the angular velocity.
   - There are sample codes in `SampleCodes\MCSim`.
 - The Supported version of this document
-  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
+  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
 
 ## 2. Edit Simulation Case
 - To use the MCSim, users have to edit their `User_case.h` and `User_case.cpp`
@@ -66,7 +66,7 @@
         std::string str_tmp = "";
         str_tmp += WriteScalar("time", "s");
         str_tmp += WriteVector("Omega", "b", "rad/s", 3);
-        str_tmp += WriteVector("quat", "i2b", "-", 4);
+        str_tmp += WriteVector("Quaternion", "i2b", "-", 4);
         return str_tmp;
       }
       std::string UserCase::GetLogValue() const
