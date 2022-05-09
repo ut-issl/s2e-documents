@@ -80,9 +80,9 @@
    - `CMakeSetting.json ` is a compile setting file for Visual Studio.
 2. `data/ini` and `data/logs`
    - In the `ini` directory, there are several initialize files.
-     - The most important initialize file is `User_SimBase.ini`.
+     - The most important initialize file is `UserSimBase.ini`.
      - Other initialize files are defined in this base initialize file. So you need to edit the file names in the base file when you modify the name of other initialize files.
-       - When you change the name of the base file, you have to edit `S2E_USER.cpp`.
+       - When you change the name of the base file, you have to edit `S2eUser.cpp`.
      - Details of the initialize files are described in `Specifications`.
        - Basic files are described in [Getting Started](./GettingStarted.md).
    - `logs`
@@ -90,7 +90,7 @@
 3. `src/S2eUser.cpp`
    - This is the main file of this program.
    - In this code, `UserSimBase.ini` is defined as the base file for the simulation, and an instance of the `simulation case class` named `UserCase` is created and initialized. And finally, the main routine of the class is executed.
-4.  `src/Simulation/Case`
+4. `src/Simulation/Case`
    - `UserCase` class is defined here. `UserCase` class inherits the `SimulationCase` base class in the `s2e-core`. The `SimulationCase` class has a `SimulationConfig` and `GlobalEnvironment` class. The `UserCase` class has an instance of the `spacecraft` class named as `UserSat`.
 5. `src/Simulation/Spacecraft/User_sat.cpp `
    - `UserSat` class is defined here. `UserSat` class inherits the `Spacecraft` class in the `s2e-core`. The `Spacecraft` base class has instances of `Dynamics`, `LocalEnvironment`, `Disturbance`, and `Structure`. And the `UserSat` class has an instance of `UserComponents`.
