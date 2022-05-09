@@ -4,18 +4,17 @@
 - S2E can simulate multiple satellites.
 - This document describes how to simulate multiple satellites.
 - The features of multiple satellite simulation are:
-    + Relative dynamics information is logged automatically
-    + Intersat communication can be used
-    + Orbits can be propagated using relative dynamics theory.
-- You can find sample codes for this tutorial in [S2E_FF](https://gitlab.com/ut_issl/s2e/s2e_ff) repository.
+  + Relative dynamics information is logged automatically
+  + Intersat communication can be used
+  + Orbits can be propagated using relative dynamics theory.
+- You can find sample codes for this tutorial in [S2E_FF](https://gitlab.com/ut_issl/s2e/s2e_ff) repository (Currently, this is private repository).
 
 ## 2. How to add a new satellite
 1. Edit `ini` files
-    1. Add `ini` files for the new satellite.
-        - `Sat.ini`, `Disturbance.ini`, `LocalEnvironment.ini`, `Structure.ini` are needed.
-    2. Register the ini file for the new satellite in `Simbase.ini`
-        - The arguments of `sat_file` are used as satellite ID in simulation.
-
+   1. Add `ini` files for the new satellite.
+      - `Sat.ini`, `Disturbance.ini`, `LocalEnvironment.ini`, `Structure.ini` are needed.
+   2. Register the ini file for the new satellite in `Simbase.ini`
+      - The arguments of `sat_file` are used as satellite ID in simulation.
         ```
         [SIM_SETTING]
         sat_file(0)            = ../../data/ini/Sat0.ini
