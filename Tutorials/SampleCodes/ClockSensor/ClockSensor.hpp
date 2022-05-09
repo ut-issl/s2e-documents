@@ -7,10 +7,10 @@ class ClockSensor: public ComponentBase, public ILoggable
 {
 public:
   ClockSensor(
-    int prescaler,
+    const int prescaler,
     ClockGenerator* clock_gen,
-    const SimTime* sim_time,
-    double bias_sec
+    const SimTime& sim_time,
+    const double bias_sec
   );
 
 protected:
@@ -21,7 +21,7 @@ protected:
 private:
   int prescaler_;
   ClockGenerator* clock_gen_;
-  const SimTime* sim_time_;
+  const SimTime& sim_time_;
   double bias_sec_;
   double time_output_sec_;
 };

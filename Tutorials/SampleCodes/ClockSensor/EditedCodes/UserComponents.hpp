@@ -1,15 +1,17 @@
 #pragma once
 
-#include "Vector.hpp"
+#include <Simulation/Spacecraft/InstalledComponents.hpp>
+
 #include "Dynamics.h"
 #include "GlobalEnvironment.h"
 #include "LocalEnvironment.h"
+#include "Vector.hpp"
 
-// include for component
+// include for components
 #include "OBC.h"
-#include "../../Components/ClockSensor.h"
+#include "../../Components/ClockSensor.hpp"
 
-class UserComponents
+class UserComponents : public InstalledComponents
 {
 public:
   UserComponents(
@@ -18,13 +20,13 @@ public:
     const LocalEnvironment* local_env, 
     const GlobalEnvironment* glo_env,
     const SimulationConfig* config,
-    ClockGenerator* clock_gen,
-    const int sat_id
+    ClockGenerator* clock_gen
   );
   ~UserComponents();
-  libra::Vector<3> GenerateForce_b();
-  libra::Vector<3> GenerateTorque_b();
-  void CompoLogSetUp(Logger& logger);
+  libra::Vector<3> GenerateForce_N_b();
+  libra::Vector<3> GenerateTorque_Nm_b();
+  void LogSetup(Logger& logger);
+
 private:
   // Components
   OBC* obc_;
