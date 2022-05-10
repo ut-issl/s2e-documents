@@ -5,7 +5,7 @@
 - This document describes how to simulate multiple satellites.
 - For the sample codes, please see `./Tutorials/SampleCodes/MultipleSatellites`
 - The Supported version of this document
-  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+  - Please confirm that the version of the documents and s2e-core is compatible.
  
  
 ## 2. How to add a new satellite

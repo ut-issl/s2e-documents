@@ -6,7 +6,7 @@
 - This tutorial explains how to make a new component into the s2e-user directory.
   - **Note**: You can move the source files for the new component into the [s2e-core](https://github.com/ut-issl/s2e-core) repository if the component is useful for all S2E users.
 - The Supported version of this document
-  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 
 ## 2. Overview of S2E/Components

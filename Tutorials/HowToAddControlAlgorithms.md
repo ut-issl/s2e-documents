@@ -13,7 +13,7 @@
   - FlightSW: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
 - The Supported version of this document
-  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Direct method
 - This chapter introduces the simplest way to add a control algorithm without sensors and actuators.

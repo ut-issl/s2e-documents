@@ -14,7 +14,8 @@
     - Please set the environment for that the s2e-core can work without C2A.
   - Clone the sample codes in the `FlightSW` directory.
   - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
-
+- The Supported version of this document
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. How to build C2A in S2E
 - When users want to use C2A, complete the following steps

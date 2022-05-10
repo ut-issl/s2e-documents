@@ -11,8 +11,8 @@
     - Initialize files
     - Compile setting files as [CMake files](https://cmake.org/), [Visual Studio Solution files](https://visualstudio.microsoft.com/downloads/), or others. 
 - This tutorial explains an example of how to make `s2e-user` repository and execute it.   
-- The supported version of this document
-  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+- The Supported version of this document
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 
 ## 2. Setup S2E_CORE

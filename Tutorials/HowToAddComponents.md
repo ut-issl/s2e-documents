@@ -6,7 +6,7 @@
 - This tutorial explains how to add components to your scenario.
 - A similar procedure is available for other components in the `s2e-core`.
 - The Supported version of this document
-  - s2e-core: [v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 
 ## 2. Add a Gyro sensor
