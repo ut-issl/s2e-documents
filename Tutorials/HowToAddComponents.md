@@ -13,7 +13,7 @@
 
 - This chapter explains how to add a gyro component to your `s2e-user` simulation case.
 
-1. Open & edit `UserComponents.h`
+1. Open & edit `UserComponents.hpp`
    - Add the following descriptions at the one line below of `#include "OBC.h"`
      ```c++
      #include "InitGyro.hpp"
@@ -73,7 +73,7 @@
 
 - You can add multiple components in your `s2e-user` simulation case similar to the above sequence.
 
-1. Open `UserComponents.h`
+1. Open `UserComponents.hpp`
 
 2. Add the following descriptions at the one line below of `GYRO* gyro_;`
 
@@ -81,7 +81,7 @@
    Gyro* gyro2_;
    ```
 
-3. Open `User_Components.cpp`
+3. Open `UserComponents.cpp`
 
 4. Edit the constructor function to add the following description to create the second instance of the GYRO class
 

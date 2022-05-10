@@ -29,7 +29,7 @@
      ```
 
 
-## 3. Setup & Compile S2E_USER
+## 3. Setup & Compile s2e-user
 
 1. Make a new directory `s2e-user`. It will be a root directory of s2e-user.
    ```
