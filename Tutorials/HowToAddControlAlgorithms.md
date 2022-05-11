@@ -12,7 +12,7 @@
     - For engineering researches and preliminary analysis for satellite projects
   - FlightSW: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
-- The Supported version of this document
+- The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Direct method

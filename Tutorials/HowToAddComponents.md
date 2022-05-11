@@ -5,7 +5,7 @@
 - In the [How To Make New Simulation Scenario](./HowToMakeNewSimulationScenario.md) tutorial, we have made an `s2e-user` directory for our simulation scenario.
 - This tutorial explains how to add components to your scenario.
 - A similar procedure is available for other components in the `s2e-core`.
-- The Supported version of this document
+- The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 

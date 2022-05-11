@@ -8,7 +8,7 @@
   - Please see the specification document for [MCSim](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for a detailed description.
 - This tutorial explains how to randomly change the initial value of the angular velocity.
   - There are sample codes in `SampleCodes\MCSim`.
-- The Supported version of this document
+- The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Edit Simulation Case

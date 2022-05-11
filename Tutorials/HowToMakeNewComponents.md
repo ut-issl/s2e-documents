@@ -5,7 +5,7 @@
 - In the [How To Add Components](./HowToAddComponents.md) tutorial, we have added existing components to the simulation scenario.
 - This tutorial explains how to make a new component into the s2e-user directory.
   - **Note**: You can move the source files for the new component into the [s2e-core](https://github.com/ut-issl/s2e-core) repository if the component is useful for all S2E users.
-- The Supported version of this document
+- The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 

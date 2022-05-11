@@ -4,7 +4,7 @@
 - S2E can simulate multiple satellites.
 - This document describes how to simulate multiple satellites.
 - For the sample codes, please see `./Tutorials/SampleCodes/MultipleSatellites`
-- The Supported version of this document
+- The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
  
  
