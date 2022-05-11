@@ -12,19 +12,18 @@
     - For engineering researches and preliminary analysis for satellite projects
   - FlightSW: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
-- The Supported version of this document
-  - s2e-core: [v4.0](https://github.com/ut-issl/s2e-core/releases/tag/v4.0)
+- The supported version of this document
+  - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Direct method
 - This chapter introduces the simplest way to add a control algorithm without sensors and actuators.
 - This method directly measures the satellite's physical quantity and generates torque and force acting on the satellite.
 - To do that, users need to edit the `Update` function in the `UserSat.cpp`.
+  - A sample code is in `./Tutorials/SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`
 - The `UserSat` class already has satellite attitude, orbit, and local environment information since it inherits the `Spacecraft` base class. So users can easily access these values.
 - To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetOmega_b()`.
 - To generate torque and force, users can use `dynamics_->AddTorque_b` and `dynamics_->AddForce_b`.
-- The sample codes are in `SampleCodes/ControlAlgorithm/DirectMethod/`, and you can see very simple detumbling with the proportional control method.
-- To use the sample code, you need to copy the `User_sat_with_control.cpp` and build it instead of `User_sat.cpp`.
-  - You need to edit `CMakeLists.txt` to add the copied `User_sat_with_control.cpp` to the `SOURCE_FILES` instead of the `User_sat.cpp`.
+- The sample codes are in `SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`, and you can see very simple detumbling with the proportional control method.
 - By using the sample code with initial angular velocity = [0.05, -0.03, 0.01] rad/s, the following results are given.
   - You need to edit the initialize file to set the initial angular velocity.
     
@@ -39,11 +38,11 @@
 - This method measures a satellite's physical quantity via sensors, generates torque and force via actuators, and executes control algorithms on OBC.
 - This tutorial assumes the spacecraft has a three-axis gyro sensor, a reaction wheel, and an OBC.
 - The sample codes are in `SampleCodes/ControlAlgorithm/ComponentMethod/`
-- Firstly, users need to make the `User_OBC` class to emulate the OBC.
-  - Copy the `User_OBC` files to the `S2E_USER/src/Components` from the `ComponentMethod/src/Components`, and add the `User_OBC.cpp` to the `set(SOURCE_FILES)` in the `CMakeLists.txt` to compile it.
-  - The `User_OBC` class has the `UserComponent` class as a member, and users can access all components to get sensing information or set the output of actuators.
+- Firstly, users need to make the `UserOBC` class to emulate the OBC.
+  - Copy the `UserObc` files to the `s2e-user/src/Components` from the `ComponentMethod/src/Components`, and add the `UserObc.cpp` to the `set(SOURCE_FILES)` in the `CMakeLists.txt` to compile it.
+  - The `UserOBC` class has the `UserComponent` class as a member, and users can access all components to get sensing information or set the output of actuators.
   - In this tutorial, the angular velocity is measured by the gyro sensor. RW's output torque is calculated using the X-axis of the measured angular velocity, and the torque is set to RW.
-- Next, users need to add the `User_OBC` into the `User_Component` class. You can copy the `User_Components` files to the `S2E_USER/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
+- Next, users need to add the `UserObc` into the `UserComponent` class. You can copy the `UserComponents` files to the `s2e-user/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
 - Finally, users need to add new source codes to the `CMakeLists.txt` to compile them.
 - By using the sample code, the following results are given.
   - The X-axis angular velocity is controlled, but other axes are not controlled well since the satellite only has an RW on X-axis. The X-axis angular velocity has offset value since the gyro has offset noise.

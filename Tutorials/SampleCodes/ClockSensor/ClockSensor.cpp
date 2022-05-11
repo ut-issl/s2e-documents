@@ -1,10 +1,10 @@
-#include "ClockSensor.h"
+#include "ClockSensor.hpp"
 
 ClockSensor::ClockSensor(
-  int prescaler,
+  const int prescaler,
   ClockGenerator* clock_gen,
-  const SimTime* sim_time,
-  double bias_sec
+  const SimTime& sim_time,
+  const double bias_sec
 )
 : ComponentBase(prescaler, clock_gen),
   sim_time_(sim_time), bias_sec_(bias_sec),
@@ -14,7 +14,8 @@ ClockSensor::ClockSensor(
 
 void ClockSensor::MainRoutine(int count)
 {
-  time_output_sec_ = sim_time_->GetElapsedSec() + bias_sec_;
+  UNUSED(count);
+  time_output_sec_ = sim_time_.GetElapsedSec() + bias_sec_;
 }
 
 std::string ClockSensor::GetLogHeader() const

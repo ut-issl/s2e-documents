@@ -1,7 +1,7 @@
 # Format to write specification documents
 
 ## 0. General rule
-- The file name should be "Spec_***.md" in the Specifications directory. 
+- The file name should be `Spec_CamelCase.md` in the Specifications directory. 
 - Please use the markdown format.
 - The markdown files are converted to a book with [mdBook](https://rust-lang.github.io/mdBook/) and published in Github Pages.
   - The equations are rendered with [MathJax](https://www.mathjax.org/)
