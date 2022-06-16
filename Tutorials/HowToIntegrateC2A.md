@@ -8,7 +8,7 @@
   - C2A is written in C language, but S2E builds C2A as C++.
 - Sample codes
   - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
-  - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
+  - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user)
 - Preparation to use the sample codes
   - Clone the `s2e-core` v5.0.0.
     - Please set the environment for that the s2e-core can work without C2A.
@@ -33,7 +33,7 @@
   - Edit `s2e-user/CMakeLists.txt`
     - `set(C2A_NAME "c2a_sample")`
       - Edit the directory name according to your situation
-      - If you use the sample codes, please edit here as `c2a-core/Examples/minimum_user_for_s2e`
+      - If you use the sample codes, please edit here as `c2a-core/Examples/minimum_user`
     - `option(USE_C2A "Use C2A" OFF)`
       - Turn on the USE_C2A flag as `option(USE_C2A "Use C2A" ON)`
   - Build the `s2e_user`
@@ -69,7 +69,7 @@
     int OBC_C2A_GpioWrite(int port_id, const bool is_high);
     bool OBC_C2A_GpioRead(int port_id);
     ```
-- Currently, the C2A uses the wrapper functions in [IfWrapper/Sils](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e/src/src_user/IfWrapper/Sils). The functions automatically overload the normal IfWrapper functions when C2A is executed on the S2E.
+- Currently, the C2A uses the wrapper functions in [IfWrapper/Sils](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user/src/src_user/IfWrapper/Sils). The functions automatically overload the normal IfWrapper functions when C2A is executed on the S2E.
 - Other interfaces like SPI, etc., will be implemented.
 
 
@@ -78,14 +78,14 @@
 - Preparation
   - We use the sample codes mentioned above as the base of this example.
     - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
-    - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user_for_s2e)
+    - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user)
   - Clone the `s2e-core` v5.0.0.
     - Please set the environment for that the s2e-core can work without C2A.
   - Clone the sample codes in the `FlightSW` directory.
   - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
   - Edit the `CMakeList.txt` of `s2e-user-for-c2a-core` to modify the C2A name
     ```
-    set(C2A_NAME "c2a-core/Examples/minimum_user_for_s2e")
+    set(C2A_NAME "c2a-core/Examples/minimum_user")
     ```
 - Modification of the S2E side
   - Users can use the [EXP](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/Abstract/EXP.h) class in `s2e-core` as a test component to communicate with C2A.
@@ -93,7 +93,7 @@
   - Add `EXP` as a component in `C2aCoreSampleComponents.cpp` and `C2aCoreSampleComponents.h`.
     - In this example, the `OBC_C2A` is executed as 1kHz, and the `EXP` is executed as 1Hz.
  - Modification of the C2A side
-   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. The source codes are stored same directory of the `c2a-core/Examples/minimum_user_for_s2e`.
+   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. The source codes are stored same directory of the `c2a-core/Examples/minimum_user`.
    - We need to add a new driver instance application to communicate with the `EXP` component.
      - Copy `Application/DriverInstances/di_s2e_uart_test.c, .h`
      - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
