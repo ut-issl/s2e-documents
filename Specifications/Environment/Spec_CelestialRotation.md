@@ -85,9 +85,9 @@
       ```math
       \bf{R} = 
       \begin{pmatrix}
-      1 & 0 & 0 \\
-      0 & \cos{\mathrm{(GAST)}} & \sin{\mathrm{(GAST)}} \\
-      0 & - \sin{\mathrm{(GAST)}} & \cos{\mathrm{(GAST)}}
+      \cos{\mathrm{(GAST)}} & \sin{\mathrm{(GAST)}} & 0 \\
+      - \sin{\mathrm{(GAST)}} & \cos{\mathrm{(GAST)}} & 0 \\
+      0 & 0 & 1
       \end{pmatrix}
       ```
 
