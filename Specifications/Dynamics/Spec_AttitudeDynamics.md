@@ -58,7 +58,7 @@
         - (double) dt: The duration for the attitude propagation
 
    3. algorithm  
-      If the differential equation (1) is given, the state quantity in $`n+1`$ step can be calculated as (2).
+      If the differential equation (1) is given, the state quantity in $n+1$ step can be calculated as (2).
 
       ```math
       \hat{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x},t)
@@ -69,14 +69,14 @@
        +2\boldsymbol{k_3}+\boldsymbol{k_4})
       \tag{2}
       ```
-      where $`\Delta t`$ is a time step, which meets the equation (3).
+      where $\Delta t$ is a time step, which meets the equation (3).
 
       ```math
       t_{n+1} = t_{n} + \Delta t
       \tag{3}
       ```
 
-      $`k_i \, (i=1,2,3,4)`$, which has the same number of elements, can be calculated as the equations (4).
+      $k_i \, (i=1,2,3,4)$, which has the same number of elements, can be calculated as the equations (4).
 
       ```math
       \boldsymbol{k_{1}} = \boldsymbol{f}(\boldsymbol{x_n},t_n) \\
@@ -86,7 +86,7 @@
       \tag{4}
       ```
 
-      In this attitude propagation, the quantity of state $`\boldsymbol{x}`$ consists of 7 elements, including `Quaternion_i2b` and angular velocity $`\boldsymbol{\omega}_b`$.
+      In this attitude propagation, the quantity of state $\boldsymbol{x}$ consists of 7 elements, including `Quaternion_i2b` and angular velocity $\boldsymbol{\omega}_b$.
 
       ```math
       \boldsymbol{\omega}_b = [{\omega}_{bx} \, {\omega}_{by} \, {\omega}_{bz}]^T \\
@@ -118,7 +118,7 @@
        \tag{6}
        ```
 
-      where $`\boldsymbol{\omega}_b`$[rad/s] is angular velocity in the body-fixed coordinate, $`\boldsymbol{I}_b`$[kgm$`^2`$] is inertia tensor of the satellite, $`\boldsymbol{T}_b`$[Nm] is torque in the body-fixed coordinate, $`\boldsymbol{h}_b`$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
+      where $\boldsymbol{\omega}_b$[rad/s] is angular velocity in the body-fixed coordinate, $\boldsymbol{I}_b$[kgm$^2$] is inertia tensor of the satellite, $\boldsymbol{T}_b$[Nm] is torque in the body-fixed coordinate, $\boldsymbol{h}_b$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
       Quaternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
 
        ```math

@@ -32,7 +32,7 @@
          \tag{1}
       ```
 
-      where $`\boldsymbol{M}`$ is the residual magnetic moment in the body-fixed frame, $`\boldsymbol{B}`$ is the magnetic field in the body-fixed frame.
+      where $\boldsymbol{M}$ is the residual magnetic moment in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field in the body-fixed frame.
 
 2. `CalcRMM` function
    1. overview  
@@ -53,7 +53,7 @@
          \boldsymbol{r}(t_{k+1}) = \boldsymbol{r}(t_{k}) +\boldsymbol{w_2}(t_{k+1})
          \tag{2}
       ```
-      where $`\boldsymbol{M}_0`$ is the average residual magnetic moment in the body-fixed frame, $`\boldsymbol{r}`$ is the random walk of RMM, and $`\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)`$ is the white noise.
+      where $\boldsymbol{M}_0$ is the average residual magnetic moment in the body-fixed frame, $\boldsymbol{r}$ is the random walk of RMM, and $\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)$ is the white noise.
 
 ## 3. Results of verifications
 

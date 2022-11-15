@@ -26,19 +26,19 @@
 
    2. inputs and outputs
       - inputs
-        - $`v_{s}`$:Direction vector of the sun (s/c -> sun) at the body frame
-        - $`P`$ Solar pressure at the position of the spacecraft [N/m^2]
+        - $v_{s}$:Direction vector of the sun (s/c -> sun) at the body frame
+        - $P$ Solar pressure at the position of the spacecraft [N/m^2]
       - setting parameters
-        - $`\nu`$ : Total reflectance
-          - $`\nu = 1-\alpha`$, where $`\alpha`$ is the absorption of the sun spectrum.
-        - $`\mu`$ : Specularity. Ratio of specular reflection inside the total reflected light.
-        - $`A`$ : Area of the surface
+        - $\nu$ : Total reflectance
+          - $\nu = 1-\alpha$, where $\alpha$ is the absorption of the sun spectrum.
+        - $\mu$ : Specularity. Ratio of specular reflection inside the total reflected light.
+        - $A$ : Area of the surface
       - outputs
-        -  $`C_{n}`$ and $`C_{t}`$
+        -  $C_{n}$ and $C_{t}$
 
    3. algorithm
-      - $`C_{n}`$ and $`C_{t}`$ are calculated as follows:
-        - $`\theta`$ is the angle between the normal vector and the sun vector.
+      - $C_{n}$ and $C_{t}$ are calculated as follows:
+        - $\theta$ is the angle between the normal vector and the sun vector.
 
       ```math
       C_{n} = AP \left((1+\nu\mu)\cos^{2}{\theta}+\frac{2}{3}\nu(1-\mu)\cos{\theta} \right)\\
@@ -55,7 +55,7 @@
       - In the perfect reflection case, the direction of the SRP force will be opposite from the direction of the sun.
 
    2. conditions for the verification
-      - We assumed that the structure of the spacecraft is a 50-cm cube whose optical property is the perfect specular reflection($`\nu=\mu=1`$).
+      - We assumed that the structure of the spacecraft is a 50-cm cube whose optical property is the perfect specular reflection($\nu=\mu=1$).
 
    3. results
       - We confirmed that the direction of the SRP force is opposite from the direction of the sun at the body frame.

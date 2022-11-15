@@ -21,7 +21,7 @@
     2. inputs
        - `prescaler`
          + `prescaler` determines the execution cycle of the `MainRoutine` function.
-         + The period of `MainRoutine` equals to `SimTime::compo_update_interval_sec` $`\times`$ `prescaler`.
+         + The period of `MainRoutine` equals to `SimTime::compo_update_interval_sec` $\times$ `prescaler`.
        - `clock_gen`
          + `clock_gen` is an instance that simulates the clock of a component.
          + Users do not need to care about this.
@@ -29,7 +29,7 @@
          + `power_port` is an instance that simulates the power supply
        - `fast_prescaler`
          + `fast_prescaler` determines the execution cycle of the `FastUpdate` function.
-         + The period of `FastUpdate` equals to `SimTime::compo_update_interval_sec` $`\times`$ `fast_prescaler`.
+         + The period of `FastUpdate` equals to `SimTime::compo_update_interval_sec` $\times$ `fast_prescaler`.
          + If you don't need to use `FastUpdate`, you don't need to specify this (it is set to 1 by default).
     3. algorithm
        - N/A

@@ -53,7 +53,7 @@
        ```math
        \rho \left(h \right) = \rho_0 \exp \left(-\frac{h - h_0}{H} \right)
        ```
-       where $`h_0`$ is a reference height, $`\rho_0`$ is an air density at the reference height, and $`H`$ is a scale height. These parameters are referred from the table shown in References [2].
+       where $h_0$ is a reference height, $\rho_0$ is an air density at the reference height, and $H$ is a scale height. These parameters are referred from the table shown in References [2].
 
 + NRLMSISE00
   1. Read Space weather table

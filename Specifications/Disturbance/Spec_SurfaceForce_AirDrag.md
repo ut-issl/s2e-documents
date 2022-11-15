@@ -30,15 +30,15 @@
         C_{t}=\frac{1}{2}\rho A v^2 C_{t}^{\prime}
         ```
 
-      - This  function mainly calculates the common part of the coefficient calculation. $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$ are calculated in `CalCnCt` function, and they will be used in this function.
+      - This  function mainly calculates the common part of the coefficient calculation. $C_{n}^{\prime}$ and $C_{t}^{\prime}$ are calculated in `CalCnCt` function, and they will be used in this function.
 
    2. inputs and outputs
       - input
-        - $`\rho`$: air density [kg/m3]
-        - $`v`$: Relative velocity between the spacecraft and the atmosphere [m/s]
-        - $`A`$: Area of the surface [m2] (given by )
+        - $\rho$: air density [kg/m3]
+        - $v$: Relative velocity between the spacecraft and the atmosphere [m/s]
+        - $A$: Area of the surface [m2] (given by )
       - output
-        - coefficients $`C_{n}`$ and $`C_{t}`$
+        - coefficients $C_{n}$ and $C_{t}$
 
    3. algorithm
       - See above equations.
@@ -47,35 +47,35 @@
 
 2. `CalCnCt`
    1. overview
-      - `CalCnCt` calculates  $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$.
+      - `CalCnCt` calculates  $C_{n}^{\prime}$ and $C_{t}^{\prime}$.
 
    2. inputs and outputs
       - input variables
-        - $`\boldsymbol{v}`$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
+        - $\boldsymbol{v}$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
           - Currently, we assume that this value equals spacecraft velocity in the body-fixed frame.
       - input parameters 
-        - $`\sigma_{d}`$: Diffuse coefficients for air drag
-          - Ini file provide specularity for air drag $`\sigma_{s}`$, and the diffuse coefficient is derived as $`\sigma_{d}=1-\sigma_{s}`$.
+        - $\sigma_{d}$: Diffuse coefficients for air drag
+          - Ini file provide specularity for air drag $\sigma_{s}$, and the diffuse coefficient is derived as $\sigma_{d}=1-\sigma_{s}$.
           - **Note**: There is no absorption term for air drag. Thus total reflectivity is set as 1.
-        - $`T_{w}`$: Temperature of the surface [K]
-        - $`T_{m}`$: Temperature of the atmosphere [K]
-        - $`M`$: Molecular weight of the thermosphere [g/mol]
-          - In the default ini file, we use $`M=18`$, and it is a little bit smaller than the molecular weight of atmosphere $`M=29`$.  [Structure of the Thermosphere](https://www.sciencedirect.com/science/article/pii/0032063361900368?via%3Dihub) provides information on the molecular weight of the thermosphere. 
+        - $T_{w}$: Temperature of the surface [K]
+        - $T_{m}$: Temperature of the atmosphere [K]
+        - $M$: Molecular weight of the thermosphere [g/mol]
+          - In the default ini file, we use $M=18$, and it is a little bit smaller than the molecular weight of atmosphere $M=29$.  [Structure of the Thermosphere](https://www.sciencedirect.com/science/article/pii/0032063361900368?via%3Dihub) provides information on the molecular weight of the thermosphere. 
       - outputs
-     - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$ 
+     - $C_{n}^{\prime}$ and $C_{t}^{\prime}$ 
    
 3. algorithm
-   - $`C_{n}^{\prime}`$ and $`C_{t}^{\prime}`$  are calculated as following equations
+   - $C_{n}^{\prime}$ and $C_{t}^{\prime}$  are calculated as following equations
 
      ```math
      C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}+\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
      C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
       ```
 
-   - $`S, S_{n}, S_{t}`$ are defined as follows
-      - $`k=1.38064852E-23`$ is the Boltzmann constant
-      - $`\theta`$ is the angle between the normal vector and the velocity vector
-      - $`\cos{\theta}`$ and $`\sin{\theta}`$ are calculated in `SurfaceForce` base class.
+   - $S, S_{n}, S_{t}$ are defined as follows
+      - $k=1.38064852E-23$ is the Boltzmann constant
+      - $\theta$ is the angle between the normal vector and the velocity vector
+      - $\cos{\theta}$ and $\sin{\theta}$ are calculated in `SurfaceForce` base class.
 
         ```math
         S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
@@ -83,7 +83,7 @@
         S_{t}=S\sin{\theta}\\
         ```
    
-   - $`\Pi(x)`$ and $`\chi(x)`$ are defined as follows
+   - $\Pi(x)$ and $\chi(x)$ are defined as follows
      - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
    
       ```math
@@ -107,9 +107,9 @@
    
      | parameters/results          | Case 1  | Case 2  | Case 3  |
      | --------------------------- | ------- | ------- | ------- |
-     | $`\sigma_{d}`$              | 0.8     | 0.6     | 0.4     |
-     | $`\theta`$ rad              | 0.202   | 0.202   | 0.202   |
-     | $`v`$ m/s                   | 7420    | 7420    | 7420    |
+     | $\sigma_{d}$              | 0.8     | 0.6     | 0.4     |
+     | $\theta$ rad              | 0.202   | 0.202   | 0.202   |
+     | $v$ m/s                   | 7420    | 7420    | 7420    |
      | Out-plane force (S2E)       | 2.30297 | 2.68680 | 3.07062 |
      | Out-plane force (reference) | 2.30297 | 2.68680 | 3.07062 |
      | Out-plane force (S2E)       | 0.31514 | 0.23636 | 0.15757 |

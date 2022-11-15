@@ -11,11 +11,11 @@
 3. How to use
    - Make an instance of the `CelestialRotation` class in `CelestialInformation` class.
    - Select rotation mode in `SampleSimBase.ini`
-     - `Idle` : no motion ($`\mathrm{DCM_{ECItoECEF}}`$ is set as the unit matrix)
+     - `Idle` : no motion ($\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
        - If the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
-     - `Simple` : axial rotation only ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}`$)
-     - `Full` : Precession and Nutation are taken into account ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}`$)
-       - $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
+     - `Simple` : axial rotation only ($\mathrm{DCM_{ECItoECEF}} = \bf{R}$)
+     - `Full` : Precession and Nutation are taken into account ($\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}$)
+       - $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
 ## 2. Explanation of Algorithm
 
@@ -28,7 +28,7 @@
       ```math
       \mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
       ```
-       - where $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
+       - where $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
    2. inputs and outputs
       - Input
@@ -51,8 +51,8 @@
           - JDJ2000 = 2451545.0 [day]
           - JC = 36525 [day/century]
 
-       - By using tTT, we get the DCM of precession ($`\bf{P}`$) and nutation ($`\bf{N}`$)  with `Precession` and `Nutation` functions.
-       - $`\varepsilon`$，$`\Delta \varepsilon`$，$`\Delta \psi`$ are calculated in `Nutation` function.
+       - By using tTT, we get the DCM of precession ($\bf{P}$) and nutation ($\bf{N}$)  with `Precession` and `Nutation` functions.
+       - $\varepsilon$，$\Delta \varepsilon$，$\Delta \psi$ are calculated in `Nutation` function.
 
       ```math
       \mathrm{E_q} = \Delta \psi \cos{(\varepsilon + \Delta \varepsilon)} \\
@@ -62,7 +62,7 @@
 
        - GAST is calculated from julian date in `gstime` function in `src/Library/sgp4/sgp4unit.h`.
 
-       - By using GMST, We get the DCM of axial rotation ($`\bf{R}`$) with the `Rotation` function. The coordinate transformation from ECI to ECEF is calculated.
+       - By using GMST, We get the DCM of axial rotation ($\bf{R}$) with the `Rotation` function. The coordinate transformation from ECI to ECEF is calculated.
        ```math
        \mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
        ```
@@ -79,7 +79,7 @@
       - Input 
         - Greenwich Apparent Sidereal Time (GAST)
       - Output
-        - the DCM of axial rotation ($`\bf{R}`$)
+        - the DCM of axial rotation ($\bf{R}$)
 
    3. algorithm
       ```math
@@ -100,7 +100,7 @@
       - Input 
         - Julian century for terrestrial time (tTT)
       - Output
-        - the DCM of precession ($`\bf{P}`$)
+        - the DCM of precession ($\bf{P}$)
 
    3. algorithm
       - Precession angles are calculated as follows.  
@@ -137,10 +137,10 @@
       - Input 
         - Julian century for terrestrial time (tTT)
       - Output
-        - Return: the DCM of precession ($`\bf{N}`$)
-        - $`\varepsilon`$: mean obliquity of the ecliptic
-        - $`\Delta \varepsilon`$: nutation in obliquity
-        - $`\Delta \psi`$: nutation in longitude
+        - Return: the DCM of precession ($\bf{N}$)
+        - $\varepsilon$: mean obliquity of the ecliptic
+        - $\Delta \varepsilon$: nutation in obliquity
+        - $\Delta \psi$: nutation in longitude
 
    3. algorithm  
       Delaunay angles are calculated as follows.
@@ -157,9 +157,9 @@
      - l' : mean anomaly of the sun
      - F : mean argument of latitude of the moon
      - D : mean elongation of the moon from the sun
-     - $`\Omega`$ : mean longitude of ascending node of the moon
+     - $\Omega$ : mean longitude of ascending node of the moon
 
-   $`\varepsilon`$ and $`\Delta \varepsilon`$ and $`\Delta \psi`$ are calculated as follows.
+   $\varepsilon$ and $\Delta \varepsilon$ and $\Delta \psi$ are calculated as follows.
 
    ```math
    \varepsilon = 23^\circ26'21".448 - 46".8150\mathrm{tTT} - 0".00059\mathrm{tTT}^2 + 0".001813\mathrm{tTT}^3 \\
@@ -167,7 +167,7 @@
    \Delta \psi = -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} \, [\mathrm{arcsec}] \\
    ```
 
-   where $`L = F + \Omega`$，$`L' = L - D`$
+   where $L = F + \Omega$，$L' = L - D$
 
    ```math
    \bf{N} = 
@@ -191,10 +191,10 @@
 
 ## 3. Results of verifications
 
-1. $`\mathrm{DCM_{ECItoECEF}}`$ calculation in `Update` function
+1. $\mathrm{DCM_{ECItoECEF}}$ calculation in `Update` function
    1. overview
       
-      - The $`\mathrm{DCM_{ECItoECEF}}`$ calculation is compared with [Matlab's dcmeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
+      - The $\mathrm{DCM_{ECItoECEF}}$ calculation is compared with [Matlab's dcmeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
 
    2. conditions for the verification
       1. input value

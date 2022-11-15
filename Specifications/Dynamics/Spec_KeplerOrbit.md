@@ -24,12 +24,12 @@
      - Defined by the orbital elements
        - Select `init_mode_kepler = INIT_OE`
        - Set the value of the following orbital elements
-         - $`a`$ : Semi major axis [m]
-         - $`e`$ : Eccentricity
-         - $`i`$ : Inclination [rad]
-         - $`\Omega`$ : Right Ascension of the Ascending Node (RAAN) [rad]
-         - $`\omega`$ : Argument of Perigee [rad]
-         - $`t_{epoch}`$ : Epoch [julian day]
+         - $a$ : Semi major axis [m]
+         - $e$ : Eccentricity
+         - $i$ : Inclination [rad]
+         - $\Omega$ : Right Ascension of the Ascending Node (RAAN) [rad]
+         - $\omega$ : Argument of Perigee [rad]
+         - $t_{epoch}$ : Epoch [julian day]
    
 ## 2. Explanation of Algorithm
 
@@ -42,10 +42,10 @@
    2. Inputs and outputs
       - Input
         - Orbital Elements
-        - $`\mu`$ : The standard gravitational parameter of the central body
+        - $\mu$ : The standard gravitational parameter of the central body
       - Output
-        - $`n`$ : Mean motion
-        - $`R_{p2i}`$ : Frame conversion matrix from in-plane position to the inertial frame position
+        - $n$ : Mean motion
+        - $R_{p2i}$ : Frame conversion matrix from in-plane position to the inertial frame position
 
    3. Algorithm
       - Mean motion
@@ -77,21 +77,21 @@
 
    2. Inputs and outputs
       - Input
-        - $`t`$ : Time in Julian day
+        - $t$ : Time in Julian day
         - Orbital Elements
         - Constants
       - Output
-        - $`\boldsymbol{r}_{i}`$ : Position in the inertial frame
-        - $`\boldsymbol{v}_{i}`$ : Velocity in the inertial frame
+        - $\boldsymbol{r}_{i}$ : Position in the inertial frame
+        - $\boldsymbol{v}_{i}$ : Velocity in the inertial frame
 
    3. Algorithm
-      - Calculate mean anomaly $`l`$[rad]
+      - Calculate mean anomaly $l$[rad]
         ```math
         l = n * (t-t_{epoch})
         ```
-      - Calculate eccentric anomaly $`u`$[rad] by solving the Kepler Equation
+      - Calculate eccentric anomaly $u$[rad] by solving the Kepler Equation
         - Details are described in `KeplerOrbit::SolveKeplerFirstOrder`
-      - Calculate two dimensional position $`x^{\*}`$, $`y^{\*}`$ and velocity $`\dot{x}^{\*}`$, $`\dot{y}^{\*}`$ in the orbital plane
+      - Calculate two dimensional position $x^{\*}$, $y^{\*}$ and velocity $\dot{x}^{\*}$, $\dot{y}^{\*}$ in the orbital plane
         ```math
         x^* = a(\cos{u}-e)\\
         y^* = a\sqrt{1-e^2}\sin{u}\\
@@ -117,22 +117,22 @@
 
    2. Inputs and outputs
       - Input
-        - $`e`$ : eccentricity
-        - $`l`$ : mean anomaly [rad]
-        - $`\epsilon`$ : threshold for convergence [rad]
+        - $e$ : eccentricity
+        - $l$ : mean anomaly [rad]
+        - $\epsilon$ : threshold for convergence [rad]
         - Limit of iteration
       - Output
-        - $`u`$ : eccentric anomaly [rad]
+        - $u$ : eccentric anomaly [rad]
 
    3. Algorithm
       - Set the initial value of eccentric anomaly as follows
-        - $`u_0=l`$
-      - Calculate $`u_{n+1}`$ with the following equation
+        - $u_0=l$
+      - Calculate $u_{n+1}$ with the following equation
         ```math
         u_{n+1} = l + e\sin{u_n}
         ```
       - Iterate the calculation until the following conditions are satisfied
-        - $`|u_{n+1} - u_{n}| < \epsilon`$
+        - $|u_{n+1} - u_{n}| < \epsilon$
         - The iteration number over the limit of iteration
 
 4. `OrbitalElements::CalcOeFromPosVel` function
@@ -141,52 +141,52 @@
 
    2. Inputs and outputs
       - Input
-        - $`\mu`$ : The standard gravitational parameter of the central body
-        - $`t`$ : Time in Julian day
-        - $`\boldsymbol{r}_{i}`$ : Initial position in the inertial frame
-        - $`\boldsymbol{v}_{i}`$ : Initial velocity in the inertial frame
+        - $\mu$ : The standard gravitational parameter of the central body
+        - $t$ : Time in Julian day
+        - $\boldsymbol{r}_{i}$ : Initial position in the inertial frame
+        - $\boldsymbol{v}_{i}$ : Initial velocity in the inertial frame
       - Output
         - orbital element
 
    3. Algorithm
-      - $`\boldsymbol{h}_{i}`$ : Angular momentum vector of the orbit
+      - $\boldsymbol{h}_{i}$ : Angular momentum vector of the orbit
         ```math
         \boldsymbol{h}_{i} = \boldsymbol{r}_{i} \times \boldsymbol{v}_{i}
         ```
-      - $`a`$ : Semi-major axis
+      - $a$ : Semi-major axis
         ```math
         a = \frac{\mu}{2\frac{\mu}{r} - v^2}
         ```
-      - $`i`$ : Inclination
+      - $i$ : Inclination
         ```math
         i = \cos^{-1}{h_z}
         ```
-      - $`\Omega`$ : Right Ascension of the Ascending Node (RAAN)
-        - Note: This equation is not support $`i = 0`$ case.
+      - $\Omega$ : Right Ascension of the Ascending Node (RAAN)
+        - Note: This equation is not support $i = 0$ case.
         ```math
         \Omega = \sin^{-1}\left(\frac{h_x}{\sqrt{h_x^2 + h_y^2}}\right)
         ```
-      - $`x_{p}, y_{p}`$ : Position in the orbital plane
+      - $x_{p}, y_{p}$ : Position in the orbital plane
         ```math
         x_{p} = r_{ix} \cos{\Omega} + r_{iy} \sin{\Omega};\\
         y_{p} = (-r_{ix} \sin{\Omega} + r_{iy} \cos{\Omega})\cos{i} + r_{iz}\sin{i};
         ```
-      - $`\dot{x}_{p}, \dot{y}_{p}`$ : Velocity in the orbital plane
+      - $\dot{x}_{p}, \dot{y}_{p}$ : Velocity in the orbital plane
         ```math
         \dot{x}_{p} = v_{ix} \cos{\Omega} + v_{iy} \sin{\Omega};\\
         \dot{y}_{p} = (-v_{ix} \sin{\Omega} + v_{iy} \cos{\Omega})\cos{i} + v_{iz}\sin{i};
         ```
-      - $`e`$ : Eccentricity
+      - $e$ : Eccentricity
         ```math
         c_1 = \frac{h}{\mu}\dot{y}_p - \frac{x_p}{r}\\
         c_2 = -\frac{h}{\mu}\dot{x}_p - \frac{y_p}{r}\\
         e = \sqrt{c_1^2 + c_2^2}
         ```
-      - $`\omega`$ : Argument of Perigee
+      - $\omega$ : Argument of Perigee
         ```math
         \omega = \tan^{-1}\left(\frac{c_2}{c_1}\right)
         ```
-      - $`t_{epoch}`$ : Epoch [Julian day]
+      - $t_{epoch}$ : Epoch [Julian day]
         ```math
         f = \tan^{-1}\left(\frac{y_p}{x_p}\right) - \omega\\
         u = \tan^{-1}\frac{\frac{r \sin{f}}{\sqrt{1-e^2}}}{r\cos{f} + ae}\\

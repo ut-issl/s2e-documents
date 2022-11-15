@@ -38,9 +38,9 @@
 
     3. algorithm
         - Definition of the variables
-          - \boldsymbol{r}`$: the position of the spacecraft (written as `sat_pos_i` in the code)
-          - $`\boldsymbol{s}`$: the position of the third body (written as `third_body_pos_i` in the code)
-          - $`\boldsymbol{s}-\boldsymbol{r}`$: the position of the third body seen from the spacecraft (written as `third_body_pos_from_sc_i` in the code)
+          - \boldsymbol{r}$: the position of the spacecraft (written as `sat_pos_i` in the code)
+          - $\boldsymbol{s}$: the position of the third body (written as `third_body_pos_i` in the code)
+          - $\boldsymbol{s}-\boldsymbol{r}$: the position of the third body seen from the spacecraft (written as `third_body_pos_from_sc_i` in the code)
 
           <img src="./figs/ThirdBodyGravity_general.jpg" alt="ThirdBodyGravity_general" style="zoom: 90%;" />
 
