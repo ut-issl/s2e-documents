@@ -84,9 +84,11 @@ For unnormalized algorithms, see chapter 3.2.4 of [Satellite Orbits](https://www
 For normalized algorithm, we use following normalizing relation for Legendre polynomials,
 
 ```math
-\bar{P}_{n,m}=\frac{1}{N_{n,m}}P_{n,m} \newline
-\bar{V}_{n,m}=\frac{1}{N_{n,m}}V_{n,m} \newline
-\bar{W}_{n,m}=\frac{1}{N_{n,m}}W_{n,m} \newline
+\begin{align*}
+  \bar{P}_{n,m}=\frac{1}{N_{n,m}}P_{n,m}\\
+  \bar{V}_{n,m}=\frac{1}{N_{n,m}}V_{n,m}\\
+  \bar{W}_{n,m}=\frac{1}{N_{n,m}}W_{n,m}\\
+\end{align*}
 ```
 
 The recursion calculation of V and W can be changed to a normalized version as follows
