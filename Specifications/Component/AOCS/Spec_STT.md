@@ -27,12 +27,12 @@
 
 
       ```math
-        \theta_{ce} = \arctan{\left(\frac{|\boldsymbol{r_{se}}|}{R_e}\right)}
-        \\
-        \theta_{cs} = \arccos{(\boldsymbol{r_{se}}*\boldsymbol{r_{sight}})}
-        \\
+      \begin{align}
+        \theta_{ce} = \arctan{\left(\frac{|\boldsymbol{r_{se}}|}{R_e}\right)}\\
+        \theta_{cs} = \arccos{(\boldsymbol{r_{se}}*\boldsymbol{r_{sight}})}\\
         \theta_{es} = \theta_{ce} - \theta_{cs}
         \tag{1}
+      \end{align}
       ```
 
       ![](./figs/stt_earth_judgement.png)
