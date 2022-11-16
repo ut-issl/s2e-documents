@@ -26,11 +26,9 @@
       Gravity gradient torque is calculated by the following equations (1) and (2). When two arguments are given, (1) is applied. When three arguments are given, (2) is used.
       ```math
          \boldsymbol{T}_{GG} = \cfrac{3 \mu}{R_0^5} \boldsymbol{R}_0 \times (\boldsymbol{I}\cdot \boldsymbol{R}_o)
-         \tag{1}
       ```
       ```math
          \boldsymbol{T}_{GG} = \cfrac{3 \mu}{R_0^3} \boldsymbol{u} \times (\boldsymbol{I}\cdot \boldsymbol{u})
-         \tag{2}
       ```
     
       where $\mu$ is the gravitational constant of the Earth, $R_0$ is the distance between the Earth center and the satellite, $\boldsymbol{R_0}$ is the vector from Earth center to the satellite, $\boldsymbol{I}$ is the inertia tensor of the satellite.
