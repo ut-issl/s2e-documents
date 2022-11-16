@@ -3,7 +3,7 @@
 ## 0. General rule
 - The file name should be `Spec_CamelCase.md` in the Specifications directory. 
 - Please use the markdown format.
-- Because GitHub started math description ([link](https://github.blog/2022-05-19-math-support-in-markdown/)), we need to describe equations suit with the rule of GitHub and [MathJax](https://www.mathjax.org/).
+- Because GitHub started to support math description ([link](https://github.blog/2022-05-19-math-support-in-markdown/)), we need to describe equations suit with the rule of GitHub and [MathJax](https://www.mathjax.org/).
 
 ## 1.  Overview
 1. Functions
