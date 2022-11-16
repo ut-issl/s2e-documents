@@ -84,63 +84,81 @@ For unnormalized algorithms, see chapter 3.2.4 of [Satellite Orbits](https://www
 For normalized algorithm, we use following normalizing relation for Legendre polynomials,
 
 ```math
-\begin{align*}
+\begin{align}
   \bar{P}_{n,m}=\frac{1}{N_{n,m}}P_{n,m}\\
   \bar{V}_{n,m}=\frac{1}{N_{n,m}}V_{n,m}\\
   \bar{W}_{n,m}=\frac{1}{N_{n,m}}W_{n,m}\\
-\end{align*}
+\end{align}
 ```
 
 The recursion calculation of V and W can be changed to a normalized version as follows
 
 ```math
-N_{m,m}\bar{V}_{m,m}=(2m-1)(\frac{xR_{e}}{r^2}N_{m-1,m-1}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}N_{m-1,m-1}\bar{W}_{m-1,m-1})\\
-\bar{V}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\\
-\bar{W}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\\
+\begin{align}
+  N_{m,m}\bar{V}_{m,m}=(2m-1)(\frac{xR_{e}}{r^2}N_{m-1,m-1}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}N_{m-1,m-1}\bar{W}_{m-1,m-1})\\
+  \bar{V}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\\
+  \bar{W}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\\
+\end{align}
 ```
 
 ```math
-N_{n,m}\bar{V}_{n,m}=\frac{2n-1}{n-m}(\frac{zR_{e}}{r^2}N_{n-1,m}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}N_{n-2,m}\bar{V}_{n-2,m})\\
-\bar{V}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{V}_{n-2,m}\\
-\bar{W}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{W}_{n-2,m}\\
+\begin{align}
+  N_{n,m}\bar{V}_{n,m}=\frac{2n-1}{n-m}(\frac{zR_{e}}{r^2}N_{n-1,m}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}N_{n-2,m}\bar{V}_{n-2,m})\\
+  \bar{V}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{V}_{n-2,m}\\
+  \bar{W}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{W}_{n-2,m}\\
+\end{align}
 ```
 
 The recurrence relation of normalize function can be expressed as follows
 
 ```math
-N_{0,0}=1\\
-N_{m,m}=(2m-1)\sqrt{\frac{2m}{2m+1}}N_{m-1,m-1}\quad(m\geq1)
+\begin{align}
+  N_{0,0}=1\\
+  N_{m,m}=(2m-1)\sqrt{\frac{2m}{2m+1}}N_{m-1,m-1}\quad(m\geq1)
+\end{align}
 ```
 
 ```math
-N_{n,m}=\sqrt{\frac{2n-1}{2n+1}}\sqrt{\frac{n+m}{n-m}}N_{n-1,m}\quad(n\geq1,0\leq m \leq n)
+\begin{align}
+  N_{n,m}=\sqrt{\frac{2n-1}{2n+1}}\sqrt{\frac{n+m}{n-m}}N_{n-1,m}\quad(n\geq1,0\leq m \leq n)
+\end{align}
 ```
 
 So, the divisions of the normalized functions are described as follows
 ```math
-\frac{N_{0,0}}{N_{1,1}}=\sqrt{2m+1}=\sqrt{3}\\
-\frac{N_{m-1,m-1}}{N_{m,m}}=\frac{1}{2m-1}\sqrt{\frac{2m+1}{2m}}\quad(m\geq2)\\
-\frac{N_{n-1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}\quad(n\geq1,0\leq m \leq n)\\
-\frac{N_{n-2,m}}{N_{n,m}}=\frac{N_{n-2,m}}{N_{n-1,m}}\frac{N_{n-1,m}}{N_{n,m}}\\
-\frac{N_{n-2,m}}{N_{n,m}}=\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\frac{N_{n-1,m}}{N_{n,m}}\quad(n\geq2,0\leq m \leq n)
+\begin{align}
+  \frac{N_{0,0}}{N_{1,1}}=\sqrt{2m+1}=\sqrt{3}\\
+  \frac{N_{m-1,m-1}}{N_{m,m}}=\frac{1}{2m-1}\sqrt{\frac{2m+1}{2m}}\quad(m\geq2)\\
+  \frac{N_{n-1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}\quad(n\geq1,0\leq m \leq n)\\
+  \frac{N_{n-2,m}}{N_{n,m}}=\frac{N_{n-2,m}}{N_{n-1,m}}\frac{N_{n-1,m}}{N_{n,m}}\\
+  \frac{N_{n-2,m}}{N_{n,m}}=\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\frac{N_{n-1,m}}{N_{n,m}}\quad(n\geq2,0\leq m \leq n)
+\end{align}
 ```
 The recurrence relations for normalized V and W are derived as  follows
 ```math
-\bar{V}_{0,0}=\frac{Re}{r}\\
-\bar{W}_{0,0}=0\\
-\bar{V}_{1,1}=\sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
+\begin{align}
+  \bar{V}_{0,0}=\frac{Re}{r}\\
+  \bar{W}_{0,0}=0\\
+  \bar{V}_{1,1}=\sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
+\end{align}
 ```
 ```math
-\bar{V}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
-\bar{W}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+\begin{align}
+  \bar{V}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
+  \bar{W}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+\end{align}
 ```
 ```math
-\bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
-\bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\begin{align}
+  \bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+  \bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\end{align}
 ```
 ```math
-\bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
-\bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\begin{align}
+  \bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+  \bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\end{align}
 ```
 
 
@@ -160,26 +178,36 @@ For unnormalized algorithms, See  chapter 3.2.5 of [Satellite Orbits](https://ww
 
 When we use the normalized coefficients $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ and $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$ functions,  the acceleration calculation is described like follows
 ```math
-\ddot{x}_{n,m}=-\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1} =-\frac{GM}{Re^{2}} C_{n,0}V_{n+1,1} \frac{N_{n,0}}{N_{n+1,1}}\quad(m=0)
+\begin{align}
+  \ddot{x}_{n,m}=-\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1} =-\frac{GM}{Re^{2}} C_{n,0}V_{n+1,1} \frac{N_{n,0}}{N_{n+1,1}}\quad(m=0)
+\end{align}
 ```
 The division of normalized function $\frac{N_{n,0}}{N_{n+1,1}}$ should be removed, so we have to multiply following correction factors into the equation. 
 
 When $m=0$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
+\begin{align}
+  \frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
+\end{align}
 ```
 When $m=1$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
+\begin{align}
+  \frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
+\end{align}
 ```
 When $m>1$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,m+1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+m+1)(n+m+2)}\\
-\frac{N_{n+1,m-1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{(n-m+1)(n-m+2)}}\\
+\begin{align}
+  \frac{N_{n+1,m+1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+m+1)(n+m+2)}\\
+  \frac{N_{n+1,m-1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{(n-m+1)(n-m+2)}}\\
+\end{align}
 ```
 When $m>=0$, following correction factors are useful for z acceleration
 ```math
-\frac{N_{n+1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{n+m+1}{n-m+1}}
+\begin{align}
+  \frac{N_{n+1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{n+m+1}{n-m+1}}
+\end{align}
 ```
    4. note
       - To accelerate the calculation, the double `for loop` of acceleration calculation and the recursion loop need to be integrated in future.
