@@ -13,14 +13,13 @@
     - This version is only for s2e-core developers
   - feature/branch-name
     - Writing documents before merge with the `develop`
-- You can read the documents in the [GitHub Pages of this repository](https://ut-issl.github.io/s2e-documents).
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of s2e-core](https://github.com/ut-issl/s2e-core/discussions).
 
 ## Index
 
 1. General Information
-   1. [Coding Convention](./General/CodingConvention.md)
-   2. [Format of Documents](./General/DocumentFormat.md)
+   1. [Coding Convention of S2E](./General/CodingConvention.md)
+   2. [Format of S2E Documents](./General/DocumentFormat.md)
    3. Mandatory set up and How to Build the S2E  
 	   1. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   2. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
