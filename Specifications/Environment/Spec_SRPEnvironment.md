@@ -67,9 +67,11 @@
 
    3. algorithm
    ```math
-   A_{\odot} = \sin^{-1}\left(\frac{r_{\odot}}{r_{\odot-sc}}\right)\\
-   A_{\oplus} = \sin^{-1}\left(\frac{r_{\oplus}}{r_{\oplus-sc}}\right)\\
-   \delta = \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \boldsymbol{r}_{\oplus-sc}\cdot(\boldsymbol{r}_{\odot-sc}-\boldsymbol{r}_{\oplus-sc})\right)\\
+   \begin{align}
+     A_{\odot} &= \sin^{-1}\left(\frac{r_{\odot}}{r_{\odot-sc}}\right)\\
+     A_{\oplus} &= \sin^{-1}\left(\frac{r_{\oplus}}{r_{\oplus-sc}}\right)\\
+     \delta &= \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \boldsymbol{r}_{\oplus-sc}\cdot(\boldsymbol{r}_{\odot-sc}-\boldsymbol{r}_{\oplus-sc})\right)\\
+   \end{align}
    ```
    
    4. note
