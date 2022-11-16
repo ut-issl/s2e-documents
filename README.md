@@ -57,7 +57,7 @@
       3. CDH
       4. Logic
       5. Mission
-         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
+         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
       6. Power
          1. [PCU](./Specifications/Component/Power/Spec_PCU.md)
       7. Propulsion

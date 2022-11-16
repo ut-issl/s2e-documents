@@ -45,10 +45,9 @@
 
         ```math
         F_{thrust}  = \epsilon * F_{max} + n_{f}
-         \tag{1}
         ```
 
-        where $F_{thrust} $ is thrust magnitude, $\epsilon$ is the duty of thruster, $F_{max}$ is the maximum thrust magnitude, and $n_{f}$ is the error of thrust magnitude.
+        where $F_{thrust}$ is thrust magnitude, $\epsilon$ is the duty of thruster, $F_{max}$ is the maximum thrust magnitude, and $n_{f}$ is the error of thrust magnitude.
 
         Thrust direction can be calculated as follows:
 
@@ -58,7 +57,6 @@
 
         ```math
         \boldsymbol{d}_{thrust} = \boldsymbol{q}(\boldsymbol{d}_{err},n_{d}) * \boldsymbol{d}_{true}
-         \tag{2}
         ```
 
         where $\boldsymbol{d}_{true}$ is the thrust vector without errors, $n$ is the random angles to rotate the direction of error $\boldsymbol{d}_{err}$, $\boldsymbol{d}_{x}$ is the vector which is not equal to $\boldsymbol{d}_{true}$, $n_d$ is the directional error, and  $\boldsymbol{d}_{thrust}$ is the thrust vector with errors. $\boldsymbol{q}(\boldsymbol{d},n)$ is the quaternion which has the rotation axis $\boldsymbol{d}$ and the rotation angle $n$.
@@ -67,7 +65,6 @@
 
         ```math
         \boldsymbol{F}_{thrust} = F_{thrust} * \boldsymbol{d}_{thrust}
-         \tag{3}
         ```
 
         where $\boldsymbol{F}_{thrust}$ is thrust.
@@ -87,10 +84,9 @@
 
         ```math
         \boldsymbol{T}_{thrust} = (\boldsymbol{v}_{thruster}-\boldsymbol{v}_{SC}) \times \boldsymbol{F}_{thrust}
-         \tag{4}
         ```
 
-        where $\boldsymbol{T}_{thrust} $ is torque by the thruster, $\boldsymbol{v}_{thruster}$ is thruster position and $\boldsymbol{v}_{SC}$ is the mass center of spacecraft.
+        where $\boldsymbol{T}_{thrust}$ is torque by the thruster, $\boldsymbol{v}_{thruster}$ is thruster position and $\boldsymbol{v}_{SC}$ is the mass center of spacecraft.
 
 ## 3. Results of verifications
 1. Case1
