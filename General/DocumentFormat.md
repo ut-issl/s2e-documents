@@ -25,16 +25,14 @@
    2. Inputs and Outputs
 
    3. Algorithm
-      - MathJax description
-        - please use equations as
-          $$
-          \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
-          $$
+      - Math description
+        - please use equations as  
+          $$\dot{\boldsymbol{x}}=f(\boldsymbol{x},t)$$
           or 
           ```math
           \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
           ```
-        - you can also use inline equation as $ x=y $
+        - you can also use inline equation as $x=y$
 
    4. Note
 
