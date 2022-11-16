@@ -63,8 +63,10 @@
         - $\boldsymbol{r}_{cg}$ is the position vector of the center of mass
 
       ```math
-      \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
-      \boldsymbol{T}=(\boldsymbol{r}_{s}-\boldsymbol{r}_{cg})\times\boldsymbol{F}
+      \begin{align}
+        \boldsymbol{F} &= -C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
+        \boldsymbol{T} &= (\boldsymbol{r}_{s}-\boldsymbol{r}_{cg})\times\boldsymbol{F}
+      \end{align}
       ```
 
       - Detail of the $C_{n}$ and $C_{t}$ are defined by subclasses by using `CalcCoef` function

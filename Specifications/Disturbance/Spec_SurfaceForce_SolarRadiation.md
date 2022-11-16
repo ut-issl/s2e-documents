@@ -1,4 +1,4 @@
-# Surface Force ~Solar Radiation Pressure~
+# Surface Force: Solar Radiation Pressure
 
 ## 1.  Overview
 
@@ -41,8 +41,10 @@
         - $\theta$ is the angle between the normal vector and the sun vector.
 
       ```math
-      C_{n} = AP \left((1+\nu\mu)\cos^{2}{\theta}+\frac{2}{3}\nu(1-\mu)\cos{\theta} \right)\\
-      C_{t} = AP(1-\nu\mu)\cos{\theta}\sin{\theta}
+      \begin{align}
+        C_{n} &= AP \left((1+\nu\mu)\cos^{2}{\theta}+\frac{2}{3}\nu(1-\mu)\cos{\theta} \right)\\
+        C_{t} &= AP(1-\nu\mu)\cos{\theta}\sin{\theta}
+      \end{align}
       ```
 
    4. note

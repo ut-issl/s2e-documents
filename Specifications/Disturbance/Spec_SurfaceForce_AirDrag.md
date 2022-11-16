@@ -1,4 +1,4 @@
-# Surface Force ~Air Drag~
+# Surface Force: Air Drag
 
 ## 1.  Overview
 
@@ -25,9 +25,11 @@
       - `CalcCoef` calculates the normal and in-plane coefficients for `SurfaceForce` calculation. The air drag force acting on a surface is expressed as the following equation
 
         ```math
-        \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
-        C_{n}=\frac{1}{2}\rho A v^2 C_{n}^{\prime}\\
-        C_{t}=\frac{1}{2}\rho A v^2 C_{t}^{\prime}
+        \begin{align}
+          \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
+          C_{n}=\frac{1}{2}\rho A v^2 C_{n}^{\prime}\\
+          C_{t}=\frac{1}{2}\rho A v^2 C_{t}^{\prime}
+        \end{align}
         ```
 
       - This  function mainly calculates the common part of the coefficient calculation. $C_{n}^{\prime}$ and $C_{t}^{\prime}$ are calculated in `CalCnCt` function, and they will be used in this function.
@@ -68,9 +70,11 @@
    - $C_{n}^{\prime}$ and $C_{t}^{\prime}$  are calculated as following equations
 
      ```math
-     C_{n}^{\prime} = \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}+\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
-     C_{t}^{\prime} =\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
-      ```
+     \begin{align}
+       C_{n}^{\prime} &= \frac{2-\sigma_{d}}{\sqrt{\pi}}\frac{\Pi(S_{n})}{S^{2}}+\frac{\sigma_{d}}{2}\frac{\chi(S_{n})}{S^{2}}\sqrt{\frac{T_{w}}{T_{m}}}\\
+       C_{t}^{\prime} &=\frac{\sigma_{d}}{\sqrt{\pi}}\frac{\chi(S_{n})}{S^{2}}S_{t}
+     \end{align}
+     ```
 
    - $S, S_{n}, S_{t}$ are defined as follows
       - $k=1.38064852E-23$ is the Boltzmann constant
@@ -78,17 +82,21 @@
       - $\cos{\theta}$ and $\sin{\theta}$ are calculated in `SurfaceForce` base class.
 
         ```math
-        S=\sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
-        S_{n}=S\cos{\theta}\\
-        S_{t}=S\sin{\theta}\\
+        \begin{align}
+          S &= \sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
+          S_{n} &= S\cos{\theta}\\
+          S_{t} &= S\sin{\theta}\\
+        \end{align}
         ```
    
    - $\Pi(x)$ and $\chi(x)$ are defined as follows
      - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
    
       ```math
-      \Pi(x)=x e^{-x^{2}}+\sqrt{\pi}(x^2+0.5)(1+erf(x))\\
-      \chi(x)=e^{-x^{2}}+\sqrt{\pi}x(1+erf(x))
+      \begin{align}
+        \Pi(x) &= x e^{-x^{2}}+\sqrt{\pi}(x^2+0.5)(1+erf(x))\\
+        \chi(x) &= e^{-x^{2}}+\sqrt{\pi}x(1+erf(x))
+      \end{align}
       ```
 4. note
    - Please see the reference document for more information on detailed calculations.
