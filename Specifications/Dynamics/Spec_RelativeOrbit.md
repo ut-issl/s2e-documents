@@ -30,8 +30,8 @@
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
         + Set `propagate_mode =2` to use the relative orbit propagation
         + Choose `update_method`.
-            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}$, i.e., Hill equation).
-            * `update_method = 1` means the orbit is updated with the STM($\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)$, i.e., Clohessy-Wiltshire solution).
+            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation( $\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}$ , i.e., Hill equation).
+            * `update_method = 1` means the orbit is updated with the STM( $\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)$ , i.e., Clohessy-Wiltshire solution).
         + When you choose `update_method = 0`, set `relative_dynamics_model_type`.
         + When you choose `update_method = 1`, set `stm_model_type`.
         + Set the initial relative position of the satellite in the LVLH frame. LVLH frame definition is:

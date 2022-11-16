@@ -60,9 +60,11 @@
       3. Propagate the difference
          - Propagate the following differential equation. At this moment, we use the fourth-order Runge-Kutta method as a propagator.
          ```math
-         \ddot{\boldsymbol{\delta}} = -\frac{\mu}{r_{ref}^3}(\boldsymbol{\delta}+f(q)\boldsymbol{r})+\boldsymbol{a}_d\\
-         f(q) = q \frac{q^2 + 3q + 3}{(1+q)^{1.5} + 1}\\
-         q = \frac{\boldsymbol{\delta}\cdot(\boldsymbol{\delta}-2\boldsymbol{r}_i)}{r_i}
+         \begin{align}
+           \ddot{\boldsymbol{\delta}} &= -\frac{\mu}{r_{ref}^3}(\boldsymbol{\delta}+f(q)\boldsymbol{r})+\boldsymbol{a}_d\\
+           f(q) &= q \frac{q^2 + 3q + 3}{(1+q)^{1.5} + 1}\\
+           q &= \frac{\boldsymbol{\delta}\cdot(\boldsymbol{\delta}-2\boldsymbol{r}_i)}{r_i}
+         \end{align}
          ```
 
 ## 3. Results of verifications

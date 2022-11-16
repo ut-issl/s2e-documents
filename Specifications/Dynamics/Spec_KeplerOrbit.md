@@ -66,7 +66,7 @@
         ```math
         R_z(\theta) = \begin{pmatrix}
                       \cos{\theta} & \sin{\theta} & 0 \\
-                      \-\sin{\theta} & \cos{\theta} & 0 \\
+                      -\sin{\theta} & \cos{\theta} & 0 \\
                       0 & 0 & 1
                       \end{pmatrix}
         ```
@@ -93,21 +93,25 @@
         - Details are described in `KeplerOrbit::SolveKeplerFirstOrder`
       - Calculate two dimensional position $x^{\*}$, $y^{\*}$ and velocity $\dot{x}^{\*}$, $\dot{y}^{\*}$ in the orbital plane
         ```math
-        x^* = a(\cos{u}-e)\\
-        y^* = a\sqrt{1-e^2}\sin{u}\\
-        \dot{x}^* = -an\frac{\sin{u}}{1^e\cos{u}}\\
-        \dot{y}^* = an\sqrt{1-e^2}\frac{\cos{u}}{1^e\cos{u}}\\
+        \begin{align}
+          x^* &= a(\cos{u}-e)\\
+          y^* &= a\sqrt{1-e^2}\sin{u}\\
+          \dot{x}^* &= -an\frac{\sin{u}}{1^e\cos{u}}\\
+          \dot{y}^* &= an\sqrt{1-e^2}\frac{\cos{u}}{1^e\cos{u}}\\
+        \end{align}
         ```
       - Convert to the inertial frame
         ```math
-        \boldsymbol{r}_{i} = R_{p2i}\begin{bmatrix} x^* \\
-                                                    y^* \\
-                                                    0
-                                    \end{bmatrix}\\
-        \boldsymbol{v}_{i} = R_{p2i}\begin{bmatrix} \dot{x}^* \\
-                                                    \dot{y}^* \\
-                                                    0
-                                    \end{bmatrix}\\
+        \begin{align}
+          \boldsymbol{r}_{i} &= R_{p2i}\begin{bmatrix} x^* \\
+                                                       y^* \\
+                                                       0
+                                       \end{bmatrix}\\
+          \boldsymbol{v}_{i} &= R_{p2i}\begin{bmatrix} \dot{x}^* \\
+                                                       \dot{y}^* \\
+                                                       0
+                                       \end{bmatrix}\\
+        \end{align}
         ```
 
 3. `KeplerOrbit::SolveKeplerFirstOrder` function
@@ -168,19 +172,25 @@
         ```
       - $x_{p}, y_{p}$ : Position in the orbital plane
         ```math
-        x_{p} = r_{ix} \cos{\Omega} + r_{iy} \sin{\Omega};\\
-        y_{p} = (-r_{ix} \sin{\Omega} + r_{iy} \cos{\Omega})\cos{i} + r_{iz}\sin{i};
+        \begin{align}
+          x_{p} &= r_{ix} \cos{\Omega} + r_{iy} \sin{\Omega};\\
+          y_{p} &= (-r_{ix} \sin{\Omega} + r_{iy} \cos{\Omega})\cos{i} + r_{iz}\sin{i}
+        \end{align}
         ```
       - $\dot{x}_{p}, \dot{y}_{p}$ : Velocity in the orbital plane
         ```math
-        \dot{x}_{p} = v_{ix} \cos{\Omega} + v_{iy} \sin{\Omega};\\
-        \dot{y}_{p} = (-v_{ix} \sin{\Omega} + v_{iy} \cos{\Omega})\cos{i} + v_{iz}\sin{i};
+        \begin{align}
+          \dot{x}_{p} &= v_{ix} \cos{\Omega} + v_{iy} \sin{\Omega};\\
+          \dot{y}_{p} &= (-v_{ix} \sin{\Omega} + v_{iy} \cos{\Omega})\cos{i} + v_{iz}\sin{i}
+        \end{align}
         ```
       - $e$ : Eccentricity
         ```math
-        c_1 = \frac{h}{\mu}\dot{y}_p - \frac{x_p}{r}\\
-        c_2 = -\frac{h}{\mu}\dot{x}_p - \frac{y_p}{r}\\
-        e = \sqrt{c_1^2 + c_2^2}
+        \begin{align}
+          c_1 &= \frac{h}{\mu}\dot{y}_p - \frac{x_p}{r}\\
+          c_2 &= -\frac{h}{\mu}\dot{x}_p - \frac{y_p}{r}\\
+          e &= \sqrt{c_1^2 + c_2^2}
+        \end{align}
         ```
       - $\omega$ : Argument of Perigee
         ```math
@@ -188,13 +198,17 @@
         ```
       - $t_{epoch}$ : Epoch [Julian day]
         ```math
-        f = \tan^{-1}\left(\frac{y_p}{x_p}\right) - \omega\\
-        u = \tan^{-1}\frac{\frac{r \sin{f}}{\sqrt{1-e^2}}}{r\cos{f} + ae}\\
+        \begin{align}
+          f &= \tan^{-1}\left(\frac{y_p}{x_p}\right) - \omega\\
+          u &= \tan^{-1}\frac{\frac{r \sin{f}}{\sqrt{1-e^2}}}{r\cos{f} + ae}\\
+        \end{align}
         ```
         ```math
-        n = \sqrt{\frac{\mu}{a^3}}\\
-        dt = \frac{u - e\sin{u}}{n}\\
-        t_{epoch} = t - \frac{dt}{24*60*60}
+        \begin{align}
+          n &= \sqrt{\frac{\mu}{a^3}}\\
+          dt &= \frac{u - e\sin{u}}{n}\\
+          t_{epoch} &= t - \frac{dt}{24*60*60}
+        \end{align}
         ```
 
 ## 3. Results of verifications

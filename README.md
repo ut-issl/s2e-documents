@@ -79,7 +79,11 @@
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
-         1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
+         1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
+         2. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
+         3. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4Orbit.md)
+         4. [ENCKE method](./Specifications/Dynamics/Spec_EnckeOrbit.md)
+         5. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       3. Thermal
 
    4. Environment

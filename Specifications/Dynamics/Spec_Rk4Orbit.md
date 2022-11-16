@@ -31,13 +31,15 @@
    - The position and velocity of the satellite are updated by using RK4. As the input of RK4, the six-state variables are set. These state variables are the three-dimensional position [$x$, $y$ ,$z$] and three-dimensional velocity [$v_x$, $v_y$, $v_z$] at the inertial coordinate. Here, the inertial coordinate is decided by the `PlanetSelect.ini`
    - As the force which works to the satellite motion is the external acceleration [$a_x$,$a_y$,$a_z$] calculated from the disturbance class or thruster class and the gravity force from the center planet, which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
    ```math
-   \dot{x} = v_x\\
-   \dot{y} = v_y\\
-   \dot{z} = v_z\\
-   \dot{v}_x = a_x-\mu\frac{x}{r^3}\\
-   \dot{v}_y = a_y-\mu\frac{y}{r^3}\\
-   \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
-   r = \sqrt{x^2+y^2+z^2}
+   \begin{align}
+     \dot{x} &= v_x\\
+     \dot{y} &= v_y\\
+     \dot{z} &= v_z\\
+     \dot{v}_x &= a_x-\mu\frac{x}{r^3}\\
+     \dot{v}_y &= a_y-\mu\frac{y}{r^3}\\
+     \dot{v}_z &= a_z-\mu\frac{z}{r^3}\\
+     r &= \sqrt{x^2+y^2+z^2}
+   \end{align}
    ```
 
 ## 3. Results of verifications
