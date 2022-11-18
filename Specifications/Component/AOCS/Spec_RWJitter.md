@@ -22,9 +22,9 @@
 
 3. how to use
    - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
-   - The first column is an array of the $h_i$($i$-th harmonic number). The second column is an array of the $C_i$(amplitude of the $i$-th harmonic).
+   - The first column is an array of the $h_i$( $i$-th harmonic number). The second column is an array of the $C_i$ (amplitude of the $i$-th harmonic).
    - Set parameters in `RW.ini`
-   - When only the static imbalance and dynamic imbalance(correspond to $C_i$ at $h_i$≒1) is known according to the spec sheet, edit the files as follows.
+   - When only the static imbalance and dynamic imbalance(correspond to $C_i$ at $h_i\ne1$) is known according to the spec sheet, edit the files as follows.
      + `radial_force_harmonics_coef.csv`
        * Set $h_1$(the line 1 of the first column) as $1.0$.
        * Set $C_1$(the line 1 of the second column) as the static imbalance on the spec sheet.
