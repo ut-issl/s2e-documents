@@ -47,27 +47,29 @@
 
    3. algorithm
       - Let us consider the following coordinate on a surface for surface force calculation
-        - $`\boldsymbol{n}`$ is the normal vector of the surface
-        - $`\boldsymbol{v}`$ is the direction vector of the disturbance source (e.g., sun direction vector or velocity vector)
+        - $\boldsymbol{n}$ is the normal vector of the surface
+        - $\boldsymbol{v}$ is the direction vector of the disturbance source (e.g., sun direction vector or velocity vector)
 
       <img src="./figs/SurfaceForce_overview.JPG" alt="SummaryCalculationTime" style="zoom: 70%;" />
 
-      - $`\boldsymbol{t}`$ is the direction of in-plane force. 
+      - $\boldsymbol{t}$ is the direction of in-plane force. 
 
       ```math
       \boldsymbol{t}=\frac{\boldsymbol{v}\times\boldsymbol{n}}{|\boldsymbol{v}\times\boldsymbol{n}|}\times\boldsymbol{n}
       ```
 
       - Surface force and torque acting on the surface is expressed as following equation
-        - $`\boldsymbol{r}_{s}`$ is the position vector of the surface
-        - $`\boldsymbol{r}_{cg}`$ is the position vector of the center of mass
+        - $\boldsymbol{r}_{s}$ is the position vector of the surface
+        - $\boldsymbol{r}_{cg}$ is the position vector of the center of mass
 
       ```math
-      \boldsymbol{F}=-C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
-      \boldsymbol{T}=(\boldsymbol{r}_{s}-\boldsymbol{r}_{cg})\times\boldsymbol{F}
+      \begin{align}
+        \boldsymbol{F} &= -C_{n}\boldsymbol{n}+C_{t}\boldsymbol{t}\\
+        \boldsymbol{T} &= (\boldsymbol{r}_{s}-\boldsymbol{r}_{cg})\times\boldsymbol{F}
+      \end{align}
       ```
 
-      - Detail of the $`C_{n}`$ and $`C_{t}`$ are defined by subclasses by using `CalcCoef` function
+      - Detail of the $C_{n}$ and $C_{t}$ are defined by subclasses by using `CalcCoef` function
 
    4. note
       - NA

@@ -28,16 +28,18 @@
 ## 2. Explanation of Algorithm
 
 1. `Propagate` function  
-   - The position and velocity of the satellite are updated by using RK4. As the input of RK4, the six-state variables are set. These state variables are the three-dimensional position [$`x`$, $`y`$ ,$`z`$] and three-dimensional velocity [$`v_x`$, $`v_y`$, $`v_z`$] at the inertial coordinate. Here, the inertial coordinate is decided by the `PlanetSelect.ini`
-   - As the force which works to the satellite motion is the external acceleration [$`a_x`$,$`a_y`$,$`a_z`$] calculated from the disturbance class or thruster class and the gravity force from the center planet, which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
+   - The position and velocity of the satellite are updated by using RK4. As the input of RK4, the six-state variables are set. These state variables are the three-dimensional position [$x$, $y$ ,$z$] and three-dimensional velocity [$v_x$, $v_y$, $v_z$] at the inertial coordinate. Here, the inertial coordinate is decided by the `PlanetSelect.ini`
+   - As the force which works to the satellite motion is the external acceleration [$a_x$,$a_y$,$a_z$] calculated from the disturbance class or thruster class and the gravity force from the center planet, which is defined in `PlanetSelect.ini`. As a summary, the orbit is calculated as the following equation.
    ```math
-   \dot{x} = v_x\\
-   \dot{y} = v_y\\
-   \dot{z} = v_z\\
-   \dot{v}_x = a_x-\mu\frac{x}{r^3}\\
-   \dot{v}_y = a_y-\mu\frac{y}{r^3}\\
-   \dot{v}_z = a_z-\mu\frac{z}{r^3}\\
-   r = \sqrt{x^2+y^2+z^2}
+   \begin{align}
+     \dot{x} &= v_x\\
+     \dot{y} &= v_y\\
+     \dot{z} &= v_z\\
+     \dot{v}_x &= a_x-\mu\frac{x}{r^3}\\
+     \dot{v}_y &= a_y-\mu\frac{y}{r^3}\\
+     \dot{v}_z &= a_z-\mu\frac{z}{r^3}\\
+     r &= \sqrt{x^2+y^2+z^2}
+   \end{align}
    ```
 
 ## 3. Results of verifications
@@ -75,8 +77,8 @@
         </figure>
       </div>
 
-      - In the cases of `OrbitPropagateStepTimeSec=0.1` and `OrbitPropagateStepTimeSec=1`, the error is kept within $`10^{-6}`$ order. However, once the error grows, it will get bigger and bigger.
-      - In the case of `OrbitPropagateStepTimeSec=10`, the error quickly grows up to $`10^{-4}`$ order. 
+      - In the cases of `OrbitPropagateStepTimeSec=0.1` and `OrbitPropagateStepTimeSec=1`, the error is kept within $10^{-6}$ order. However, once the error grows, it will get bigger and bigger.
+      - In the case of `OrbitPropagateStepTimeSec=10`, the error quickly grows up to $10^{-4}$ order. 
       
       <div align="center">
         <img src="./figs/orbit_steptimesec_1_longterm.jpg" width = 400 alt="orbit_steptimesec_1_longterm">
@@ -99,7 +101,7 @@
       </div>
 
       - As this figure shows, the initial values in the result are slightly different from the input.
-         + In the .sa files, the initial values of $`x, y, z, v_x, v_y, v_z`$ are converted into elements of orbit and stored. The error might occur in the process of this conversion.
+         + In the .sa files, the initial values of $x, y, z, v_x, v_y, v_z$ are converted into elements of orbit and stored. The error might occur in the process of this conversion.
         
 
 ## 4. References

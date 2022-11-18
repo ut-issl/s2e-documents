@@ -26,13 +26,12 @@
       - This function performs disturbance calculation and torque output simultaneously. The magnetic disturbance torque is added to the disturbance torque when this function is called. This process is performed in each loop of the posture calculation.
 
    2. algorithm  
-      Magnetic disturbance torque is calculated by the following equations (1). 
+      Magnetic disturbance torque is calculated by the following equations. 
       ```math
          \boldsymbol{T}_{mag} = \boldsymbol{M} \times \boldsymbol{B}
-         \tag{1}
       ```
 
-      where $`\boldsymbol{M}`$ is the residual magnetic moment in the body-fixed frame, $`\boldsymbol{B}`$ is the magnetic field in the body-fixed frame.
+      where $\boldsymbol{M}$ is the residual magnetic moment in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field in the body-fixed frame.
 
 2. `CalcRMM` function
    1. overview  
@@ -47,13 +46,14 @@
          - (Vector<3>) RMM: the residual magnetic moment in the body-fixed frame
 
    3. algorithm  
-      The residual magnetic moment is calculated by the following equations (2). 
+      The residual magnetic moment is calculated by the following equations. 
        ```math
-         \boldsymbol{M}(t_{k+1}) = \boldsymbol{M}_0 + \boldsymbol{r}(t_{k+1}) + \boldsymbol{w}_1(t_{k+1}) \\
-         \boldsymbol{r}(t_{k+1}) = \boldsymbol{r}(t_{k}) +\boldsymbol{w_2}(t_{k+1})
-         \tag{2}
+       \begin{align}
+         \boldsymbol{M}(t_{k+1}) &= \boldsymbol{M}_0 + \boldsymbol{r}(t_{k+1}) + \boldsymbol{w}_1(t_{k+1}) \\
+         \boldsymbol{r}(t_{k+1}) &= \boldsymbol{r}(t_{k}) +\boldsymbol{w_2}(t_{k+1})
+       \end{align}
       ```
-      where $`\boldsymbol{M}_0`$ is the average residual magnetic moment in the body-fixed frame, $`\boldsymbol{r}`$ is the random walk of RMM, and $`\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)`$ is the white noise.
+      where $\boldsymbol{M}_0$ is the average residual magnetic moment in the body-fixed frame, $\boldsymbol{r}$ is the random walk of RMM, and $\boldsymbol{w}_i \sim N([0,0,0],\Sigma_i)$ is the white noise.
 
 ## 3. Results of verifications
 

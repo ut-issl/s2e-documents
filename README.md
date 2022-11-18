@@ -13,14 +13,13 @@
     - This version is only for s2e-core developers
   - feature/branch-name
     - Writing documents before merge with the `develop`
-- You can read the documents in the [GitHub Pages of this repository](https://ut-issl.github.io/s2e-documents).
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of s2e-core](https://github.com/ut-issl/s2e-core/discussions).
 
 ## Index
 
 1. General Information
-   1. [Coding Convention](./General/CodingConvention.md)
-   2. [Format of Documents](./General/DocumentFormat.md)
+   1. [Coding Convention of S2E](./General/CodingConvention.md)
+   2. [Format of S2E Documents](./General/DocumentFormat.md)
    3. Mandatory set up and How to Build the S2E  
 	   1. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   2. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
@@ -58,7 +57,7 @@
       3. CDH
       4. Logic
       5. Mission
-         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md)
+         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
       6. Power
          1. [PCU](./Specifications/Component/Power/Spec_PCU.md)
       7. Propulsion
@@ -79,7 +78,11 @@
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
-         1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
+         1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
+         2. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
+         3. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
+         4. [ENCKE method](./Specifications/Dynamics/Spec_EnckeMethod.md)
+         5. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       3. Thermal
 
    4. Environment

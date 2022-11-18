@@ -19,10 +19,10 @@
      - `CalcTruePressure`: Return solar pressure (N/m2) with eclipse effect for SRP disturbance calculation.
      - `CalcPowerDensity`: Return solar power density (W/m2) with eclipse effect for Electrical Power System calculation.
      - `GetPressure`: Return solar pressure (N/m2) without eclipse effect.
-     - `GetShadowFunction`: Return shadow function $`\nu`$.
-       - When the spacecraft is in umbra, $`\nu=0`$.
-       - When the spacecraft is in sunlight, $`\nu=1`$.
-       - When the spacecraft is in penumbra, $`0<\nu<1`$.
+     - `GetShadowFunction`: Return shadow function $\nu$.
+       - When the spacecraft is in umbra, $\nu=0$.
+       - When the spacecraft is in sunlight, $\nu=1$.
+       - When the spacecraft is in penumbra, $0<\nu<1$.
 
    
 
@@ -34,14 +34,14 @@
 
    2. inputs and outputs
       - Constants
-        - Solar constant: $`P_{\odot} = 1366`$ W/m2
-        - Speed of light: $`c = 299792458`$ m/s
-        - Astronomical Unit: $`AU = 149597870700`$ m
+        - Solar constant: $P_{\odot} = 1366$ W/m2
+        - Speed of light: $c = 299792458$ m/s
+        - Astronomical Unit: $AU = 149597870700$ m
       - Input variables
-        -  The sun position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\odot-sc}`$ m
-           -  Unbold $`r_{\odot-sc}`$ is the norm of $`\boldsymbol{r}_{\odot-sc}`$
+        -  The sun position in the body-fixed frame of the spacecraft: $\boldsymbol{r}_{\odot-sc}$ m
+           -  Unbold $r_{\odot-sc}$ is the norm of $\boldsymbol{r}_{\odot-sc}$
       - Output
-     - Solar radiation pressure: $`P_{sc}`$ N/m2
+     - Solar radiation pressure: $P_{sc}$ N/m2
 
    3. algorithm
       ```math
@@ -57,19 +57,21 @@
 
    2. inputs and outputs
       - Constants
-        - Radius of the earth: $`r_{\oplus}=6378137`$ m
-        - Radius of the sun: $`r_{\odot}=6.96\times10^{8}`$ m
+        - Radius of the earth: $r_{\oplus}=6378137$ m
+        - Radius of the sun: $r_{\odot}=6.96\times10^{8}$ m
       - Input variables
-        - The sun position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\odot-sc}`$ m
-        - The earth position in the body-fixed frame of the spacecraft: $`\boldsymbol{r}_{\oplus-sc}`$ m
+        - The sun position in the body-fixed frame of the spacecraft: $\boldsymbol{r}_{\odot-sc}$ m
+        - The earth position in the body-fixed frame of the spacecraft: $\boldsymbol{r}_{\oplus-sc}$ m
       - Output
         - none
 
    3. algorithm
    ```math
-   A_{\odot} = \sin^{-1}\left(\frac{r_{\odot}}{r_{\odot-sc}}\right)\\
-   A_{\oplus} = \sin^{-1}\left(\frac{r_{\oplus}}{r_{\oplus-sc}}\right)\\
-   \delta = \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \boldsymbol{r}_{\oplus-sc}\cdot(\boldsymbol{r}_{\odot-sc}-\boldsymbol{r}_{\oplus-sc})\right)\\
+   \begin{align}
+     A_{\odot} &= \sin^{-1}\left(\frac{r_{\odot}}{r_{\odot-sc}}\right)\\
+     A_{\oplus} &= \sin^{-1}\left(\frac{r_{\oplus}}{r_{\oplus-sc}}\right)\\
+     \delta &= \cos^{-1}\left(\frac{r_{\odot-sc}}{r_{\oplus-sc}}\cdot \boldsymbol{r}_{\oplus-sc}\cdot(\boldsymbol{r}_{\odot-sc}-\boldsymbol{r}_{\oplus-sc})\right)\\
+   \end{align}
    ```
    
    4. note
@@ -82,24 +84,24 @@
 
    2. inputs and outputs
       - Input
-         - The apparent radius of the Sun: $`A_{\odot}`$
-         - The apparent radius of the Earth: $`A_{\oplus}`$
-         - The apparent separation of the centers of the Sun and the Earth: $`\delta`$
-         - The angle between the center of the Sun and the common chord: $`x`$
-         - The length of the common chord of the apparent solar disk and apparent celestial disk: $`y`$
+         - The apparent radius of the Sun: $A_{\odot}$
+         - The apparent radius of the Earth: $A_{\oplus}$
+         - The apparent separation of the centers of the Sun and the Earth: $\delta$
+         - The angle between the center of the Sun and the common chord: $x$
+         - The length of the common chord of the apparent solar disk and apparent celestial disk: $y$
       - Output
-         - The shadow function: $`\nu`$
+         - The shadow function: $\nu$
 
    3. algorithm
-     - If the occultation is total, then $`\nu=0`$.
-      - If the occultation is partial but maximum, then $`\nu=1-\left(\frac{A_{\oplus}}{A_{\odot}}\right)^2`$
-      - If the occultation is partial, then $`\nu = 1-\frac{S}{\pi A^2_{\odot}}`$
+     - If the occultation is total, then $\nu=0$.
+      - If the occultation is partial but maximum, then $\nu=1-\left(\frac{A_{\oplus}}{A_{\odot}}\right)^2$
+      - If the occultation is partial, then $\nu = 1-\frac{S}{\pi A^2_{\odot}}$
          - S is given by the following calculation.
 
          ```math
          S=A_{\odot}^2\arccos\left(\frac{x}{A_{\odot}}\right)+A_{\oplus}^2\arccos\left(\frac{\delta-x}{A_{\oplus}}\right)-\delta\cdot y
          ```
-      - In other cases, since it means that no occultation takes place, then $`\nu=1`$.
+      - In other cases, since it means that no occultation takes place, then $\nu=1$.
 
 
 ## 3. Results of verifications

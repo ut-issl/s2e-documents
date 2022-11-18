@@ -39,7 +39,7 @@
     - EARTH_CENTER_POINTING = 2
     - VELOCITY_DIRECTION_POINTING = 3
     - ORBIT_NORMAL_POINTING = 4
-      - orbit normal $`n`$ is defined as $`n=r\times v`$, where $`r`$ is radial direction and $`v`$ is velocity direction.
+      - orbit normal $n$ is defined as $n=r\times v$, where $r$ is radial direction and $v$ is velocity direction.
 
 
 ## 2. Explanation of Algorithm
@@ -102,21 +102,21 @@
 
    2. inputs and outputs
       - inputs 
-        - the main direction of the target object in ECI frame $`t_m^i`$
-        - the sub direction of the target object  in ECI frame $`t_s^i`$
-        - the main controlled direction in the body frame $`d_m^b`$
-        - the sub controlled direction in the body frame $`d_s^b`$
+        - the main direction of the target object in ECI frame $t_m^i$
+        - the sub direction of the target object  in ECI frame $t_s^i$
+        - the main controlled direction in the body frame $d_m^b$
+        - the sub controlled direction in the body frame $d_s^b$
       - outputs
         - quaternion_i2b
 
    3. algorithm
-      - Firstly, the $`DCM_{t2i}`$, which is the frame transformation from the target frame to the inertial frame, is calculated using $`t_m^i`$ and $`t_s^i`$ with `CalcDCM`.
-      - Next, the $`DCM_{t2b}`$, which is the frame transformation from the target frame to the body-fixed frame, is calculated using $`d_m^b`$ and $`d_s^b`$ with `CalcDCM`.
+      - Firstly, the $DCM_{t2i}$, which is the frame transformation from the target frame to the inertial frame, is calculated using $t_m^i$ and $t_s^i$ with `CalcDCM`.
+      - Next, the $DCM_{t2b}$, which is the frame transformation from the target frame to the body-fixed frame, is calculated using $d_m^b$ and $d_s^b$ with `CalcDCM`.
       - Finally, both DCMs are combined as
         ```math
         DCM_{i2b} = DCM_{t2b} \cdot DCM_{t2i}'
         ```
-        and `quaternion_i2b` is calculated from the $`DCM_{i2b}`$.
+        and `quaternion_i2b` is calculated from the $DCM_{i2b}$.
 
    4. note
       - NA   
@@ -129,17 +129,17 @@
 
    2. inputs and outputs
       - inputs 
-        - the main direction in the frame $`a`$ : $`d_m^a`$
-        - the sub direction in the frame $`a`$ : $`d_s^a`$
+        - the main direction in the frame $a$ : $d_m^a$
+        - the sub direction in the frame $a$ : $d_s^a$
       - outputs
-        - Coordinate transform matrix from the new frame to the original frame $`a`$
+        - Coordinate transform matrix from the new frame to the original frame $a$
 
    3. algorithm
       - The first basis vector of the new frame is defined as the main direction.
         ```math
         e_1=d_m^a
         ```
-      - The second basis vector needs to be direct to the sub direction, but it should be vertical with $`e_1`$.
+      - The second basis vector needs to be direct to the sub direction, but it should be vertical with $e_1$.
         ```math
         e_2 = \frac{(e_1\times d_s^a) \times e_1}{|(e_1\times d_s^a) \times e_1|}
         ```

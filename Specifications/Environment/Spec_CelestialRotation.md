@@ -11,11 +11,11 @@
 3. How to use
    - Make an instance of the `CelestialRotation` class in `CelestialInformation` class.
    - Select rotation mode in `SampleSimBase.ini`
-     - `Idle` : no motion ($`\mathrm{DCM_{ECItoECEF}}`$ is set as the unit matrix)
+     - `Idle` : no motion ( $\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
        - If the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
-     - `Simple` : axial rotation only ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}`$)
-     - `Full` : Precession and Nutation are taken into account ($`\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}`$)
-       - $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
+     - `Simple` : axial rotation only ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}$ )
+     - `Full` : Precession and Nutation are taken into account ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}$ )
+       - $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
 ## 2. Explanation of Algorithm
 
@@ -28,7 +28,7 @@
       ```math
       \mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
       ```
-       - where $`\bf{R}`$, $`\bf{N}`$, $`\bf{P}`$ stand for the DCM of axial rotation, nutation, precession, respectively.
+       - where $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
    2. inputs and outputs
       - Input
@@ -51,18 +51,20 @@
           - JDJ2000 = 2451545.0 [day]
           - JC = 36525 [day/century]
 
-       - By using tTT, we get the DCM of precession ($`\bf{P}`$) and nutation ($`\bf{N}`$)  with `Precession` and `Nutation` functions.
-       - $`\varepsilon`$，$`\Delta \varepsilon`$，$`\Delta \psi`$ are calculated in `Nutation` function.
+       - By using tTT, we get the DCM of precession ( $\bf{P}$ ) and nutation ( $\bf{N}$ )  with `Precession` and `Nutation` functions.
+       - $\varepsilon$, $\Delta \varepsilon$, $\Delta \psi$ are calculated in `Nutation` function.
 
       ```math
-      \mathrm{E_q} = \Delta \psi \cos{(\varepsilon + \Delta \varepsilon)} \\
-      \mathrm{GAST} = \mathrm{GMST} + \mathrm{E_q}
+      \begin{align}
+        \mathrm{E_q} &= \Delta \psi \cos{(\varepsilon + \Delta \varepsilon)} \\
+        \mathrm{GAST} &= \mathrm{GMST} + \mathrm{E_q}
+      \end{align}
       ```
        - where GAST is Greenwich Apparent Sidereal Time, GMST is Greenwich Mean Sidereal Time
 
        - GAST is calculated from julian date in `gstime` function in `src/Library/sgp4/sgp4unit.h`.
 
-       - By using GMST, We get the DCM of axial rotation ($`\bf{R}`$) with the `Rotation` function. The coordinate transformation from ECI to ECEF is calculated.
+       - By using GMST, We get the DCM of axial rotation ( $\bf{R}$ ) with the `Rotation` function. The coordinate transformation from ECI to ECEF is calculated.
        ```math
        \mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
        ```
@@ -79,7 +81,7 @@
       - Input 
         - Greenwich Apparent Sidereal Time (GAST)
       - Output
-        - the DCM of axial rotation ($`\bf{R}`$)
+        - the DCM of axial rotation ( $\bf{R}$ )
 
    3. algorithm
       ```math
@@ -100,20 +102,22 @@
       - Input 
         - Julian century for terrestrial time (tTT)
       - Output
-        - the DCM of precession ($`\bf{P}`$)
+        - the DCM of precession ( $\bf{P}$ )
 
    3. algorithm
       - Precession angles are calculated as follows.  
         ```math
-        \zeta = 2306.2181" \mathrm{tTT} + 0.30188" \mathrm{tTT}^2 + 0.017998" \mathrm{tTT}^3 \\
-        \theta = 2004.3109" \mathrm{tTT} - 0.42665" \mathrm{tTT}^2 - 0.041833" \mathrm{tTT}^3 \\
-        z = 2306.2181" \mathrm{tTT} + 1.09468" \mathrm{tTT}^2 + 0.018203" \mathrm{tTT}^3 \\
+        \begin{align}
+          \zeta &= 2306.2181" \mathrm{tTT} + 0.30188" \mathrm{tTT}^2 + 0.017998" \mathrm{tTT}^3 \\
+          \theta &= 2004.3109" \mathrm{tTT} - 0.42665" \mathrm{tTT}^2 - 0.041833" \mathrm{tTT}^3 \\
+          z &= 2306.2181" \mathrm{tTT} + 1.09468" \mathrm{tTT}^2 + 0.018203" \mathrm{tTT}^3 \\
+        \end{align}
         ```
         ```math
         \bf{P} = 
         \begin{pmatrix}
           \cos{(-z)} & \sin{(-z)} & 0 \\
-          \- \sin{(-z)} & \cos{(-z)} & 0 \\
+          - \sin{(-z)} & \cos{(-z)} & 0 \\
           0 & 0 & 1
         \end{pmatrix}
         \begin{pmatrix}
@@ -123,7 +127,7 @@
         \end{pmatrix}
         \begin{pmatrix}
           \cos{(-\zeta)} & \sin{(-\zeta)} & 0  \\
-          \- \sin{(-\zeta)} & \cos{(-\zeta)} & 0 \\
+          - \sin{(-\zeta)} & \cos{(-\zeta)} & 0 \\
           0 & 0 & 1
         \end{pmatrix}
         ```
@@ -137,37 +141,40 @@
       - Input 
         - Julian century for terrestrial time (tTT)
       - Output
-        - Return: the DCM of precession ($`\bf{N}`$)
-        - $`\varepsilon`$: mean obliquity of the ecliptic
-        - $`\Delta \varepsilon`$: nutation in obliquity
-        - $`\Delta \psi`$: nutation in longitude
+        - Return: the DCM of precession ( $\bf{N}$ )
+        - $\varepsilon$: mean obliquity of the ecliptic
+        - $\Delta \varepsilon$: nutation in obliquity
+        - $\Delta \psi$: nutation in longitude
 
    3. algorithm  
       Delaunay angles are calculated as follows.
-
-    ```math
-    l = 134.96340251^\circ + 1717915923.2178"\mathrm{tTT} + 31.8792"\mathrm{tTT}^2 + 0.051635"\mathrm{tTT}^3 - 0.00024470"\mathrm{tTT}^4 \\
-    l' = 357.52910918^\circ + 129596581.0481"\mathrm{tTT} - 0.5532"\mathrm{tTT}^2 + 0.000136"\mathrm{tTT}^3 - 0.00001149"\mathrm{tTT}^4 \\
-    F  = 93.27209062^\circ + 1739527262.8478"\mathrm{tTT} - 12.7512"\mathrm{tTT}^2 - 0.001037"\mathrm{tTT}^3 + 0.00000417"\mathrm{tTT}^4 \\
-    D  = 297.85019547^\circ + 1602961601.2090"\mathrm{tTT} - 6.3706"\mathrm{tTT}^2+0.006593"\mathrm{tTT}^3 -0.00003169"\mathrm{tTT}^4 \\
-    \Omega  = 125.04455501^\circ - 6962890.5431"\mathrm{tTT} + 7.4722"\mathrm{tTT}^2+0.007702"\mathrm{tTT}^3-0.00005939"\mathrm{tTT}^4 \\
-    ```
+      ```math
+      \begin{align}
+        l &= 134.96340251^\circ + 1717915923.2178"\mathrm{tTT} + 31.8792"\mathrm{tTT}^2 + 0.051635"\mathrm{tTT}^3 - 0.00024470"\mathrm{tTT}^4 \\
+        l' &= 357.52910918^\circ + 129596581.0481"\mathrm{tTT} - 0.5532"\mathrm{tTT}^2 + 0.000136"\mathrm{tTT}^3 - 0.00001149"\mathrm{tTT}^4 \\
+        F  &= 93.27209062^\circ + 1739527262.8478"\mathrm{tTT} - 12.7512"\mathrm{tTT}^2 - 0.001037"\mathrm{tTT}^3 + 0.00000417"\mathrm{tTT}^4 \\
+        D  &= 297.85019547^\circ + 1602961601.2090"\mathrm{tTT} - 6.3706"\mathrm{tTT}^2+0.006593"\mathrm{tTT}^3 -0.00003169"\mathrm{tTT}^4 \\
+        \Omega &= 125.04455501^\circ - 6962890.5431"\mathrm{tTT} + 7.4722"\mathrm{tTT}^2+0.007702"\mathrm{tTT}^3-0.00005939"\mathrm{tTT}^4 \\
+      \end{align}
+      ```
 
      - l : mean anomaly of the moon
      - l' : mean anomaly of the sun
      - F : mean argument of latitude of the moon
      - D : mean elongation of the moon from the sun
-     - $`\Omega`$ : mean longitude of ascending node of the moon
+     - $\Omega$ : mean longitude of ascending node of the moon
 
-   $`\varepsilon`$ and $`\Delta \varepsilon`$ and $`\Delta \psi`$ are calculated as follows.
+   $\varepsilon$ and $\Delta \varepsilon$ and $\Delta \psi$ are calculated as follows.
 
    ```math
-   \varepsilon = 23^\circ26'21".448 - 46".8150\mathrm{tTT} - 0".00059\mathrm{tTT}^2 + 0".001813\mathrm{tTT}^3 \\
-   \Delta \epsilon = 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}+0.007\cos{l'} - 0.001\cos{l} + 0.022\cos{(2L'+l')} + 0.013\cos{(2L+l)}-0.010\cos({2L'-l')} \, [\mathrm{arcsec}] \\
-   \Delta \psi = -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} \, [\mathrm{arcsec}] \\
+   \begin{align}
+     \varepsilon &= 23^\circ26'21".448 - 46".8150\mathrm{tTT} - 0".00059\mathrm{tTT}^2 + 0".001813\mathrm{tTT}^3 \\
+     \Delta \epsilon &= 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}+0.007\cos{l'} - 0.001\cos{l} + 0.022\cos{(2L'+l')} + 0.013\cos{(2L+l)}-0.010\cos({2L'-l')} \, [\mathrm{arcsec}] \\
+     \Delta \psi &= -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} \, [\mathrm{arcsec}] \\
+   \end{align}
    ```
 
-   where $`L = F + \Omega`$，$`L' = L - D`$
+   where $L = F + \Omega$，$L' = L - D$
 
    ```math
    \bf{N} = 
@@ -178,7 +185,7 @@
    \end{pmatrix}
    \begin{pmatrix}
      \cos{(-\Delta \psi)} & \sin{(-\Delta \psi)} & 0 \\
-     \- \sin{(-\Delta \psi)} & \cos{(-\Delta \psi)} & 0 \\
+     - \sin{(-\Delta \psi)} & \cos{(-\Delta \psi)} & 0 \\
      0 & 0 & 1
    \end{pmatrix}
    \begin{pmatrix}
@@ -191,10 +198,10 @@
 
 ## 3. Results of verifications
 
-1. $`\mathrm{DCM_{ECItoECEF}}`$ calculation in `Update` function
+1. $\mathrm{DCM_{ECItoECEF}}$ calculation in `Update` function
    1. overview
       
-      - The $`\mathrm{DCM_{ECItoECEF}}`$ calculation is compared with [Matlab's dcmeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
+      - The $\mathrm{DCM_{ECItoECEF}}$ calculation is compared with [Matlab's dcmeci2ecef function](https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055)
 
    2. conditions for the verification
       1. input value

@@ -55,12 +55,12 @@
         + false: The celestial body is  not in forbidden angle
 
    3. process to judge
-      - The judging process is calculated in the telescope's component coordinate. $`q_{b2c}`$ is the quaternion to convert from the body coordinate(B) to the component coordinate(C). Specify $`q_{b2c}`$ in `Telescope.ini`. The X-axis of the component coordinate is defined as the line of sight of the telescope.
+      - The judging process is calculated in the telescope's component coordinate. $q_{b2c}$ is the quaternion to convert from the body coordinate(B) to the component coordinate(C). Specify $q_{b2c}$ in `Telescope.ini`. The X-axis of the component coordinate is defined as the line of sight of the telescope.
 
 2. `Observe`
    1. overview
       - This function judges whether the celestial bodies(provided by `CelesInfo`) are in the field of view and outputs the position of them on the image sensor if they are in the field of view
-      - If they are not in the field of view, this function outputs $`(-1,-1)`$.
+      - If they are not in the field of view, this function outputs $(-1,-1)$.
 
    2. input and output
       - input
@@ -76,7 +76,7 @@
          - A 2D coordinate on the image sensor is defined to handle the position on the image sensor. The definition is as follows:
            - The X-axis of the image sensor coordinate corresponds with the Z-axis of the component coordinate.
            - The Y-axis of the image sensor coordinate corresponds with the Y-axis of the component coordinate.
-         - Then, the inclination angle from the X-axis of the celestial body's direction in the XZ plane of the component coordinate is calculated using $`(x_c, y_c, z_c)`$ as follows:
+         - Then, the inclination angle from the X-axis of the celestial body's direction in the XZ plane of the component coordinate is calculated using $(x_c, y_c, z_c)$ as follows:
            ```math
            tan^{-1}⁡\frac{z_c}{x_c}
            ```
@@ -86,7 +86,7 @@
            tan^{-1}⁡\frac{y_c}{x_c}
            ```
       
-         - They are written as `arg_x` and `arg_y` in the code. In this manual, $`\theta_x`$ and $`\theta_y`$ are used for them. If $`\theta_x`$ is within FOV_x and $`\theta_y`$ is within FOV_y, the celestial body is judged to be in the field of view.  
+         - They are written as `arg_x` and `arg_y` in the code. In this manual, $\theta_x$ and $\theta_y$ are used for them. If $\theta_x$ is within FOV_x and $\theta_y$ is within FOV_y, the celestial body is judged to be in the field of view.  
 
         <div align="center">
         <figure id="coordinate">
@@ -96,7 +96,7 @@
         </div>
 
       2. Calculate process for calculating the position of the image
-         - The origin of the sensor coordinate is the corner of the image sensor, so $`x_{imgsensor}`$ and $`y_{imgsensor}`$ have positive values. The unit of them is pixel(pix). In this manual, $`N_x`$ and $`N_y`$ are used for the total number of pixels along x, y axes of the sensor coordinate (They are `x_num_of_pix` and `y_num_of_pix` in the code). In the same way, `X` and `Y` are used for the position of the celestial body on the image sensor (They are `pos_imgsensor[0]` and `pos_imgsensor[1]`). Then, `X` and `Y` are calculated as follows:
+         - The origin of the sensor coordinate is the corner of the image sensor, so $x_{imgsensor}$ and $y_{imgsensor}$ have positive values. The unit of them is pixel(pix). In this manual, $N_x$ and $N_y$ are used for the total number of pixels along x, y axes of the sensor coordinate (They are `x_num_of_pix` and `y_num_of_pix` in the code). In the same way, `X` and `Y` are used for the position of the celestial body on the image sensor (They are `pos_imgsensor[0]` and `pos_imgsensor[1]`). Then, `X` and `Y` are calculated as follows:
         ```math
         X=\frac{N_x}{2}\times\frac{\tan(\theta_x)}{\tan(FOV_x)}+\frac{N_x}{2}
         ```
@@ -104,7 +104,7 @@
         Y=\frac{N_y}{2}\times\frac{\tan(\theta_y)}{\tan(FOV_y)}+\frac{N_y}{2}
         ```
 
-        If the celestial body is not in the field of view, the output is $`X=Y=-1`$.
+        If the celestial body is not in the field of view, the output is $X=Y=-1$.
 
 3. `ObserveStars`
     1. overview
@@ -132,7 +132,7 @@ In this section, the output of the functions when some angular velocity is input
 
 1. Input of angular velocity around X-axis of the body coordinate
    1. overview
-      - input $`ω_b=[0.1~0~0]^T`$ ． 
+      - input $ω_b=[0.1~0~0]^T$ ． 
    2. conditions for the verification
       1. input files
          - `SampleSimBase.ini`
@@ -192,7 +192,7 @@ In this section, the output of the functions when some angular velocity is input
         <figcaption>The track of the image of the Moon on the image sensor</figcaption>
         </figure>
         </div>
-        This figure shows the track makes a circle. This result seems to be reasonable, because the angular velocity around the X-axis of the body coordinate correspond with that of the component coordinate, for $`q_{b2c}=[0~0~0~1]^T`$ . The 3D plot of MOON_POS_B for further verification is as follows:
+        This figure shows the track makes a circle. This result seems to be reasonable, because the angular velocity around the X-axis of the body coordinate correspond with that of the component coordinate, for $q_{b2c}=[0~0~0~1]^T$ . The 3D plot of MOON_POS_B for further verification is as follows:
         <div align="center">
         <figure id="moon_pos_b1">
         <img src="./figs/moon_pos_b1.jpg" width=400 alt="3D plot of MOON_POS_B">
@@ -229,7 +229,7 @@ In this section, the output of the functions when some angular velocity is input
      
 2. input of angular velocity around y axis of the body coordinate
     1. overview
-        - The angular velocity input is $`ω_b=[0.1~0~0]^T`$ ．The other condition is the same as the case of 1. Note that the verification of the case around z axis is omitted because y and z are equivalent under this condition.
+        - The angular velocity input is $ω_b=[0.1~0~0]^T$ ．The other condition is the same as the case of 1. Note that the verification of the case around z axis is omitted because y and z are equivalent under this condition.
     1. result
         1. judge for forbidden angle
         - The angle from the line of sight about the direction of the Sun, the Earth, the Moon is as follows:

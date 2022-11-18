@@ -33,8 +33,8 @@
 
 
 ## 2. Explanation of Algorithm
-+ IGRF calculates the magnetic field based on a spherical harmonic expansion of magnetic scalar potential $`V`$.
-  + The coefficients of the spherical harmonic expansion of $`V`$ is updated by [IAGA](https://www.ngdc.noaa.gov/IAGA/vmod/index.html). The latest version is the 13th generation, and S2E uses this version.
++ IGRF calculates the magnetic field based on a spherical harmonic expansion of magnetic scalar potential $V$.
+  + The coefficients of the spherical harmonic expansion of $V$ is updated by [IAGA](https://www.ngdc.noaa.gov/IAGA/vmod/index.html). The latest version is the 13th generation, and S2E uses this version.
 + Please refer [here](https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html#:~:text=The%20International%20Association%20of%20Geomagnetism,interior%2C%20its%20crust%20and%20its) for the details of IGRF.
 
 ## 3. Verification
