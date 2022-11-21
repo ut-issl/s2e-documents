@@ -6,7 +6,7 @@ The S2E generates the CSV format log file as the simulation results at the `data
 - Open the CSV file with user's handmaded programs to analyze and/or visualize the resutls.
 - Use the `Plot Scripts` provided by the `S2E-CORE` to visualize the results.
 
-We are trying to increase the `Plot Scripts` to share the analysis method with many users and to improve the usability of S2E. We are welcome to ad d new `Plot Scripts` by users.
+We are trying to increase the `Plot Scripts` to share the analysis method with many users and to improve the usability of S2E. We are welcome to add new `Plot Scripts` by users.
 
 
 ## 2. How to use `Plot Scripts`
@@ -25,7 +25,7 @@ We are trying to increase the `Plot Scripts` to share the analysis method with m
       <img src="./figs/plot_gs_visibility.JPG" alt="plot_gs_visibility" style="zoom:50%;" />
     </div>
   - Direction information at the satellite body fixed frame
-    - Users can see the direction vector of the sun, earth, moon, and the velocity of the satellite at the body fixed frame to checkt the attitude control works well.
+    - Users can see the direction vector of the sun, earth, moon, and the velocity of the satellite at the body fixed frame to check the attitude control works well.
     <div align="center">
       <img src="./figs/plot_body_frame_info.JPG" alt="plot_gs_visibility" style="zoom:100%;" />
     </div>
