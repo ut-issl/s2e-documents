@@ -136,15 +136,17 @@
    3. <details><summary> Dynamics </summary>
 
       1. Attitude
+         1. Overview of Attitude calculation: TBW
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
-         2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
-      2. [Orbit](./Specifications/Dynamics/Spec_Orbit.md)
+         1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+      1. Orbit
+         1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
          1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
-         2. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
-         3. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
-         4. [ENCKE method](./Specifications/Dynamics/Spec_EnckeMethod.md)
-         5. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
-      3. Thermal
+         1. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
+         1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
+         1. [ENCKE method](./Specifications/Dynamics/Spec_EnckeMethod.md)
+         1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
+      1. Thermal: not supported now.
       
       </details>
 
