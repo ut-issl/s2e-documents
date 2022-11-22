@@ -49,7 +49,8 @@
 3. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
 
-   1. Component
+   1. <details><summary> Component </summary>
+      
       1. Abstract
          1. [Component Base](./Specifications/Component/Abstract/Spec_ComponentBase.md)
          1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
@@ -66,8 +67,11 @@
       7. Propulsion
          1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
       8. Thermal
+      
+      </details>
 
-   2. Disturbance
+   2. <details><summary> Disturbance </summary>
+
       1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
       2. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
       3. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
@@ -75,8 +79,11 @@
          1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
          2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
       5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+      
+      </details>
 
-   3. Dynamics
+   3. <details><summary> Dynamics </summary>
+
       1. Attitude
          1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          2. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
@@ -87,20 +94,34 @@
          4. [ENCKE method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          5. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       3. Thermal
+      
+      </details>
 
-   4. Environment
+   4. <details><summary> Environment </summary>
+
       1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
       2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
       3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
       4. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
       5. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
       6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
+      
+      </details>
 
-   5. Interface
+   5. <details><summary> Interface </summary>
+
       1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
+      
+      </details>
 
-   6. Library
+   6. <details><summary> Library </summary>
+
       - TBW
+      
+      </details>
 
-   7. Simulation
+   7. <details><summary> Simulation </summary>
+
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+      
+      </details>
