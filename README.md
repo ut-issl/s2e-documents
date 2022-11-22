@@ -51,23 +51,73 @@
 
    1. <details><summary> Component </summary>
       
-      1. Abstract
+      1. <details><summary> Abstract </summary>
+
          1. [Component Base](./Specifications/Component/Abstract/Spec_ComponentBase.md)
+         1. Examples: TBW
+         1. I2C Controller Communication Base: TBW
+         1. Tickable: TBW
          1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
+         1. OBC GPIO Base: TBW
+         1. OBC I2C Target Communication Base: TBW
          1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
-      2. AOCS
-         1. [STT](./Specifications/Component/AOCS/Spec_STT.md)
+         1. Singleton: TBW
+         1. StateMachine: TBW
+
+         </details>
+
+      1. <details><summary> AOCS (Attitude and Orbit Control System) </summary>
+
+         1. GNSS Receiver: TBW
+         1. Gyro sensor: TBW
+         1. Magnetic sensor: TBW
+         1. Magnetorquer: TBW
          1. [RW Jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
-      3. CDH
-      4. Logic
-      5. Mission
+         1. RW (Reaction Wheel): TBW
+         1. [STT](./Specifications/Component/AOCS/Spec_STT.md)
+         1. Sun sensor: TBW
+
+         </details>
+
+      1. <details><summary> CDH (Command and Data Handling) </summary>
+
+         1. OBC (Onboard Computer): TBW
+         1. OBC C2A: TBW
+         1. TMTC Interface: TBW
+
+         </details>
+
+      1. <details><summary> CommGS (Communication and Ground Station) </summary>
+
+         1. Antenna: TBW
+         1. GS calculator: TBW
+
+         </details>
+
+      1. <details><summary> Mission </summary>
+
          1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
-      6. Power
+
+         </details>
+
+      1. <details><summary> Power </summary>
+
+         1. BAT (Battery): TBW
+         1. CSV scenario interface: TBW
          1. [PCU](./Specifications/Component/Power/Spec_PCU.md)
-      7. Propulsion
+         1. PCU Initial study: TBW
+         1. SAP (Solar Array Paddle): TBW
+
+         </details>
+
+      1. <details><summary> Propulsion </summary>
+
          1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
-      8. Thermal
-      
+
+         </details>
+
+      1. Thermal: No components now.
+
       </details>
 
    2. <details><summary> Disturbance </summary>
