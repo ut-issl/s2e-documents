@@ -122,13 +122,14 @@
 
    2. <details><summary> Disturbance </summary>
 
+      1. Overview of disturbance calculation: TBW
       1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
-      2. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
-      3. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
-      4. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
+      1. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
+      1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
+      1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
          1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
-         2. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-      5. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+         1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
+      1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
       
       </details>
 
