@@ -203,7 +203,38 @@
 
    6. <details><summary> Library </summary>
 
-      - TBW
+      1. Geodesy
+         1. Geodetic Position: TBW
+      1. Orbit
+         1. Kepler Orbit: TBW
+         1. Orbital Elements: TBW
+      1. Relative Orbit
+         1. Relative Orbit Models: TBW
+      1. IGRF (International Geomagnetic Reference Field): TBW
+      1. inih: TBW
+      1. <details><summary> math </summary>
+
+         1. GlobalRand (Global Randomize control): TBW
+         1. MatVec (Matrix and Vector) : TBW
+         1. Matrix: TBW
+         1. NormalRand (Normal Randomization): TBW
+         1. ODE (Ordinaly Differential Equation): TBW
+         1. Quantization: TBW
+         1. Quaternion: TBW
+         1. Ran0 and Ran1: TBW
+         1. Random Walk: TBW
+         1. Vector: TBW
+         1. s2e_math: TBW
+
+         </details>
+      1. nrlmsise00: TBW
+      1. optics
+         1. Gaussian Beam Base: TBW
+      1. sgp4: TBW
+      1. utils
+         1. Macros: TBW
+         1. Endian: TBW
+         1. SLIP: TBW
       
       </details>
 
