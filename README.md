@@ -152,12 +152,22 @@
 
    4. <details><summary> Environment </summary>
 
-      1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
-      2. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-      3. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
-      4. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
-      5. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
-      6. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
+      1. Overview of Environment calculation: TBW
+      1. Global Environment
+         1. Celestial Information: TBW
+         1. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
+         1. Clock Generation: TBW
+         1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
+         1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
+         1. Physical Constants: TBW
+         1. SimTime: TBW
+      1. Local Environment
+         1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
+         1. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
+         1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
+      
+      
+      
       
       </details>
 
