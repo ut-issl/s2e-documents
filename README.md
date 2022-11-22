@@ -19,34 +19,34 @@
 
 1. General Information
    1. [Coding Convention of S2E](./General/CodingConvention.md)
-   2. [Format of S2E Documents](./General/DocumentFormat.md)
-   3. Mandatory set up and How to Build the S2E  
+   1. [Format of S2E Documents](./General/DocumentFormat.md)
+   1. Mandatory set up and How to Build the S2E  
 	   1. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
-	   2. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
-	   3. How to build with other compilers will be written
-   4. Set up of External Libraries  
+	   1. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
+	   1. How to build with other compilers will be written
+   1. Set up of External Libraries  
       **NOTE**: Currenly, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
       1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
-	   2. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
-   5. Visulalization of Simulation Results
+	   1. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
+   1. Visulalization of Simulation Results
       1. [How to Visualize Simulation Results](./General/HowToVisualizeSimulationResults.md)
      
 
-2. Tutorials  
+1. Tutorials  
    - We strongly recommend to sequencially follow the all tutorials at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
-   2. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
-   3. [How To Add Components](./Tutorials/HowToAddComponents.md)
-   4. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
-   5. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
-   6. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
-   7. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-   8. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
-   9. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
-   10. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
-   11. TBW
+   1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
+   1. [How To Add Components](./Tutorials/HowToAddComponents.md)
+   1. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
+   1. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
+   1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
+   1. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
+   1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
+   1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
+   1. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+   1. TBW
 
-3. Specifications
+1. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
 
    1. <details><summary> Component </summary>
@@ -121,7 +121,7 @@
 
       </details>
 
-   2. <details><summary> Disturbance </summary>
+   1. <details><summary> Disturbance </summary>
 
       1. Overview of disturbance calculation: TBW
       1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
@@ -134,7 +134,7 @@
       
       </details>
 
-   3. <details><summary> Dynamics </summary>
+   1. <details><summary> Dynamics </summary>
 
       1. Attitude
          1. Overview of Attitude calculation: TBW
@@ -151,7 +151,7 @@
       
       </details>
 
-   4. <details><summary> Environment </summary>
+   1. <details><summary> Environment </summary>
 
       1. Overview of Environment calculation: TBW
       1. Global Environment
@@ -169,7 +169,7 @@
 
       </details>
 
-   5. <details><summary> Interface </summary>
+   1. <details><summary> Interface </summary>
 
       1. Overview of Interface
       1. HILS In/Out
@@ -201,7 +201,7 @@
       
       </details>
 
-   6. <details><summary> Library </summary>
+   1. <details><summary> Library </summary>
 
       1. Geodesy
          1. Geodetic Position: TBW
@@ -238,7 +238,7 @@
       
       </details>
 
-   7. <details><summary> Simulation </summary>
+   1. <details><summary> Simulation </summary>
 
       1. Case: TBW
       1. Ground Station: TBW
