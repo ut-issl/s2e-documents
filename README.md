@@ -240,6 +240,13 @@
 
    7. <details><summary> Simulation </summary>
 
-      1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+      1. Case: TBW
+      1. Ground Station: TBW
+      1. Inter Satellite Communication: TBW
+      1. [MCSim (Monte Carlo Simulation)](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+      1. Spacecraft: TBW
+         1. Installed Components: TBW
+         1. Spacecraft: TBW
+         1. Structure: TBW
       
       </details>
