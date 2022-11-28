@@ -72,17 +72,29 @@
 ## 6. Edit Simulation Conditions: Orbit
 
 1. Move to `./data/SampleSat/ini`  directory  
-2. Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
-   - Currently, S2E supports two types of orbit propagation:
-     - SGP4 propagation with TLE
-     - RK4 propagation with initial position and velocity
-3. The default setting is as follows:
+1. Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
+   - Currently, S2E supports several types of orbit propagation. Please see [Orbit](./Specifications/Dynamics/Spec_Orbit.md) specification documents for more details.
+1. The default setting is as follows:
    - `propagate_mode = SGP4`: SGP4 Propagator is selected
    - TLE: ISS orbit
-4. Change TLE as you want
-5. Rerun the `s2e-core` **without a rebuild**
-6. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
+1. To get a long-term orbit simulation data, edit the following simulation time settings in `SampleSimBase.ini`
+   - `EndTimeSec = 6000`
+   - `LogOutPutIntervalSec = 10` (to decrease the output file size)
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the plots as follows.  
+   ![](./figs/GettingStarted_PlotIssOrbitInMiller.JPG)
+   ![](./figs/GettingStarted_PlotIssOrbit3d.JPG)
 
+1. Change TLE as you want
+   - Example: PRISM (Hitomi)
+     ```
+     tle1=1 33493U 09002B   22331.71920614  .00003745  00000-0  29350-3 0  9995
+     tle2=2 33493  98.2516 327.9413 0016885   9.3461 350.8072 15.01563916753462
+     ```
+1. Rerun the `s2e-core` **without a rebuild**
+1. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the different plots as follows.  
+  ![](./figs/GettingStarted_PlotPrismOrbitInMiller.JPG)
+  ![](./figs/GettingStarted_PlotPrismOrbit3d.JPG)
 
 ## 7. Edit Simulation Conditions: Environment
 
