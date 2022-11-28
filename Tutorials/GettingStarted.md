@@ -16,7 +16,7 @@
    - [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md)
 
 
-## 3. Check log output
+## 3. Check log output 
 
 1. Check `./data/SampleSat/logs` to find CSV log output file  
    - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`  
@@ -24,11 +24,13 @@
 3. You can see the simulation output
 4. The meaning of each value is described in the first row
    - A general rule of the header descriptions  
-     - `t` = true value   
-     - `b` = body frame  
-     - `i` = inertial frame  
-     - `c` = component frame  
-5. You can write a graph from the CSV file  
+     - `t` = true value
+     - `b` = body frame
+     - `i` = inertial frame
+     - `c` = component frame
+5. You can write a graph from the CSV file as you need.
+   - You can find plot examples written in Python in the `scripts/Plot` directory.
+   - Please see [How to Visualize Simulation Results](../General/HowToVisualizeSimulationResults.md) for mroe detailes.
    
 ## 4. Edit Simulation Conditions
 
