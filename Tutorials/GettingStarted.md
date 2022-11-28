@@ -1,4 +1,4 @@
-# Getting Started with VS in Windows PC
+# Getting Started
 
 ## 1.  Overview
 
@@ -7,23 +7,16 @@
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
   
-
-## 2. Environment
-
-- This tutorial supports an execution environment with Visual Studio 2022 on a Windows PC.  
-- However, the basic features of S2E are executable for other environments with a small modification of the sequence. 
-- For example, users can find a document like [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md) in the General directory.
-- The author hopes someone will write a new *Getting Started tutorial* for these environments.
-
-
-## 3. Clone, Build, and Execute 
+## 2. Clone, Build, and Execute 
 
 1. Clone [s2e-core](https://github.com/ut-issl/s2e-core).
 2. Read `README.md` to check the overview of S2E.
-3. Build and execute the `s2e-core` by referring [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)  
+3. Build and execute the `s2e-core` by referring following documents depends on your development environment.
+   - [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)
+   - [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md)
 
 
-## 4. Check log output
+## 3. Check log output
 
 1. Check `./data/SampleSat/logs` to find CSV log output file  
    - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`  
@@ -37,7 +30,7 @@
      - `c` = component frame  
 5. You can write a graph from the CSV file  
    
-## 5. Edit Simulation Conditions
+## 4. Edit Simulation Conditions
 
 1. Move to `./data/SampleSat/ini`  directory  
 2. You can find the several **initialize** files (ini files). In these initialize files, simulation conditions are defined, and you can change the conditions without rebuild of S2E by editing the initialize files.
@@ -50,7 +43,7 @@
 6. Check the new log file in `./data/SampleSat/logs` to confirm the initial angular velocity is changed as you want.
 7. Of course, you can change other values similarly.
 
-## 6. Edit Simulation Conditions: Disturbances
+## 5. Edit Simulation Conditions: Disturbances
 
 1. Move to `./data/SampleSat/ini`  directory again  
 2. Open `SampleDisturbance.ini`, which defines conditions to calculate orbital disturbance torques and forces
@@ -74,7 +67,7 @@
     - Detail description of initializing values are written in `Specifications`.
 
 
-## 7. Edit Simulation Conditions: Orbit
+## 6. Edit Simulation Conditions: Orbit
 
 1. Move to `./data/SampleSat/ini`  directory  
 2. Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
@@ -89,7 +82,7 @@
 6. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
 
 
-## 8. Edit Simulation Conditions: Environment
+## 7. Edit Simulation Conditions: Environment
 
 1. Move to `./data/SampleSat/ini`  directory  
 2. Open `SampleLocalEnvironment.ini`, which defines conditions to calculate the environment around the spacecraft
