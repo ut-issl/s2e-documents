@@ -1,4 +1,4 @@
-# Getting Started with VS in Windows PC
+# Getting Started
 
 ## 1.  Overview
 
@@ -7,23 +7,16 @@
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
   
-
-## 2. Environment
-
-- This tutorial supports an execution environment with Visual Studio 2022 on a Windows PC.  
-- However, the basic features of S2E are executable for other environments with a small modification of the sequence. 
-- For example, users can find a document like [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md) in the General directory.
-- The author hopes someone will write a new *Getting Started tutorial* for these environments.
-
-
-## 3. Clone, Build, and Execute 
+## 2. Clone, Build, and Execute 
 
 1. Clone [s2e-core](https://github.com/ut-issl/s2e-core).
 2. Read `README.md` to check the overview of S2E.
-3. Build and execute the `s2e-core` by referring [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)  
+3. Build and execute the `s2e-core` by referring following documents depends on your development environment.
+   - [How to compile with Visual Studio](../General/HowToCompileWithVisualStudio.md)
+   - [How to compile with Ubuntu](../General/HowToCompileWithUbuntuInDocker.md)
 
 
-## 4. Check log output
+## 3. Check log output 
 
 1. Check `./data/SampleSat/logs` to find CSV log output file  
    - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`  
@@ -31,13 +24,15 @@
 3. You can see the simulation output
 4. The meaning of each value is described in the first row
    - A general rule of the header descriptions  
-     - `t` = true value   
-     - `b` = body frame  
-     - `i` = inertial frame  
-     - `c` = component frame  
-5. You can write a graph from the CSV file  
+     - `t` = true value
+     - `b` = body frame
+     - `i` = inertial frame
+     - `c` = component frame
+5. You can write a graph from the CSV file as you need.
+   - You can find plot examples written in Python in the `scripts/Plot` directory.
+   - Please see [How to Visualize Simulation Results](../General/HowToVisualizeSimulationResults.md) for mroe detailes.
    
-## 5. Edit Simulation Conditions
+## 4. Edit Simulation Conditions
 
 1. Move to `./data/SampleSat/ini`  directory  
 2. You can find the several **initialize** files (ini files). In these initialize files, simulation conditions are defined, and you can change the conditions without rebuild of S2E by editing the initialize files.
@@ -50,7 +45,7 @@
 6. Check the new log file in `./data/SampleSat/logs` to confirm the initial angular velocity is changed as you want.
 7. Of course, you can change other values similarly.
 
-## 6. Edit Simulation Conditions: Disturbances
+## 5. Edit Simulation Conditions: Disturbances
 
 1. Move to `./data/SampleSat/ini`  directory again  
 2. Open `SampleDisturbance.ini`, which defines conditions to calculate orbital disturbance torques and forces
@@ -74,22 +69,34 @@
     - Detail description of initializing values are written in `Specifications`.
 
 
-## 7. Edit Simulation Conditions: Orbit
+## 6. Edit Simulation Conditions: Orbit
 
 1. Move to `./data/SampleSat/ini`  directory  
-2. Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
-   - Currently, S2E supports two types of orbit propagation:
-     - SGP4 propagation with TLE
-     - RK4 propagation with initial position and velocity
-3. The default setting is as follows:
+1. Open `SampleSat.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
+   - Currently, S2E supports several types of orbit propagation. Please see [Orbit](./Specifications/Dynamics/Spec_Orbit.md) specification documents for more details.
+1. The default setting is as follows:
    - `propagate_mode = SGP4`: SGP4 Propagator is selected
    - TLE: ISS orbit
-4. Change TLE as you want
-5. Rerun the `s2e-core` **without a rebuild**
-6. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
+1. To get a long-term orbit simulation data, edit the following simulation time settings in `SampleSimBase.ini`
+   - `EndTimeSec = 6000`
+   - `LogOutPutIntervalSec = 10` (to decrease the output file size)
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the plots as follows.  
+   ![](./figs/GettingStarted_PlotIssOrbitInMiller.JPG)
+   ![](./figs/GettingStarted_PlotIssOrbit3d.JPG)
 
+1. Change TLE as you want
+   - Example: PRISM (Hitomi)
+     ```
+     tle1=1 33493U 09002B   22331.71920614  .00003745  00000-0  29350-3 0  9995
+     tle2=2 33493  98.2516 327.9413 0016885   9.3461 350.8072 15.01563916753462
+     ```
+1. Rerun the `s2e-core` **without a rebuild**
+1. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft position in ECI frame `sat_position_i` and spacecraft position in ECEF frame `lat, lon, alt` are changed.
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the different plots as follows.  
+  ![](./figs/GettingStarted_PlotPrismOrbitInMiller.JPG)
+  ![](./figs/GettingStarted_PlotPrismOrbit3d.JPG)
 
-## 8. Edit Simulation Conditions: Environment
+## 7. Edit Simulation Conditions: Environment
 
 1. Move to `./data/SampleSat/ini`  directory  
 2. Open `SampleLocalEnvironment.ini`, which defines conditions to calculate the environment around the spacecraft
