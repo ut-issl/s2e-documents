@@ -85,6 +85,14 @@
   ```c++
   #include "MCSimExecutor.h"
   ```
+- If you find description below
+  ```c++
+  #include "Interface/LogOutout/Logger.h"
+  ```
+  rewrite as the following description 
+  ```c++
+  #include "Interface/LogOutput/InitLog.hpp"
+  ```
 - Make an instance of MCSimExecutor and Logger for MC log
   ```c++
   MCSimExecutor* mc_sim = InitMCSim(ini_file);

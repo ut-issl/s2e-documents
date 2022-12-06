@@ -44,6 +44,8 @@
   - In this tutorial, the angular velocity is measured by the gyro sensor. RW's output torque is calculated using the X-axis of the measured angular velocity, and the torque is set to RW.
 - Next, users need to add the `UserObc` into the `UserComponent` class. You can copy the `UserComponents` files to the `s2e-user/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
 - Finally, users need to add new source codes to the `CMakeLists.txt` to compile them.
+  - You have to add `RwXxx.ini` to `s2e-user/data/ini/Components`
+  - Refer to `SampleCodes/ControlAlgolithm/ComponentMethod/data/RwXxx.ini` if necessary.
 - By using the sample code, the following results are given.
   - The X-axis angular velocity is controlled, but other axes are not controlled well since the satellite only has an RW on X-axis. The X-axis angular velocity has offset value since the gyro has offset noise.
 
