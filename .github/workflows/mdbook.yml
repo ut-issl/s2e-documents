@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: setup mdbook
-        uses: peaceiris/actions-mdbook@v1.1.14
+        uses: peaceiris/actions-mdbook@v1.2.0
         with:
           mdbook-version: 'latest'
 
