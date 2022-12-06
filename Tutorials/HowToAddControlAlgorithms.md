@@ -24,7 +24,6 @@
 - To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetOmega_b()`.
 - To generate torque and force, users can use `dynamics_->AddTorque_b` and `dynamics_->AddForce_b`.
 - The sample codes are in `SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`, and you can see very simple detumbling with the proportional control method.
-  - If you can't find `virtual void UserSat::Update(const SimTime* sim_time);` in `UserSat.hpp`, add this statement as the public member function.
 - By using the sample code with initial angular velocity = [0.05, -0.03, 0.01] rad/s, the following results are given.
   - You need to edit the initialize file to set the initial angular velocity.
     
