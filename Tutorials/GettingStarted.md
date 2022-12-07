@@ -30,7 +30,7 @@
      - `c` = component frame
 5. You can write a graph from the CSV file as you need.
    - You can find plot examples written in Python in the `scripts/Plot` directory.
-   - Please see [How to Visualize Simulation Results](../General/HowToVisualizeSimulationResults.md) for mroe detailes.
+   - Please see [How to Visualize Simulation Results](../General/HowToVisualizeSimulationResults.md) for more details.
    
 ## 4. Edit Simulation Conditions
 
@@ -80,7 +80,7 @@
 1. To get a long-term orbit simulation data, edit the following simulation time settings in `SampleSimBase.ini`
    - `EndTimeSec = 6000`
    - `LogOutPutIntervalSec = 10` (to decrease the output file size)
-1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the plots as follows.  
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the plots as follows. Please see [general](../General/HowToVisualizeSimulationResults.md) documents for more details on visualization of simulation results.  
    ![](./figs/GettingStarted_PlotIssOrbitInMiller.JPG)
    ![](./figs/GettingStarted_PlotIssOrbit3d.JPG)
 
