@@ -6,19 +6,11 @@
 - This document describes how to integrate the C2A.
 - Notes
   - C2A is written in C language, but S2E builds C2A as C++.
-- Sample codes
-  - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
-  - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user)
-- Preparation to use the sample codes
-  - Clone the `s2e-core` v5.0.0.
-    - Please set the environment for that the s2e-core can work without C2A.
-  - Clone the sample codes in the `FlightSW` directory.
-  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
-## 2. How to build C2A in S2E
-- When users want to use C2A, complete the following steps
+## 2. Overview of C2A execution in S2E
+- Directory construction
   - Make `FlightSW` directory at same directory with `s2e-core` and `s2e-user`.
   - Make a `c2a-user` directory in `FlightSW` and set the C2A source code you want to use.
     ```
@@ -33,21 +25,31 @@
   - Edit `s2e-user/CMakeLists.txt`
     - `set(C2A_NAME "c2a_sample")`
       - Edit the directory name according to your situation
-      - If you use the sample codes, please edit here as `c2a-core/Examples/minimum_user`
     - `option(USE_C2A "Use C2A" OFF)`
       - Turn on the USE_C2A flag as `option(USE_C2A "Use C2A" ON)`
-  - Build the `s2e_user`
+- NOTE
+  - In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to add the `OBC`, which can execute the C2A.
+  - The `s2e-core` has the [OBC_C2A](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/CDH/OBC_C2A.cpp) as a component, and users can use it to execute the C2A.
+  - Users can use the `OBC_C2A` class in the `User_components` class, the same as other components.
+- Build the `s2e_user`
   - **Note:** When you add new source files in the C2A, you need to modify the `c2a-user/CMakeLists.txt` directory to compile them in the S2E.
-    - Users can choose the construction of CMake as users need.
-    - For example, the sample codes have several `CMakeLists.txt` files in each directory to set the compile targets, so users need to modify them to add the target source codes.
+  - Users can choose the construction of CMake as users need.
+  - For example, the sample codes have several `CMakeLists.txt` files in each directory to set the compile targets, so users need to modify them to add the target source codes.
 
-
-## 3. How to execute C2A in S2E
-- In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to add the `OBC`, which can execute the C2A.
-- The `s2e-core` has the [OBC_C2A](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/CDH/OBC_C2A.cpp) as a component, and users can use it to execute the C2A.
-- Users can use the `OBC_C2A` class in the `User_components` class, the same as other components.
-- The sample `s2e-user-for-c2a-core` already mounts the `OBC_C2A` as a component.
-
+## 3. How to build C2A in S2E with the sample codes
+- Sample codes
+  - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
+  - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user)
+- Sequence
+  - Clone `s2e-user-for-c2a-core` at same directory with `s2e-core`. 
+  - Make `FlightSW` directory at same directory with `s2e-core`.
+  - Clone `c2a-core` in the `FlightSW` directory.
+    - Switch to tag `v3.7.0`
+  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
+  - Open `s2e-user/CMakeLists.txt` and edit `set(C2A_NAME "c2a_sample")` to `set(C2A_NAME "c2a-core/Examples/minimum_user")`
+  - For users who don't use Windows, open `c2a-core/Examples/minimum_user/CMakeLists.txt` and edit `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" ON)` to `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" OFF)`
+    - This setting turns off the feature of communication with [WINGS](https://github.com/ut-issl/wings). Currently, this feature is available only for Windows users.
+  - Build and execute the `s2e-user-for-c2a-core`.
 
 ## 4. Communication between C2A and S2E
 - Generally, communication between flight software and S2E is executed via `OBC` class.
