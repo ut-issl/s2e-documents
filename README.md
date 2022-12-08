@@ -33,18 +33,28 @@
      
 
 1. Tutorials  
-   - We strongly recommend to sequencially follow the all tutorials at first.
+   - We strongly recommend to sequencially follow the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
-   1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
-   1. [How To Add Components](./Tutorials/HowToAddComponents.md)
-   1. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
-   1. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
-   1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
-   1. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-   1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
-   1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
-   1. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
-   1. TBW
+   - <details><summary> Tutorials without any external hardware </summary>
+
+     1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
+     1. [How To Add Components](./Tutorials/HowToAddComponents.md)
+     1. [How To Make New Components](./Tutorials/HowToMakeNewComponents.md)
+     1. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
+     1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
+     1. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
+     1. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+     1. TBW
+
+     </details>
+
+   - <details><summary> Tutorials with external hardware for HILS test </summary>
+
+     1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
+     1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
+     1. TBW
+
+     </details>
 
 1. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
