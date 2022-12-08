@@ -47,7 +47,7 @@
   - Make `FlightSW` directory at same directory with `s2e-core`.
   - Clone `c2a-core` in the `FlightSW` directory.
     - Switch to tag `v3.7.0`
-  - Execute `c2a-core/setup.sh` or `c2a-core/setup.bat`.
+  - Execute `c2a-core/setup.sh`(Mac or Linux Users) or `c2a-core/setup.bat` (Wndows Users).
   - Open `s2e-user/CMakeLists.txt` and edit `set(C2A_NAME "c2a_sample")` to `set(C2A_NAME "c2a-core/Examples/minimum_user")`
   - **For users who don't use Windows**, open `c2a-core/Examples/minimum_user/CMakeLists.txt` and edit `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" ON)` to `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" OFF)`
     - This setting turns off the feature to communicate with [WINGS](https://github.com/ut-issl/wings) ground station. Currently, this feature is available only for Windows users.
