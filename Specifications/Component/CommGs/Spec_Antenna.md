@@ -5,12 +5,13 @@
    - `Antenna` class emulates the radiation wave antenna on spacecraft and ground stations.
 
 2. Related files
-   - `Antenna.cpp`, `Antenna.h`
-   - `ANT.ini`
-   - `SampleAntennaRadiationPattern.csv`
+   - Main source codes: `Antenna.cpp`, `Antenna.h`
+   - Initialize functions: `InitAntenna.hpp`, `InitAntenna.cpp`
+   - Initialize files: `ANT.ini`, `ANT_SC.ini`, `ANT_GS.ini`
 
 3. How to use
-   - Set t
+   - Make instance of this class at `SpacecraftComponents` and/or `GroundStationComponents` by `InitAntenna` function.
+   - Set parameters in the antenna initialize files.
 
 ## 2. Explanation of Algorithm
 1. `CalcTxEIRP`
@@ -19,19 +20,26 @@
 
     1. input and output
        - input
-         + theta: Target directions [rad]
+         + $\theta$: Angle from PZ axis on the antenna frame [rad]
+         + $\phi$: Angle from PX axis on the antenna frame [rad]
+           - Set $\phi = 0$ for axial symmetry pattern
        - output
          + Transmit EIRP [dBW]
 
     1. algorithm
+       - $EIRP_{tx}$: Transmit EIRP [dBW]
        - $P_{tx}$: RF output power for transmission [W]
-       - $G_{tx}$: Transmit maximum gain [dBi]
        - $L_{f_{tx}}$: Feeder loss [dB]
        - $L_{p_{tx}}$: Pointing loss [dB]
-       - $EIRP_{tx}$: Transmit EIRP [dBW]
+       - $G_{tx}(\theta, \phi)$: Antenna gain [dBi]
        ```math
-       EIRP_{tx} = 10 \log_{10}{P_{tx}} + G_{tx} + L_{ftx} + L_{ptx}
+       \begin{align}
+         EIRP_{tx} &= 10 \log_{10}{P_{tx}} + L_{ftx} + L_{ptx} + G_{tx}(\theta, \phi) \\
+                   &= \bar{EIRP}_{tx} + G_{tx}(\theta, \phi)
+       \end{align}
        ```
+       - The constant value $\bar{EIRP}_{tx}$ is calculated at the `Constructor`
+       - $G_{tx}(\theta, \phi)$ is calculated by `CalcAntennaGain` function
 
 1. `CalcRxGT`
     1. overview
@@ -39,24 +47,57 @@
 
     1. input and output
        - input
-         + theta: Target directions [rad]
+         + $\theta$: Angle from PZ axis on the antenna frame [rad]
+         + $\phi$: Angle from PX axis on the antenna frame [rad]
+           - Set $\phi = 0$ for axial symmetry pattern
        - output
          + Receive G/T [dB/K]
 
     1. algorithm
-       - $G_{rx}$: Transmit maximum gain [dBi]
+       - $G/T_{rx}$: Receive G/T [dB/K]
        - $L_{f_{rx}}$: Feeder loss [dB]
        - $L_{p_{rx}}$: Pointing loss [dB]
        - $T_{rx}$: System noise temperature [K]
-       - $G/T_{rx}$: Receive G/T [dB/K]
+       - $G_{rx}(\theta, \phi)$: Receiver antenna gain [dBi]
        ```math
-       G/T_{rx} = G_{rx} + L_{frx} + L_{prx} - 10\log_{10}{T_{rx}}
+       \begin{align}
+         G/T_{rx} &= L_{frx} + L_{prx} - 10\log_{10}{T_{rx}} + G_{rx}(\theta, \phi)\\
+                  &= \bar{G/T}_{rx} + G_{rx}(\theta, \phi)
+       \end{align}
        ```
+       - The constant value $\bar{G/T}_{rx}$ is calculated at the `Constructor`
+       - $G_{rx}(\theta, \phi)$ is calculated by `CalcAntennaGain` function
+
+1. `CalcAntennaGain`
+    1. overview
+       - Function to calculate antenna gain.
+       - The antenna gain calculation method is changed by the following `AntennaGainModel`
+         + `ISOTROPIC`: Ideal isotropic radiation pattern
+           - Generally, the isotropic antenna gain is 0 dBi, but users can set other value for ideal analysis which are not depending on antenna pointing direction.
+         + `RADIATION_PATTERN_CSV`: Arbitrary 3D radiation pattern defined in CSV file.
+           - For details, please refer `AntennaRadiationPattern`.
+
+    1. input and output
+       - input
+         + `AntennaParameters`
+           - `AntennaGainModel`: Antenna gain model
+           - `AntennaRadiationPattern`: Antenna radiation pattern information
+         + $\theta$: Angle from PZ axis on the antenna frame [rad]
+         + $\phi$: Angle from PX axis on the antenna frame [rad]
+           - Set $\phi = 0$ for axial symmetry pattern
+       - output
+         + Antenna gain [dBi]
+
+    1. algorithm
+       - `ISOTROPIC` mode
+         + The function just returns pre-defined antenna gain.
+       - `RADIATION_PATTERN_CSV` mode
+         + The function just returns `AntennaRadiationPattern::GetGain_dBi`
+
 ## 3. Results of verifications
-- In this section, jitter output when the RW is rotated at a constant speed is verified.
-    1. 
+- TBW
 
 
 ## 4. References
-    1. 
+- NA
 
