@@ -34,35 +34,35 @@
        - Calculation of free space path loss $L_{fs}$ dB
          - $D_{sc-gs}$: Distance between spacecraft and ground station [km]
          - $f_{tx}$: TX signal frequency [MHz]
-         ```math
+```math
          L_{fs} = -20\log_{10}{\left(\frac{4\pi D_{sc-gs}}{\frac{300}{1000}f_{tx}}\right)}
-         ```
+```
        - Calculation of ground station direction on the spacecraft TX antenna frame
-         - $\bm{r}_{sc-gs}^{tx}$: Direction vector from spacecraft to ground station at the TX antenna frame
-         ```math
+         - $\boldsymbol{r}_{sc-gs}^{tx}$: Direction vector from spacecraft to ground station at the TX antenna frame
+```math
          \begin{align*}
-         \bm{r}_{sc-gs}^{tx} &= \begin{bmatrix}
-                                 x_{sc-gs}^{tx} \\
-                                 y_{sc-gs}^{tx} \\
-                                 z_{sc-gs}^{tx} \\
-                                \end{bmatrix}\\
+         \boldsymbol{r}_{sc-gs}^{tx} &= \begin{bmatrix}
+                                         x_{sc-gs}^{tx} \\
+                                         y_{sc-gs}^{tx} \\
+                                         z_{sc-gs}^{tx} \\
+                                        \end{bmatrix}\\
          \theta_{tx} &= \cos^{-1}(z_{sc-gs}^{tx})\\
          \phi_{tx} &= \cos^{-1}\left(\frac{x_{sc-gs}^{tx}}{\sin{\theta_{tx}}}\right)
          \end{align*}
-         ```
+```
        - Calculation of spacecraft direction on the ground station RX antenna frame
-         - $\bm{r}_{sc-gs}^{rx}$: Direction vector from ground station to spacecraft at the RX antenna frame
-         ```math
+         - $\boldsymbol{r}_{sc-gs}^{rx}$: Direction vector from ground station to spacecraft at the RX antenna frame
+```math
          \begin{align*}
-         \bm{r}_{sc-gs}^{rx} &= \begin{bmatrix}
-                                 x_{sc-gs}^{rx} \\
-                                 y_{sc-gs}^{rx} \\
-                                 z_{sc-gs}^{rx} \\
-                                \end{bmatrix}\\
+         \boldsymbol{r}_{sc-gs}^{rx} &= \begin{bmatrix}
+                                         x_{sc-gs}^{rx} \\
+                                         y_{sc-gs}^{rx} \\
+                                         z_{sc-gs}^{rx} \\
+                                        \end{bmatrix}\\
          \theta_{rx} &= \cos^{-1}(z_{sc-gs}^{rx})\\
          \phi_{rx} &= \cos^{-1}\left(\frac{x_{sc-gs}^{rx}}{\sin{\theta_{rx}}}\right)
          \end{align*}
-         ```
+```
        - Calculation of $CN_{0}$
          - $EIRP_{tx}(\theta_{tx}, \phi_{tx})$: Transmit EIRP calculated by `Antenna` class including TX antenna gain [dB]
          - $L_{fs}$: Free space path loss[dB]
@@ -72,9 +72,10 @@
          - $L_{ot}$: Other loss[dB]
          - $GT_{rx}(\theta_{rx}, \phi_{rx})$:  Receive G/T calculated by `Antenna` class including RX antenna gain [dB/K]
          - $k_{B}$: Boltzmann constant [J/K] 
-         ```math
+```math
          CN_{0} = EIRP_{tx}(\theta_{tx}, \phi_{tx}) + L_{fs} + L_{pl} + L_{at} + L_{rf} + L_{ot} + GT_{rx}(\theta_{rx}, \phi_{rx}) - 10\log_{10}{k_{B}}
-         ```
+```
+
 1. `CalcMaxBitrate`
     1. overview
        - Function to calculate maximum bitrate for downlink.
@@ -93,12 +94,13 @@
        - $L_{hw}$: Hardware deterioration [dB]
        - $G_{code}$: Coding gain [dB]
        - $M_{rq}$: Margin requirement [dB]
-       ```math
+```math
        \begin{align*}
        M_{bitrate} &= CN_{0} - (E_{b}N_{0} + L_{hw} + G_{code}) - M_{req} \\
        R_{max} &= \frac{1}{1000000} 10^{\frac{M_{bitrate}}{10}}
        \end{align*}
-       ```
+```
+
 1. `CalcReceiveMarginOnGs`
     1. overview
        - Function to calculate receive margin at the ground station.
@@ -117,12 +119,13 @@
        - $L_{hw}$: Hardware deterioration [dB]
        - $G_{code}$: Coding gain [dB]
        - $R_{tx}$: TX bit rate[bps]
-       ```math
+```math
        \begin{align*}
        CN_{req} &= E_{b}N_{0} + L_{hw} + G_{code} + 10\log_{10}{R_{tx}} \\
        M_{rec} &= CN_{0} - CN_{req}
        \end{align*}
-       ```
+```
+
 1. `Update`
     1. overview
        - Function to update the following states in `GsCalculator`.
