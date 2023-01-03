@@ -33,10 +33,10 @@
        - $L_{p_{tx}}$: Pointing loss [dB]
        - $G_{tx}(\theta, \phi)$: Antenna gain [dBi]
        ```math
-       \begin{align}
+       \begin{align*}
          EIRP_{tx} &= 10 \log_{10}{P_{tx}} + L_{ftx} + L_{ptx} + G_{tx}(\theta, \phi) \\
                    &= \bar{EIRP}_{tx} + G_{tx}(\theta, \phi)
-       \end{align}
+       \end{align*}
        ```
        - The constant value $\bar{EIRP}_{tx}$ is calculated at the `Constructor`
        - $G_{tx}(\theta, \phi)$ is calculated by `CalcAntennaGain` function
@@ -60,10 +60,10 @@
        - $T_{rx}$: System noise temperature [K]
        - $G_{rx}(\theta, \phi)$: Receiver antenna gain [dBi]
        ```math
-       \begin{align}
+       \begin{align*}
          G/T_{rx} &= L_{frx} + L_{prx} - 10\log_{10}{T_{rx}} + G_{rx}(\theta, \phi)\\
                   &= \bar{G/T}_{rx} + G_{rx}(\theta, \phi)
-       \end{align}
+       \end{align*}
        ```
        - The constant value $\bar{G/T}_{rx}$ is calculated at the `Constructor`
        - $G_{rx}(\theta, \phi)$ is calculated by `CalcAntennaGain` function
