@@ -50,10 +50,10 @@
 
 ## Abbreviations in codes
 - Basically, we follows the [Naming Rules in the Google Style Guide](https://google.github.io/styleguide/cppguide.html#General_Naming_Rules)
-- Single character abbreviations are restricted for wide scope variables.
-  - Such as: `q = quaternion`, `v = velocity`, etc.
-- Unfamiliar abbreviations are restricted for wide scope variables.
-  - Such as: `pos = position`, `quat = quaternion`.
+- Single character abbreviations are prohibited.
+  - Examples: `q = quaternion`, `v = velocity` are prohibited.
+- We do not recommend to use unfamiliar abbreviations.
+  - Examples: `pos = position`, `quat = quaternion` are not recommended.
 - Write the full name in the comment when you use abbreviations.
 - Available abbreviations are decided during review processes.
   - Examples of available abbreviations
