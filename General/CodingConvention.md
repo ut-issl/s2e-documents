@@ -47,3 +47,25 @@
 ## Initialization files (`.ini` files)
 - Comments
   - Use //
+
+## Abbreviations in codes
+- Basically, we follows the [Naming Rules in the Google Style Guide](https://google.github.io/styleguide/cppguide.html#General_Naming_Rules)
+- Single character abbreviations are restricted for wide scope variables.
+  - Such as: `q = quaternion`, `v = velocity`, etc.
+- Unfamiliar abbreviations are restricted for wide scope variables.
+  - Such as: `pos = position`, `quat = quaternion`.
+- Write the full name in the comment when you use abbreviations.
+- Available abbreviations are decided during review processes.
+  - Examples of available abbreviations
+    - `EKF`: Extended Kalman Filter
+    - `RW`: Reaction Wheel
+    - `GNSS`: Global Navigation Satellite System
+- Abbreviations to show the frame and the unit are available.
+  - Examples of frame
+    - `i`: Inertial frame
+    - `b`: Body fixed frame
+    - `c`: Component fixed frame
+    - `ecef`: Earth Center Earth Fixed frame
+    - `lvlh`: Local vertical Local Horizontal
+    - `rtn`: Radial-Transverse-Normal
+  - Examples of unit: `Nm`, `rad/s`, `m/s2`, `degC`
