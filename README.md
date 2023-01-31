@@ -19,6 +19,7 @@
 
 1. General Information
    1. [Coding Convention of S2E](./General/CodingConvention.md)
+   1. [Naming Rule for User Interface](./General/NamingRuleForUserInterface.md)
    1. [Format of S2E Documents](./General/DocumentFormat.md)
    1. Mandatory set up and How to Build the S2E  
 	   1. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
