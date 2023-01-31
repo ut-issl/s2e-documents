@@ -11,9 +11,9 @@ This document describes the naming rule for user interface layer which includes 
 - Variable name field: `[name]` 
   - It should be written as `snake_case`.
   - Single character abbreviations are restricted.
-    - Such as: `q = quaternion`, `v = velocity`, etc.
+    - Examples: `q = quaternion`, `v = velocity` are restricted.
   - We do not recommend to use unfamiliar abbreviations.
-    - Such as: `pos = position`, `quat = quaternion`
+    - Examples: `pos = position`, `quat = quaternion` are not recommended.
 - Unit field: `[unit]`
   - For readability, we recommend to use general unit description in the SI unit system, and we do not need to follow the `snake_case` description in the unit field.
   - Examples: `Nm`, `rad/s`, `m/s2`, `degC`
@@ -39,9 +39,10 @@ This document describes the naming rule for user interface layer which includes 
 - The `Section` field should be written as `CamelCase`
 - The `key` fields should be written to follow the above `Common rules`.
 - The axis of the frame is described as `(0), (1), (2)`, and they mean `X, Y, Z`
-  - TODO: Modify to use `X, Y, Z` directoly?
+  - TODO: Modify to use `X, Y, Z` directory?
 
 ## CSV log files
 - S2E uses `CSV` format initialize files.
 - The output file has the `variable names` in the first rows.
 - The `variable names` should be written to follow the above `Common rules`.
+- The unit is written in the brackets `[ ]` as `[N]`
