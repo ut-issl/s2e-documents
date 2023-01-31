@@ -10,10 +10,11 @@ This document describes the naming rule for user interface layer which includes 
   - If the value has no unit, we can remove the `[unit]` information.
 - Variable name field: `[name]` 
   - It should be written as `snake_case`.
-  - Single character abbreviations are restricted.
-    - Examples: `q = quaternion`, `v = velocity` are restricted.
+  - Single character abbreviations are prohibited.
+    - Examples: `q = quaternion`, `v = velocity` are prohibited.
   - We do not recommend to use unfamiliar abbreviations.
     - Examples: `pos = position`, `quat = quaternion` are not recommended.
+  - Available abbreviations are decided during review processes.
 - Unit field: `[unit]`
   - For readability, we recommend to use general unit description in the SI unit system, and we do not need to follow the `snake_case` description in the unit field.
   - Examples: `Nm`, `rad/s`, `m/s2`, `degC`
