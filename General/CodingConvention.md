@@ -12,7 +12,7 @@
   - Several old files do not follow the rules.
 
 - File and directory Name
-  - `CamelCase`
+  - `snake_case`
 
 - Macro (define)
   - Snake case with capital case
