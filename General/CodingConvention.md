@@ -65,7 +65,7 @@
     - `i`: Inertial frame
     - `b`: Body fixed frame
     - `c`: Component fixed frame
-    - `ecef`: Earth Center Earth Fixed frame
-    - `lvlh`: Local vertical Local Horizontal
+    - `ecef`: Earth Centered Earth Fixed frame
+    - `lvlh`: Local Vertical Local Horizontal
     - `rtn`: Radial-Transverse-Normal
   - Examples of unit: `Nm`, `rad/s`, `m/s2`, `degC`
