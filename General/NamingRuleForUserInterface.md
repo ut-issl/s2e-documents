@@ -23,8 +23,8 @@ This document describes the naming rule for user interface layer which includes 
     - `i`: Inertial frame
     - `b`: Body fixed frame
     - `c`: Component fixed frame
-    - `ecef`: Earth Center Earth Fixed frame
-    - `lvlh`: Local vertical Local Horizontal
+    - `ecef`: Earth Centered Earth Fixed frame
+    - `lvlh`: Local Vertical Local Horizontal
     - `rtn`: Radial-Transverse-Normal
   - To express the frame conversion, we can use `i2b` as `frame conversion from the inertial frame to the body-fixed frame`.
   - Note: The definition of origin of inertial frame is defined by the user settings. So sometimes we cannot use `eci = Earth Centered Inertial`.
@@ -34,16 +34,17 @@ This document describes the naming rule for user interface layer which includes 
 - S2E uses `INI` format initialize files.
 - `INI` has `Section` and `key` fields as follows
   ```
-  [Section]
+  [SECTION]
   key = value
   ```
-- The `Section` field should be written as `CamelCase`
+- The `SECTION` field should be written as `SNAKE_CASE`
 - The `key` fields should be written to follow the above `Common rules`.
 - The axis of the frame is described as `(0), (1), (2)`, and they mean `X, Y, Z`
+  - For quaternion `(0), (1), (2), (3)` is used as `X, Y, Z, W`.
   - TODO: Modify to use `X, Y, Z` directory?
 
 ## CSV log files
-- S2E uses `CSV` format initialize files.
+- S2E generates `CSV` format log files.
 - The output file has the `variable names` in the first rows.
 - The `variable names` should be written to follow the above `Common rules`.
 - The unit is written in the brackets `[ ]` as `[N]`
