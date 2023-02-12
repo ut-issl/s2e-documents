@@ -18,20 +18,20 @@ We are trying to increase the `Plot Scripts` to share the analysis method with m
   - In the `s2e-core/scripts/Plot` directory, you can also find the `Pipfile` which defines the version of Python and other libraries used in the scripts.
   - By using the `Pipenv`, users can easily construct the virtual environment to execute the scripts provided by the S2E
   - Users can create a virtual environment by running following commands after changing directory to ```scripts/Plot```
-  ```
-  # Windows
-  pip install pipenv
-  pipenv sync
-  ```
+    ```
+    # Windows
+    pip install pipenv
+    pipenv sync
+    ```
   - Then users can run scripts by following commands.
-  ```
-  # Windows
-  pipenv run python <path to scripts> --file-tag <log file tag>
-  ```
-  Example
-  ```
-  pipenv run python .\plot_orbit_eci.py --file-tag 230213_003054
-  ``` 
+    ```
+    # Windows
+    pipenv run python <path to scripts> --file-tag <log file tag>
+    ```
+    Example
+    ```
+    pipenv run python .\plot_orbit_eci.py --file-tag 230213_003054
+    ``` 
 - Example of the Visualization
   - Satellite trajectory on the earth map and ground station visibility analysis
     - The red star means the ground station.
