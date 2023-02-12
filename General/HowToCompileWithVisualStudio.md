@@ -42,7 +42,8 @@ This document explains how to build and execute the Visual Studio environment wi
       <pre>
       ├─ExtLibraries
       │  └─cspice
-      │  └─nrlmsise00 
+      │  └─GeoPotential
+      |  └─nrlmsise00
       └─s2e-core
       </pre>
 
