@@ -50,7 +50,7 @@ This document explains how to build and execute the Visual Studio environment wi
 1. Launch VS 2022
 
 2. Open the S2E project
-   - Click `Files/Open/CMake`.
+   - Click `File/Open/CMake`.
    - Select `s2e-core/CMakeLists.txt` at the top directory of the cloned S2E.
    - Wait a moment until the `CMake generation` is finished.
 
