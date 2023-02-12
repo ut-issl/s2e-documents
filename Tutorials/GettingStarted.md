@@ -59,7 +59,13 @@
 3. You can select `ENABLE` or `DISABLE` of calculation and log output for each disturbance
 4. Edit all `calculation` parameters of each disturbance as `calculation = DISABLE`
 5. Rerun the `s2e-core` **without a rebuild**
-6. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft is not affected by any disturbance torque and the angular velocity and quaternion are not changed.
+6. Check the new log file in `./data/SampleSat/logs` to confirm the spacecraft is not affected by any disturbance torque and the angular velocity and quaternion are not changed. You can also plot by following command and see all the disturbance torque and force are zero. (assuming you already created a pipenv virtual environment)
+   ```
+   # Windows
+   cd scripts/Plot
+   pipenv run python .\plot_disturbance_torque.py --file-tag <log file tag>
+   pipenv run python .\plot_disturbance_force.py --file-tag <log file tag>
+   ```
 7. Edit  `calculation` of MAG_DISTURBANCE as `calculation = ENABLE`
 8. Rerun the S2E_CORE **without a rebuild**
 9. Edit the value `rmm_const_b(0-2)` of MAG_DISTURBANCE as you want (e.g., 0.1)
@@ -80,7 +86,13 @@
 1. To get a long-term orbit simulation data, edit the following simulation time settings in `SampleSimBase.ini`
    - `EndTimeSec = 6000`
    - `LogOutPutIntervalSec = 10` (to decrease the output file size)
-1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the plots as follows. Please see [general](../General/HowToVisualizeSimulationResults.md) documents for more details on visualization of simulation results.  
+1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py` by following command. You can see the plots as follows. Please see [general](../General/HowToVisualizeSimulationResults.md) documents for more details on visualization of simulation results.
+   ```
+   # Windows
+   cd scripts/Plot
+   pipenv run python .\plot_satellite_orbit_on_miller.py --file-tag <log file tag>
+   pipenv run python .\plot_orbit_eci.py --file-tag <log file tag>
+   ```  
    ![](./figs/GettingStarted_PlotIssOrbitInMiller.JPG)
    ![](./figs/GettingStarted_PlotIssOrbit3d.JPG)
 
