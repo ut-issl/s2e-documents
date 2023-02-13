@@ -24,7 +24,8 @@
      ```
      └─s2e-core  
      └─ExtLibraries  
-       └─ cspice 
+       └─ cspice
+       └─ GeoPotential 
        └─ nrlmsise00
      ```
 
