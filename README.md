@@ -301,6 +301,8 @@
 
    1. <details><summary> Simulation </summary>
 
+      - `simulation` directory manages source codes to define simulation scenario.
+
       1. Case: TBW
       1. Ground Station: TBW
       1. Inter spacecraft Communication: TBW
