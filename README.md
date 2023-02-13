@@ -164,37 +164,51 @@
 
       </details>
 
-   1. <details><summary> Disturbance </summary>
+   1. <details><summary> Disturbances </summary>
 
-      1. Overview of disturbance calculation: TBW
-      1. [GeoPotential](./Specifications/Disturbance/Spec_GeoPotential.md)
+      - `disturbances` directory manages source codes to calculate disturbances acting on spacecraft on orbit.
+
+      1. Base files
+         1. Acceleration disturbance
+            - Base class for acceleration disturbances.
+         1. Disturbance
+            - Base class for all disturbance classes.
+         1. Disturbances
+            - The class to integrate all disturbances.
+      1. [Geopotential](./Specifications/Disturbance/Spec_GeoPotential.md)
+      1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
       1. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GGTorque.md)
       1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
       1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
          1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
          1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-      1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
       
       </details>
 
    1. <details><summary> Dynamics </summary>
 
+      - `dynamics` directory manages source codes to calculate dynamics behavior of spacecraft.
+
       1. Attitude
          1. Overview of Attitude calculation: TBW
-         1. [Attitude Dynamics](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
+         1. [Attitude RK4](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
          1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
          1. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
          1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
-         1. [ENCKE method](./Specifications/Dynamics/Spec_EnckeMethod.md)
+         1. [Encke method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       1. Thermal: not supported now.
       
       </details>
 
    1. <details><summary> Environment </summary>
+
+      - `environment` directory manages source codes to calculate space environment simulation.
+      - `global` directory manages environment calculations which are shared with all spacecraft and ground stations in the simulation scenario.
+      - `local` directory manages environment calculations only for a spacecraft at its position and attitude.
 
       1. Overview of Environment calculation: TBW
       1. Global Environment
@@ -204,80 +218,84 @@
          1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
          1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
          1. Physical Constants: TBW
-         1. SimTime: TBW
+         1. Simulation Time: TBW
       1. Local Environment
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-         1. [Magnetic Environment](./Specifications/Environment/Spec_MagEnvironment.md)
+         1. [Geomagnetic field](./Specifications/Environment/Spec_MagEnvironment.md)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
 
       </details>
 
    1. <details><summary> Interface </summary>
 
-      1. Overview of Interface
-      1. HILS In/Out
-         1. Com port interface: TBW
-         1. Hardware Message: TBW
-         1. HILS port manager: TBW
+      - `interface` directory manages source codes for communication with outside of S2E.
 
-      1. Initialize Input
-         1. IniAccess: TBW
+      1. HILS (Hardware In the Loop Simulation)
+         1. COM port interface: TBW
+         1. HILS port manager: TBW
+         1. Ports
+            1. HILS I2C Target Port
+            1. HILS UART Port
+
+      1. Initialize
+         1. Initialize file access: TBW
 
       1. Log Output
          1. Loggable: TBW
          1. Log Utility: TBW
          1. Logger: TBW
 
-      1. <details><summary> Spacecraft In/Out</summary>
+      1. <details><summary> SILS (Software In the Loop Simulation)</summary>
 
          1. Ports
             1. GPIO Port: TBW
             1. I2C Port: TBW
             1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
-            1. SCI Port: TBW
-         1. Utils
-            1. ITCTMChannel: TBW
+            1. UART Port: TBW
+         1. Utility
             1. Ring Buffer: TBW
 
          </details>
 
-      
       </details>
 
    1. <details><summary> Library </summary>
 
+      1. External
+         - External library related source codes.
+         1. IGRF (International Geomagnetic Reference Field): TBW
+         1. inih: TBW
+         1. nrlmsise00: TBW
+         1. sgp4: TBW
       1. Geodesy
          1. Geodetic Position: TBW
-      1. Orbit
-         1. Kepler Orbit: TBW
-         1. Orbital Elements: TBW
-      1. Relative Orbit
-         1. Relative Orbit Models: TBW
-      1. IGRF (International Geomagnetic Reference Field): TBW
-      1. inih: TBW
       1. <details><summary> math </summary>
 
-         1. GlobalRand (Global Randomize control): TBW
          1. MatVec (Matrix and Vector) : TBW
          1. Matrix: TBW
-         1. NormalRand (Normal Randomization): TBW
          1. ODE (Ordinaly Differential Equation): TBW
-         1. Quantization: TBW
          1. Quaternion: TBW
-         1. Ran0 and Ran1: TBW
-         1. Random Walk: TBW
          1. Vector: TBW
          1. s2e_math: TBW
 
          </details>
-      1. nrlmsise00: TBW
       1. optics
          1. Gaussian Beam Base: TBW
-      1. sgp4: TBW
-      1. utils
+      1. Orbit
+         1. Kepler Orbit: TBW
+         1. Orbital Elements: TBW
+         1. Relative Orbit Models: TBW
+      1. Randomization
+         1. Global randomization: TBW
+         1. Normal randomization: TBW
+         1. Minimal standard linear congruential generator
+         1. Minimal standard linear congruential generator with shuffle
+         1. Random walk
+      1. utilities
          1. Macros: TBW
          1. Endian: TBW
          1. SLIP: TBW
+         1. Quantization: TBW
       
       </details>
 
@@ -285,8 +303,8 @@
 
       1. Case: TBW
       1. Ground Station: TBW
-      1. Inter Satellite Communication: TBW
-      1. [MCSim (Monte Carlo Simulation)](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+      1. Inter spacecraft Communication: TBW
+      1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
       1. Spacecraft: TBW
          1. Installed Components: TBW
          1. Spacecraft: TBW
