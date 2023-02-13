@@ -10,9 +10,11 @@
 - Now discussing
   - The following rules are follows until the new naming rule is decided.
   - Several old files do not follow the rules.
+  - We are discussing follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) with small modifications.
 
 - File and directory Name
   - `snake_case`
+  - C++ files should end in `.cpp`, and header files should end in `.hpp`.
 
 - Macro (define)
   - Snake case with capital case
@@ -36,6 +38,9 @@
 - Methods (functions) in the class
   - `CamelCase`
 
+- The #define Guard
+  - Apply [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
+  - `#pragma once` is prohibited
 
 ## Documentation
 - Use Doxygen
