@@ -60,53 +60,67 @@
 1. Specifications
    1. [Overall Structure](./Specifications/OverallStructure/OverallStructure.md)
 
-   1. <details><summary> Component </summary>
+   1. <details><summary> Components </summary>
       
-      1. Overview of Components: TBW
-      1. <details><summary> Abstract </summary>
+      - `components` directory manages source codes to emulate components mounted on spacecraft and ground stations.
 
-         1. [Component Base](./Specifications/Component/Abstract/Spec_ComponentBase.md)
-         1. Examples: TBW
-         1. I2C Controller Communication Base: TBW
-         1. Tickable: TBW
-         1. [OBC Communication Base](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
-         1. OBC GPIO Base: TBW
-         1. OBC I2C Target Communication Base: TBW
-         1. [Sensor Base](./Specifications/Component/Abstract/Spec_SensorBase.md)
-         1. Singleton: TBW
-         1. StateMachine: TBW
+      1. <details><summary> Base </summary>
+
+         - `base` directory manages base classes which are inherited to make component classes.
+
+         1. [Component](./Specifications/Component/Abstract/Spec_ComponentBase.md)
+         1. GPIO Communication with OBC: TBW
+         1. I2C Controller: TBW
+         1. I2C Target Communication with OBC: TBW
+         1. Interface GPIO Component: TBW
+         1. Interface Tickable: TBW
+         1. [sensor](./Specifications/Component/Abstract/Spec_SensorBase.md)
+         1. [UART Communication with OBC](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
 
          </details>
 
       1. <details><summary> AOCS (Attitude and Orbit Control System) </summary>
 
-         1. GNSS Receiver: TBW
-         1. Gyro sensor: TBW
-         1. Magnetic sensor: TBW
-         1. Magnetorquer: TBW
-         1. [RW Jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
-         1. RW (Reaction Wheel): TBW
-         1. [STT](./Specifications/Component/AOCS/Spec_STT.md)
-         1. Sun sensor: TBW
+         - `aocs` directory manages components like sensor and actuators for AOCS subsystem.
+
+         1. gnss_receiver: TBW
+         1. gyro_sensor: TBW
+         1. magnetometer: TBW
+         1. magnetorquer: TBW
+         1. reaction wheel: TBW
+         1. [reaction_wheel_jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
+         1. [star sensor](./Specifications/Component/AOCS/Spec_STT.md)
+         1. sun sensor: TBW
 
          </details>
 
       1. <details><summary> CDH (Command and Data Handling) </summary>
 
+         - `cdh` directory manages components for CDH subsystem.
+
          1. OBC (Onboard Computer): TBW
          1. OBC C2A: TBW
-         1. TMTC Interface: TBW
 
          </details>
 
-      1. <details><summary> CommGS (Communication and Ground Station) </summary>
+      1. <details><summary> Communication </summary>
+
+         - `communication` directory manages components for communication of spacecraft and ground stations.
 
          1. Antenna: TBW
          1. GS calculator: TBW
 
          </details>
 
+      1. <details><summary> Ideal Components </summary>
+
+         - TBW
+
+         </details>
+
       1. <details><summary> Mission </summary>
+
+         - `mission` directory manages mission specific components like science instruments of spacecraft.
 
          1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
 
@@ -114,21 +128,39 @@
 
       1. <details><summary> Power </summary>
 
-         1. BAT (Battery): TBW
+         - `power` directory manages components for power subsystem.
+
+         1. Battery: TBW
          1. CSV scenario interface: TBW
-         1. [PCU](./Specifications/Component/Power/Spec_PCU.md)
+         1. [Power Control Unit](./Specifications/Component/Power/Spec_PCU.md)
          1. PCU Initial study: TBW
-         1. SAP (Solar Array Paddle): TBW
+         1. Solar Array Panel: TBW
 
          </details>
 
       1. <details><summary> Propulsion </summary>
 
-         1. [SimpleThruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
+         - `propulsion` directory manages components for propulsion subsystem.
+
+         1. [Simple Thruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
 
          </details>
 
       1. Thermal: No components now.
+
+
+      1. <details><summary> Examples </summary>
+
+         - `examples` directory manages example source codes to show how to make user defined components.
+         - Please do not use these classes directory for your simulation analysis.
+
+         1. Change structure: TBW
+         1. I2C controller for HILS: TBW
+         1. I2C target for HILS: TBW
+         1. Serial communication HILS: TBW
+         1. Serial communication OBC: TBW
+
+         </details>
 
       </details>
 
