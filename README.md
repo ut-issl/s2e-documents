@@ -5,7 +5,7 @@
 - The branch construction
   - main
     - Documents for the latest stable version of s2e-core
-      - Current version supports [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0)
+      - Current version supports [s2e-core v6.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v6.0.0)
     - The old versions are managed with `release/tag/v.*.*.*`
       - The release version number is compatible with s2e-core's version number
   - develop
@@ -13,6 +13,8 @@
     - This version is only for s2e-core developers
   - feature/branch-name
     - Writing documents before merge with the `develop`
+  - hotfix/branch-name
+    - Fix typos, misdescription, etc.
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of s2e-core](https://github.com/ut-issl/s2e-core/discussions).
 
 ## Index
