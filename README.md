@@ -74,80 +74,23 @@
          1. I2C Target Communication with OBC: TBW
          1. Interface GPIO Component: TBW
          1. Interface Tickable: TBW
-         1. [sensor](./Specifications/Component/Abstract/Spec_SensorBase.md)
+         1. [Sensor](./Specifications/Component/Abstract/Spec_SensorBase.md)
          1. [UART Communication with OBC](./Specifications/Component/Abstract/Spec_ObcCommunicationBase.md)
 
          </details>
 
-      1. <details><summary> AOCS (Attitude and Orbit Control System) </summary>
+      1. <details><summary> Ports </summary>
 
-         - `aocs` directory manages components like sensor and actuators for AOCS subsystem.
+         - `ports` directory manages source codes to emulate connection of components including communication and power ports.
 
-         1. gnss_receiver: TBW
-         1. gyro_sensor: TBW
-         1. magnetometer: TBW
-         1. magnetorquer: TBW
-         1. reaction wheel: TBW
-         1. [reaction_wheel_jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
-         1. [star sensor](./Specifications/Component/AOCS/Spec_STT.md)
-         1. sun sensor: TBW
+         1. GPIO Port: TBW
+         1. I2C Port: TBW
+         1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
+         1. UART Port: TBW
+         1. HILS I2C Target Port
+         1. HILS UART Port
 
          </details>
-
-      1. <details><summary> CDH (Command and Data Handling) </summary>
-
-         - `cdh` directory manages components for CDH subsystem.
-
-         1. OBC (Onboard Computer): TBW
-         1. OBC C2A: TBW
-
-         </details>
-
-      1. <details><summary> Communication </summary>
-
-         - `communication` directory manages components for communication of spacecraft and ground stations.
-
-         1. Antenna: TBW
-         1. GS calculator: TBW
-
-         </details>
-
-      1. <details><summary> Ideal Components </summary>
-
-         - TBW
-
-         </details>
-
-      1. <details><summary> Mission </summary>
-
-         - `mission` directory manages mission specific components like science instruments of spacecraft.
-
-         1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
-
-         </details>
-
-      1. <details><summary> Power </summary>
-
-         - `power` directory manages components for power subsystem.
-
-         1. Battery: TBW
-         1. CSV scenario interface: TBW
-         1. [Power Control Unit](./Specifications/Component/Power/Spec_PCU.md)
-         1. PCU Initial study: TBW
-         1. Solar Array Panel: TBW
-
-         </details>
-
-      1. <details><summary> Propulsion </summary>
-
-         - `propulsion` directory manages components for propulsion subsystem.
-
-         1. [Simple Thruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
-
-         </details>
-
-      1. Thermal: No components now.
-
 
       1. <details><summary> Examples </summary>
 
@@ -159,6 +102,91 @@
          1. I2C target for HILS: TBW
          1. Serial communication HILS: TBW
          1. Serial communication OBC: TBW
+
+         </details>
+
+      1. <details><summary> Ideal </summary>
+
+         - `ideal` directory manages source codes of idealized components which are used in initial analysis phase in research and satellite development.
+         - Force Generator
+         - Torque Generator
+
+         </details>
+
+      1. <details><summary> Real </summary>
+
+         - `real` directory manages source codes to emulate well used components in a normal satellite mission.
+
+         1. <details><summary> AOCS (Attitude and Orbit Control System) </summary>
+
+            - `aocs` directory manages components like sensor and actuators for AOCS subsystem.
+
+            1. GNSS Receiver: TBW
+            1. GYRO Sensor: TBW
+            1. Magnetometer: TBW
+            1. Magnetorquer: TBW
+            1. Reaction wheel: TBW
+            1. [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
+            1. [Star sensor](./Specifications/Component/AOCS/Spec_STT.md)
+            1. Sun sensor: TBW
+
+            </details>
+
+         1. <details><summary> CDH (Command and Data Handling) </summary>
+
+            - `cdh` directory manages components for CDH subsystem.
+
+            1. OBC (On-board Computer): TBW
+            1. OBC with C2A: TBW
+
+            </details>
+
+         1. <details><summary> Communication </summary>
+
+            - `communication` directory manages components for communication of spacecraft and ground stations.
+
+            1. Antenna: TBW
+            1. GS calculator: TBW
+
+            </details>
+
+         1. <details><summary> Mission </summary>
+
+            - `mission` directory manages mission specific components like science instruments of spacecraft.
+
+            1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
+
+            </details>
+
+         1. <details><summary> Power </summary>
+
+            - `power` directory manages components for power subsystem.
+
+            1. Battery: TBW
+            1. CSV scenario interface: TBW
+            1. [Power Control Unit](./Specifications/Component/Power/Spec_PCU.md)
+            1. PCU Initial study: TBW
+            1. Solar Array Panel: TBW
+
+            </details>
+
+         1. <details><summary> Propulsion </summary>
+
+            - `propulsion` directory manages components for propulsion subsystem.
+
+            1. [Simple Thruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
+
+            </details>
+
+         1. Thermal: No components now.
+
+         </details>
+
+      1. <details><summary> Products </summary>
+
+         - `products` directory manages source codes to emulate specific products published in the world. The telemetry and command interfaces are also emulated based on ICDs.
+         - Users can use them for a practical simulation for satellite development.
+         - TBW
 
          </details>
 
@@ -226,39 +254,6 @@
 
       </details>
 
-   1. <details><summary> Interface </summary>
-
-      - `interface` directory manages source codes for communication with outside of S2E.
-
-      1. HILS (Hardware In the Loop Simulation)
-         1. COM port interface: TBW
-         1. HILS port manager: TBW
-         1. Ports
-            1. HILS I2C Target Port
-            1. HILS UART Port
-
-      1. Initialize
-         1. Initialize file access: TBW
-
-      1. Log Output
-         1. Loggable: TBW
-         1. Log Utility: TBW
-         1. Logger: TBW
-
-      1. <details><summary> SILS (Software In the Loop Simulation)</summary>
-
-         1. Ports
-            1. GPIO Port: TBW
-            1. I2C Port: TBW
-            1. [Power Port](./Specifications/Interface/Spec_PowerPort.md)
-            1. UART Port: TBW
-         1. Utility
-            1. Ring Buffer: TBW
-
-         </details>
-
-      </details>
-
    1. <details><summary> Library </summary>
 
       1. External
@@ -267,8 +262,13 @@
          1. inih: TBW
          1. nrlmsise00: TBW
          1. sgp4: TBW
+
       1. Geodesy
          1. Geodetic Position: TBW
+
+      1. Communication
+         1. COM port interface: TBW
+
       1. <details><summary> math </summary>
 
          1. MatVec (Matrix and Vector) : TBW
@@ -279,23 +279,36 @@
          1. s2e_math: TBW
 
          </details>
+
+      1. Initialize
+         1. Initialize file access: TBW
+
+      1. Logger
+         1. Loggable: TBW
+         1. Log Utility: TBW
+         1. Logger: TBW
+
       1. optics
          1. Gaussian Beam Base: TBW
+
       1. Orbit
          1. Kepler Orbit: TBW
          1. Orbital Elements: TBW
          1. Relative Orbit Models: TBW
+
       1. Randomization
          1. Global randomization: TBW
          1. Normal randomization: TBW
          1. Minimal standard linear congruential generator
          1. Minimal standard linear congruential generator with shuffle
          1. Random walk
+
       1. utilities
          1. Macros: TBW
          1. Endian: TBW
          1. SLIP: TBW
          1. Quantization: TBW
+         1. Ring Buffer: TBW
       
       </details>
 
@@ -304,9 +317,18 @@
       - `simulation` directory manages source codes to define simulation scenario.
 
       1. Case: TBW
+
+      1. HILS: TBW
+         1. HILS port manager: TBW
+
       1. Ground Station: TBW
-      1. Inter spacecraft Communication: TBW
+
+      1. Multiple Spacecraft: TBW
+         1. Inter spacecraft Communication: TBW
+         1. Relative Information: TBW
+
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
+
       1. Spacecraft: TBW
          1. Installed Components: TBW
          1. Spacecraft: TBW
