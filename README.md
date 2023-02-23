@@ -324,7 +324,7 @@
       1. Ground Station: TBW
 
       1. Multiple Spacecraft: TBW
-         1. Inter spacecraft Communication: TBW
+         1. Inter Spacecraft Communication: TBW
          1. Relative Information: TBW
 
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
