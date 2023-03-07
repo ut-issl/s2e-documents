@@ -12,8 +12,9 @@
 
 3. how to use
    - Make an instance of the `GravityGradient` class in `InitializeInstances` function in `disturbances.cpp`
+     - Create an instance by using the initialization function `InitGravityGradient`
    - Set the parameters in the `disturbance.ini`
-   - Create an instance by using the initialization function `InitGravityGradient`
+     - Select `ENABLE` for `calculation` and `logging`
    
      
 ## 2. Explanation of Algorithm
