@@ -7,7 +7,7 @@
 
 2. Related files
    - `src/disturbances/geopotential.cpp`
-   - `src/disturbances/geopotential.h`
+   - `src/disturbances/geopotential.hpp`
    - `s2e-core/ExtLibraries/GeoPotential/egm96_to360.ascii`
      - The EGM96 geopotential coefficients file was downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html), but we cannot access it now.
 
