@@ -11,7 +11,7 @@
    - `disturbance.ini` : Initialization file
 
 3. how to use
-   - Make an instance of the `geopotential` class in `InitializeInstances` function in `disturbances.cpp`
+   - Make an instance of the `GravityGradient` class in `InitializeInstances` function in `disturbances.cpp`
    - Set the parameters in the `disturbance.ini`
    - Create an instance by using the initialization function `InitGravityGradient`
    
