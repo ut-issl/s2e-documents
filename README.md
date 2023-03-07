@@ -251,7 +251,7 @@
          1. Simulation Time: TBW
       1. Local Environment
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-         1. [Geomagnetic field](./Specifications/Environment/Spec_MagEnvironment.md)
+         1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
 
       </details>
