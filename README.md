@@ -208,7 +208,7 @@
       1. [Geopotential](./Specifications/Disturbance/Spec_GeoPotential.md)
       1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
       1. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GravityGradient.md)
-      1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagDisturbance.md)
+      1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagneticDisturbance.md)
       1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
          1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
          1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
