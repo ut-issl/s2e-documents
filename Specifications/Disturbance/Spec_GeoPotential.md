@@ -12,7 +12,7 @@
      - The EGM96 geopotential coefficients file was downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html), but we cannot access it now.
 
 3. How to use   
-   - Make an instance of the geopotential class in `InitializeInstances` function in `disturbances.cpp`
+   - Make an instance of the `geopotential` class in `InitializeInstances` function in `disturbances.cpp`
    - Chose a orbit propagator with disturbances.
    - Select `ENABLE` and `degree` of calculation in the `disturbance.ini` file
      - When the `degree` is smaller than 1, it is overwritten as 0.
