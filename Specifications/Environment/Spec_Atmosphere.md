@@ -1,39 +1,35 @@
-# Specification for Atomosphere model
+# Specification for Atmosphere model
 
 ## 1.  Overview
 1. Functions 
   + The `Atmosphere` class calculates an air density at the satellite's position.
 
 2. Related files
-  + `src/Environment/Atmosphere.cpp, .h`
-    + Atmosphere class is defined.
-  + `src/Environment/Environment.cpp, .h`
-    + Atmosphere class is used here as a member variable of Envir class.
-  + `src/Environment/Init_Envinronment.cpp`
-    + Atmosphere class is instanced here based on the .ini file for the environment.
-  + `src/Library/nrlmsise00/Wrapper_nrlmsise00.cpp, .h`
+  + `src/environment/local/atmosphere.cpp, .hpp`
+    + `Atmosphere` class is defined.
+  + `src/environment/local/local_environment.cpp, .hpp`
+    + `Atmosphere` class is used here as a member variable of `LocalEnvironment` class.
+  + `src/environment/local/initialize_local_environment.cpp, .hpp`
+    + `Atmosphere` class is instanced here based on the `.ini` file for the environment.
+  + `src/library/external/nrlmsise00/wrapper_nrlmsise00.cpp, .hpp`
     + An air density is calculated using an external library, NRLMSISE00 atmosphere model.
 
 3. How to use
-  + Select a model and set a standard deviation as `rho_stddev` for random noise in the `.ini` file
+  + Select a model and set a standard deviation as `air_density_standard_deviation` for random noise in the `local_environment.ini` file
     + Model
       + `STANDARD`
         + The air density is calculated using scale height.
       + `NRLMSISE00`
         + The air density is calculated using the NRLMSISE00 model.
-        + If users use this model, the space weather table path must be set in the `.ini` file.
-    + Example
-      ```
-      [ATMOSPHERE]
-      model = NRLMSISE00
-      nrlmsise00_table_path = ../../../ExtLibraries/nrlmsise00/table/SpaceWeather.txt
-      calculation = ENABLE
-      logging = ENABLE
-      rho_stddev = 0.0
-      ```
-  + `CalcAirDensity`: Update the air density (kg/m3) based on the selected model
-  + `Addnoise`: Add noise to the result of `CalcAirDensity`
-  + `GetAirDensity`: Return the air density (kg/m3)
+        + If users use this model, the following additional parameters must be set in the `.ini` file.
+          + `nrlmsise00_table_file`: The space weather table path
+          + `is_manual_parameter_used`: The manual setting parameter defined as follows are used or not
+            + manual_daily_f107: User defined f10.7 (1 day)
+            + manual_average_f107: User defined f10.7 (30 days average)
+            + manual_ap: User defined ap
+  + The public functions
+    + `CalcAirDensity_kg_m3`: Update the air density (kg/m3) based on the selected model
+    + `GetAirDensity_kg_m3`: Return the calculated air density (kg/m3)
 
 ## 2. Installation of NRLMSISE00
 + Please check [How to download and compile NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
