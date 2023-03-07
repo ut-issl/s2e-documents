@@ -13,11 +13,14 @@
 
 3. How to use   
    - Make an instance of the `GeoPotential` class in `InitializeInstances` function in `disturbances.cpp`
-   - Chose a orbit propagator with disturbances.
-   - Select `ENABLE` and `degree` of calculation in the `disturbance.ini` file
-     - When the `degree` is smaller than 1, it is overwritten as 0.
-     - When the `degree` is larger than 360, it is overwritten as 360.
-     - **NOTE**: The calculation time is related to the selected degree.
+     - Create an instance by using the initialization function `InitGeoPotential`
+   - Chose a orbit propagator mode that considers disturbances.
+   - Edit the `disturbance.ini` file
+     - Select `ENABLE` for `calculation` and `logging`
+     - Select `degree` of calculation
+       - When the `degree` is smaller than 1, it is overwritten as 0.
+       - When the `degree` is larger than 360, it is overwritten as 360.
+       - **NOTE**: The calculation time is related to the selected degree.
      
 
 ## 2. Explanation of Algorithm
