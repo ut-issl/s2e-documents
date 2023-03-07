@@ -6,16 +6,15 @@
    - The `GeoPotential` class calculates the gravity acceleration of the earth with the [EGM96](https://cddis.nasa.gov/926/egm96/) geo-potential model.
 
 2. Related files
-   - `src/Disturbance/GeoPotential.cpp`
-   - `src/Disturbance/GeoPotential.h`
-   - `ExtLibraries/GeoPotential/egm96_to360.ascii`
-     - The EGM96 geopotential coefficients file can be downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html)
-     - Users can use `scripts/download_EGM96coefficients.sh` to download the file.
+   - `src/disturbances/geopotential.cpp`
+   - `src/disturbances/geopotential.h`
+   - `s2e-core/ExtLibraries/GeoPotential/egm96_to360.ascii`
+     - The EGM96 geopotential coefficients file was downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html), but we cannot access it now.
 
 3. How to use   
-   - Make an instance of the geopotential class in `InitializeInstances` function in `Disturbances.cpp`
-   - Chose RK4 orbit propagator
-   - Select `ENABLE` and `degree` of calculation
+   - Make an instance of the geopotential class in `InitializeInstances` function in `disturbances.cpp`
+   - Chose a orbit propagator with disturbances.
+   - Select `ENABLE` and `degree` of calculation in the `disturbance.ini` file
      - When the `degree` is smaller than 1, it is overwritten as 0.
      - When the `degree` is larger than 360, it is overwritten as 360.
      - **NOTE**: The calculation time is related to the selected degree.
@@ -274,17 +273,17 @@ When $m>=0$, following correction factors are useful for z acceleration
         chrono::system_clock::time_point start, end;
         start = chrono::system_clock::now();
       
-        debug_pos_ecef_ = spacecraft.dynamics_->orbit_->GetSatPosition_ecef();
-        CalcAccelerationECEF(spacecraft.dynamics_->orbit_->GetSatPosition_ecef());
+        debug_pos_ecef_m_ = spacecraft.dynamics_->orbit_->GetPosition_ecef_m();
+        CalcAccelerationEcef(dynamics.GetOrbit().GetPosition_ecef_m());
       
-        end = chrono::system_clock::now();
-        time_ = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
+       end = chrono::system_clock::now();
+       time_ms_ = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
       ```
       
-      - The `time_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
+      - The `time_ms_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
       - Environment
         - Corei7-8650U(2.11GHz)
-        -  VS2017 32bit debug
+        - VS2017 32bit debug
       
    2. conditions for the verification
       1. input files
