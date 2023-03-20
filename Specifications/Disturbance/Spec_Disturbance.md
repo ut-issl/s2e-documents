@@ -1,4 +1,4 @@
-# Specification of Geo Potential Calculation
+# Specification of Disturbance class
 
 ## 1.  Overview
 
