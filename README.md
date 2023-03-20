@@ -246,7 +246,7 @@
            - e.g., planet position vector from the spacecraft in the spacecraft body frame.
 
       1. Global Environment
-         1. Global Environment
+         1. [Global Environment](./Specifications/Environment/Spec_GlobalEnvironment.md)
          1. Celestial Information: TBW
          1. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
          1. Clock Generator: TBW
