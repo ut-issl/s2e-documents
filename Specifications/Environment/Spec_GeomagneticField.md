@@ -2,7 +2,8 @@
 
 ## 1.  Overview
 1. Functions 
-   + `GeomagneticField` class calculates the geomagnetic field at the spacecraft's position from the IGRF model and adds noise to emulate the difference between the IGRF model and the real world.
+   + `GeomagneticField` class calculates the geomagnetic field at the spacecraft's position from the IGRF model
+   + This class also adds noise to emulate the difference between the IGRF model and the real world.
 
 2. Related files
    + `src/environment/local/geomagnetic_field.cpp, .hpp`
@@ -56,7 +57,7 @@
         ```
 
 3. Results
-   + Results of S2E
+   + Results of S2E  
      <img src="./figs/Result_IGRF_S2E.png"  width="360" />
 
    + Error between S2E and MATLAB
