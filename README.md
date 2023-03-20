@@ -198,20 +198,20 @@
 
       - `disturbances` directory manages source codes to calculate disturbances acting on spacecraft on orbit.
 
-      1. Base files
-         1. Acceleration disturbance
-            - Base class for acceleration disturbances.
-         1. Disturbance
-            - Base class for all disturbance classes.
+      1. Base classes
+         1. [Disturbance](./Specifications/Disturbance/Spec_Disturbance.md)
          1. Disturbances
-            - The class to integrate all disturbances.
-      1. [Geopotential](./Specifications/Disturbance/Spec_GeoPotential.md)
-      1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
-      1. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GravityGradient.md)
-      1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagneticDisturbance.md)
-      1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
-         1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
-         1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
+            - This class integrates all disturbances.
+            - All disturbances are initialized in this class.
+            - Their update calculations are called in this class.
+      1. Disturbance calculations
+         1. [Geopotential](./Specifications/Disturbance/Spec_GeoPotential.md)
+         1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
+         1. [Gravity Gradient Torque](./Specifications/Disturbance/Spec_GravityGradient.md)
+         1. [Magnetic Disturbance Torque](./Specifications/Disturbance/Spec_MagneticDisturbance.md)
+         1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
+            1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
+            1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
       
       </details>
 
