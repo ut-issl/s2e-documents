@@ -252,14 +252,14 @@
          1. [Clock Generator](./Specifications/Environment/Spec_ClockGenerator.md)
          1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
          1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
-         1. [Physical Constants](./Specifications/Environment/Spec_PhysicalConstant.md)
+         1. [Physical Constants](./Specifications/Environment/Spec_PhysicalConstants.md)
          1. [Simulation Time](./Specifications/Environment/Spec_SimulationTime.md)
 
       1. Local Environment
          1. [Local Environment](./Specifications/Environment/Spec_LocalEnvironment.md)
          1. [Local Celestial Information](./Specifications/Environment/Spec_LocalCelestialInformation.md)
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-         1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField)
+         1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField.md)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
 
       </details>
