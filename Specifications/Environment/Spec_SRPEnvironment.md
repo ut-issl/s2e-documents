@@ -1,31 +1,32 @@
-# SRP Environment
+# Specification for Solar Radiation Pressure Environment
 
 ## 1.  Overview
 
 1. Functions
-   - `SRP Environment` calculates solar power flux at the spacecraft's position, including the earth's eclipse effect.
+   - `SolarRadiationPressureEnvironment` calculates solar power flux at the spacecraft's position, including the earth's eclipse effect.
 
 2. Related files
-   - SRPEnvironment.cpp, .h
-     - `SRPEnvironment` class is defined. 
-   - Environment.cpp, .h
-     - `SRPEnvironment` class is used here as a member variable of `Envir` class.
-   - Init_Environment.cpp
-     - An instance of `Envir` class is made by using the initialize file for environment setting.
+   - `src/environment/local/solar_radiation_pressure_environment.cpp, .hpp`
+     - `SolarRadiationPressureEnvironment` class is defined. 
+   - `src/environment/local/local_environment.cpp, .hpp`
+     - `SolarRadiationPressureEnvironment` class is used here as a member variable of `LocalEnvironment` class.
+   - `src/environment/local/initialize_local_environment.cpp, .hpp`
+     - `SolarRadiationPressureEnvironment` class is instanced here based on the `.ini` file for the environment.
 
 3. How to use
-   - `UpdateAllStates` function calculates solar power flux and updates the eclipse flag.
+   - Call `UpdateAllStates` function to calculates solar power flux and updates the eclipse flag.
    - Users can get calculated values by using the following functions:
-     - `CalcTruePressure`: Return solar pressure (N/m2) with eclipse effect for SRP disturbance calculation.
-     - `CalcPowerDensity`: Return solar power density (W/m2) with eclipse effect for Electrical Power System calculation.
-     - `GetPressure`: Return solar pressure (N/m2) without eclipse effect.
-     - `GetShadowFunction`: Return shadow function $\nu$.
+     - `GetPressure_N_m2`: Return solar pressure (N/m2) with eclipse effect for SRP disturbance calculation.
+     - `GetPowerDensity_W_m2`: Return solar power density (W/m2) with eclipse effect for Electrical Power System calculation.
+     - `GetPressureWithoutEclipse_Nm2`: Return solar pressure (N/m2) without eclipse effect.
+     - `GetSolarConstant_W_m2`: Return solar constant value 1366 [W/m2]
+     - `GetShadowCoefficient`: Return shadow function $\nu$.
        - When the spacecraft is in umbra, $\nu=0$.
        - When the spacecraft is in sunlight, $\nu=1$.
        - When the spacecraft is in penumbra, $0<\nu<1$.
+     - `GetIsEclipsed`: Return eclipse or not
 
    
-
 ## 2. Explanation of Algorithm
 1. Pressure calculation in `UpdateAllStates` function
 
@@ -51,9 +52,9 @@
    4. note
       - It is known that the solar constant value varies between 1365 and 1367 W/m2, but it is handled as a constant value in S2E. 
    
-2. `UpdateAllStates` function
+2. `CalcShadowCoefficient` function
    1. overview
-      - TBW
+      - This function determines that the spacecraft is inside the eclipse of the earth or not.
 
    2. inputs and outputs
       - Constants
