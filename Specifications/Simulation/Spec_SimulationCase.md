@@ -15,7 +15,7 @@
      - The instance of the `SimulationCase` class is made in this main function.
 
 3. How to use
-   - See following documents
+   - See the following documents
      - [How To Make New Simulation Scenario](../../Tutorials/HowToMakeNewSimulationScenario.md)
      - [Sample Case](./Spec_SampleCase.md.md)
   
