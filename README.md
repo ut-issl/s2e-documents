@@ -200,7 +200,7 @@
 
       1. Base classes
          1. [Disturbance](./Specifications/Disturbance/Spec_Disturbance.md)
-         1. [Disturbance](./Specifications/Disturbance/Spec_Disturbances.md)
+         1. [Disturbances](./Specifications/Disturbance/Spec_Disturbances.md)
       1. Disturbance calculations
          1. [Geopotential](./Specifications/Disturbance/Spec_GeoPotential.md)
          1. [Third Body Gravity](./Specifications/Disturbance/Spec_ThirdBodyGravity.md)
