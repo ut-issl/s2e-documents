@@ -10,9 +10,9 @@
    - `src/environment/global/celestial_information.cpp, .hpp`
      - `CelestialInformation` class is defined. 
    - `src/environment/global/global_environment.cpp, .hpp`
-     - `GlobalCelestialInformation` class is used here as a member variable of `GlobalEnvironment` class.
+     - `CelestialInformation` class is used here as a member variable of `GlobalEnvironment` class.
    - `src/environment/global/initialize_global_environment.cpp, .hpp`
-     - `GlobalCelestialInformation` class is instanced here based on the `.ini` file for the environment.
+     - `CelestialInformation` class is instanced here based on the `.ini` file for the environment.
 
 3. How to use
    - Call ` UpdateAllObjectsInformation` function to calculates the celestial bodies position and velocity.

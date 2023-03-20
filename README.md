@@ -253,7 +253,7 @@
          1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
          1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
          1. [Physical Constants](./Specifications/Environment/Spec_PhysicalConstant.md)
-         1. Simulation Time: TBW
+         1. [Simulation Time](./Specifications/Environment/Spec_SimulationTime.md)
 
       1. Local Environment
          1. [Local Environment](./Specifications/Environment/Spec_LocalEnvironment.md)
