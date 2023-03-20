@@ -6,11 +6,14 @@
    - The `CelestialRotation` class calculates the rotational motion of central objects. Currently, only the Earth is supported as the central object.
 
 2. Related files
-   - `src/Environment/CelestialRotation.cpp`
-   - `src/Environment/CelestialRotation.h`
+   - `src/environment/global/celestial_rotation.cpp, .hpp`
+     - `CelestialRotation` class is defined here.
+   - `src/environment/global/celestial_information.cpp, .hpp`
+      - `CelestialRotation` class is used here.
+
 3. How to use
    - Make an instance of the `CelestialRotation` class in `CelestialInformation` class.
-   - Select rotation mode in `SampleSimBase.ini`
+   - Select rotation mode in `sample_simulation_base.ini`
      - `Idle` : no motion ( $\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
        - If the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
      - `Simple` : axial rotation only ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}$ )
