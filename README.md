@@ -318,7 +318,9 @@
 
       - `simulation` directory manages source codes to define simulation scenario.
 
-      1. Case: TBW
+      1. Case
+         1. [Simulation Case](./Specifications/Simulation/Spec_SimulationCase.md)
+         1. Sample Case
 
       1. HILS: TBW
          1. HILS port manager: TBW
