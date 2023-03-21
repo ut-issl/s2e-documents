@@ -341,9 +341,13 @@
       1. Spacecraft
          1. [Spacecraft](./Specifications/Simulation/Spec_Spacecraft.md)
          1. [Installed Components](./Specifications/Simulation/Spec_InstalledComponents.md)
-         1. Structure: TBW
-         1. SampleSpacecraft: TBW
-         1. SampleComponents: TBW
-         1. SamplePortConfiguration: TBW
+         1. [Structure](./Specifications/Simulation/Spec_Structure.md)
+            1. Kinematics Parameters
+            1. Surface
+            1. Residual Magnetic Moment
+         1. Sample
+            1. SampleSpacecraft: TBW
+            1. SampleComponents: TBW
+            1. SamplePortConfiguration: TBW
       
       </details>
