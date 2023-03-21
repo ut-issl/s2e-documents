@@ -3,7 +3,7 @@
 ## 1.  Overview
 
 1. Functions
-   - The `SampleCase` class is an example of making the user's scenario with the `SimulationCase` class.
+   - The `SampleCase` class is an example of making the user defined scenario with the `SimulationCase` class.
 
 2. Related files
    - `src/simulation/case/sample_case.cpp, .hpp`
@@ -13,16 +13,16 @@
    - `src/s2e.cpp`
      - The instance of the `SampleCase` class is made in this main function.
 
-## 2. How to make own simulation scenario
-- `SampleCase.hpp`
-  - Define your own simulation case class. We use `SampleCase` class here.
+## 2. How to make user defined simulation scenario
+- `sample_case.hpp`
+  - Define user defined simulation case class. We use `SampleCase` class here.
   - Inherit the `SimulationCase` class.
     - You need to define override functions for all pure virtual functions of the `SimulationCase` class.
   - Add spacecraft and/or ground station as you need into the member variables.
     - If you simulate multiple spacecraft, you can add several spacecraft here.
       - Multiple spacecraft case, you can refer the [s2e-ff](https://github.com/ut-issl/s2e-ff)
 
-- `SampleCase.cpp`
+- `sample_case.cpp`
   - Write detailed process of the override functions
   - Constructor
     - Usually, you just need to initialize the constructor of `SimulationCase`.
