@@ -338,7 +338,6 @@
          1. Inter Spacecraft Communication: TBW
          1. Relative Information: TBW
 
-
       1. Spacecraft: TBW
          1. Installed Components: TBW
          1. Spacecraft: TBW
