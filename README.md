@@ -334,13 +334,16 @@
 
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
 
-      1. Multiple Spacecraft: TBW
+      1. Multiple Spacecraft
          1. Inter Spacecraft Communication: TBW
          1. Relative Information: TBW
 
-      1. Spacecraft: TBW
+      1. Spacecraft
+         1. [Spacecraft](./Specifications/Simulation/Spec_Spacecraft.md)
          1. Installed Components: TBW
-         1. Spacecraft: TBW
          1. Structure: TBW
+         1. SampleSpacecraft: TBW
+         1. SampleComponents: TBW
+         1. SamplePortConfiguration: TBW
       
       </details>
