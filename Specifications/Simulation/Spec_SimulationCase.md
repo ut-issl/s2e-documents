@@ -4,13 +4,13 @@
 
 1. Functions
    - The `SimulationCase` class is the base class to define the simulation scenario.
-   - Users can make own simulation scenario by inheriting this class.
+   - Users can make user defined simulation scenario by inheriting this class.
 
 2. Related files
    - `src/simulation/case/simulation_case.cpp, .hpp`
      - The `SimulationCase` class is defined here.
    - `src/simulation/case/sample_case.cpp, .hpp`
-     - An example to make user own scenario with the `SimulationCase` class.
+     - An example to make user defined scenario with the `SimulationCase` class.
    - `src/s2e.cpp`
      - The instance of the `SimulationCase` class is made in this main function.
 
