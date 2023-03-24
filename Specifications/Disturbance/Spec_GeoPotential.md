@@ -14,7 +14,7 @@
 3. How to use   
    - Make an instance of the `GeoPotential` class in `InitializeInstances` function in `disturbances.cpp`
      - Create an instance by using the initialization function `InitGeoPotential`
-   - Chose a orbit propagator mode that considers disturbances.
+   - Choose an orbit propagator mode that considers disturbances.
    - Edit the `disturbance.ini` file
      - Select `ENABLE` for `calculation` and `logging`
      - Select `degree` of calculation
