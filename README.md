@@ -234,21 +234,29 @@
    1. <details><summary> Environment </summary>
 
       - `environment` directory manages source codes to calculate space environment simulation.
-      - `global` directory manages environment calculations which are shared with all spacecraft and ground stations in the simulation scenario.
-      - `local` directory manages environment calculations only for a spacecraft at its position and attitude.
 
-      1. Overview of Environment calculation: TBW
+      1. Overview of Environment calculation
+         - We divided space environment into two categories: `global` and `local`.
+         - `global` directory manages space environment calculations which are shared with all spacecraft and ground stations in the simulation scenario.
+           - e.g., planet position vector in the inertial frame.
+         - `local` directory manages space environment calculations only for a spacecraft at its position and attitude.
+           - e.g., planet position vector from the spacecraft in the spacecraft body frame.
+
       1. Global Environment
-         1. Celestial Information: TBW
+         1. [Global Environment](./Specifications/Environment/Spec_GlobalEnvironment.md)
+         1. [Celestial Information](./Specifications/Environment/Spec_CelestialInformation.md)
          1. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
-         1. Clock Generation: TBW
+         1. [Clock Generator](./Specifications/Environment/Spec_ClockGenerator.md)
          1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
          1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
-         1. Physical Constants: TBW
-         1. Simulation Time: TBW
+         1. [Physical Constants](./Specifications/Environment/Spec_PhysicalConstants.md)
+         1. [Simulation Time](./Specifications/Environment/Spec_SimulationTime.md)
+
       1. Local Environment
+         1. [Local Environment](./Specifications/Environment/Spec_LocalEnvironment.md)
+         1. [Local Celestial Information](./Specifications/Environment/Spec_LocalCelestialInformation.md)
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
-         1. [Geomagnetic field](./Specifications/Environment/Spec_MagEnvironment.md)
+         1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField.md)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
 
       </details>

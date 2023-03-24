@@ -2,7 +2,7 @@
 
 ## 1.  Overview
 - This class read the csv file of Hipparcos catalogue and to enable other classes to use the data.
-- Specify the max visual magnitude to read in `Environment.ini`
+- Specify the max visual magnitude to read in `sample_simulation_base.ini`
   1. functions
      + `ReadContents`
        * Function to read `hip_main.csv`
@@ -10,11 +10,11 @@
         * Functions to access the data of `HipparcosCatalogue` from outside of this class
 
   2. files
-     + `HipparcosCatalogue.cpp` ，`HipparcosCatalogue.h`
+     + `HipparcosCatalogue.cpp` ，`HipparcosCatalogue.hpp`
        * Definitions and declarations of the class
-     + `Init_HipCatalogue.cpp`
-       * Interface functions for the initialization
-     + `Environment.ini`
+     + `initialize_global_environment.cpp`
+       * The initialize function is defined here.
+     + `sample_simulation_base.ini`
        * Parameters for initialization
      + `hip_main.csv`
        * This is the original data of the Hipparcos catalogue. It is in the `ExtLibraries` directory. This data is sorted in of the visual magnitude, not in the order of HIP ID.
@@ -27,11 +27,11 @@
        ```
     
   4. How to use
-     + Set the parameters in `Environment.ini`
-     + Create an instance by using initialization function `InitHipCatalogue`
+     + Set the parameters in `sample_simulation_base.ini`
+     + Create an instance by using initialization function `InitHipparcosCatalogue`
      + Run `GetContents` to read the csv file
      + Get the data from outside this class using `Get` functions.
-     + The `HipData` structure has four elements, hip_num(HIP ID), vmag(visual magnitude), ra(right ascension), de(declination). `HipparcosCatalogue` stores the data as a vector of `HipData`.
+     + The `HipparcosData` structure has four elements, hipparcos_id, visible_magnitude, right_ascension_deg, declination_deg. `HipparcosCatalogue` stores the data as a vector of `HipparcosData`.
 
 ## 2. Explanation of Algorithm
 TBW

@@ -1,35 +1,30 @@
-# Specification for Magnetic field model
+# Specification for Geomagnetic field model
 
 ## 1.  Overview
 1. Functions 
-   + MagEnvironment class calculates the geomagnetic field at the spacecraft's position from the IGRF model and adds noise to emulate the difference between the IGRF model and the real world.
+   + `GeomagneticField` class calculates the geomagnetic field at the spacecraft's position from the IGRF model
+   + This class also adds noise to emulate the difference between the IGRF model and the real world.
 
 2. Related files
-   + `src/Environment/MagEnvironment.cpp, .h`
-     + MagEnvironment class is defined.
-   + `src/Environment/Environment.cpp, .h`
-     + MagEnvironment class is used here as a member variable of Envir class.
-   + `src/Environment/Init_Envinronment.cpp`
-     + MagEnvironment class is instanced here based on the .ini file for environment.
-   + `src/Library/igrf/igrf.cpp, .h`
-     + A magnetic field in ECI and body-fixed coordinate is calculated by the IGRF model.
+   + `src/environment/local/geomagnetic_field.cpp, .hpp`
+     + `GeomagneticField` class is defined.
+  + `src/environment/local/local_environment.cpp, .hpp`
+     + `GeomagneticField` class is used here as a member variable of `LocalEnvironment` class.
+  + `src/environment/local/initialize_local_environment.cpp, .hpp`
+     + `GeomagneticField` class is instanced here based on the `.ini` file for environment.
+   + `src/library/external/igrf/igrf.cpp, h`
+     + A magnetic field in the ECI frame is calculated by the IGRF model.
 
 3. How to use
    + Set a coefficient file path for the IGRF and random walk / white noise in .ini file
-     + Example
-     ```
-     [MAG_ENVIRONMENT]
-     calculation = ENABLE
-     logging = ENABLE
-     coeff_file = ../../src/Library/igrf/igrf13.coef
-     mag_rwdev = 10.0
-     mag_rwlimit = 400.0
-     mag_wnvar = 50.0
-     ```
-   + `CalcMag`  : Update the magnetic field (nT)
-   + `Addnoise` : Add noise to the result of `CalcMag`
-   + `GetMag_i` : Return the magnetic field (nT) in the ECI 
-   + `GetMag_b` : Return the magnetic field (nT) in the body-fixed coordinate
+     - coefficient_file: File path to the IGRF coefficients table.
+     - magnetic_field_random_walk_standard_deviation_nT: Standard deviation of the random walk noise
+     - magnetic_field_random_walk_limit_nT: Limit of the random walk noise
+     - magnetic_field_white_noise_standard_deviation_nT: Standard deviation of the normal random noise
+   + Public functions
+     + `CalcMagneticField`  : Update the magnetic field
+     + `GetGeomagneticField_i_nT` : Return the magnetic field (nT) in the ECI 
+     + `GetGeomagneticField_b_nT` : Return the magnetic field (nT) in the body-fixed coordinate
 
 
 ## 2. Explanation of Algorithm
@@ -39,7 +34,7 @@
 
 ## 3. Verification
 1. Overview
-  + The  calculated magnetic field is compared with [Matlab's IGRF function](https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html) calculation in ECI.
+  + The  calculated magnetic field is compared with [Matlab's IGRF function](https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html) calculation in the ECI frame.
 
 2. Conditions for the verification
    1. input files
@@ -62,7 +57,7 @@
         ```
 
 3. Results
-   + Results of S2E
+   + Results of S2E  
      <img src="./figs/Result_IGRF_S2E.png"  width="360" />
 
    + Error between S2E and MATLAB
@@ -72,4 +67,4 @@
 ## 4. References
 1. International Geomagnetic Reference Field, https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html#:~:text=The%20International%20Association%20of%20Geomagnetism,interior%2C%20its%20crust%20and%20its
 2. IAGA web page, https://www.ngdc.noaa.gov/IAGA/vmod/index.html
-3. MATLAB igrfmagm, https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html
+3. MATLAB `igrfmagm`, https://jp.mathworks.com/help/aerotbx/ug/igrfmagm.html
