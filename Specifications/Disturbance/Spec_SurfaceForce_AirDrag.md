@@ -6,23 +6,28 @@
    - `AirDrag` class inherits `SurfaceForce` base class and calculates air drag disturbance force and torque. 
 
 2. Related files
-   - AirDrag.cpp, .h : The `AirDrag` class is defined.
-   - SurfaceForce.cpp, .h : The base class `SurfaceForce` is defined.
+   - `air_drag.cpp`, `air_drag.hpp` : The `AirDrag` class is defined.
+   - `surface_force.cpp`, `surface_force.hpp` : The base class `SurfaceForce` is defined.
      - **Note**: `SurfaceForce` class inherits `SimpleDisturbance` class, and `SimpleDisturbance` class inherits `Disturbance` class. So, please refer them if users want to understand the structure deeply.
-   - Init_Disturbance.cpp : Initialize sequence is defined.
-   - Disturbance.ini: the initialize file.
+   - `initialize_disturbances.cpp`, `initialize_disturbances.hpp` : Interface functions for the initialization
+   - `disturbance.ini` : Initialization file
 
 3. How to use
-   - Edit `Disturbance.ini` to change the structure parameters.
-   - Instantiate the class in `Init_Disturbance.cpp` with `Disturbance.ini`.
-   - `Update` function of `AirDrag` is executed in the `Disturbances` class.
-   - Other classes and functions can use `GetTorque` and `GetForce` functions defined in the `Disturbances` base class.
+   - Make an instance of the `AirDrag` class in `InitializeInstances` function in `disturbances.cpp`
+     - Create an instance by using the initialization function `InitAirDrag`
+   - Set the parameters in the `disturbance.ini`
+     - Select `ENABLE` for `calculation` and `logging`
+     - Select the following conditions of air drag calculation
+       - Surface Temperature degC
+       - Atmosphere Temperature degC
+       - Molecular weight of the thermosphere g/mol
+   
 
 ## 2. Explanation of Algorithm
 
-1. `CalcCoef`
+1. `CalcCoefficients`
    1. overview
-      - `CalcCoef` calculates the normal and in-plane coefficients for `SurfaceForce` calculation. The air drag force acting on a surface is expressed as the following equation
+      - `CalcCoefficients` calculates the normal and in-plane coefficients for `SurfaceForce` calculation. The air drag force acting on a surface is expressed as the following equation
 
         ```math
         \begin{align}
@@ -36,9 +41,8 @@
 
    2. inputs and outputs
       - input
+        - $\boldsymbol{v}$: Relative velocity vector between the spacecraft and the atmosphere [m/s]
         - $\rho$: air density [kg/m3]
-        - $v$: Relative velocity between the spacecraft and the atmosphere [m/s]
-        - $A$: Area of the surface [m2] (given by )
       - output
         - coefficients $C_{n}$ and $C_{t}$
 
@@ -64,7 +68,7 @@
         - $M$: Molecular weight of the thermosphere [g/mol]
           - In the default ini file, we use $M=18$, and it is a little bit smaller than the molecular weight of atmosphere $M=29$.  [Structure of the Thermosphere](https://www.sciencedirect.com/science/article/pii/0032063361900368?via%3Dihub) provides information on the molecular weight of the thermosphere. 
       - outputs
-     - $C_{n}^{\prime}$ and $C_{t}^{\prime}$ 
+        - $C_{n}^{\prime}$ and $C_{t}^{\prime}$ 
    
 3. algorithm
    - $C_{n}^{\prime}$ and $C_{t}^{\prime}$  are calculated as following equations
@@ -98,6 +102,7 @@
         \chi(x) &= e^{-x^{2}}+\sqrt{\pi}x(1+erf(x))
       \end{align}
       ```
+     - The above functions are defined as `CalcFunctionPi` and `CalcFunctionChi`.
 4. note
    - Please see the reference document for more information on detailed calculations.
 

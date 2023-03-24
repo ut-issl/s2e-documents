@@ -7,43 +7,43 @@
    - This function receives the geomagnetic vector in the body-fixed coordinate system, calculates the cross product with the residual magnetic moment, and returns the residual magnetic torque in the body coordinate system.
 
 2. related files
-   - MagDisturbance.cpp, MagDisturbance.h : Definitions and declarations of the class
-   - Init_Disturbance.cpp : Interface functions for the initialization
-   - Disturbance.ini : Initialization file
+   - `magnetic_disturbance.cpp`, `magnetic_disturbance.hpp` : Definitions and declarations of the class
+   - `initialize_disturbances.cpp`, `initialize_disturbances.hpp` : Interface functions for the initialization
+   - `disturbance.ini` : Initialization file
 
 3. how to use   
-   - Set the parameters in `Disturbance.ini`
-   - Create an instance by using the initialization function `InitMagDisturbance`
-   - Execute disturbance torque by `CalcTorque` function
-   - Use `Get*` function to get attitude information.
+   - Make an instance of the `MagneticDisturbance` class in `InitializeInstances` function in `disturbances.cpp`
+     - Create an instance by using the initialization function `InitMagneticDisturbance`
+   - Set the parameters in the `disturbance.ini`
+     - Select `ENABLE` for `calculation` and `logging`
    
      
-
 ## 2. Explanation of Algorithm
 
-1. `CalcTorque` function
+1. `CalcTorque_b_Nm` function
    1. overview
-      - This function performs disturbance calculation and torque output simultaneously. The magnetic disturbance torque is added to the disturbance torque when this function is called. This process is performed in each loop of the posture calculation.
+      This function performs disturbance calculation and torque output simultaneously. 
 
    2. algorithm  
-      Magnetic disturbance torque is calculated by the following equations. 
+      Magnetic disturbance torque is calculated by the following equation. 
       ```math
          \boldsymbol{T}_{mag} = \boldsymbol{M} \times \boldsymbol{B}
       ```
 
-      where $\boldsymbol{M}$ is the residual magnetic moment in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field in the body-fixed frame.
+      where $\boldsymbol{M}$ is the residual magnetic moment [Am2] in the body-fixed frame, $\boldsymbol{B}$ is the magnetic field [nT] in the body-fixed frame.
 
 2. `CalcRMM` function
    1. overview  
-      This function calculates the residual magnetic moment(RMM) of the spacecraft. Usually, the RMM is varied by the power state of the components installed in the spacecraft, but this function emulates the variation of the RMM by a random walk process.
+      This function calculates the residual magnetic moment(RMM) of the spacecraft. Usually, the RMM is varied by the power state of the components installed in the spacecraft, but this function emulates the variation of the RMM by a random walk process and normal random value.
 
    2. inputs and outputs
-      - inputs
-         - (double) stddev_rw: standard deviation of the random walk 
-         - (double) limit_rw: limit of the one-step of the random walk 
-         - (double) stddev_wn: standard deviation of the white noise
+      - implicit inputs
+        - `ResidualMagneticMoment` which is the class to manage the following RMM parameters
+          - Standard deviation of the random walk 
+          - Limit of the one-step of the random walk 
+          - Standard deviation of the white noise
       - outputs
-         - (Vector<3>) RMM: the residual magnetic moment in the body-fixed frame
+         - (Vector<3>) RMM: the residual magnetic moment in the body-fixed frame [Am2]
 
    3. algorithm  
       The residual magnetic moment is calculated by the following equations. 
