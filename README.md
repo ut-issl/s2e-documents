@@ -357,7 +357,7 @@
          1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
 
       1. Spacecraft
-         1. SampleSpacecraft: TBW
+         1. [Sample Spacecraft](./Specifications/Simulation/Spec_SampleSpacecraft.md)
          1. SampleComponents: TBW
          1. SamplePortConfiguration: TBW
       
