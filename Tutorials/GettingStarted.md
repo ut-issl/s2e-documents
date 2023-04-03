@@ -77,8 +77,8 @@
    - `initialize_mode` is not used in the SGP4 propagate mode.
    - TLE: ISS orbit (default)
 1. To get a long-term orbit simulation data, edit the following simulation time settings in `sample_simulation_base.ini`
-   - `EndTimeSec = 6000`
-   - `LogOutPutIntervalSec = 10` (to decrease the output file size)
+   - `simulation_duration_s = 6000`
+   - `log_output_period_s = 10` (to decrease the output file size)
 1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py` by following command. You can see the plots as follows. Please see [general](../General/HowToVisualizeSimulationResults.md) documents for more details on visualization of simulation results.
    ```
    # Windows
