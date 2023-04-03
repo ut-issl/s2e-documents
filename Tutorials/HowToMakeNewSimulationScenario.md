@@ -12,7 +12,7 @@
     - Compile setting files as [CMake files](https://cmake.org/), [Visual Studio Solution files](https://visualstudio.microsoft.com/downloads/), or others. 
 - This tutorial explains an example of how to make `s2e-user` repository and execute it.   
 - The supported version of this document
-  - Please confirm that the version of the documents and s2e-core is compatible.
+  - Please confirm that the version of the documents and `s2e-core` is compatible.
 
 
 ## 2. Setup S2E_CORE
@@ -29,7 +29,6 @@
        └─ nrlmsise00
      ```
 
-
 ## 3. Setup & Compile s2e-user
 
 1. Make a new directory `s2e-user`. It will be a root directory of s2e-user.
@@ -38,6 +37,7 @@
    └─s2e-core  
    └─ExtLibraries  
    ```
+**NOTE** This directory structure is an example. Users can use `s2e-core` as `git submodule` as shown in [S2E-FF](https://github.com/ut-issl/s2e-ff).
 
 2. Copy directories and files in the `./Tutorials/SampleCodes/s2e-user`.
 
@@ -47,7 +47,7 @@
 
 5. Similar to [Getting Started](./GettingStarted.md), you can edit initialize files and check the log file .
 
-**Note:** You can use other characters instead of `user` for a practical case.  For example, you can name it `s2e_equuleus` to indicate the EQUULEUS spacecraft project. 
+**Note:** Users can use other characters instead of `user` for a practical case.  For example, you can name it `s2e_equuleus` to indicate the EQUULEUS spacecraft project. 
 
 
 ## 4.  Overview of S2E_USER
@@ -59,44 +59,42 @@
     └─CMakeLists.txt  
     └─CMakeSetting.json  
     └─data  
-      └─ini  
-        └─initialize files
+      └─initialize_files
       └─logs
     └─src  
-      └─Simulation
-        └─Case
-          └─UserCase.cpp
-          └─UserCase.h
+      └─simulation
+        └─case
+          └─user_case.cpp
+          └─user_case.hpp
         └─Spacecraft
-          └─UserComponents.cpp  
-          └─UserComponents.h  
-          └─UserSat.cpp  
-          └─UserSat.h  
-      └─S2eUser.cpp  
+          └─user_components.cpp  
+          └─user_components.hpp  
+          └─user_satellite.cpp  
+          └─user_satellite.hpp  
+      └─s2e_user.cpp  
   ```
 1. `CMakeLists.txt` and `CMakeSetting.json`
    - `CMakeLists.txt` is a [CMake file](https://cmake.org/) for a compile setting.
      - Details of description rules for CMake files can be searched on the internet, so please refer to them.
      - Of course, when you add new source files, you have to edit the CMake file to compile them.
    - `CMakeSetting.json ` is a compile setting file for Visual Studio.
-2. `data/ini` and `data/logs`
-   - In the `ini` directory, there are several initialize files.
-     - The most important initialize file is `UserSimBase.ini`.
+2. `data/initialize_files` and `data/logs`
+   - In the `initialize_files` directory, there are several initialize files.
+     - The most important initialize file is `user_simulation_base.ini`.
      - Other initialize files are defined in this base initialize file. So you need to edit the file names in the base file when you modify the name of other initialize files.
-       - When you change the name of the base file, you have to edit `S2eUser.cpp`.
+       - When you change the name of the base file, you have to edit `s2e_user.cpp`.
      - Details of the initialize files are described in `Specifications`.
        - Basic files are described in [Getting Started](./GettingStarted.md).
    - `logs`
-     - CSV log files will be outputted here. The output directory is also defined in `UserSimBase.ini`, so that you can change it.
-3. `src/S2eUser.cpp`
+     - CSV log files will be outputted here. The output directory is also defined in `user_simulation_base.ini`, so that you can change it.
+3. `src/s2e_user.cpp`
    - This is the main file of this program.
-   - In this code, `UserSimBase.ini` is defined as the base file for the simulation, and an instance of the `simulation case class` named `UserCase` is created and initialized. And finally, the main routine of the class is executed.
-4. `src/Simulation/Case`
-   - `UserCase` class is defined here. `UserCase` class inherits the `SimulationCase` base class in the `s2e-core`. The `SimulationCase` class has a `SimulationConfig` and `GlobalEnvironment` class. The `UserCase` class has an instance of the `spacecraft` class named as `UserSat`.
-5. `src/Simulation/Spacecraft/User_sat.cpp `
-   - `UserSat` class is defined here. `UserSat` class inherits the `Spacecraft` class in the `s2e-core`. The `Spacecraft` base class has instances of `Dynamics`, `LocalEnvironment`, `Disturbance`, and `Structure`. And the `UserSat` class has an instance of `UserComponents`.
-   - In the `UserSat`'s `Update` function, these four classes are updated to simulate the spacecraft behavior.
-6. `src/Simulation/Spacecraft/UserComponents.cpp`
+   - In this code, `user_simulation_base.ini` is defined as the base file for the simulation, and an instance of the `SimulationCase` class named `UserCase` is created and initialized. And finally, the main routine of the class is executed.
+4. `src/simulation/case/user_case.cpp, .hpp`
+   - `UserCase` class is defined here. `UserCase` class inherits the `SimulationCase` base class in the `s2e-core`. The `SimulationCase` class has a `SimulationConfiguration` and `GlobalEnvironment` class. The `UserCase` class has an instance of the `spacecraft` class named as `UserSatellite`.
+5. `src/simulation/spacecraft/user_satellite.cpp, .hpp`
+   - `UserSatellite` class is defined here. `UserSatellite` class inherits the `Spacecraft` class in the `s2e-core`. The `Spacecraft` base class has instances of `Dynamics`, `LocalEnvironment`, `Disturbance`, and `Structure`. And the `UserSatellite` class has an instance of `UserComponents`.
+6. `src/simulation/spacecraft/user_components.cpp, .hpp`
    - The `UserComponents` class is defined here. Most users edit this code to custom the S2E for their satellite projects.
-   - Users select components they want to use from the `s2e-core/src/Component`.
-   - You can add new source codes in the `s2e-user/Component` directory if you want to make original components.
+   - Users select components they want to use from the `s2e-core/src/components`.
+   - You can add new source codes in the `s2e-user/components` directory if you want to make original components.
