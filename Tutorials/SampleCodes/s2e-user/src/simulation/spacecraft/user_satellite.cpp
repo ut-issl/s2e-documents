@@ -1,8 +1,15 @@
-#include "UserSat.hpp"
-#include "UserComponents.hpp"
+/**
+ * @file user_satellite.cpp
+ * @brief An example of user side spacecraft class
+ */
 
-UserSat::UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
-:Spacecraft(sim_config, glo_env, sat_id)
-{
-  components_ = new UserComponents(dynamics_, structure_, local_env_, glo_env, sim_config, &clock_gen_);
+#include "user_satellite.hpp"
+
+#include "user_components.hpp"
+
+UserSatellite::UserSatellite(const SimulationConfiguration *simulation_configuration, const GlobalEnvironment *global_environment,
+                             const unsigned int spacecraft_id)
+    : Spacecraft(simulation_configuration, global_environment, spacecraft_id) {
+  components_ =
+      new UserComponents(dynamics_, structure_, local_environment_, global_environment, simulation_configuration, &clock_generator_, spacecraft_id);
 }

@@ -1,12 +1,29 @@
-#pragma once
+/**
+ * @file user_satellite.hpp
+ * @brief An example of user side spacecraft class
+ */
 
-#include "Spacecraft.h"
-#include "UserComponents.hpp"
+#ifndef S2E_SIMULATION_SPACECRAFT_USER_SATELLITE_HPP_
+#define S2E_SIMULATION_SPACECRAFT_USER_SATELLITE_HPP_
 
-class UserSat : public Spacecraft
+#include <simulation/spacecraft/spacecraft.hpp>
+#include "user_components.hpp"
+
+/**
+ * @class UserSatellite
+ * @brief An example of user side spacecraft class
+ */
+class UserSatellite : public Spacecraft
 {
 public:
-  UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id);
-  void UserSat::Update(const SimTime* sim_time);
+  /**
+   * @fn UserSatellite
+   * @brief Constructor
+   */
+  UserSatellite(const SimulationConfiguration *simulation_configuration, const GlobalEnvironment *global_environment,
+                const unsigned int spacecraft_id);
+
 private:
 };
+
+#endif // S2E_SIMULATION_SPACECRAFT_USER_SATELLITE_HPP_

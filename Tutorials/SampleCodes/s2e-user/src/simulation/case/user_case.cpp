@@ -1,65 +1,35 @@
-#include "UserCase.hpp"
+/**
+ * @file user_case.cpp
+ * @brief Example of user defined simulation case
+ */
 
-UserCase::UserCase(std::string ini_fname)
-: SimulationCase(ini_fname)
-{
-}
+#include "user_case.hpp"
 
-UserCase::~UserCase()
-{
-  delete spacecraft_;
-}
+UserCase::UserCase(const std::string initialise_base_file) : SimulationCase(initialise_base_file) {}
 
-void UserCase::Initialize()
-{
+UserCase::~UserCase() { delete spacecraft_; }
+
+void UserCase::InitializeTargetObjects() {
   // Instantiate the target of the simulation
-  const int sat_id = 0;  // `sat_id=0` corresponds to the index of `sat_file` in Simbase.ini
-  spacecraft_ = new UserSat(&sim_config_, glo_env_, sat_id); 
+  // `spacecraft_id` corresponds to the index of `spacecraft_file` in simulation_base.ini
+  const int spacecraft_id = 0;
+  spacecraft_ = new UserSatellite(&simulation_configuration_, global_environment_, spacecraft_id);
 
   // Register the log output
-  glo_env_->LogSetup(*(sim_config_.main_logger_));
-  spacecraft_->LogSetup(*(sim_config_.main_logger_));
-
-  // Write headers to the log
-  sim_config_.main_logger_->WriteHeaders();
-
-  // Start the simulation
-  std::cout << "\nSimulationDateTime \n";
-  glo_env_->GetSimTime().PrintStartDateTime();
-
+  spacecraft_->LogSetup(*(simulation_configuration_.main_logger_));
 }
 
-void UserCase::Main()
-{
-  glo_env_->Reset(); // for MonteCarlo Sim
-  while (!glo_env_->GetSimTime().GetState().finish)
-  {
-    // Logging
-    if (glo_env_->GetSimTime().GetState().log_output)
-    {
-      sim_config_.main_logger_->WriteValues();
-    }
-    // Global Environment Update
-    glo_env_->Update();
-    // Spacecraft Update
-    spacecraft_->Update(&(glo_env_->GetSimTime()));
-    // Debug output
-    if (glo_env_->GetSimTime().GetState().disp_output)
-    {
-      std::cout << "Progresss: " << glo_env_->GetSimTime().GetProgressionRate() << "%\r";
-    }
-  }
+void UserCase::UpdateTargetObjects() {
+  // Spacecraft Update
+  spacecraft_->Update(&(global_environment_->GetSimulationTime()));
 }
 
-std::string UserCase::GetLogHeader() const
-{
+std::string UserCase::GetLogHeader() const {
   std::string str_tmp = "";
-
   return str_tmp;
 }
 
-std::string UserCase::GetLogValue() const
-{
+std::string UserCase::GetLogValue() const {
   std::string str_tmp = "";
 
   return str_tmp;
