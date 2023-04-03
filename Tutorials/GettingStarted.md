@@ -19,7 +19,8 @@
 ## 3. Check log output 
 
 1. Check `./data/sample/logs` to find CSV log output file  
-   - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`  
+   - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`
+   - The included executed time is defined by the user computer settings.
 2. Open the CSV log file
 3. You can see the simulation output
 4. The meaning of each value is described in the first row
