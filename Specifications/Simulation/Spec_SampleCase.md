@@ -6,7 +6,7 @@
    - The `SampleCase` class is an example of making the user defined scenario with the `SimulationCase` class.
 
 2. Related files
-   - `src/simulation/case/sample_case.cpp, .hpp`
+   - `src/simulation_sample/case/sample_case.cpp, .hpp`
      - The `SampleCase` class is defined here.
    - `src/simulation/case/simulation_case.cpp, .hpp`
      - The `SimulationCase` class is defined here.
@@ -17,29 +17,23 @@
 - `sample_case.hpp`
   - Define user defined simulation case class. We use `SampleCase` class here.
   - Inherit the `SimulationCase` class.
-    - You need to define override functions for all pure virtual functions of the `SimulationCase` class.
-  - Add spacecraft and/or ground station as you need into the member variables.
-    - If you simulate multiple spacecraft, you can add several spacecraft here.
+    - Users need to define override functions for all pure virtual functions of the `SimulationCase` class.
+  - Add spacecraft and/or ground station as users need into the member variables.
+    - If users simulate multiple spacecraft, users can add several spacecraft here.
       - Multiple spacecraft case, you can refer the [s2e-ff](https://github.com/ut-issl/s2e-ff)
 
 - `sample_case.cpp`
   - Write detailed process of the override functions
   - Constructor
-    - Usually, you just need to initialize the constructor of `SimulationCase`.
+    - Usually, users just need to initialize the constructor of `SimulationCase`.
   - Destructor
-    - You need to `delete` your defined member `spacecraft` and `ground_station`.
-  - `Initialize` function
+    - Users need to `delete` your defined members `spacecraft` and `ground_station`.
+  - `InitializeTargetObjects` function
     - You have to make instances of your `spacecraft` and `ground_station` class here.
     - You also need to register log out put by `LogSetup` function.
-    - After the initial settings, you need to execute `WriteHeaders` function to write header information to the CSV output file.
-    - Finally, you can output the message to show the simulation starts.
-  - `Main` function
-    - The `Main` function has the while loop until the simulation end time is coming.
-    - Before the loop, you need to reset the all states. This process is needed for the Monte-Carlo simulation mode.
-    - In the loop, firstly, you need to write log information to the CSV output file.
-    - After that, the `global_environment` update is needed.
-    - Then, users can update their spacecraft and ground station classes.
-    - Finally, you can write debug message if need.
+  - `UpdateTargetObjects` function
+    - This function is called in the `SimulationCase::Main` function.
+    - Users can update their spacecraft and ground station classes here.
   - `GetLogHeader` and `GetLogValue` functions
     - These functions are used in the Monte-Carlo simulation mode. For the normal mode, you don't need to care.
     - The log definition written here is saved at the start and end timing of every simulation case of the Monte-Carlo simulation.
