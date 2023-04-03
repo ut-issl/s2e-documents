@@ -322,12 +322,9 @@
 
       1. Case
          1. [Simulation Case](./Specifications/Simulation/Spec_SimulationCase.md)
-         1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
 
       1. Ground Station
          1. [Ground Station](./Specifications/Simulation/Spec_GroundStation.md)
-         1. [Sample Ground Station](./Specifications/Simulation/Spec_SampleGroundStation.md)
-         1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
 
       1. HILS
          1. HILS port manager: TBW
@@ -345,9 +342,23 @@
             1. Kinematics Parameters
             1. Surface
             1. Residual Magnetic Moment
-         1. Sample
-            1. SampleSpacecraft: TBW
-            1. SampleComponents: TBW
-            1. SamplePortConfiguration: TBW
+      
+      </details>
+
+   1. <details><summary> Simulation Sample </summary>
+
+      - `simulation_sample` directory manages example source codes for user defined simulation scenario. Users can copy and modify this directory to make user defined simulation scenario.
+
+      1. Case
+         1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
+
+      1. Ground Station
+         1. [Sample Ground Station](./Specifications/Simulation/Spec_SampleGroundStation.md)
+         1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
+
+      1. Spacecraft
+         1. SampleSpacecraft: TBW
+         1. SampleComponents: TBW
+         1. SamplePortConfiguration: TBW
       
       </details>
