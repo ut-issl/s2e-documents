@@ -6,15 +6,15 @@
    - The `SampleGroundStation` class is is an example of making the user defined ground station with the `GroundStation` class.
 
 2. Related files
-   - `src/simulation/ground_station/sample_ground_station/sample_ground_station.cpp, .hpp`
+   - `src/simulation_sample_/ground_station/sample_ground_station.cpp, .hpp`
      - The `SampleGroundStation` class is defined here.
    - `src/simulation/ground_station/ground_station.cpp, .hpp`
      - The `GroundStation` class is defined here.
-   - `src/simulation/case/sample_case.cpp, .hpp`
+   - `src/simulation_sample/case/sample_case.cpp, .hpp`
      - The instance of the `SampleGroundStation` class is made in this class.
 
 
-## 2. How to make user defined simulation scenario
+## 2. How to make user defined ground station
 - `sample_ground_station.hpp`
   - Define user defined ground station class. We use `SampleGroundStation` class here.
     - Users can name freely like `UtGroundStation`, `DsnGroundStation`, and others.
