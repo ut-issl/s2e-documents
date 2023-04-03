@@ -27,3 +27,4 @@ private:
 };
 
 #endif // S2E_SIMULATION_SPACECRAFT_USER_SATELLITE_HPP_
+
