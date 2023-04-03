@@ -358,7 +358,7 @@
 
       1. Spacecraft
          1. [Sample Spacecraft](./Specifications/Simulation/Spec_SampleSpacecraft.md)
-         1. SampleComponents: TBW
+         1. [Sample Components](./Specifications/Simulation/Spec_SampleSpacecraftComponents.md)
          1. SamplePortConfiguration: TBW
       
       </details>
