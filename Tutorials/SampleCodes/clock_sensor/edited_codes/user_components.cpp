@@ -1,45 +1,49 @@
-#include "UserComponents.hpp"
+/**
+ * @file user_components.cpp
+ * @brief An example of user side components management installed on a spacecraft
+ */
 
-#include <Interface/InitInput/IniAccess.h>
-#include "../../Components/InitClockSensor.hpp"
+#include "user_components.hpp"
 
-UserComponents::UserComponents(
-  const Dynamics* dynamics, 
-  const Structure* structure, 
-  const LocalEnvironment* local_env, 
-  const GlobalEnvironment* glo_env,
-  const SimulationConfig* config,
-  ClockGenerator* clock_gen
-):dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config)
-{
-  obc_ = new OBC(clock_gen);
-  IniAccess ini_access = IniAccess(config->sat_file_[0]);
-  std::string clock_sensor_ini_path = ini_access.ReadString("COMPONENTS_FILE", "clock_sensor_file");
-  clock_sensor_ = new ClockSensor(InitClockSensor(clock_gen, glo_env->GetSimTime(), clock_sensor_ini_path));
+#include <library/initialize/initialize_file_access.hpp>
+
+UserComponents::UserComponents(const Dynamics *dynamics, Structure *structure, const LocalEnvironment *local_environment,
+                               const GlobalEnvironment *global_environment, const SimulationConfiguration *configuration,
+                               ClockGenerator *clock_generator, const unsigned int spacecraft_id)
+    : configuration_(configuration),
+      dynamics_(dynamics),
+      structure_(structure),
+      local_environment_(local_environment),
+      global_environment_(global_environment) {
+  IniAccess iniAccess = IniAccess(configuration_->spacecraft_file_list_[spacecraft_id]);
+
+  obc_ = new OnBoardComputer(clock_generator);
+
+  // Clock Sensor
+  std::string file_name = iniAccess.ReadString("COMPONENT_FILES", "clock_sensor_file");
+  configuration_->main_logger_->CopyFileToLogDirectory(file_name);
+  clock_sensor_ = new ClockSensor(InitClockSensor(clock_generator, global_environment->GetSimulationTime(), file_name));
 }
 
-UserComponents::~UserComponents()
-{
+UserComponents::~UserComponents() {
   delete clock_sensor_;
   // OBC must be deleted the last since it has com ports
   delete obc_;
 }
 
-Vector<3> UserComponents::GenerateForce_N_b()
-{
+Vector<3> UserComponents::GenerateForce_b_N() {
   // There is no orbit control component, so it remains 0
-  Vector<3> force_N_b_(0.0);
-  return force_N_b_;
+  Vector<3> force_b_N(0.0);
+  return force_b_N;
 }
 
-Vector<3> UserComponents::GenerateTorque_Nm_b()
-{
+Vector<3> UserComponents::GenerateTorque_b_Nm() {
   // No attitude control component
-  Vector<3> torque_Nm_b_(0.0);
-  return torque_Nm_b_;
+  Vector<3> torque_b_Nm(0.0);
+  return torque_b_Nm;
 }
 
-void UserComponents::LogSetup(Logger & logger)
-{
-  logger.AddLoggable(clock_sensor_);
+void UserComponents::LogSetup(Logger &logger) {
+  // Users can set log output when they need component log
+  logger.AddLogList(clock_sensor_);
 }
