@@ -32,7 +32,7 @@
 
 - This chapter explains how to make a simple clock sensor, which observes the simulation elapsed time with a bias noise.
 
-1. Copy the following files in the directory `./Tutorials/SampleCode/ClockSensor` to the directory `s2e-user/src/components`.
+1. Copy the following files in the directory `./Tutorials/SampleCode/clock_sensor` to the directory `s2e-user/src/components`.
    - `clock_sensor.cpp`
    - `clock_sensor.hpp`
 
@@ -73,7 +73,7 @@
 
 - Usually, we want to change the parameters of components such as noise properties, mounting coordinates, and others without rebuilding. So this section explains how to make an initialize file for the `ClockSensor`.
 
-1. Copy the following files in the directory `./Tutorials/SampleCode/ClockSensor` to the directory `s2e-user/src/Components`.
+1. Copy the following files in the directory `./Tutorials/SampleCode/clock_sensor` to the directory `s2e-user/src/components`.
    - `initialize_clock_sensor.cpp`
    - `initialize_clock_sensor.hpp`
 
@@ -90,7 +90,7 @@
        #include "../../components/initialize_clock_sensor.hpp"
        ```
    - `user_components.cpp`
-     - Edit making instance of the `ClockSensor` at the constructor
+     - Edit making instance of the `clock_sensor` at the constructor
        ```c++
        // Clock Sensor
        std::string file_name = iniAccess.ReadString("COMPONENT_FILES", "clock_sensor_file");
@@ -98,7 +98,7 @@
        clock_sensor_ = new ClockSensor(InitClockSensor(clock_generator, global_environment->GetSimulationTime(), file_name));
        ```
 
-1. Copy `clock_sensor.ini` into `s2e-user/data/initialize_files/components` from `./Tutorial/SampleCodes/ClockSensor`
+1. Copy `clock_sensor.ini` into `s2e-user/data/initialize_files/components` from `./Tutorial/SampleCodes/clock_sensor`
 
 1. Edit `user_satellite.ini` to add the following line at the [COMPONENT_FILES] section of the file
 
