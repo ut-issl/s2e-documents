@@ -7,7 +7,7 @@
 - Users can set the mean value and standard deviation for the randomized parameters with `simulation_base.ini` file of each user.
   - Please see the specification document for [Monte Carlo Simulation](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for a detailed description.
 - This tutorial explains how to randomly change the initial value of the angular velocity.
-  - There are sample codes in `SampleCodes\MCSim`.
+  - There are sample codes in `SampleCodes\monte_carlo_simulation`.
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
