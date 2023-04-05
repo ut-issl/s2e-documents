@@ -24,11 +24,12 @@
 2. Edit source code
    1. Add new `UserSatellite` instances to `Case` members in `user_case.hpp`.
       ```c++
-      UserSatellite* satellite0_;
-      UserSatellite* satellite1_;
+      UserSatellite *spacecraft0_;  //!< Instance of spacecraft
+      UserSatellite *spacecraft1_;  //!< Instance of spacecraft
       ```
 
     2. Edit `user_case.cpp` to copy the spacecraft related codes as the sample code.
+       - Please see sample code for more details.
 
 3. Build and execute the `s2e-user`
 
