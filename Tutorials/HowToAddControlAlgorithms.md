@@ -10,6 +10,7 @@
     - For theoretical researches and preliminary analysis for satellite projects
   - Component method: Control using sensors and actuators without flight S/W framework
     - For engineering researches and preliminary analysis for satellite projects
+    - From v6.0.0, we have `ideal` and `real` directories in the `s2e-core/src/components`. Users can use `ideal` components for early stage of the analysis and can use `real` components for more detailed analysis. Mixing these components is also possible.
   - Flight S/W method: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
 - The supported version of this document
@@ -34,20 +35,20 @@
     <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />  
 
 ## 3. Component method: Using ideal components
+- TBW
 
 ## 4. Component method: Using real components
-- This chapter introduces a method to add a control algorithm using sensors and actuators.
-- This method measures a satellite's physical quantity via sensors, generates torque and force via actuators, and executes control algorithms on OBC.
+- This chapter introduces a method to add a control algorithm using realistic sensors and actuators. - This method measures a satellite's physical quantity via sensors, generates torque and force via actuators, and executes control algorithms on OBC.
 - This tutorial assumes the spacecraft has a three-axis gyro sensor, a reaction wheel, and an OBC.
-- The sample codes are in `SampleCodes/ControlAlgorithm/ComponentMethod/`
-- Firstly, users need to make the `UserOBC` class to emulate the OBC.
-  - Copy the `UserObc` files to the `s2e-user/src/Components` from the `ComponentMethod/src/Components`, and add the `UserObc.cpp` to the `set(SOURCE_FILES)` in the `CMakeLists.txt` to compile it.
-  - The `UserOBC` class has the `UserComponent` class as a member, and users can access all components to get sensing information or set the output of actuators.
-  - In this tutorial, the angular velocity is measured by the gyro sensor. RW's output torque is calculated using the X-axis of the measured angular velocity, and the torque is set to RW.
-- Next, users need to add the `UserObc` into the `UserComponent` class. You can copy the `UserComponents` files to the `s2e-user/src/Simulation/Spacecraft` from the `ComponentMethod/src/Simulation`.
+- The sample codes are in `SampleCodes/control_algorithm/component_method/`
+- Firstly, users need to make the `UserOnBoardComputer` class to emulate the OBC.
+  - Copy the `user_on_board_computer` files to the `s2e-user/src/components` from the `component_method/src/components`, and add the `user_on_board_computer.cpp` to the `set(SOURCE_FILES)` in the `CMakeLists.txt` to compile it.
+  - The `UserOnBoardComputer` class has the `UserComponents` class as a member, and users can access all components to get sensing information or set the output of actuators.
+  - In this tutorial, the angular velocity is measured by the gyro sensor. After that RW's output torque is calculated using the X-axis of the measured angular velocity, and the torque is set to RW.
+- Next, users need to add the `UserOnBoardComputer` into the `UserComponents` class. You can copy the `user_components` files to the `s2e-user/src/simulation/spacecraft` from the `component_method/src/simulation`.
 - Finally, users need to add new source codes to the `CMakeLists.txt` to compile them.
-  - You have to add `RwXxx.ini` to `s2e-user/data/ini/Components`
-  - Refer to `SampleCodes/ControlAlgolithm/ComponentMethod/data/RwXxx.ini` if necessary.
+  - You have to add `reaction_wheel_xxx.ini` to `s2e-user/data/initialize_files/components`
+  - Refer to `SampleCodes/control_algorithm/component_method/data/reaction_wheel_xxx.ini` if necessary.
 - By using the sample code, the following results are given.
   - The X-axis angular velocity is controlled, but other axes are not controlled well since the satellite only has an RW on X-axis. The X-axis angular velocity has offset value since the gyro has offset noise.
 
