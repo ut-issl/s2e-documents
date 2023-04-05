@@ -1,39 +1,48 @@
-#include "UserSat.hpp"
-#include "UserComponents.hpp"
+/**
+ * @file user_satellite.cpp
+ * @brief An example of user side spacecraft class
+ */
 
-UserSat::UserSat(SimulationConfig* sim_config, const GlobalEnvironment* glo_env, const int sat_id)
-:Spacecraft(sim_config, glo_env, sat_id)
-{
-  components_ = new UserComponents(dynamics_, structure_, local_env_, glo_env, sim_config, &clock_gen_);
+#include "user_satellite.hpp"
+
+#include "user_components.hpp"
+
+UserSatellite::UserSatellite(const SimulationConfiguration *simulation_configuration, const GlobalEnvironment *global_environment,
+                             const unsigned int spacecraft_id)
+    : Spacecraft(simulation_configuration, global_environment, spacecraft_id) {
+  components_ =
+      new UserComponents(dynamics_, structure_, local_environment_, global_environment, simulation_configuration, &clock_generator_, spacecraft_id);
 }
-
-void UserSat::Update(const SimTime* sim_time)
-{
+void UserSatellite::Update(const SimulationTime *simulation_time) {
   dynamics_->ClearForceTorque();
 
   // Update local environment and disturbance
-  local_env_->Update(dynamics_, sim_time);
-  disturbances_->Update(*local_env_, *dynamics_, sim_time);
-  // Update components
-  clock_gen_.UpdateComponents(sim_time);
-  
-  // Sensing
-  Vector<3> observed_omega_b = dynamics_->GetAttitude().GetOmega_b();
-  
+  local_environment_->Update(dynamics_, simulation_time);
+  disturbances_->Update(*local_environment_, *dynamics_, simulation_time);
+
   // Control algorithm
-  Vector<3> control_torque_b(0.0);
-  Vector<3> control_force_b(0.0);
-  double Kp = 5.0e-3;
-  control_torque_b = -1.0 * Kp * observed_omega_b;
+  ControlAlgorithm();
 
   // Add generated force and torque by disturbances
-  dynamics_->AddAcceleration_i(disturbances_->GetAccelerationI());
-  dynamics_->AddTorque_b(disturbances_->GetTorque());
-  dynamics_->AddForce_b(disturbances_->GetForce());
-  // Generate force and torque
-  dynamics_->AddTorque_b(control_torque_b);
-  dynamics_->AddForce_b(control_force_b);
+  dynamics_->AddAcceleration_i_m_s2(disturbances_->GetAcceleration_i_m_s2());
+  dynamics_->AddTorque_b_Nm(disturbances_->GetTorque_b_Nm());
+  dynamics_->AddForce_b_N(disturbances_->GetForce_b_N());
 
   // Propagate dynamics
-  dynamics_->Update(sim_time, &(local_env_->GetCelesInfo()));
+  dynamics_->Update(simulation_time, &(local_environment_->GetCelestialInformation()));
+}
+
+void UserSatellite::ControlAlgorithm(void) {
+  // Sensing
+  Vector<3> observed_omega_b_rad_s = dynamics_->GetAttitude().GetAngularVelocity_b_rad_s();
+
+  // Control algorithm
+  Vector<3> control_torque_b_Nm(0.0);
+  Vector<3> control_force_b_N(0.0);
+  double Kp = 5.0e-3;
+  control_torque_b_Nm = -1.0 * Kp * observed_omega_b_rad_s;
+
+  // Generate force and torque
+  dynamics_->AddTorque_b_Nm(control_torque_b_Nm);
+  dynamics_->AddForce_b_N(control_force_b_N);
 }
