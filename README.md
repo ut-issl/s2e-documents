@@ -323,22 +323,47 @@
 
       - `simulation` directory manages source codes to define simulation scenario.
 
-      1. Case: TBW
+      1. [Simulation Configuration](./Specifications/Simulation/Spec_SimulationConfiguration.md)
 
-      1. HILS: TBW
+      1. Case
+         1. [Simulation Case](./Specifications/Simulation/Spec_SimulationCase.md)
+
+      1. Ground Station
+         1. [Ground Station](./Specifications/Simulation/Spec_GroundStation.md)
+
+      1. HILS
          1. HILS port manager: TBW
-
-      1. Ground Station: TBW
-
-      1. Multiple Spacecraft: TBW
-         1. Inter Spacecraft Communication: TBW
-         1. Relative Information: TBW
 
       1. [Monte Carlo Simulation](./Specifications/Simulation/Spec_MonteCarloSimulation.md)
 
-      1. Spacecraft: TBW
-         1. Installed Components: TBW
-         1. Spacecraft: TBW
-         1. Structure: TBW
+      1. Multiple Spacecraft
+         1. Inter Spacecraft Communication: TBW
+         1. Relative Information: TBW
+
+      1. Spacecraft
+         1. [Spacecraft](./Specifications/Simulation/Spec_Spacecraft.md)
+         1. [Installed Components](./Specifications/Simulation/Spec_InstalledComponents.md)
+         1. [Structure](./Specifications/Simulation/Spec_Structure.md)
+            1. Kinematics Parameters
+            1. Surface
+            1. Residual Magnetic Moment
+      
+      </details>
+
+   1. <details><summary> Simulation Sample </summary>
+
+      - `simulation_sample` directory manages example source codes for user defined simulation scenario. Users can copy and modify this directory to make user defined simulation scenario.
+
+      1. Case
+         1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
+
+      1. Ground Station
+         1. [Sample Ground Station](./Specifications/Simulation/Spec_SampleGroundStation.md)
+         1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
+
+      1. Spacecraft
+         1. [Sample Spacecraft](./Specifications/Simulation/Spec_SampleSpacecraft.md)
+         1. [Sample Components](./Specifications/Simulation/Spec_SampleSpacecraftComponents.md)
+         1. SamplePortConfiguration: TBW
       
       </details>
