@@ -32,7 +32,7 @@
     - Set log you need.
   - `Update` function
     - Call the `GroundStation::Update` function.
-    - Call the ground station component's `Update` functions
+    - Call the ground station component's `Update` functions.
 
 ## 3. Results of verifications
 NA

@@ -30,7 +30,7 @@
     - Users need to `delete` your defined members `spacecraft` and `ground_station`.
   - `InitializeTargetObjects` function
     - You have to make instances of your `spacecraft` and `ground_station` class here.
-    - You also need to register log out put by `LogSetup` function.
+    - You also need to register log output by `LogSetup` function.
   - `UpdateTargetObjects` function
     - This function is called in the `SimulationCase::Main` function.
     - Users can update their spacecraft and ground station classes here.
