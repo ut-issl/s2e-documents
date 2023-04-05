@@ -6,24 +6,24 @@
 - This tutorial explains how to add a **Control Algorithm** into the simulation scenario. 
 - For a practical satellite project, we should implement the control algorithm as actual flight software like [C2A](https://github.com/ut-issl/c2a-core) into the S2E. However, using actual flight software is usually overdoing for use cases as research, the initial phase of satellite projects.
 - So, we introduce the following three methods, and users can choose a suitable method.
-  - Direct: Directly control physical quantity without sensors, actuators, and their noises
+  - Direct method: Directly control physical quantity without sensors, actuators, and their noises
     - For theoretical researches and preliminary analysis for satellite projects
-  - Component: Control using sensors and actuators without flight S/W framework
+  - Component method: Control using sensors and actuators without flight S/W framework
     - For engineering researches and preliminary analysis for satellite projects
-  - FlightSW: Control using sensors and actuators with flight S/W framework
+  - Flight S/W method: Control using sensors and actuators with flight S/W framework
     - For actual satellite projects
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Direct method
-- This chapter introduces the simplest way to add a control algorithm without sensors and actuators.
+- This chapter introduces how to add a control algorithm without sensors and actuators.
 - This method directly measures the satellite's physical quantity and generates torque and force acting on the satellite.
 - To do that, users need to edit the `Update` function in the `UserSat.cpp`.
-  - A sample code is in `./Tutorials/SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`
-- The `UserSat` class already has satellite attitude, orbit, and local environment information since it inherits the `Spacecraft` base class. So users can easily access these values.
-- To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetOmega_b()`.
-- To generate torque and force, users can use `dynamics_->AddTorque_b` and `dynamics_->AddForce_b`.
-- The sample codes are in `SampleCodes/ControlAlgorithm/DirectMethod/UserSat.cpp`, and you can see very simple detumbling with the proportional control method.
+  - A sample code is in `./Tutorials/SampleCodes/control_algorithm/direct_method/user_satellite.cpp`
+- The `UserSatellite` class already has satellite attitude, orbit, and local environment information since it inherits the `Spacecraft` base class. So users can easily access these values.
+- To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetAngularVelocity_b_rad_s()`.
+- To generate torque and force, users can use `dynamics_->AddTorque_b_Nm` and `dynamics_->AddForce_b_N`.
+- The sample codes are in `SampleCodes/control_algorithm/direct_method/user_satellite.cpp`, and you can see very simple detumbling with the proportional control method.
 - By using the sample code with initial angular velocity = [0.05, -0.03, 0.01] rad/s, the following results are given.
   - You need to edit the initialize file to set the initial angular velocity.
     
@@ -33,7 +33,9 @@
    
     <img src="./figs/ControlAlgorithm_DirectControl_result3.png" alt="CA_DC_3" style="zoom: 80%;" />  
 
-## 3. Component method
+## 3. Component method: Using ideal components
+
+## 4. Component method: Using real components
 - This chapter introduces a method to add a control algorithm using sensors and actuators.
 - This method measures a satellite's physical quantity via sensors, generates torque and force via actuators, and executes control algorithms on OBC.
 - This tutorial assumes the spacecraft has a three-axis gyro sensor, a reaction wheel, and an OBC.
@@ -58,5 +60,5 @@
     <img src="./figs/ControlAlgorithm_ComponentControl_result4.png" alt="CA_CC_4" style="zoom: 80%;" />  
     <img src="./figs/ControlAlgorithm_ComponentControl_result5.png" alt="CA_CC_5" style="zoom: 80%;" />  
 
-## 4. FlightSW method: Control algorithm within C2A
+## 5. FlightSW method: Control algorithm within C2A
 - TBW
