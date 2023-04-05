@@ -1,53 +1,58 @@
-#include "UserComponents.hpp"
+/**
+ * @file user_components.cpp
+ * @brief An example of user side components management installed on a spacecraft
+ */
 
-#include <Interface/InitInput/IniAccess.h>
+#include "user_components.hpp"
 
-UserComponents::UserComponents(
-  const Dynamics* dynamics, 
-  const Structure* structure, 
-  const LocalEnvironment* local_env, 
-  const GlobalEnvironment* glo_env,
-  const SimulationConfig* config,
-  ClockGenerator* clock_gen
-):dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config)
-{
-  IniAccess ini_access = IniAccess(config->sat_file_[0]);
-  const double compo_step_sec = glo_env_->GetSimTime().GetCompoStepSec();
+#include <library/initialize/initialize_file_access.hpp>
 
-  obc_ = new UserObc(clock_gen, *this);
-  
-  const std::string gyro_ini_path = ini_access.ReadString("COMPONENTS_FILE", "gyro_file");
-  gyro_ = new Gyro(InitGyro(clock_gen, 1, gyro_ini_path, compo_step_sec, dynamics));
+UserComponents::UserComponents(const Dynamics *dynamics, Structure *structure, const LocalEnvironment *local_environment,
+                               const GlobalEnvironment *global_environment, const SimulationConfiguration *configuration,
+                               ClockGenerator *clock_generator, const unsigned int spacecraft_id)
+    : configuration_(configuration),
+      dynamics_(dynamics),
+      structure_(structure),
+      local_environment_(local_environment),
+      global_environment_(global_environment) {
+  // Common
+  IniAccess iniAccess = IniAccess(configuration_->spacecraft_file_list_[spacecraft_id]);
+  const double compo_step_sec = global_environment_->GetSimulationTime().GetComponentStepTime_s();
 
-  const std::string rw_ini_path = ini_access.ReadString("COMPONENTS_FILE", "rw_file");
-  rw_ = new RWModel(InitRWModel(clock_gen, 1, rw_ini_path, dynamics->GetAttitude().GetPropStep(), compo_step_sec));
+  obc_ = new UserOnBoardComputer(clock_generator, *this);
+
+  // Initialize of GyroSensor class
+  std::string file_name = iniAccess.ReadString("COMPONENT_FILES", "gyro_file");
+  configuration_->main_logger_->CopyFileToLogDirectory(file_name);
+  gyro_sensor_ = new GyroSensor(InitGyroSensor(clock_generator, 1, file_name, compo_step_sec, dynamics));
+
+  // Initialize of ReactionWheel class
+  file_name = iniAccess.ReadString("COMPONENT_FILES", "reaction_wheel_file");
+  configuration_->main_logger_->CopyFileToLogDirectory(file_name);
+  reaction_wheel_ = new ReactionWheel(InitReactionWheel(clock_generator, 1, file_name, dynamics->GetAttitude().GetPropStep_s(), compo_step_sec));
 }
 
-UserComponents::~UserComponents()
-{
-  delete gyro_;
-  delete rw_;
+UserComponents::~UserComponents() {
+  delete gyro_sensor_;
+  delete reaction_wheel_;
   // OBC must be deleted the last since it has com ports
   delete obc_;
 }
 
-Vector<3> UserComponents::GenerateForce_N_b()
-{
+Vector<3> UserComponents::GenerateForce_b_N() {
   // There is no orbit control component, so it remains 0
-  Vector<3> force_N_b_(0.0);
-  return force_N_b_;
+  Vector<3> force_b_N(0.0);
+  return force_b_N;
 }
 
-Vector<3> UserComponents::GenerateTorque_Nm_b()
-{
+Vector<3> UserComponents::GenerateTorque_b_Nm() {
   // No attitude control component
-  Vector<3> torque_Nm_b_(0.0);
-  torque_Nm_b_ = rw_->GetOutputTorqueB();
-  return torque_Nm_b_;
+  Vector<3> torque_b_Nm(0.0);
+  torque_b_Nm = reaction_wheel_->GetOutputTorque_b_Nm();
+  return torque_b_Nm;
 }
 
-void UserComponents::LogSetup(Logger & logger)
-{
-  logger.AddLoggable(gyro_);
-  logger.AddLoggable(rw_);
+void UserComponents::LogSetup(Logger &logger) {
+  logger.AddLogList(gyro_sensor_);
+  logger.AddLogList(reaction_wheel_);
 }
