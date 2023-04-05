@@ -15,10 +15,10 @@
    2. Register the ini file for the new satellite in `simulation_base.ini`
       - The arguments of `satellite_file` are used as satellite ID in simulation.
         ```
-        [SIM_SETTING]
-        num_of_simulated_spacecraft = 2
-        sat_file(0)   = ../../data/ini/user_satellite1.ini
-        sat_file(1)   = ../../data/ini/user_satellite2.ini
+        [SIMULATION_SETTINGS]
+        number_of_simulated_spacecraft = 2
+        spacecraft_file(0) = ../../data/initialize_files/user_satellite1.ini
+        spacecraft_file(1) = ../../data/initialize_files/user_satellite2.ini
         ```
 
 2. Edit source code
