@@ -83,19 +83,19 @@
 
 
 # 5. Example of S2E-C2A communication
-- This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/C2A_Integration`.
+- This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/c2a_integration`.
 - Preparation
   - See `Ch. 3 How to build C2A in S2E with the sample codes`.
 - Modification of the S2E side
-  - Users can use the [EXP](https://github.com/ut-issl/s2e-core/blob/develop/src/Component/Abstract/EXP.h) class in `s2e-core` as a test component to communicate with C2A.
-  - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/S2E_src`.
-    - The directory structure of `S2E_src` is same with that of `s2e-user-for-c2a-core`. 
-  - Add `EXP` as a component in `c2a_core_sample_components.cpp and .h`.
-    - Or simply just copy the source codes in `C2A_Integration/S2E_src` to `s2e-user-for-c2a-core`.
-    - In this example, the `OBC_C2A` is executed as 1kHz, and the `EXP` is executed as 1Hz.
+  - Users can use the [ExampleSerialCommunicationWithObc](https://github.com/ut-issl/s2e-core/blob/v6.0.0/src/components/examples/example_serial_communication_with_obc.hpp) class in `s2e-core` as a test component to communicate with C2A.
+  - Please refer the sample codes in `Tutorials/SampleCodes/c2a_integration/s2e_src`.
+    - The directory structure of `s2e_src` is same with that of `s2e-user-for-c2a-core`. 
+  - Add `ExampleSerialCommunicationWithObc` as a component in `c2a_core_sample_components.cpp and .h`.
+    - Or simply just copy the source codes in `c2a_integration/s2e_src` to `s2e-user-for-c2a-core`.
+    - In this example, the `ObcWithC2a` is executed as 1kHz, and the `ExampleSerialCommunicationWithObc` is executed as 1Hz.
  - Modification of the C2A side
-   - Please refer the sample codes in `Tutorials/SampleCodes/C2A_Integration/C2A_src_user`. 
-     - The directory structure of `C2A_src_user` is same with that of `c2a-core/Examples/minimum_user/src/src_user`.
+   - Please refer the sample codes in `Tutorials/SampleCodes/c2a_integration/c2a_src_user`. 
+     - The directory structure of `c2a_src_user` is same with that of `c2a-core/Examples/minimum_user/src/src_user`.
    - We need to add a new driver instance application to communicate with the `EXP` component.
      - Copy `Application/DriverInstances/di_s2e_uart_test.c and .h`
      - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
@@ -105,9 +105,9 @@
    - Edit `Setting/Modes/TaskLists/Elements/tl_elem_debug_display.c` to add the `AR_DI_DBG_S2E_UART_TEST` to execute the application in the tasklist.
    
 - Execution and Result
-  - The `AR_DI_S2E_UART_TEST` application sends characters to the `EXP` component like `SETA, SETB, SETC, ..., SETZ, SETA`
-  - The `EXP` component receives the characters and stores the set characters like `A, B, C, ..., Z, A`
-  - The `EXP` component sends the stored characters as telemetry like `A, BA, CBA, ..., ZYX`
+  - The C2A's `AR_DI_S2E_UART_TEST` application sends characters to the S2E's `ExampleSerialCommunicationWithObc` component like `SETA, SETB, SETC, ..., SETZ, SETA`
+  - The `ExampleSerialCommunicationWithObc` component receives the characters and stores the set characters like `A, B, C, ..., Z, A`
+  - The `ExampleSerialCommunicationWithObc` component sends the stored characters as telemetry like `A, BA, CBA, ..., ZYX`
   - The `AR_DI_S2E_UART_TEST` application receives the telemetry, and the `AR_DI_DBG_S2E_UART_TEST` application prints the first three characters in the debug output console like the following figure.
     ![](./figs/C2aCommunicationConfirmation.png)
 
