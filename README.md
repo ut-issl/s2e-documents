@@ -6,8 +6,9 @@
   - main
     - Documents for the latest stable version of s2e-core
       - Current version supports [s2e-core v6.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v6.0.0)
+      - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
-      - The release version number is compatible with s2e-core's version number
+      - The `major` version number is compatible with s2e-core's `major` version number.
   - develop
     - Documents for the latest `develop` branch of s2e-core
     - This version is only for s2e-core developers
@@ -52,7 +53,7 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
-
+     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
      1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
      1. TBW
@@ -110,8 +111,8 @@
       1. <details><summary> Ideal </summary>
 
          - `ideal` directory manages source codes of idealized components which are used in initial analysis phase in research and satellite development.
-         - Force Generator
-         - Torque Generator
+         - Force Generator: TBW
+         - Torque Generator: TBW
 
          </details>
 
@@ -138,7 +139,7 @@
 
             - `cdh` directory manages components for CDH subsystem.
 
-            1. OBC (On-board Computer): TBW
+            1. On Board Computer: TBW
             1. OBC with C2A: TBW
 
             </details>
