@@ -28,15 +28,15 @@
 	   1. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
 	   1. How to build with other compilers will be written
    1. Set up of External Libraries  
-      **NOTE**: Currenly, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
+      **NOTE**: Currently, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
       1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   1. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
-   1. Visulalization of Simulation Results
+   1. Visualization of Simulation Results
       1. [How to Visualize Simulation Results](./General/HowToVisualizeSimulationResults.md)
      
 
 1. Tutorials  
-   - We strongly recommend to sequencially follow the tutorials without external hardware at first.
+   - We strongly recommend to sequentially follow the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
    - <details><summary> Tutorials without any external hardware </summary>
 
@@ -225,7 +225,7 @@
          1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
          1. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
          1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
-         1. [Encke method](./Specifications/Dynamics/Spec_EnckeMethod.md)
+         1. [Encke's method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       1. Thermal: not supported now.
       
@@ -280,7 +280,7 @@
 
          1. MatVec (Matrix and Vector) : TBW
          1. Matrix: TBW
-         1. ODE (Ordinaly Differential Equation): TBW
+         1. ODE (Ordinary Differential Equation): TBW
          1. Quaternion: TBW
          1. Vector: TBW
          1. s2e_math: TBW
