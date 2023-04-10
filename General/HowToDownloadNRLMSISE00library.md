@@ -4,7 +4,7 @@
 - [NRLMSISE00](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2002JA009430) is an atmosphere model to calculate an air density, considering the solar activity.
 - [C language version of NRLMSISE00](https://git.linta.de/?p=~brodo/nrlmsise-00.git;a=summary) is a mandatory library for S2E to calculate the atmosphere density around the Earth.
 - How to use NRLMSISE00 is written in the [Specification of Atmosphere model](../Specifications/Environment/Spec_Atmosphere.md).
-- **Note** The [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0) provides the CMake file to download and install the external libraries, and we recommend to use it since it is simpler. So users do not need to execute the following process.
+- **Note** From the [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0) we provide the CMake file to download and install the external libraries and recommend to use it since it is simpler. So users do not need to execute the following process.
 
 
 ## 2. How to set up NRLMSISE00 for S2E [OLD Descriptions]

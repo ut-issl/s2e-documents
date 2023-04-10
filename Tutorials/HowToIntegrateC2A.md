@@ -41,9 +41,9 @@
   - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
   - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user) in `c2a-core`.
 - Preparing development environment
-  - Clone the `s2e-core v6.0.0`.
+  - Clone the `s2e-core v6.0.1`.
     - Please set the environment for that the s2e-core can work without C2A.
-  - Clone `s2e-user-for-c2a-core v2.0` at same directory with `s2e-core`. 
+  - Clone `s2e-user-for-c2a-core v2.0.0` at same directory with `s2e-core`. 
   - Make `FlightSW` directory at same directory with `s2e-core`.
   - Clone `c2a-core v3.8.0` in the `FlightSW` directory.
   - Execute setup script
