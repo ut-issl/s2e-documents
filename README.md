@@ -6,8 +6,9 @@
   - main
     - Documents for the latest stable version of s2e-core
       - Current version supports [s2e-core v6.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v6.0.0)
+      - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
-      - The release version number is compatible with s2e-core's version number
+      - The `major` version number is compatible with s2e-core's `major` version number.
   - develop
     - Documents for the latest `develop` branch of s2e-core
     - This version is only for s2e-core developers
@@ -28,15 +29,15 @@
 	   1. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
 	   1. How to build with other compilers will be written
    1. Set up of External Libraries  
-      **NOTE**: Currenly, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
+      **NOTE**: Currently, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
       1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   1. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
-   1. Visulalization of Simulation Results
+   1. Visualization of Simulation Results
       1. [How to Visualize Simulation Results](./General/HowToVisualizeSimulationResults.md)
      
 
 1. Tutorials  
-   - We strongly recommend to sequencially follow the tutorials without external hardware at first.
+   - We strongly recommend to sequentially follow the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
    - <details><summary> Tutorials without any external hardware </summary>
 
@@ -52,7 +53,7 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
-
+     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
      1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
      1. TBW
@@ -110,8 +111,8 @@
       1. <details><summary> Ideal </summary>
 
          - `ideal` directory manages source codes of idealized components which are used in initial analysis phase in research and satellite development.
-         - Force Generator
-         - Torque Generator
+         - Force Generator: TBW
+         - Torque Generator: TBW
 
          </details>
 
@@ -138,7 +139,7 @@
 
             - `cdh` directory manages components for CDH subsystem.
 
-            1. OBC (On-board Computer): TBW
+            1. On Board Computer: TBW
             1. OBC with C2A: TBW
 
             </details>
@@ -225,7 +226,7 @@
          1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
          1. [RK4 Orbit Propagation](./Specifications/Dynamics/Spec_Rk4Orbit.md)
          1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
-         1. [Encke method](./Specifications/Dynamics/Spec_EnckeMethod.md)
+         1. [Encke's method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
       1. Thermal: not supported now.
       
@@ -280,7 +281,7 @@
 
          1. MatVec (Matrix and Vector) : TBW
          1. Matrix: TBW
-         1. ODE (Ordinaly Differential Equation): TBW
+         1. ODE (Ordinary Differential Equation): TBW
          1. Quaternion: TBW
          1. Vector: TBW
          1. s2e_math: TBW
