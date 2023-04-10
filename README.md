@@ -46,7 +46,7 @@
      1. [How To Use Monte Carlo Simulation](./Tutorials/HowToUseMonteCarloSimulation.md)
      1. [How To Add Control Algorithms](./Tutorials/HowToAddControlAlgorithms.md)
      1. [How To Integrate C2A](./Tutorials/HowToIntegrateC2A.md)
-     1. [How to simulate multiple satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
+     1. [How To Simulate Multiple Satellites](./Tutorials/HowToSimulateMultipleSatellites.md)
      1. TBW
 
      </details>

@@ -3,7 +3,7 @@
 ## 1.  Overview
 - S2E can simulate multiple satellites.
 - This document describes how to simulate multiple satellites.
-- For the sample codes, please see `./Tutorials/SampleCodes/MultipleSatellites`
+- For the sample codes, please see `./Tutorials/SampleCodes/multiple_satellites`
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
  
@@ -11,32 +11,34 @@
 ## 2. How to add a new satellite
 1. Edit `ini` files
    1. Add `ini` files for the new satellite.
-      - `Sat.ini`, `Disturbance.ini`, `LocalEnvironment.ini`, `Structure.ini` are needed.
-   2. Register the ini file for the new satellite in `Simbase.ini`
-      - The arguments of `sat_file` are used as satellite ID in simulation.
+      - `satellite.ini`, `disturbance.ini`, `local_environment.ini`, `structure.ini` are needed.
+   2. Register the ini file for the new satellite in `simulation_base.ini`
+      - The arguments of `satellite_file` are used as satellite ID in simulation.
         ```
-        [SIM_SETTING]
-        num_of_simulated_spacecraft = 2
-        sat_file(0)   = ../../data/ini/UserSat1.ini
-        sat_file(1)   = ../../data/ini/UserSat2.ini
+        [SIMULATION_SETTINGS]
+        number_of_simulated_spacecraft = 2
+        spacecraft_file(0) = ../../data/initialize_files/user_satellite1.ini
+        spacecraft_file(1) = ../../data/initialize_files/user_satellite2.ini
         ```
 
 2. Edit source code
-   1. Add new `Satellite` instances to `Case` members in `UserCase.hpp`.
+   1. Add new `UserSatellite` instances to `Case` members in `user_case.hpp`.
       ```c++
-      UserSat* spacecraft0_;
-      UserSat* spacecraft1_;
+      UserSatellite *spacecraft0_;  //!< Instance of spacecraft
+      UserSatellite *spacecraft1_;  //!< Instance of spacecraft
       ```
 
-    2. Edit `UserCase.cpp` to copy the spacecraft related codes as the sample code.
+    2. Edit `user_case.cpp` to copy the spacecraft related codes as the sample code.
+       - Please see sample code for more details.
 
 3. Build and execute the `s2e-user`
 
-4. You can see the log `omega_true_b(X)[rad/s]` twice. The first one is angular velocity of `spacecraft0_`, and the socond one is angular velocity of `spacecraft1_` in the log file.
+4. You can see the log `spacecraft_angular_velocity_b_x[rad/s]` twice. The first one is angular velocity of `satellite0_`, and the second one is angular velocity of `satellite1_` in the log file.
 
 
 ## 3. Advanced usage
-- In the sample, the `spacecraft0_` and the `spacecraft1_` are completely same, but users can change the setting of these satellites with editing the `ini` files.
-  - Users can change the orbit, initial attitude, and so on.
-- Users also can set the different component for the spacecraft-0 and -1, when users define different `UserSat` and `UserComponents` class.
+- In the sample, the `satellite0_` and the `satellite1_` are completely same, but users can change the setting of these satellites with editing the `ini` files.
+  - Users can change the orbit, initial attitude, satellite structure and so on.
+- Users also can set the different component for the `satellite` 0 and 1, when users define different `UserSatellite` and `UserComponents` class.
 - The document to use `relative information` will be written.
+- Users can also refer the [S2E-FF](https://github.com/ut-issl/s2e-ff) repository.
