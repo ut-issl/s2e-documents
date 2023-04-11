@@ -6,19 +6,21 @@
    - The `GeoPotential` class calculates the gravity acceleration of the earth with the [EGM96](https://cddis.nasa.gov/926/egm96/) geo-potential model.
 
 2. Related files
-   - `src/Disturbance/GeoPotential.cpp`
-   - `src/Disturbance/GeoPotential.h`
-   - `ExtLibraries/GeoPotential/egm96_to360.ascii`
-     - The EGM96 geopotential coefficients file can be downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html)
-     - Users can use `scripts/download_EGM96coefficients.sh` to download the file.
+   - `src/disturbances/geopotential.cpp`
+   - `src/disturbances/geopotential.hpp`
+   - `s2e-core/ExtLibraries/GeoPotential/egm96_to360.ascii`
+     - The EGM96 geopotential coefficients file was downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html), but we cannot access it now.
 
 3. How to use   
-   - Make an instance of the geopotential class in `InitializeInstances` function in `Disturbances.cpp`
-   - Chose RK4 orbit propagator
-   - Select `ENABLE` and `degree` of calculation
-     - When the `degree` is smaller than 1, it is overwritten as 0.
-     - When the `degree` is larger than 360, it is overwritten as 360.
-     - **NOTE**: The calculation time is related to the selected degree.
+   - Make an instance of the `GeoPotential` class in `InitializeInstances` function in `disturbances.cpp`
+     - Create an instance by using the initialization function `InitGeoPotential`
+   - Choose an orbit propagator mode that considers disturbances.
+   - Edit the `disturbance.ini` file
+     - Select `ENABLE` for `calculation` and `logging`
+     - Select `degree` of calculation
+       - When the `degree` is smaller than 1, it is overwritten as 0.
+       - When the `degree` is larger than 360, it is overwritten as 360.
+       - **NOTE**: The calculation time is related to the selected degree.
      
 
 ## 2. Explanation of Algorithm
@@ -28,11 +30,11 @@
    1. overview
       - This function reads the geopotential coefficients from the EGM96 file `egm96_to360.ascii`.
       - The file doesn't have coefficients for `n=0,m=0`, `n=1,m=0`, and `n=1,m=1`. 
-      - All coefficients are completely normalized by following normalization function $`N_{n,m}`$
+      - All coefficients are completely normalized by following normalization function $N_{n,m}$
         ```math
         N_{n,m}=\sqrt{\frac{(n+m)!}{(2-\delta_{0m})(2n+1)(n-m)!}}\\
         ```
-        - where $`\delta_{0m}`$ is the Kronecker delta.
+        - where $\delta_{0m}$ is the Kronecker delta.
 
    2. inputs and outputs
       - Input
@@ -40,7 +42,7 @@
         - maximum degree for geopotential calculation
       - Output
         - **Return**: reading is succeeded or not.
-        - Normalized coefficient  $`C_{n,m}`$ and $`S_{n,m}`$ 
+        - Normalized coefficient  $C_{n,m}$ and $S_{n,m}$ 
 
    3. algorithm
       - The file format of `egm96_to360.ascii` is `n,m,Cnm,Snm,sigmaCnm,sigmaSnm` in line with space  delimiter. In this calculation, the `sigmaCnm` and `sigmaSnm` are not used.
@@ -49,7 +51,7 @@
         ```math
         N_{line}=\frac{1}{2}(n+1)(n+2)-3
         ```
-        where $`n`$ is maximum degree, and -3 is for the coefficients of `n=0,m=0`, `n=1,m=0`, and `n=1,m=1`, which are not in the file. 
+        where $n$ is maximum degree, and -3 is for the coefficients of `n=0,m=0`, `n=1,m=0`, and `n=1,m=1`, which are not in the file. 
 
    4. note
 
@@ -60,7 +62,7 @@
    1. overview
       - We chose to use the recursion algorithm written in chapter 3.2.4 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807) since the calculation of the Legendre polynomials for spherical harmonics is time-consuming.
         - However, the original equation in the book is unnormalized form, and it is not suitable with the normalized coefficients. 
-        - For a small degree, users can directly use the normalized function $`N_{n,m}`$  to unnormalize the coefficients or to normalize the functions $`V_{n,m}`$ and $`V_{n,m}`$ . But for a large degree, the factorial calculation in the $`N_{n,m}`$ reaches a huge value, which standard `double` variables cannot handle.
+        - For a small degree, users can directly use the normalized function $N_{n,m}$  to unnormalize the coefficients or to normalize the functions $V_{n,m}$ and $V_{n,m}$ . But for a large degree, the factorial calculation in the $N_{n,m}$ reaches a huge value, which standard `double` variables cannot handle.
         - To avoid that, the normalized recursion algorithm was derived as described in Section 3.
       - There are the following two functions:
         - `v_w_nn_update`
@@ -69,13 +71,13 @@
    2. inputs and outputs
       - Inputs
         - Both functions
-          - Satellite position in ECEF frame $`x, y, z`$
-          - degree and order as $`n`$ and $`m`$
-        - `v_w_nn_update`: $`V_{n-1,n-1}`$ and $`W_{n-1,n-1}`$
-        - `v_w_nm_update`: $`V_{n-1,m}, W_{n-1,m}, V_{n-2,m}`$, and $`W_{n-2,m}`$
+          - Satellite position in ECEF frame $x, y, z$
+          - degree and order as $n$ and $m$
+        - `v_w_nn_update`: $V_{n-1,n-1}$ and $W_{n-1,n-1}$
+        - `v_w_nm_update`: $V_{n-1,m}, W_{n-1,m}, V_{n-2,m}$, and $W_{n-2,m}$
       - Outputs
-        - `v_w_nn_update`: $`V_{n,n}`$ and $`W_{n,n}`$
-        - `v_w_nm_update`: $`V_{n,m}`$ and $`W_{n,m}`$
+        - `v_w_nn_update`: $V_{n,n}$ and $W_{n,n}$
+        - `v_w_nm_update`: $V_{n,m}$ and $W_{n,m}$
       
    3. algorithm
 
@@ -84,61 +86,76 @@ For unnormalized algorithms, see chapter 3.2.4 of [Satellite Orbits](https://www
 For normalized algorithm, we use following normalizing relation for Legendre polynomials,
 
 ```math
-\bar{P}_{n,m}=\frac{1}{N_{n,m}}P_{n,m}\\
-\bar{V}_{n,m}=\frac{1}{N_{n,m}}V_{n,m}\\
-\bar{W}_{n,m}=\frac{1}{N_{n,m}}W_{n,m}\\
+\begin{align}
+  \bar{P}_{n,m} &= \frac{1}{N_{n,m}}P_{n,m}\\
+  \bar{V}_{n,m} &= \frac{1}{N_{n,m}}V_{n,m}\\
+  \bar{W}_{n,m} &= \frac{1}{N_{n,m}}W_{n,m}\\
+\end{align}
 ```
 
 The recursion calculation of V and W can be changed to a normalized version as follows
 
 ```math
-N_{m,m}\bar{V}_{m,m}=(2m-1)(\frac{xR_{e}}{r^2}N_{m-1,m-1}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}N_{m-1,m-1}\bar{W}_{m-1,m-1})\\
-\bar{V}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\\
-\bar{W}_{m,m}=\frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\\
+\begin{align}
+  N_{m,m}\bar{V}_{m,m} &= (2m-1)(\frac{xR_{e}}{r^2}N_{m-1,m-1}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}N_{m-1,m-1}\bar{W}_{m-1,m-1})\\
+  \bar{V}_{m,m} &= \frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\\
+  \bar{W}_{m,m} &= \frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\\
+\end{align}
 ```
 
 ```math
-N_{n,m}\bar{V}_{n,m}=\frac{2n-1}{n-m}(\frac{zR_{e}}{r^2}N_{n-1,m}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}N_{n-2,m}\bar{V}_{n-2,m})\\
-\bar{V}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{V}_{n-2,m}\\
-\bar{W}_{n,m}=\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{W}_{n-2,m}\\
+\begin{align}
+  N_{n,m}\bar{V}_{n,m} &= \frac{2n-1}{n-m}(\frac{zR_{e}}{r^2}N_{n-1,m}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}N_{n-2,m}\bar{V}_{n-2,m})\\
+  \bar{V}_{n,m} &= \frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{V}_{n-2,m}\\
+  \bar{W}_{n,m} &= \frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{W}_{n-2,m}\\
+\end{align}
 ```
 
 The recurrence relation of normalize function can be expressed as follows
 
 ```math
-N_{0,0}=1\\
-N_{m,m}=(2m-1)\sqrt{\frac{2m}{2m+1}}N_{m-1,m-1}\quad(m\geq1)
-```
-
-```math
-N_{n,m}=\sqrt{\frac{2n-1}{2n+1}}\sqrt{\frac{n+m}{n-m}}N_{n-1,m}\quad(n\geq1,0\leq m \leq n)
+\begin{align}
+  N_{0,0} &= 1\\
+  N_{m,m} &= (2m-1)\sqrt{\frac{2m}{2m+1}}N_{m-1,m-1}\quad(m\geq1)\\
+  N_{n,m} &= \sqrt{\frac{2n-1}{2n+1}}\sqrt{\frac{n+m}{n-m}}N_{n-1,m}\quad(n\geq1,0\leq m \leq n)
+\end{align}
 ```
 
 So, the divisions of the normalized functions are described as follows
 ```math
-\frac{N_{0,0}}{N_{1,1}}=\sqrt{2m+1}=\sqrt{3}\\
-\frac{N_{m-1,m-1}}{N_{m,m}}=\frac{1}{2m-1}\sqrt{\frac{2m+1}{2m}}\quad(m\geq2)\\
-\frac{N_{n-1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}\quad(n\geq1,0\leq m \leq n)\\
-\frac{N_{n-2,m}}{N_{n,m}}=\frac{N_{n-2,m}}{N_{n-1,m}}\frac{N_{n-1,m}}{N_{n,m}}\\
-\frac{N_{n-2,m}}{N_{n,m}}=\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\frac{N_{n-1,m}}{N_{n,m}}\quad(n\geq2,0\leq m \leq n)
+\begin{align}
+  \frac{N_{0,0}}{N_{1,1}} &= \sqrt{2m+1}=\sqrt{3}\\
+  \frac{N_{m-1,m-1}}{N_{m,m}} &= \frac{1}{2m-1}\sqrt{\frac{2m+1}{2m}}\quad(m\geq2)\\
+  \frac{N_{n-1,m}}{N_{n,m}} &= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}\quad(n\geq1,0\leq m \leq n)\\
+  \frac{N_{n-2,m}}{N_{n,m}} &= \frac{N_{n-2,m}}{N_{n-1,m}}\frac{N_{n-1,m}}{N_{n,m}}\\
+  \frac{N_{n-2,m}}{N_{n,m}} &= \sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\frac{N_{n-1,m}}{N_{n,m}}\quad(n\geq2,0\leq m \leq n)
+\end{align}
 ```
 The recurrence relations for normalized V and W are derived as  follows
 ```math
-\bar{V}_{0,0}=\frac{Re}{r}\\
-\bar{W}_{0,0}=0\\
-\bar{V}_{1,1}=\sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
+\begin{align}
+  \bar{V}_{0,0} &= \frac{Re}{r}\\
+  \bar{W}_{0,0} &= 0\\
+  \bar{V}_{1,1} &= \sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
+\end{align}
 ```
 ```math
-\bar{V}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
-\bar{W}_{m,m}=\sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+\begin{align}
+  \bar{V}_{m,m} &= \sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
+  \bar{W}_{m,m} &= \sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+\end{align}
 ```
 ```math
-\bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
-\bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\begin{align}
+  \bar{V}_{n,m} &= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+  \bar{W}_{n,m} &= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\end{align}
 ```
 ```math
-\bar{V}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
-\bar{W}_{n,m}=\sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\begin{align}
+  \bar{V}_{n,m} &= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+  \bar{W}_{n,m} &= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\end{align}
 ```
 
 
@@ -148,36 +165,47 @@ The recurrence relations for normalized V and W are derived as  follows
       
    2. inputs and outputs
       - Input
-        - normalized Coefficients: $`\bar{C}_{n,m}`$ and $`\bar{S}_{n,m}`$ 
-        - normalized function: $`\bar{V}_{n,m}`$ and $`\bar{W}_{n,m}`$
+        - normalized Coefficients: $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ 
+        - normalized function: $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$
       - Output
         - Gravity acceleration in ECEF frame 
    3. algorithm
 
 For unnormalized algorithms, See  chapter 3.2.5 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807). 
 
-When we use the normalized coefficients $`\bar{C}_{n,m}`$ and $`\bar{S}_{n,m}`$ and $`\bar{V}_{n,m}`$ and $`\bar{W}_{n,m}`$ functions,  the acceleration calculation is described like follows
+When we use the normalized coefficients $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ and $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$ functions,  the acceleration calculation is described like follows
 ```math
-\ddot{x}_{n,m}=-\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1} =-\frac{GM}{Re^{2}} C_{n,0}V_{n+1,1} \frac{N_{n,0}}{N_{n+1,1}}\quad(m=0)
+\begin{align}
+  \ddot{x}_{n,m} &= -\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1}\\
+   &= -\frac{GM}{Re^{2}} C_{n,0}V_{n+1,1} \frac{N_{n,0}}{N_{n+1,1}}\quad(m=0)
+\end{align}
 ```
-The division of normalized function $`\frac{N_{n,0}}{N_{n+1,1}}`$ should be removed, so we have to multiply following correction factors into the equation. 
+The division of normalized function $\frac{N_{n,0}}{N_{n+1,1}}$ should be removed, so we have to multiply following correction factors into the equation. 
 
 When $m=0$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
+\begin{align}
+  \frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
+\end{align}
 ```
-When $`m=1`$, following correction factors are useful for x and y acceleration
+When $m=1$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
+\begin{align}
+  \frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
+\end{align}
 ```
-When $`m>1`$, following correction factors are useful for x and y acceleration
+When $m>1$, following correction factors are useful for x and y acceleration
 ```math
-\frac{N_{n+1,m+1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+m+1)(n+m+2)}\\
-\frac{N_{n+1,m-1}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{(n-m+1)(n-m+2)}}\\
+\begin{align}
+  \frac{N_{n+1,m+1}}{N_{n,m}} &= \sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+m+1)(n+m+2)}\\
+  \frac{N_{n+1,m-1}}{N_{n,m}} &= \sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{(n-m+1)(n-m+2)}}\\
+\end{align}
 ```
-When $`m>=0`$, following correction factors are useful for z acceleration
+When $m>=0$, following correction factors are useful for z acceleration
 ```math
-\frac{N_{n+1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{n+m+1}{n-m+1}}
+\begin{align}
+  \frac{N_{n+1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{n+m+1}{n-m+1}}
+\end{align}
 ```
    4. note
       - To accelerate the calculation, the double `for loop` of acceleration calculation and the recursion loop need to be integrated in future.
@@ -248,17 +276,17 @@ When $`m>=0`$, following correction factors are useful for z acceleration
         chrono::system_clock::time_point start, end;
         start = chrono::system_clock::now();
       
-        debug_pos_ecef_ = spacecraft.dynamics_->orbit_->GetSatPosition_ecef();
-        CalcAccelerationECEF(spacecraft.dynamics_->orbit_->GetSatPosition_ecef());
+        debug_pos_ecef_m_ = spacecraft.dynamics_->orbit_->GetPosition_ecef_m();
+        CalcAccelerationEcef(dynamics.GetOrbit().GetPosition_ecef_m());
       
-        end = chrono::system_clock::now();
-        time_ = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
+       end = chrono::system_clock::now();
+       time_ms_ = static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0);
       ```
       
-      - The `time_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
+      - The `time_ms_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
       - Environment
         - Corei7-8650U(2.11GHz)
-        -  VS2017 32bit debug
+        - VS2017 32bit debug
       
    2. conditions for the verification
       1. input files

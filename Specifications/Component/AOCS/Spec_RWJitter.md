@@ -22,15 +22,15 @@
 
 3. how to use
    - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
-   - The first column is an array of the $`h_i`$($`i`$-th harmonic number). The second column is an array of the $`C_i`$(amplitude of the $`i`$-th harmonic).
+   - The first column is an array of the $h_i$( $i$-th harmonic number). The second column is an array of the $C_i$ (amplitude of the $i$-th harmonic).
    - Set parameters in `RW.ini`
-   - When only the static imbalance and dynamic imbalance(correspond to $`C_i`$ at $`h_i`$≒1) is known according to the spec sheet, edit the files as follows.
+   - When only the static imbalance and dynamic imbalance(correspond to $C_i$ at $h_i\ne1$) is known according to the spec sheet, edit the files as follows.
      + `radial_force_harmonics_coef.csv`
-       * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
-       * Set $`C_1`$(the line 1 of the second column) as the static imbalance on the spec sheet.
+       * Set $h_1$(the line 1 of the first column) as $1.0$.
+       * Set $C_1$(the line 1 of the second column) as the static imbalance on the spec sheet.
      + `radial_torque_harmonics_coef.csv`
-       * Set $`h_1`$(the line 1 of the first column) as $`1.0`$.
-       * Set $`C_1`$(the line 1 of the second column) as the dynamic imbalance on the spec sheet.
+       * Set $h_1$(the line 1 of the first column) as $1.0$.
+       * Set $C_1$(the line 1 of the second column) as the dynamic imbalance on the spec sheet.
      + `RW.ini`
        * Set `harmonics_degree = 1`.
     - Set the jitter update period to an appropriate value.
@@ -57,8 +57,8 @@
         u(t)=\sum_{i=1}^n C_i\Omega^2\sin(2\pi h_i\Omega t+\alpha_i)
         ```
         
-        -  where $`u(t)`$ is the disturbance force and torque in Newton (N) or Newton-meters (Nm), $`n`$ is the number of harmonics included in the model, $`C_i`$ is the amplitude of the $`i`$th harmonic in $`\mathrm{N^2/Hz}`$ (or $`\mathrm{(Nm)^2/Hz}`$), $`\Omega`$ is the wheel speed in Hz, $`h_i`$ is the $`i`$th harmonic number and $`\alpha_i`$ is a random phase (assumed to be uniform over $`[0, 2\pi]`$) [1].
-        - $`\alpha_i`$ is generated as a uniform random number in the constructor.
+        -  where $u(t)$ is the disturbance force and torque in Newton (N) or Newton-meters (Nm), $n$ is the number of harmonics included in the model, $C_i$ is the amplitude of the $i$ th harmonic in $\mathrm{N^2/Hz}$ (or $\mathrm{(Nm)^2/Hz}$), $\Omega$ is the wheel speed in Hz, $h_i$ is the $i$ th harmonic number and $\alpha_i$ is a random phase (assumed to be uniform over $[0, 2\pi]$) [1].
+        - $\alpha_i$ is generated as a uniform random number in the constructor.
         - When users want to use a more precise model, set `considers_structural_resonance` to ENABLE in `RW.ini` and use a model that takes structural resonance inside the RW into account.
             + If structural resonances are not taken into account, the RW disturbance will be underestimated, but it is not a significant change in general.
             + See the description of `AddStructuralResonance()` for the algorithm to calculate the structural resonance.
@@ -72,15 +72,15 @@
         - output:
             + jitter force and torque with structural resonance in component frame
     3. algorithm
-        - The transfer function from disturbance by harmonics of RW without resonance ($`u(t)`$) to disturbance with resonance ($`y(t)`$) is modeled as following equation: 
+        - The transfer function from disturbance by harmonics of RW without resonance ( $u(t)$ ) to disturbance with resonance ( $y(t)$ ) is modeled as following equation: 
         ```math
         G(s)=\frac{s^2+2\zeta\omega_ns+\omega_n^2}{s^2+2d\zeta\omega_ns+\omega_n^2}
         ```
         ```math
         Y(s)=G(s)U(s)
         ```
-        - where $`\omega_n`$ is the angular frequency on the structural resonance. Other parameters such as $`\zeta`$, $`d`$ are determined by the result of experiments.
-        - To perform the simulation in discrete time, A bi-linear transformation $`G(s)\rightarrow H(z)`$ is applied. $`T`$ is the jitter update period. 
+        - where $\omega_n$ is the angular frequency on the structural resonance. Other parameters such as $\zeta$, $d$ are determined by the result of experiments.
+        - To perform the simulation in discrete time, A bi-linear transformation $G(s)\rightarrow H(z)$ is applied. $T$ is the jitter update period. 
 
         ```math
         \begin{aligned}
@@ -91,13 +91,13 @@
         \end{aligned}
         ```
 
-        - The $`\omega_n`$ should be the fixed value by pre-warping because there is frequency distortion due to bilinear transformation. The formula for calculating $`\omega_n`$ for the true resonant frequency $`\omega_d`$ is as follows:
+        - The $\omega_n$ should be the fixed value by pre-warping because there is frequency distortion due to bilinear transformation. The formula for calculating $\omega_n$ for the true resonant frequency $\omega_d$ is as follows:
 
         ```math
         \omega_n=\frac{2}{T}\tan(\frac{T\omega_d}{2})
         ```
 
-        - The bi-linear transformation transforms the relationship between input $`u`$ and output $`y`$ as follows:
+        - The bi-linear transformation transforms the relationship between input $u$ and output $y$ as follows:
 
         ```math
         \begin{aligned}
@@ -106,12 +106,12 @@
         \end{aligned}
         ```
 
-        - By applying the inverse z-transform, the continuous relationship between $`y(t)`$ and $`u(t)`$ can be expressed as a  discrete relationship of a difference equation between $`y[n]`$ and $`u[n]`$, where $`[n]`$ is the current simulation time step. The difference equation is as follows:
+        - By applying the inverse z-transform, the continuous relationship between $y(t)$ and $u(t)$ can be expressed as a  discrete relationship of a difference equation between $y[n]$ and $u[n]$, where $[n]$ is the current simulation time step. The difference equation is as follows:
         ```math
         c_0y[n]+c_1y[n-1]+c_2y[n-2]=c_3u[n]+c_4u[n-1]+c_5u[n-2]
         ```
 
-        - Therefore, $`y[n]`$ is calculated as follows.
+        - Therefore, $y[n]$ is calculated as follows.
         ```math
         y[n]=\frac{(-c_1y[n-1]-c_2y[n-2]+c_3u[n]+c_4u[n-1]+c_5u[n-2])}{c_0}
         ```
@@ -166,7 +166,7 @@
             <img src="./figs/rw_waterfall_sim.jpg" width=80% alt="Simulated RW jitter in time domain">
             </div>
             
-            - Both the first-order mode and the structural resonance ($`\omega_n=585\mathrm{Hz}`$) are approximately simulated.
+            - Both the first-order mode and the structural resonance ($\omega_n=585\mathrm{Hz}$) are approximately simulated.
 
 ## 4. References
     1. Masterson, R. A. (1999). Development and validation of empirical and analytical reaction wheel disturbance models (Doctoral dissertation, Massachusetts Institute of Technology).

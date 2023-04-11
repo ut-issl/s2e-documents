@@ -3,10 +3,7 @@
 ## 0. General rule
 - The file name should be `Spec_CamelCase.md` in the Specifications directory. 
 - Please use the markdown format.
-- The markdown files are converted to a book with [mdBook](https://rust-lang.github.io/mdBook/) and published in Github Pages.
-  - The equations are rendered with [MathJax](https://www.mathjax.org/)
-    - e.g., Please use `\boldsymbol` for bold characters instead of `\bm`.
-- So, please follow the writing rules of mdBook and MathJax.
+- Because GitHub started to support math description ([link](https://github.blog/2022-05-19-math-support-in-markdown/)), we need to describe equations suit with the rule of GitHub and [MathJax](https://www.mathjax.org/).
 
 ## 1.  Overview
 1. Functions
@@ -28,21 +25,14 @@
    2. Inputs and Outputs
 
    3. Algorithm
-      - MathJax description
-        - please use equations as
-
-          \\[
+      - Math description
+        - please use equations as  
+          $$\dot{\boldsymbol{x}}=f(\boldsymbol{x},t)$$
+          or 
+          ```math
           \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
-          \\]
-        - you can also use inline equation as \\( x=y \\)
-
-      - Following description is automatically converted to the above style, but do not use this for new files.
-      
-        ```math
-        \dot{\boldsymbol{x}}=f(\boldsymbol{x},t)
-        ```
-        - inline equation: $`x=y`$
-
+          ```
+        - you can also use inline equation as $x=y$
 
    4. Note
 

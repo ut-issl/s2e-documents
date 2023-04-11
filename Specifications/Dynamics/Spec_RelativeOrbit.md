@@ -30,14 +30,14 @@
    - Set up the configuration of the `[ORBIT]` section in the `Sat.ini`.
         + Set `propagate_mode =2` to use the relative orbit propagation
         + Choose `update_method`.
-            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation($`\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}`$, i.e., Hill equation).
-            * `update_method = 1` means the orbit is updated with the STM($`\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)`$, i.e., Clohessy-Wiltshire solution).
+            * `update_method = 0` means the orbit is updated with the propagation of the relative dynamics equation( $\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}$ , i.e., Hill equation).
+            * `update_method = 1` means the orbit is updated with the STM( $\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)$ , i.e., Clohessy-Wiltshire solution).
         + When you choose `update_method = 0`, set `relative_dynamics_model_type`.
         + When you choose `update_method = 1`, set `stm_model_type`.
         + Set the initial relative position of the satellite in the LVLH frame. LVLH frame definition is:
-            * $`\boldsymbol{x}`$ is a direction vector from the reference satellite ("chief" in the figure) radially outward.
-            * The direction of $`\boldsymbol{z}`$ corresponds to the angular momentum vector of the reference satellite orbit.
-            * The direction of $`\boldsymbol{y}`$ is determined by $`\boldsymbol{z}\times\boldsymbol{x}`$.
+            * $\boldsymbol{x}$ is a direction vector from the reference satellite ("chief" in the figure) radially outward.
+            * The direction of $\boldsymbol{z}$ corresponds to the angular momentum vector of the reference satellite orbit.
+            * The direction of $\boldsymbol{y}$ is determined by $\boldsymbol{z}\times\boldsymbol{x}$.
         <figure>
         <div align="center">
         <img src="./figs/RelativeOrbit_LVLHdefinition.JPG" width=70% alt="">
@@ -79,7 +79,7 @@
             * `current_jd`
                 - The initial Julian day
             * `mu`
-                - The gravity constant of the reference celestial body $`\mu`$
+                - The gravity constant of the reference celestial body $\mu$
             * `timestep`
                 - RK4 propagation timestep
             * `wgs`
@@ -105,7 +105,7 @@
             * `reference_sat_orbit`
                 - The orbit of the reference satellite
             * `mu` 
-                - The gravity constant $`\mu`$
+                - The gravity constant $\mu$
         + output
             * none 
 
@@ -125,7 +125,7 @@
             * `reference_sat_orbit`
                 - The orbit of the reference satellite
             * `mu` 
-                - The gravity constant $`\mu`$
+                - The gravity constant $\mu$
             * `elapsed_sec`
                 - Elapsed simulation time
         + output
@@ -144,21 +144,21 @@
    2. inputs and outputs
         + input
             * `orbit_radius`
-                - Radius of the reference satellite orbit $`R`$
+                - Radius of the reference satellite orbit $R$
             * `mu` 
-                - The gravity constant $`\mu`$
+                - The gravity constant $\mu$
         + output
             * `system_matrix`
                 - system matrix
 
    3. algorithm
-        + The mean motion of the reference orbit ($`n`$) is calculated as follows:
+        + The mean motion of the reference orbit ($n$) is calculated as follows:
 
         ```math
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\boldsymbol{A}`$) is calculated as follows:
+        + Then, the system matrix ($\boldsymbol{A}$) is calculated as follows:
 
         ```math
         \boldsymbol{A}=
@@ -183,9 +183,9 @@
    2. inputs and outputs
         + input
             * `orbit_radius`
-                - Radius of the reference satellite orbit $`R`$
+                - Radius of the reference satellite orbit $R$
             * `mu` 
-                - The gravity constant $`\mu`$
+                - The gravity constant $\mu$
             * `elapsed_sec`
                 - Elapsed simulation time
         + output
@@ -193,13 +193,13 @@
                 - system matrix
 
    3. algorithm
-        + The mean motion of the reference orbit ($`n`$) is calculated as follows:
+        + The mean motion of the reference orbit ($n$) is calculated as follows:
 
         ```math
         n=\sqrt{\frac{\mu}{R^3}}
         ```
 
-        + Then, the system matrix ($`\boldsymbol{A}`$) is calculated as follows:
+        + Then, the system matrix ($\boldsymbol{A}$) is calculated as follows:
 
         ```math
         \boldsymbol{\Phi}(t,t0)=
@@ -228,7 +228,7 @@
                 - `Sat0.ini`
                 - `Sat1.ini`
       2. initial values
-            - The orbit of the reference satellite (Sat0) is GEO. The initial position of the satellite (Sat1) is $`(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}`$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).  
+            - The orbit of the reference satellite (Sat0) is GEO. The initial position of the satellite (Sat1) is $(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).  
             - `Sat0.ini`
 
             ```

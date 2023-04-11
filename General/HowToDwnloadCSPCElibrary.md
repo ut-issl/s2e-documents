@@ -3,7 +3,7 @@
 ## 1.  Overview
 - [SPICE](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/info/intrdctn.html) is a system to combine the most accurate space geometry and event data with space mission analysis, observation planning, or science data processing software developed by NASA.
 - [CSPICE](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/index.html) is the C language version of SPICE and mandatory library for S2E to get planet information.
-- **Note** The [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0) provides the CMake file to download and install the external libraries, and we recommend to use it since it is simpler. So users do not need to execute the following process.
+- **Note** From the [s2e-core v5.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v5.0.0), we provide the CMake file to download and install the external libraries and recommend to use it since it is simpler. So users do not need to execute the following process.
 
 
 ## 2. How to set up CSPICE Library for S2E [OLD Descriptions]

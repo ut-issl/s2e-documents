@@ -25,10 +25,10 @@
 
    2. Inputs and outputs
       - Input
-        - $`\mu`$ : The standard gravitational parameter of the central body
-        - $`t`$ : Time in Julian day
-        - $`\boldsymbol{r}_{i}`$ : Initial position in the inertial frame
-        - $`\boldsymbol{v}_{i}`$ : Initial velocity in the inertial frame
+        - $\mu$ : The standard gravitational parameter of the central body
+        - $t$ : Time in Julian day
+        - $\boldsymbol{r}_{i}$ : Initial position in the inertial frame
+        - $\boldsymbol{v}_{i}$ : Initial velocity in the inertial frame
       - Output
         - The reference orbit
         - The difference is set as zero
@@ -40,17 +40,17 @@
    1. Overview
       - This function is the main algorithm of Encke's method and calculates the orbit of the spacecraft.
       - The method separates the orbit to the reference and the difference. The reference is calculated with the Kepler orbit method as a two-body problem, and the difference is calculated, including the disturbances.
-        - $`\boldsymbol{r}_{ref}`$ : Reference orbit
-        - $`\boldsymbol{\delta}`$ : Difference
+        - $\boldsymbol{r}_{ref}$ : Reference orbit
+        - $\boldsymbol{\delta}$ : Difference
       - Please refer to the references to learn the original idea of Encke's method.
 
    2. Inputs and outputs
       - Input
-        - $`\boldsymbol{a}_d`$ : Acceleration
-        - $`t`$ : Current time
+        - $\boldsymbol{a}_d$ : Acceleration
+        - $t$ : Current time
       - Output
-        - $`\boldsymbol{r}_{i}`$ : Initial position in the inertial frame
-        - $`\dot{\boldsymbol{r}}_{i}`$ : Initial velocity in the inertial frame
+        - $\boldsymbol{r}_{i}$ : Initial position in the inertial frame
+        - $\dot{\boldsymbol{r}}_{i}$ : Initial velocity in the inertial frame
         
    3. Algorithm
       1. Rectification
@@ -60,9 +60,11 @@
       3. Propagate the difference
          - Propagate the following differential equation. At this moment, we use the fourth-order Runge-Kutta method as a propagator.
          ```math
-         \ddot{\boldsymbol{\delta}} = -\frac{\mu}{r_{ref}^3}(\boldsymbol{\delta}+f(q)\boldsymbol{r})+\boldsymbol{a}_d\\
-         f(q) = q \frac{q^2 + 3q + 3}{(1+q)^{1.5} + 1}\\
-         q = \frac{\boldsymbol{\delta}\cdot(\boldsymbol{\delta}-2\boldsymbol{r}_i)}{r_i}
+         \begin{align}
+           \ddot{\boldsymbol{\delta}} &= -\frac{\mu}{r_{ref}^3}(\boldsymbol{\delta}+f(q)\boldsymbol{r})+\boldsymbol{a}_d\\
+           f(q) &= q \frac{q^2 + 3q + 3}{(1+q)^{1.5} + 1}\\
+           q &= \frac{\boldsymbol{\delta}\cdot(\boldsymbol{\delta}-2\boldsymbol{r}_i)}{r_i}
+         \end{align}
          ```
 
 ## 3. Results of verifications
@@ -112,7 +114,7 @@
         </div>
 
       - The following figure shows the difference between orbit derived with RK4 mode and Encke mode with all disturbances.
-        - The error is larger than the non-disturbance case, but the $`10^4 [m]`$ error between the Encke method and the Cowell method is compatible with the ref[2] when using the RK4 in LEO. We confirmed that the Encke propagation mode is correct when all disturbances are included.
+        - The error is larger than the non-disturbance case, but the $10^4 [m]$ error between the Encke method and the Cowell method is compatible with the ref[2] when using the RK4 in LEO. We confirmed that the Encke propagation mode is correct when all disturbances are included.
         <div align="center">
         <img src="./figs/orbit_encke_vs_rk4_dist.jpg" width=80% alt="">
         </div>
