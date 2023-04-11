@@ -3,13 +3,13 @@
 ## 1. 概要
 1. 機能
     - .sp3や.clk_30sなどのGNSS衛星の軌道, クロックバイアスに関するデータを読み取り, 他クラスで使用できるためのクラス.
-    - `SimBase.ini` により読みだすファイル名と範囲を決定します
+    - `sample_gnss.ini` により読みだすファイル名と範囲を決定します
 
 2. 関連ファイル
-    - `src/Environment/Global/GlobalEnvironment.cpp, .h`
+    - `src/environment/global/globalEnvironment.cpp, .hpp`
         - GnssSatellites クラスが定義されています. また, 各種GET関数も実装されています.
-    - `src/Interface/InitInput/Init_GnssSatellites.cpp`
-        - GnssSatellites クラスのための初期化ファイルとなっています. 初期化の内容については `SimBase.ini` ファイル内に記述されています. 
+    - `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
+        - GnssSatellites クラスのための初期化ファイルとなっています. 初期化の内容については `sample_gnss.ini`  ファイル内に記述されています. 
     - `ExtLibraries/sp3`
         - 軌道やクロックバイアスの生成に必要なファイル群(.sp3, .clk_30s)などが入っています.
 
@@ -41,7 +41,7 @@ ExtLibraries
 
 
 ## 2. 使い方
-- `SimBase.ini`内で読みだす方法やパラメーター設定等を行う
+- `sample_gnss.ini` 内で読みだす方法やパラメーター設定等を行う
     - `directory_path`: 固定
     - `calculation`: 使用するかどうか
     - `true_position_file_sort`: GNSS衛星の座標の真値を生成するファイルの種類を選択
@@ -58,7 +58,7 @@ ExtLibraries
 ## 3. アルゴリズム
 基本的に内挿で軌道を生成していますが, 一部データが欠けていることがよくあるのでそれに対応しています. 座標に関しては利用可能な座標から抽出して内挿で軌道を生成し, クロックバイアスに関しては厳密に周辺の値のみを取り出して生成しています. 
 
-1. `Init_GnssSatellites.cpp` でファイルの中身を取り出します.
+1. `initialize_gnss_satellites.cpp` でファイルの中身を取り出します.
 2. `Init()`で座標, クロックバイアスの生成元となるtableを作成します.
     - `time_table_`内に全時刻のUnix Timeが並べられている.
     - `gnss_*_table_*`で全時刻での座標又はクロックバイアスの値が入っている.
