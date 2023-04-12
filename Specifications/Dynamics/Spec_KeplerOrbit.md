@@ -7,29 +7,22 @@
    - This orbit propagation mode provides the simplest and fastest orbit calculation for any orbit(LEO, GEO, Deep Space, and so on.).
 
 2. Files
-   - src/Dynamics/Orbit/KeplerOrbitPropagation.cpp, hpp
-   - src/Library/Orbit/KeplerOrbit.cpp, hpp
-   - src/Library/Orbit/OrbitalElements.cpp, hpp
-   - src/Interface/InitInput/Init_Orbit.cpp
+   - `src/dynamics/orbit/orbit.hpp, cpp`
+	   - Definition of `Orbit` base class
+   - `src/dynamics/orbit/initialize_orbit.hpp, .cpp`
+	   - Make an instance of orbit class.	
+   - `src/dynamics/orbit/kepler_orbit_propagation.hpp. .cpp`
+   - Libraries
+     - `src/library/orbit/kepler_orbit.cpp, hpp`
+     - `src/library/orbit/orbital_elements.cpp, hpp`
+
 
 3. How to use
    - Select `propagate_mode = KEPLER` in the spacecraft's ini file.
-   - Choose a way to define the orbit.
-     - Defined by initial position and velocity
-       - Select `init_mode_kepler = INIT_POSVEL`
-       - Set the values `init_position` and `init_velocity` in the ini file.
-         - The units are `m`(meter) and `m/s`.
-         - The frame is the inertial frame, and the center is defined in the `PlanetSelect`.
-         - The details of the calculation is described in `OrbitalElements::CalcOeFromPosVel`
-     - Defined by the orbital elements
-       - Select `init_mode_kepler = INIT_OE`
-       - Set the value of the following orbital elements
-         - $a$ : Semi major axis [m]
-         - $e$ : Eccentricity
-         - $i$ : Inclination [rad]
-         - $\Omega$ : Right Ascension of the Ascending Node (RAAN) [rad]
-         - $\omega$ : Argument of Perigee [rad]
-         - $t_{epoch}$ : Epoch [julian day]
+   - Select `initialize_mode` as you want.
+     - `DEFAULT`             : Use default initialize method (`RK4` and `ENCKE` use position and velocity, `KEPLER` uses init_mode_kepler)
+     - `POSITION_VELOCITY_I` : Initialize with position and velocity in the inertial frame
+     - `ORBITAL_ELEMENTS`    : Initialize with orbital elements
    
 ## 2. Explanation of Algorithm
 
@@ -71,7 +64,7 @@
                       \end{pmatrix}
         ```
 
-2. `KeplerOrbit::CalcPosVel` function
+2. `KeplerOrbit::CalcOrbit` function
    1. Overview
       - This function calculates the position and velocity of the spacecraft in the inertial frame at the designated time.
 
@@ -118,6 +111,7 @@
    1. Overview
       - This function solves the Kepler Equation with the first-order iterative method.
       - Note: This method is not suited to the high eccentricity orbit. It is better to use the Newton-Raphson method for such a case.
+        - From `v6.0.0` we have `SolveKeplerNewtonMethod` and use it. The detail of the method will be write.
 
    2. Inputs and outputs
       - Input
