@@ -8,26 +8,23 @@
    - It is useful for power, communication, and orbit analyses with S2E.
 
 2. Related files
-   - ControlledAttitude.h, .cpp
+   - `src/dynamics/attitude/attitude.hpp, .cpp`
+	   - Definition of `Attitude` base class
+   - `src/dynamics/attitude/controlled_attitude.hpp, .cpp`
      - `ControlledAttitude` class is defined here.
-   - Attitude.h
-     - `Attitude` class, which is the super class of `ControlledAttitude` is defined here. 
-   - AttitudeRK4.h, .cpp
-     - Normal free motion dynamics propagator `AttitudeRK4` class is defined here.
-   - Init_Attitude.cpp
-     - `Attitude` related staffs are initialized here.
-   - ControlledAttitude.ini
-     - initialize file for `ControlledAttitude` class.
+   - `src/dynamics/attitude/initialize_attitude.hpp, .cpp`
+	   - Make an instance of `Attitude` class.	
+   - `sample_satellite.ini` : Initialization file
 
 3. How to use
    - Inside the codes
      - `ControlledAttitude` class inherits the `Attitude` class, so other functions can access the `ControlledAttitude` class by using get functions in the `Attitude` class.
    - User I/F
-     - Firstly, users should set `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file and define the file path to the `ControlledAttitude.ini` file.
-     - Users can set a target attitude in the initialize file. There are the following setting parameters: `main_mode`, `sub_mode`, `quaternion_i2t`, `pointing_t_b`, and `pointing_sub_t_b`.
-     - Firstly, users select the control mode by using `main_mode` and `sub_mode`. For the control mode, we have two categories, `INERTIAL_STABILIZE` and `POINTING`.  
-     - When `main_mode` is set as `INERTIAL_STABILIZE`, `sub_mode` is ignored, and the spacecraft attitude is fixed to the `quaternion_i2t` value in the simulation.
-     - When `main_mode` is set as `POINTING` modes, the direction of the body-fixed frame defined by `pointing_t_b` is controlled to point the specific direction of the modes. 
+     - Firstly, users should set `propagate_mode = CONTROLLED` at the `[ATTITUDE]` section in the `sample_satellite.ini` file.
+     - Users can set a target attitude in the initialize file. There are the following setting parameters: `main_mode`, `sub_mode`, `initial_quaternion_i2t`, `pointing_t_b`, and `pointing_sub_t_b`.
+     - Firstly, users select the control mode by using `main_mode` and `sub_mode`. For the control mode.  
+     - When `main_mode` is set as `INERTIAL_STABILIZE`, `sub_mode` is ignored, and the spacecraft attitude is fixed to the `initial_quaternion_i2t` value in the simulation.
+     - When `main_mode` is set as `HOGE_POINTING` modes, the direction of the body-fixed frame defined by `pointing_t_b` is controlled to point the specific direction of the modes. 
        - Ex. 1, the body-fixed +X axis directs to the sun when `main_mode = SUN_POINTING` and `pointing_t_b = [1.0,0.0,0.0]`.
        - Ex. 2, the body-fixed -Z axis directs to the earth center when `main_mode = EARTH_CENTER_POINTING` and `pointing_t_b = [0.0,0.0,-1.0]`.
      - `sub_mode` is only used when users select `POINTING` modes for `main_mode`. `sub_mode` is defined to stop rotation around the pointing direction of `main_mode`. The selected sub-direction in the body-fixed frame cannot perfectly direct the target direction since the primary target and sub-target usually do not satisfy the vertical relationship.
