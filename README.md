@@ -53,7 +53,8 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
-     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.
+     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.  
+     
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
      1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
      1. TBW
