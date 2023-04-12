@@ -142,11 +142,11 @@
       - Check that the integral propagation of kinematics equations is performed correctly
 
    2. conditions for the verification
-      - PropStepSec: 0.001
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag [0.17, 0.1, 0.25]
-      - Initial Quaternion_i2b: [0,0,0,1]
+      - Initial quaternion_i2b: [0,0,0,1]
       - Initial torque: [0,0,0]
       - Initial angular velocity: Set by each case
       - Disturbance torque: All Disable
@@ -177,9 +177,9 @@
       Confirm that the integral propagation of the dynamics equation is performed correctly
 
    2. conditions of the verification
-      - PropStepSec: 0.001
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag[0.17, 0.1, 0.25]
       - Initial Quaternion_i2b: [0,0,0,1]
       - Initial torque: Set by each case
@@ -219,9 +219,9 @@
       Validate the time step of the attitude dynamics propagation
 
    2. conditions of the verification
-      - PropStepSec: 0.001 / 0.01
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001 / 0.01
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag[0.17, 0.1, 0.25]
       - Initial Quaternion_i2b: [0,0,0,1]
       - Initial torque: [0,0,0]
@@ -229,7 +229,7 @@
       - Disturbance torque: All Disable
 
    3. results
-      - No difference between two results in PropStepSec = 0.001 / 0.01 sec. 
+      - No difference between two results in attitude_integral_step_s = 0.001 / 0.01 sec. 
 
 ## 4. References
 1. 狼, 冨田, 中須賀, 松永, 宇宙ステーション入門第二版, 東京大学出版会, 2008. (Written in Japanese)

@@ -162,7 +162,7 @@
          - default files
       2. initial values
          - main_mode = sub_mode = INERTIAL_STABILIZE
-         - quaternion_i2t = [0.5,0.5,0.5,0.5]
+         - initial_quaternion_i2b = [0.5,0.5,0.5,0.5]
    3. results
       - The inertial stabilize control is succeeded.
       <img src="./figs/CtrlAtt_InertialStabilize.jpg" alt="InertialStabilize" style="zoom: 90%;" />
@@ -175,7 +175,7 @@
          - default files
       2. cases　　
 
-| case | main mode    | sub mode     | pointing_t_b    | pointing_sub_t_b |
+| case | main mode    | sub mode     | main_pointing_direction_b    | sub_pointing_direction_b |
 | ---- | ------------ | ------------ | --------------- | ---------------- |
 | 1    | Sun          | Earth Center | [1,0,0]         | [0,1,0]          |
 | 2    | Sun          | Earth Center | [0,0,-1]        | [-1,0,0]         |
