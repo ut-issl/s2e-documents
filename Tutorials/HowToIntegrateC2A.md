@@ -109,5 +109,6 @@
   - The `ExampleSerialCommunicationWithObc` component receives the characters and stores the set characters like `A, B, C, ..., Z, A`
   - The `ExampleSerialCommunicationWithObc` component sends the stored characters as telemetry like `A, BA, CBA, ..., ZYX`
   - The `AR_DI_S2E_UART_TEST` application receives the telemetry, and the `AR_DI_DBG_S2E_UART_TEST` application prints the first three characters in the debug output console like the following figure.
+  
     ![](./figs/C2aCommunicationConfirmation.png)
 
