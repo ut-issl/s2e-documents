@@ -1,4 +1,4 @@
-# Specification for Attitude Dynamics
+# Specification for Attitude Dynamics with RK4 propagation method
 
 ## 1.  Overview
 
@@ -8,16 +8,22 @@
    - This class also calculates the angular momentum.
 
 2. files
-   - Attitude.h : Definitions and declarations of the class
-   - ControlledAttitude.h, .cpp : `ControlledAttitude` class is defined. The detail is described in `Spec_ControlledAttitude.md`
-   - AttitudeRK4.h, .cpp : Normal free motion dynamics propagator `AttitudeRK4` class is defined here.
-   - Init_Attitude.cpp : Interface functions for the initialization of `Attitude` class
-   - SampleSat.ini : Initialization file
+   - `src/dynamics/attitude/attitude.hpp, .cpp`
+     - Definition of `Attitude` base class
+   - `src/dynamics/attitude/attitude_rk4.hpp, .cpp`
+     - Normal free motion dynamics propagator `AttitudeRk4` class is defined here.
+   - `src/dynamics/attitude/initialize_attitude.hpp, .cpp`
+	   - Make an instance of `Attitude` class.	
+   - `sample_satellite.ini` : Initialization file
 
 3. how to use
-   - Set the parameters in `SampleSat.ini` or user defined satellite initialize file
-     - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = 0` at the ATTITUDE section in the `SimBase.ini` file.
-     -  If you want to apply the predetermined condition to attitude dynamics, please set  `propagate_mode = 1` at the ATTITUDE section in the `SimBase.ini` file.
+   - Set the parameters in `sample_satellite.ini` or user defined satellite initialize file
+     - If you want to use RK4 as attitude dynamics, please set  `propagate_mode = RK4` at the `[ATTITUDE]` section in the `sample_satellite.ini` file.
+     - Select `initialize_mode` at the `[ATTITUDE]` section in the `sample_satellite.ini` file.
+       - `initialize_mode = MANUAL`
+         - Initial attitude is defined by `initial_quaternion_i2b` and `initial_angular_velocity_b_rad_s`.
+       - `initialize_mode = CONTROLLED`
+         - Initial attitude is defined by [CONTROLLED_ATTITUDE] settings.
    - Create an instance by using initialization function `InitAttitude`
    - Execute attitude propagation by `Propagate` function
    - Use `Get*` function to get attitude information.
@@ -27,11 +33,11 @@
 
 1. `Propagate` function
    1. overview
-      - This function manages the timings of `RungeOneStep` function, which calculates the attitude dynamics and kinematics by the 4th Runge-Kutta method.
+      - This function manages the timings of `RungeKuttaOneStep` function, which calculates the attitude dynamics and kinematics by the 4th Runge-Kutta method.
 
    2. inputs and outputs
       - input
-         - (double) endtime: Time incremented in the main function
+         - (double) `end_time_s`: Time incremented in the main function
       - output
          - (void)
 
@@ -39,15 +45,15 @@
       There are two-time steps definition related to attitude propagation.
       1. Time incremented in the main function
          - This time step decides the timing to update the torque input values by disturbances and actuator outputs.
-         - The step is defined as the variable `prop_step_` in the `sim_time` class.
+         - The step is defined as the variable `propagation_step_s_` in the `simulation_time` class.
       2. Time incremented in Propagate function
          - This time step is much shorter than the time step in the main function. 
          - This step determines the accuracy of the attitude propagation.
-         - The step is defined as the variable `prop_step_` in the `attitude` class.
+         - The step is defined as the variable `propagation_step_s_` in the `Attitude` class.
 
    There is a `while loop` in the `Propagate` function, in which Runge-Kutta integration is performed. In addition, there is only one Runge-Kutta integration function outside the while loop, but this is for adjusting the time-lapse.
 
-2. `RungeOneStep` function
+2. `RungeKuttaOneStep` function
 
    1. overview  
       Calculate the attitude propagation by 4th Runge-Kutta integration.
@@ -96,7 +102,7 @@
    4. note  
       The one that solves the upper differential equation is implemented in Library.
 
-3. `DynamicsKinematics` function
+3. `AttitudeDynamicsAndKinematics` function
 
    1. overview  
       The equation of attitude motion is described in this function.
@@ -116,7 +122,7 @@
        ```
 
       where $\boldsymbol{\omega}_b$[rad/s] is angular velocity in the body-fixed coordinate, $\boldsymbol{I}_b$[kgm$^2$] is inertia tensor of the satellite, $\boldsymbol{T}_b$[Nm] is torque in the body-fixed coordinate, $\boldsymbol{h}_b$[Nms] is angular momentum of the satellite in the body-fixed coordinate.
-      Quaternion_i2b is calculated from the kinematics equation (7). This equation is executed in `Omega4Kinematics` function.
+      Quaternion_i2b is calculated from the kinematics equation (7). This equation is executed in ` CalcAngularVelocityMatrix` function.
 
        ```math
        \dot{\boldsymbol{q}}_{i2b} = \cfrac{1}{2}
@@ -136,11 +142,11 @@
       - Check that the integral propagation of kinematics equations is performed correctly
 
    2. conditions for the verification
-      - PropStepSec: 0.001
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag [0.17, 0.1, 0.25]
-      - Initial Quaternion_i2b: [0,0,0,1]
+      - Initial quaternion_i2b: [0,0,0,1]
       - Initial torque: [0,0,0]
       - Initial angular velocity: Set by each case
       - Disturbance torque: All Disable
@@ -171,9 +177,9 @@
       Confirm that the integral propagation of the dynamics equation is performed correctly
 
    2. conditions of the verification
-      - PropStepSec: 0.001
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag[0.17, 0.1, 0.25]
       - Initial Quaternion_i2b: [0,0,0,1]
       - Initial torque: Set by each case
@@ -213,9 +219,9 @@
       Validate the time step of the attitude dynamics propagation
 
    2. conditions of the verification
-      - PropStepSec: 0.001 / 0.01
-      - StepTimeSec: 0.1
-      - EndTimeSec: 300
+      - attitude_integral_step_s : 0.001 / 0.01
+      - simulation_step_s: 0.1
+      - simulation_duration_s: 300
       - Inertia tensor: diag[0.17, 0.1, 0.25]
       - Initial Quaternion_i2b: [0,0,0,1]
       - Initial torque: [0,0,0]
@@ -223,7 +229,7 @@
       - Disturbance torque: All Disable
 
    3. results
-      - No difference between two results in PropStepSec = 0.001 / 0.01 sec. 
+      - No difference between two results in attitude_integral_step_s = 0.001 / 0.01 sec. 
 
 ## 4. References
 1. 狼, 冨田, 中須賀, 松永, 宇宙ステーション入門第二版, 東京大学出版会, 2008. (Written in Japanese)

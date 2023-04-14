@@ -219,8 +219,8 @@
       - `dynamics` directory manages source codes to calculate dynamics behavior of spacecraft.
 
       1. Attitude
-         1. Overview of Attitude calculation: TBW
-         1. [Attitude RK4](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
+         1. [Overview of Attitude calculation](./Specifications/Dynamics/Spec_Attitude.md)
+         1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
