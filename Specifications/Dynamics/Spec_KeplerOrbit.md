@@ -11,7 +11,7 @@
 	   - Definition of `Orbit` base class
    - `src/dynamics/orbit/initialize_orbit.hpp, .cpp`
 	   - Make an instance of orbit class.	
-   - `src/dynamics/orbit/kepler_orbit_propagation.hpp. .cpp`
+   - `src/dynamics/orbit/kepler_orbit_propagation.hpp, .cpp`
    - Libraries
      - `src/library/orbit/kepler_orbit.cpp, hpp`
      - `src/library/orbit/orbital_elements.cpp, hpp`
