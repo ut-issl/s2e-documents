@@ -8,14 +8,19 @@
    - We can also use it for accurate relative orbit propagation, and the feature will be implemented soon.
 
 2. files
-   - src/Dynamics/Orbit/EnckeOrbitPropagation.cpp, .h
+   - `src/dynamics/orbit/orbit.hpp, cpp`
+	   - Definition of `Orbit` base class
+   - `src/dynamics/orbit/initialize_orbit.hpp, .cpp`
+	   - Make an instance of orbit class.	
+   - `src/dynamics/orbit/encke_orbit_propagation.cpp, .hpp`
    - We use [KeplerOrbit](./Spec_KeplerOrbit.md) libraries to calculate the reference orbit.
 
 3. How to use
    - Select `propagate_mode = ENCKE` in the spacecraft's ini file.
-   - Set the values `init_position` and `init_velocity` in the ini file.
-     - The units are `m`(meter) and `m/s`.
-     - The frame is the inertial frame, and the center is defined in the `PlanetSelect`.
+   - Select `initialize_mode` as you want.
+     - `DEFAULT`             : Use default initialize method (`RK4` and `ENCKE` use position and velocity, `KEPLER` uses init_mode_kepler)
+     - `POSITION_VELOCITY_I` : Initialize with position and velocity in the inertial frame
+     - `ORBITAL_ELEMENTS`    : Initialize with orbital elements
    - Set the value of `error_tolerance`, which decides the threshold for the rectification.
 
 ## 2. Explanation of Algorithm

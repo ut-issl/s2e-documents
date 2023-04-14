@@ -3,19 +3,16 @@
 ## 1.  Overview
 
 1. functions
-   - The Sgp4OrbitPropagation class calculates the position and velocity of satellites by using SGP4 method with TLE.
+   - The `Sgp4OrbitPropagation` class calculates the position and velocity of satellites by using SGP4 method with TLE.
 
 2. files
-   - `src/Dynamics/Orbit/Orbit.h`
-	   -  Definition of Orbit base class
-   - `src/Interface/InitInput/Init_Orbit.cpp`
-	   - Make an instance of orbit class.	
-   - `src/Dynamics/Orbit/Sgp4OrbitPropagation.cpp`
-   - `src/Dynamics/Orbit/Sgp4OrbitPropagation.h`
+   - `src/dynamics/orbit/orbit.hpp, cpp`
+	   - Definition of `Orbit` base class
+   - `src/dynamics/orbit/initialize_orbit.hpp, .cpp`
+	   - Make an instance of orbit class.		
+   - `src/dynamics/orbit/sgp4_orbit_propagation.hpp, .cpp`
 	 - Library of SGP4
-     - `src/Library/sgp4/sgp4unit.h`
-     - `src/Library/sgp4/sgp4io.h`
-     - `srcLibrary/sgp4/sgp4ext.h`
+     - `/src/library/external/sgp4`
 
 3. How to use
    - Select `propagate_mode = SGP4` in the spacecraft's ini file.
