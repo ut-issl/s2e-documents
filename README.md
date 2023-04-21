@@ -53,7 +53,8 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
-     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.
+     - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.  
+     
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
      1. [How To Perform I2C HILS Test](./Tutorials/HowToPerformI2cHilsTest.md)
      1. TBW
@@ -218,8 +219,8 @@
       - `dynamics` directory manages source codes to calculate dynamics behavior of spacecraft.
 
       1. Attitude
-         1. Overview of Attitude calculation: TBW
-         1. [Attitude RK4](./Specifications/Dynamics/Spec_AttitudeDynamics.md)
+         1. [Overview of Attitude calculation](./Specifications/Dynamics/Spec_Attitude.md)
+         1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)

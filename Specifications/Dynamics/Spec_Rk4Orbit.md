@@ -1,29 +1,23 @@
-# Specification for Orbit
+# Specification for Orbit dynamics with RK4 propagation
 
 ## 1.  Overview
 
 1. functions
-   - The Rk4OrbitPropagation class calculates the position and velocity of satellites with 4th Order Runge-Kutta method(RK4)
+   - The `Rk4OrbitPropagation` class calculates the position and velocity of satellites with 4th Order Runge-Kutta method(RK4).
 
 2. files
-   - `src/Dynamics/Orbit/Orbit.h`
-	   -  Definition of Orbit base class
-   - `src/Interface/InitInput/Init_Orbit.cpp`
+   - `src/dynamics/orbit/orbit.hpp, cpp`
+	   - Definition of `Orbit` base class
+   - `src/dynamics/orbit/initialize_orbit.hpp, .cpp`
 	   - Make an instance of orbit class.	
-   - `src/Dynamics/Orbit/Rk4OrbitPropagation.cpp`
-   - `src/Dynamics/Orbit/Rk4OrbitPropagation.h`
+   - `src/dynamics/orbit/rk4_orbit_propagation.hpp, .cpp`
 
 3. How to use
    - Select `propagate_mode = RK4` in the spacecraft's ini file.
-   - Set the initial position [m] and velocity [m/s] in the inertial frame like the following example
-     ```
-     init_position(0) = 4.2164140100E+07  // radius of GEO
-     init_position(1) = 0
-     init_position(2) = 0
-     init_velocity(0) = 0
-     init_velocity(1) = 3.074661E+03  // Speed of a spacecraft in GEO
-     init_velocity(2) = 0
-     ```
+   - Select `initialize_mode` as you want.
+     - `DEFAULT`             : Use default initialize method (`RK4` and `ENCKE` use position and velocity, `KEPLER` uses init_mode_kepler)
+     - `POSITION_VELOCITY_I` : Initialize with position and velocity in the inertial frame
+     - `ORBITAL_ELEMENTS`    : Initialize with orbital elements
    
 ## 2. Explanation of Algorithm
 
@@ -50,16 +44,16 @@
       - The output of the simulation was compared with the analytical solution.
       
    2. conditions for the verification
-      - The Verifications were conducted in the case of `StepTimeSec` and `OrbitPropagateStepTimeSec` were 0.1(sec), 1(sec), and 10(sec).
+      - The Verifications were conducted in the case of `simulation_step_s` and `orbit_update_period_s` were 0.1(sec), 1(sec), and 10(sec).
       - The initial values of the propagation are as follows:
         ```
-        init_position(0) = 1.5944017672e7
-        init_position(1) = 0.0
-        init_position(2) = 0.0
+        initial_position_i_m(0) = 1.5944017672e7
+        initial_position_i_m(1) = 0.0
+        initial_position_i_m(2) = 0.0
 
-        init_velocity(0) = 0.0
-        init_velocity(1) = 5000.0
-        init_velocity(2) = 0.0
+        initial_velocity_i_m_s(0) = 0.0
+        initial_velocity_i_m_s(1) = 5000.0
+        initial_velocity_i_m_s(2) = 0.0
         ```
       - This is a circular orbit, which period is about 20040(sec). The center of the orbit is Earth.
       - As a reference, the analytical solution was used. The solution is as follows:
@@ -67,7 +61,7 @@
       x=R\cos(\omega t),y=R\sin(\omega t)\quad when~R=1.5944017672\times10^7, \omega=0.000313597243985794
       ```
       - All of the effects of disturbance and environment were disabled.
-      - The simulation time is 60120(sec), which is approximately three-period. In addition, for a long-term test, the case in which simulation time is 200400(about 10 periods) was tested. The `OrbitPropagateStepTimeSec` of this case is 1(sec).
+      - The simulation time is 60120(sec), which is approximately three-period. In addition, for a long-term test, the case in which simulation time is 200400(about 10 periods) was tested. The `orbit_update_period_s` of this case is 1(sec).
     
    3. results
       <div align="center">
@@ -77,8 +71,8 @@
         </figure>
       </div>
 
-      - In the cases of `OrbitPropagateStepTimeSec=0.1` and `OrbitPropagateStepTimeSec=1`, the error is kept within $10^{-6}$ order. However, once the error grows, it will get bigger and bigger.
-      - In the case of `OrbitPropagateStepTimeSec=10`, the error quickly grows up to $10^{-4}$ order. 
+      - In the cases of `orbit_update_period_s=0.1` and `orbit_update_period_s=1`, the error is kept within $10^{-6}$ order. However, once the error grows, it will get bigger and bigger.
+      - In the case of `orbit_update_period_s=10`, the error quickly grows up to $10^{-4}$ order. 
       
       <div align="center">
         <img src="./figs/orbit_steptimesec_1_longterm.jpg" width = 400 alt="orbit_steptimesec_1_longterm">
