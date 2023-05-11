@@ -85,3 +85,7 @@ This document explains how to build and execute the Visual Studio environment wi
     "generator": "Visual Studio 15 2017".
     ```  
   - Users also need to edit the `cmake_minimum_required` version from 3.13 to 3.10 in all CMakeList, including the files in subdirectories. The VS 2017 does not support version 3.13, and you may see many `warnings` when you use CMake Version 3.10. 
+
+## 5. Troubleshooting
+- Air density model : NRLMSISE00
+  - If you encounter the `File open error (SpaceWether.txt)`, please check the file name at `ExtLibraries/nrlmsise00/table/SpaceWeather.txt`. If necessary, correct the file name accordingly.
