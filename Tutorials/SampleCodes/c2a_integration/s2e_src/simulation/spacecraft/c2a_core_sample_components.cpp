@@ -1,4 +1,9 @@
-#include "c2a_core_sample_components.h"
+/**
+ * @file c2a_core_sample_components.cpp
+ * @brief User side components management installed on a spacecraft for C2A-CORE
+ */
+
+#include "c2a_core_sample_components.hpp"
 
 #include <library/initialize/initialize_file_access.hpp>
 
@@ -6,12 +11,17 @@
 #include "src_user/Settings/port_config.h"
 #endif
 
-C2aCoreSampleComponents::C2aCoreSampleComponents(const Dynamics* dynamics, const Structure* structure, const LocalEnvironment* local_env,
-                                                 const GlobalEnvironment* glo_env, const SimulationConfiguration* config, ClockGenerator* clock_gen)
-    : dynamics_(dynamics), structure_(structure), local_env_(local_env), glo_env_(glo_env), config_(config) {
+C2aCoreSampleComponents::C2aCoreSampleComponents(const Dynamics* dynamics, Structure* structure, const LocalEnvironment* local_environment,
+                                                 const GlobalEnvironment* global_environment, const SimulationConfiguration* configuration,
+                                                 ClockGenerator* clock_generator)
+    : dynamics_(dynamics),
+      structure_(structure),
+      local_environment_(local_environment),
+      global_environment_(global_environment),
+      configuration_(configuration) {
 #ifdef USE_C2A
-  obc_ = new ObcWithC2a(clock_gen, 100);
-  exp_serial_communication_ = new ExampleSerialCommunicationWithObc(clock_gen, 1, 1, obc_);
+  obc_ = new ObcWithC2a(clock_generator, 100);
+  exp_serial_communication_ = new ExampleSerialCommunicationWithObc(clock_generator, 1, 1, obc_);
 
   obc_->ConnectComPort(PORT_CH_RS422_MOBC_EXT, 1024, 1024);  // UART通信用にとりあえず繋いでおく
 #endif
