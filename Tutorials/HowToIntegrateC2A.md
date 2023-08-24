@@ -90,7 +90,7 @@
   - Users can use the [ExampleSerialCommunicationWithObc](https://github.com/ut-issl/s2e-core/blob/v6.0.0/src/components/examples/example_serial_communication_with_obc.hpp) class in `s2e-core` as a test component to communicate with C2A.
   - Please refer the sample codes in `Tutorials/SampleCodes/c2a_integration/s2e_src`.
     - The directory structure of `s2e_src` is same with that of `s2e-user-for-c2a-core`. 
-  - Add `ExampleSerialCommunicationWithObc` as a component in `c2a_core_sample_components.cpp and .h`.
+  - Add `ExampleSerialCommunicationWithObc` as a component in `c2a_core_sample_components.cpp and .hpp`.
     - Or simply just copy the source codes in `c2a_integration/s2e_src` to `s2e-user-for-c2a-core`.
     - In this example, the `ObcWithC2a` is executed as 1kHz, and the `ExampleSerialCommunicationWithObc` is executed as 1Hz.
  - Modification of the C2A side
