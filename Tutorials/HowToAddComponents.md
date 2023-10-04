@@ -16,7 +16,7 @@
 1. Open & edit `user_components.hpp`
    - Add the following descriptions at the one line below of `#include <components/real/cdh/on_board_computer.hpp>`
      ```c++
-     #include <components/real/aocs/initialize_gyro_sensor.hpp>
+     #include <components/real/aocs/gyro_sensor.hpp>
      ```
    - Add the following descriptions at the one line below of `  OnBoardComputer *obc_;  //!< Onboard Computer`
      ```c++
@@ -78,7 +78,7 @@
 2. Add the following descriptions at the one line below of `GyroSensor *gyro_sensor_;`
 
    ```c++
-   GyroSensor *gyro_sensor2_;  //!< Gyro sensor 2
+   GyroSensor *gyro_sensor_2_;  //!< Gyro sensor 2
    ```
 
 3. Open `user_components.cpp`
@@ -111,7 +111,7 @@
 8. Add the following descriptions at the bottom line of `[COMPONENT_FILES]` to set the initialize file for the gyro sensor
 
    ```c++
-   gyro_file_2 = ../../data/ini/components/GyroYyy.ini
+   gyro_file_2 = ../../data/initialize_files/components/gyro_sensor_yyy.ini
    ```
 
 9. Copy the `data/initialize_files/components/gyro_sensor_xxx.ini` file and rename it as `gyro_sensor_yyy.ini`
