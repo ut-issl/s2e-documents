@@ -108,7 +108,7 @@
         
   - result
     + Force Mean: [0,0,0.001] N
-    + Force STDDEV: [0,0,0] N
+    + Force Std Dev: [0,0,0] N
 
       <div align="center">
       <figure id="thrust_force1">
@@ -118,7 +118,7 @@
       </div>
 
     + Torque Mean: [0,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque1">
@@ -138,7 +138,7 @@
     + Simulation time: 100sec 
   - result
     + Force Mean: [0,0,0.999611e-3] N
-    + Force STDDEV: [0,0,1.09804e-5] N
+    + Force Std Dev: [0,0,1.09804e-5] N
 
       <div align="center">
       <figure id="thrust_force2">
@@ -148,7 +148,7 @@
       </div>
 
     + Torque Mean: [0,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque2">
@@ -167,7 +167,7 @@
     + Simulation time: 100sec
   - result
     + Force Mean: [-4.93e-6, -1.04e-5, 0.9834e-3] N
-    + Force STDDEV: [1.0e-4, 9.79e-5, 1.216e-5] N
+    + Force Std Dev: [1.0e-4, 9.79e-5, 1.216e-5] N
 
       <div align="center">
       <figure id="thrust_force3">
@@ -177,7 +177,7 @@
       </div>
 
     + Torque Mean: [1.04e-6,-4.94e-7,0] Nm
-    + Torque STDDEV: [1.29e-5, 1.26e-5, 0] Nm
+    + Torque Std Dev: [1.29e-5, 1.26e-5, 0] Nm
 
       <div align="center">
       <figure id="thrust_torque3">
@@ -196,7 +196,7 @@
     + Simulation time: 100sec
   - result
     + Force Mean: [0,0,0.001] N
-    + Force STDDEV: [0,0,0] N
+    + Force Std Dev: [0,0,0] N
 
       <div align="center">
       <figure id="thrust_force4">
@@ -206,7 +206,7 @@
       </div>
 
     + Torque Mean: [0.0001,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque4">
