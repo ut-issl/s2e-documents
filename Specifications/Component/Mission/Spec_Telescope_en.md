@@ -90,7 +90,7 @@
 
         <div align="center">
         <figure id="coordinate">
-        <img src="./figs/coordinate.JPG" width=400 alt="The relationship between the component coodinate(C) and the sensor coodinate(imgsensor)">
+        <img src="./figs/coordinate.JPG" width=400 alt="The relationship between the component coordinate(C) and the sensor coordinate(imgsensor)">
         <figcaption>Fig. 1. The relationship between the component coordinate(C) and the sensor coordinate(imgsensor)</figcaption>
         </figure>
         </div>
