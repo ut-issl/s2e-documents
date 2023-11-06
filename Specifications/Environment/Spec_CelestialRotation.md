@@ -1,23 +1,23 @@
-# Specification of Celestial Rotation
+# Specification of Earth Rotation
 
 ## 1.  Overview
 
 1. Functions
-   - The `CelestialRotation` class calculates the rotational motion of central objects. Currently, only the Earth is supported as the central object.
+   - The `EarthRotation` class calculates the rotational motion of the Earth.
 
 2. Related files
-   - `src/environment/global/celestial_rotation.cpp, .hpp`
-     - `CelestialRotation` class is defined here.
+   - `src/environment/global/earth_rotation.cpp, .hpp`
+     - `EarthRotation` class is defined here.
    - `src/environment/global/celestial_information.cpp, .hpp`
-      - `CelestialRotation` class is used here.
+      - `EarthRotation` class is used here.
 
 3. How to use
-   - Make an instance of the `CelestialRotation` class in `CelestialInformation` class.
+   - Make an instance of the `EarthRotation` class in `CelestialInformation` class.
    - Select rotation mode in `sample_simulation_base.ini`
-     - `Idle` : no motion ( $\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
-       - If the rotation mode input is neither `Full` nor `Simple`, the `Idle` mode is set.
-     - `Simple` : axial rotation only ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}$ )
-     - `Full` : Precession and Nutation are taken into account ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}$ )
+     - `IDLE` : no motion ( $\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
+       - If the rotation mode input is neither `FULL` nor `SIMPLE`, the `IDLE` mode is set.
+     - `SIMPLE` : axial rotation only ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}$ )
+     - `FULL` : Precession and Nutation are taken into account ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}$ )
        - $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.
 
 ## 2. Explanation of Algorithm

@@ -4,7 +4,7 @@
 1. Functions 
    - `CelestialInformation` manages the celestial bodies position and velocity on the inertial frame.
    - This class also manages the celestial body information like the gravity constant, the radius, and the rotation.
-   - The actual calculations are executed by CSPICE or `CelestialRotation`, and this class just calls their functions.
+   - The actual calculations are executed by CSPICE or `EarthRotation`, and this class just calls their functions.
 
 2. Related files
    - `src/environment/global/celestial_information.cpp, .hpp`
