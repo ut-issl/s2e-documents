@@ -1,18 +1,18 @@
-# Specification of ComponentBase class
+# Specification of Component class
 
 ## 1.  Overview
 1. Functions
-  - The `ComponentBase` class is an abstract class to handle the electrical power and the update timing of components.
+  - The `Component` class is an abstract class to handle the electrical power and the update timing of components.
   - This class has two virtual functions: `MainRoutine` and `FastUpdate`. Both are called periodically. Users can select the functions according to the required calling period.
     + The `MainRoutine` function is the components' main function. Most of the processing is handled in this function.
     + The `FastUpdate` function handles the processes that need to be computed in a high-speed cycle. So, users will use this function only when high-frequency disturbances need to be calculated (e.g., RW jitter).
 
 2. Related Files
-  - Main file: `ComponentBase.h`, `ComponentBase.cpp`
+  - Main file: `component.hpp`, `component.cpp`
 
 3. How to use
   - Inherit this class by the user's component class.
-  - The `RWModel` in `S2E_CORE` is useful as a usage example of the `FastUpdate`.
+  - The `ReactionWheel` in `S2E_CORE` is useful as a usage example of the `FastUpdate`.
 
 ## 2. Explanation of Algorithm
 1. Constructor
