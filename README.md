@@ -5,7 +5,7 @@
 - The branch construction
   - main
     - Documents for the latest stable version of s2e-core
-      - Current version supports [s2e-core v6.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v6.0.0)
+      - Current version supports [s2e-core v7.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v7.0.0)
       - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
       - The `major` version number is compatible with s2e-core's `major` version number.
