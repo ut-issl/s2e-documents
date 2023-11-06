@@ -38,7 +38,9 @@
 1. Tutorials  
    - We strongly recommend to sequentially follow the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
+
    - <details><summary> Tutorials without any external hardware </summary>
+     - Users can refer the [s2e-user-example](https://github.com/ut-issl/s2e-user-example) to see sample codes of the following tutorials. 
 
      1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
      1. [How To Add Components](./Tutorials/HowToAddComponents.md)
