@@ -285,7 +285,7 @@ When $m>=0$, following correction factors are useful for z acceleration
       
       - The `time_ms_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
       - Environment
-        - Corei7-8650U(2.11GHz)
+        - Core i7-8650U(2.11GHz)
         - VS2017 32bit debug
       
    2. conditions for the verification
