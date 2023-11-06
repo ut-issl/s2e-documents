@@ -10,17 +10,15 @@
      + `GeomagneticField` class is defined.
   + `src/environment/local/local_environment.cpp, .hpp`
      + `GeomagneticField` class is used here as a member variable of `LocalEnvironment` class.
-  + `src/environment/local/initialize_local_environment.cpp, .hpp`
-     + `GeomagneticField` class is instanced here based on the `.ini` file for environment.
    + `src/library/external/igrf/igrf.cpp, h`
      + A magnetic field in the ECI frame is calculated by the IGRF model.
 
 3. How to use
    + Set a coefficient file path for the IGRF and random walk / white noise in .ini file
-     - coefficient_file: File path to the IGRF coefficients table.
-     - magnetic_field_random_walk_standard_deviation_nT: Standard deviation of the random walk noise
-     - magnetic_field_random_walk_limit_nT: Limit of the random walk noise
-     - magnetic_field_white_noise_standard_deviation_nT: Standard deviation of the normal random noise
+     - `coefficient_file`: File path to the IGRF coefficients table.
+     - `magnetic_field_random_walk_standard_deviation_nT`: Standard deviation of the random walk noise
+     - `magnetic_field_random_walk_limit_nT`: Limit of the random walk noise
+     - `magnetic_field_white_noise_standard_deviation_nT`: Standard deviation of the normal random noise
    + Public functions
      + `CalcMagneticField`  : Update the magnetic field
      + `GetGeomagneticField_i_nT` : Return the magnetic field (nT) in the ECI 
@@ -43,12 +41,12 @@
    2. initial values
       - To check the result in an example orbit, the EndTime was changed to 9000 s.
         ```
-        StartYMDHMS=2020/01/01 11:00:00.0
-        EndTimeSec=9000
-        StepTimeSec=5
-        OrbitPropagateStepTimeSec=0.1
-        LogPeriod = 5
-        SimulationSpeed = 0
+        simulation_start_time_utc = 2020/01/01 11:00:00.0
+        simulation_duration_s = 9000
+        simulation_step_s = 5
+        orbit_update_period_s = 0.1
+        log_output_period_s = 5
+        simulation_speed_setting = 0
         ```
       - Especially, we chose the following TLE for orbit calculation (ISS orbit).
         ```
