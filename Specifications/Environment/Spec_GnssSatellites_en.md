@@ -3,7 +3,7 @@
 ## 1. Overview
 1. function
     - A class to read data about orbit and clock bias of GNSS satellites such as .sp3 and .clk_30s and use them in other classes.
-    - Determine the file name of GNSS satellites' data and time from `[GNSS_SATELLIES]` in `sample_gnss.ini`.
+    - Determine the file name of GNSS satellites' data and time from `[GNSS_SATELLITES]` in `sample_gnss.ini`.
 
 2. Related files
     - `src/environment/global/globalEnvironment.cpp, .hpp`
