@@ -9,12 +9,12 @@
 <img src="./figs/S2E_structure.png" alt="S2EStructure" style="zoom: 90%;" />
 
 ### 2.1. Simulation Case
-- The highest layer of the structure of S2E is the `Simulation Case`, which is defined in the `src/Simulation/Case/SimulationCase.cpp`.
-- The `SimulationCase` always has `SimulationConfig` and `Global Environment`.
-  - `SimulationConfig` has basic information on the interface of the simulation, such as `log output` and `initialize input` information.
-  - `GlobalEnvironment` is defined as the common environment for the whole simulation case. It includes time, celestial information, star catalog, and GNSS satellite position.
-- Users can make their `SimulationCase` by inheriting the `SimulationCase` base class and adding simulation target objects (e.g., spacecraft and ground station) for their demand.
-- The defined simulation objects can use the information of `SimulationConfig` and `GlobalEnvironment`.
+- The highest layer of the structure of S2E is the `Simulation Case`, which is defined in the `src/simulation/case/simulation_case.cpp`.
+- The `Simulation Case` always has `Simulation Configuration` and `Global Environment`.
+  - `Simulation Configuration` has basic information on the interface of the simulation, such as `log output` and `initialize input` information.
+  - `Global Environment` is defined as the common environment for the whole simulation case. It includes time, celestial information, star catalog, and GNSS satellite position.
+- Users can make their `Simulation Case` by inheriting the `Simulation Case` base class and adding simulation target objects (e.g., spacecraft and ground station) for their demand.
+- The defined simulation objects can use the information of `Simulation Configuration` and `Global Environment`.
 
 ### 2.2. Spacecraft
 - An essential simulation object is the `Spacecraft` class. 
@@ -41,8 +41,8 @@
 
 ### 2.4. Structure of initializing files
 - The structure of the initializing files follows the above figure.
-- `SimBase.ini` sets the parameters for `SimulationCase`, and file paths to each simulation object.
-- `Sat.ini` sets the parameters for `Spacecraft` and file paths to each component.
+- `simulation_base.ini` sets the parameters for `SimulationCase`, and file paths to each simulation object.
+- `satellite.ini` sets the parameters for `Spacecraft` and file paths to each component.
 
 ## 3. Structure of spacecraft components
 **Note:** the structure of components is implemented now. So the following figure is just an idea, and it may be modified.
