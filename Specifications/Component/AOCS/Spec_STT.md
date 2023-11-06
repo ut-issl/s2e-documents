@@ -1,18 +1,17 @@
-# Specification for Attitude Dynamics
+# Specification for StarSensor class
 
 ## 1.  Overview
 1. functions 
-   - `STT` class simulates a star sensor.
-   - The `STT` class calculates and returns the observed quaternions and error flags.
+   - `StarSensor` class simulates a star sensor.
+   - The `StarSensor` class calculates and returns the observed quaternions and error flags.
 
 2. files
-   - STT.cpp, STT.h : Definitions and declarations of the class
-   - InitSTT.cpp : Interface functions for the initialization of `STT` class
-   - STT.ini : Initialization file
+   - `star_sensor.cpp, star_sensor.hpp` : Definitions and declarations of the class
+   - `star_sensor.ini` : Initialization file
 
 3. how to use
-   - Set the parameters in `STT.ini`.
-   - Create an instance by using the initialization function `InitSTT`
+   - Set the parameters in `star_sensor.ini`.
+   - Create an instance by using the initialization function `InitStarSensor`
    - Use `Get*` function to get quaternion information.
      
 
