@@ -210,10 +210,10 @@
 1. Comparison with RK4
    1. Overview
       - We compared the calculated orbit result between RK4 mode and Kepler mode. In the RK4 mode, all disturbances are disabled since the Kepler mode ignores them.
-      - In the Kepler mode, we verified the correctness of both initialize modes (`INIT_OE` and `INIT_POSVEL`).
+      - In the Kepler mode, we verified the correctness of both initialize modes (`ORBITAL_ELEMENTS` and `POSITION_VELOCITY_I`).
        
    2. Conditions for the verification
-      - SampleSimbase.ini
+      - sample_simulation_base.ini
         - The following values are modified from the default.
           ```
           EndTimeSec = 10000
@@ -244,19 +244,19 @@
             ```
 
    3. Results
-      - The follwoing figure shows the orbit calculation result of Kepler mode with `INIT_OE`.
+      - The following figure shows the orbit calculation result of Kepler mode with `ORBITAL_ELEMENTS` initialize mode.
         - The result looks correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe.jpg" width=80% alt="">
         </div>
 
-      - The difference between Kepler mode with `INIT_OE` and RK4 mode is shown in the following figure.
+      - The difference between Kepler mode with `ORBITAL_ELEMENTS` initialize mode and RK4 mode is shown in the following figure.
         - The error between them is small (less than 10m), and we confirmed that the calculation of Kepler orbit is correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe_vs_rk4.jpg" width=80% alt="">
         </div>
 
-      - The following figure shows the difference between Kepler orbit calculation with `INIT_OE` and `INIT_POSVEL`.
+      - The following figure shows the difference between Kepler orbit calculation with `ORBITAL_ELEMENTS`  and `POSITION_VELOCITY_I` initialize mode.
         - The error between them is small (less than 10m), and we confirmed that the initializing method is correct.
         <div align="center">
         <img src="./figs/orbit_kepler_oe_vs_posvel.jpg" width=80% alt="">
