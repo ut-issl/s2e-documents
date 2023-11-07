@@ -58,7 +58,7 @@
 
         + Add the name of the dynamics model to `StmModel` enum in `relative_orbit_models.hpp`.
         + Add the function to calculate the system matrix as `CalcHcwStm`in `relative_orbit_models.hpp`.
-        + Edit the `CalculateSTM` function in `relative_orbit.hpp`.
+        + Edit the `CalculateStm` function in `relative_orbit.hpp`.
 
 ## 2. Explanation of Algorithm
 
@@ -69,20 +69,11 @@
 
    2. inputs and outputs
         + input
-            *  `initial_relative_position_lvlh_m`, `initial_relative_velocity_lvlh_m_s`
+            *  `relative_position_lvlh_m`, `relative_velocity_lvlh_m_s`
                 - The initial state of the satellite
             * `gravity_constant_m3_s2`
                 - The gravity constant of the reference celestial body $\mu$
-            * `reference_sat_initial_orbit`
-                - The initial orbit of the reference satellite
-                - NOTE: This is used only for the initialization.
-            * `current_jd`
-                - The initial Julian day
-            * `timestep`
-                - RK4 propagation timestep
-            * `wgs`
-                - Type of the World Geometric System
-            * `init_time`
+            * `initial_time_s`
                 - Initial simulation time (default value is 0)
         + output
             * none 
@@ -102,7 +93,7 @@
                 - The type of relative dynamics model
             * `reference_sat_orbit`
                 - The orbit of the reference satellite
-            * `mu` 
+            * `gravity_constant_m3_s2` 
                 - The gravity constant $\mu$
         + output
             * none 
@@ -111,10 +102,10 @@
 
    4. note
 
-1. `CalculateSTM`
+1. `CalculateStm`
 
    1. overview
-        + The `CalculateSTM` function is used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `stm_model_type`.
+        + The `CalculateStm` function is used only inside the `RelativeOrbit` class. This function calls the system matrix calculation function according to `stm_model_type`.
 
    2. inputs and outputs
         + input
@@ -122,7 +113,7 @@
                 - The type of relative dynamics model
             * `reference_sat_orbit`
                 - The orbit of the reference satellite
-            * `mu` 
+            * `gravity_constant_m3_s2` 
                 - The gravity constant $\mu$
             * `elapsed_sec`
                 - Elapsed simulation time
@@ -137,13 +128,13 @@
 
    1. overview
         + The `CalculateHillSystemMatrix` function calculates the system matrix of the Hill equation. 
-        + This function is declared in `RelativeOrbitModels.h` and is used by the
+        + This function is declared in `relative_orbit_models.hpp` and is used by the
 
    2. inputs and outputs
         + input
             * `orbit_radius`
                 - Radius of the reference satellite orbit $R$
-            * `mu` 
+            * `gravity_constant_m3_s2` 
                 - The gravity constant $\mu$
         + output
             * `system_matrix`
@@ -172,17 +163,17 @@
 
    4. note
 
-1. `CalculateHCWSTM`
+1. `CalculateHcwStm`
 
    1. overview
-        + The `CalculateHCWSTM` function calculates the Hill-Clohessy-Wiltshire STM. 
-        + This function is declared in `RelativeOrbitModels.h` and is used by the
+        + The `CalculateHcwStm` function calculates the Hill-Clohessy-Wiltshire STM. 
+        + This function is declared in `relative_orbit_models.hpp` and is used by the
 
    2. inputs and outputs
         + input
             * `orbit_radius`
                 - Radius of the reference satellite orbit $R$
-            * `mu` 
+            * `gravity_constant_m3_s2` 
                 - The gravity constant $\mu$
             * `elapsed_sec`
                 - Elapsed simulation time
@@ -223,62 +214,60 @@
    2. conditions for the verification
       1. input files
             - Initialization files for the two satellites were prepared.
-                - `Sat0.ini`
-                - `Sat1.ini`
+                - `satellite0.ini`
+                - `satellite1.ini`
       2. initial values
-            - The orbit of the reference satellite (Sat0) is GEO. The initial position of the satellite (Sat1) is $(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).  
-            - `Sat0.ini`
+            - The orbit of the reference satellite (satellite0) is GEO. The initial position of the satellite (satellite1) is $(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).  
+            - `satellite0.ini`
 
             ```
-            propagate_mode = 0
+            propagate_mode = RK4
             
             //Information used for orbital propagation by the Runge-Kutta method///////////
             //initial satellite position[m] 
             //＊The coordinate system is defined in PlanetSelect.ini
-            init_position(0) = 4.2164140100E+07  //radius of GEO
-            init_position(1) = 0
-            init_position(2) = 0
+            initial_position_i_m(0) = 4.2164140100E+07  //radius of GEO
+            initial_position_i_m(1) = 0
+            initial_position_i_m(2) = 0
             //initial satellite velocity[m/s]
             //＊The coordinate system is defined in PlanetSelect.ini
-            init_velocity(0) = 0
-            init_velocity(1) = 3.074661E+03  //Speed of a spacecraft in GEO
-            init_velocity(2) = 0
+            initial_velocity_i_m_s(0) = 0
+            initial_velocity_i_m_s(1) = 3.074661E+03  //Speed of a spacecraft in GEO
+            initial_velocity_i_m_s(2) = 0
             ///////////////////////////////////////////////////////////////////////////////
             ```
 
-            - `Sat1.ini`
+            - `satellite1.ini`
 
             ```
-            propagate_mode = 2
+            propagate_mode = RELATIVE
 
             //Information used for relative orbit propagation//////////////////////////////
             //Relative Orbit Update Method (0 means RK4, 1 means STM)
-            update_method = 0
-            //RK4 Relative Dynamics model type (only valid for RK4 update)
-            //0: Hill
+            relative_orbit_update_method = 0
+            // RK4 Relative Dynamics model type (only valid for RK4 update)
+            // 0: Hill
             relative_dynamics_model_type = 0
-            //STM Relative Dynamics model type (only valid for STM update)
-            //0: HCW
+            // STM Relative Dynamics model type (only valid for STM update)
+            // 0: HCW
             stm_model_type = 0
-            //initial satellite position relative to the reference satellite in LVLH frame[m]
-            //＊The coordinate system is defined in PlanetSelect.ini
-            init_relative_position_lvlh(0) = 0.0
-            init_relative_position_lvlh(1) = 100.0
-            init_relative_position_lvlh(2) = 0.0
-            //initial satellite velocity relative to the reference satellite in LVLH frame[m/s]
-            //＊The coordinate system is defined in PlanetSelect.ini
-            init_relative_velocity_lvlh(0) = 0.0
-            init_relative_velocity_lvlh(1) = 0.0
-            init_relative_velocity_lvlh(2) = 0.0
-            //information of reference satellite
-            reference_sat_id = 0
-            reference_sat_ini_file = ../../data/ini/Sat0.ini
+            // Initial satellite position relative to the reference satellite in LVLH frame[m]
+            // * The coordinate system is defined at [PLANET_SELECTION] in SampleSimBase.ini
+            initial_relative_position_lvlh_m(0) = 0.0
+            initial_relative_position_lvlh_m(1) = 100.0
+            initial_relative_position_lvlh_m(2) = 0.0
+            // initial satellite velocity relative to the reference satellite in LVLH frame[m/s]
+            initial_relative_velocity_lvlh_m_s(0) = 0.0
+            initial_relative_velocity_lvlh_m_s(1) = 0.0
+            initial_relative_velocity_lvlh_m_s(2) = 0.0
+            // information of reference satellite
+            reference_satellite_id = 0
             ///////////////////////////////////////////////////////////////////////////////
             ```
 
    3. results
 
-      - The position of Sat1 seen from Sat0 in the inertia frame was calculated.
+      - The position of satellite1 seen from satellite0 in the inertia frame was calculated.
 
         <div align="center">
         <img src="./figs/RelativeOrbit_verification_i_x.jpg" width=80% alt="">

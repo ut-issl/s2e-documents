@@ -10,8 +10,6 @@
      - `SolarRadiationPressureEnvironment` class is defined. 
    - `src/environment/local/local_environment.cpp, .hpp`
      - `SolarRadiationPressureEnvironment` class is used here as a member variable of `LocalEnvironment` class.
-   - `src/environment/local/initialize_local_environment.cpp, .hpp`
-     - `SolarRadiationPressureEnvironment` class is instanced here based on the `.ini` file for the environment.
 
 3. How to use
    - Call `UpdateAllStates` function to calculates solar power flux and updates the eclipse flag.
