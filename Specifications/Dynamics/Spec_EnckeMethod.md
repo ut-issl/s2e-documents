@@ -77,10 +77,10 @@
 1. Comparison with RK4
    1. Overview
       - We compared the calculated orbit result between RK4 mode and Kepler mode.
-      - In the Kepler mode, we verified the correctness of both initialize mode (`INIT_OE` and `INIT_POSVEL`).
+      - In the Kepler mode, we verified the correctness of both initialize mode (`ORBITAL_ELEMENTS` and `POSITION_VELOCITY_I`).
        
    2. Conditions for the verification
-      - SampleSimbase.ini
+      - sample_simulation_base.ini
         - The following values are modified from the default.
           ```
           EndTimeSec = 10000
@@ -103,12 +103,12 @@
             ```
           - Initial position and velocity (compatible value with the orbital elements)
             ```
-            init_position(0) = 1791860.131
-            init_position(1) = 4240666.743
-            init_position(2) = 4985526.129
-            init_velocity(0) = -7349.913889
-            init_velocity(1) = 631.6563971
-            init_velocity(2) = 2095.780148
+            initial_position_i_m(0) = 1791860.131
+            initial_position_i_m(1) = 4240666.743
+            initial_position_i_m(2) = 4985526.129
+            initial_velocity_i_m_s(0) = -7349.913889
+            initial_velocity_i_m_s(1) = 631.6563971
+            initial_velocity_i_m_s(2) = 2095.780148
             ```
 
    3. Results

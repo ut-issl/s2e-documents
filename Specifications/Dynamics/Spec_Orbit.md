@@ -27,7 +27,7 @@
      - This setting works only for `RK4`, `KEPLER`, and `ENCKE` mode.
    - Set the orbit information in the ini file
      - You can see the details in the documents for each orbit propagation mode.
-   - The definition of the coordinate system is decided in `PlanetSelect.ini`
+   - The definition of the coordinate system is decided at `[CELESTIAL_INFORMATION]` section in `sample_simulation_base.ini`.
    
 ## 2. Explanation of Algorithm
 In the Orbit base class provides the following common functions for every propagator.
