@@ -8,7 +8,6 @@
 
 2. related files
    - `magnetic_disturbance.cpp`, `magnetic_disturbance.hpp` : Definitions and declarations of the class
-   - `initialize_disturbances.cpp`, `initialize_disturbances.hpp` : Interface functions for the initialization
    - `disturbance.ini` : Initialization file
 
 3. how to use   
@@ -97,16 +96,16 @@
       - Disturbance torque: All Disable
 
    3. results
-      - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,0,0]
+      - [rmm_random_walk_speed_Am2, rmm_random_walk_limit_Am2, rmm_white_noise_standard_deviation_Am2] =  [1E-5,0,0]
       - RMM random walk value is much smaller than 1E-5, because random walk limit is 0. 
 
       ![](./figs/test_rmm_randomwalk.png)
       
-      - [stddev_rw, limit_rw, stddev_wn] =  [1E-5,1E-4,0]
+      - [rmm_random_walk_speed_Am2, rmm_random_walk_limit_Am2, rmm_white_noise_standard_deviation_Am2] =  [1E-5,1E-4,0]
    
       ![](./figs/test_rmm_randomwalk_2.png)
       
-      - [stddev_rw, limit_rw, stddev_wn] =  [0,0,1E-5]
+      - [rmm_random_walk_speed_Am2, rmm_random_walk_limit_Am2, rmm_white_noise_standard_deviation_Am2] =  [0,0,1E-5]
    
       ![](./figs/test_rmm_whitenoise.png)
 
