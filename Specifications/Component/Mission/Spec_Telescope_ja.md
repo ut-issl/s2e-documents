@@ -15,20 +15,16 @@
 
   
 2. 関連ソースコード，ファイル
-    - `Telescope.cpp` , `Telescope.h`
+    - `telescope.cpp` , `telescope.hpp`
         + クラスの定義が行われている．
-    - `InitTelescope.cpp`
-        + 初期化のためのインターフェース関数が記述されている．
-    - `HipparcosCatalogue.cpp` , `HipparcosCatalogue.h`
+    - `hipparcos_catalogue.cpp` , `hipparcos_catalogue.hpp`
         + 天球上の恒星の位置データ（ヒッパルコス星表）を読み出すためのクラスを定義している．
-    - `InitHipparcosCatalogue.cpp`
-        + ヒッパルコス星表のクラスを初期化するためのインターフェース関数が記述されている．
 
 3. 使い方
-    - Telescope.iniで定数を入力する．
+    - `telescope.ini`で定数を入力する．
     - 初期化関数 `InitTelescope` を利用し，インスタンスを生成．
         + Telescope1,…のように，個々の望遠鏡に番号が振ってある．
-    - `HipparcosCatalogue` のデータを利用するために，`hip_main.csv` のダウンロードを済ませる必要がある．このためのスクリプトとして `s2e-core/scripts/download_HIPcatalogue.sh`を用意した．Git Bashなどを利用して，このスクリプトがあるディレクトリで以下を実行することで，必要なcsvファイルをダウンロードすることができる．
+    - `HipparcosCatalogue` のデータを利用するために，`hip_main.csv` のダウンロードを済ませる必要がある．このためのスクリプトとして `s2e-core/scripts/Common/download_HIPcatalogue.sh`を用意した．Git Bashなどを利用して，このスクリプトがあるディレクトリで以下を実行することで，必要なcsvファイルをダウンロードすることができる．
     ```
     bash download_HIPcatalogue.sh 
     ``` 
@@ -46,7 +42,7 @@
             + 判定対象の天体の，body座標系から見た位置
                 * この位置は，CelesInfoから提供される
             + その判定対象の天体に関する禁止角
-                * 禁止角の値は，`Telescope.ini`で指定する
+                * 禁止角の値は，`telescope.ini`で指定する
         - 出力
             + 禁止角に入っているならばtrue，そうでないならばfalse
 
@@ -133,17 +129,16 @@
     
    2. シミュレーション条件
       1. 入力ファイル
-        - `SampleSimBase.ini`
-        - `Telescope.ini`
-        - `SampleEnvironment.ini`
+         - `sample_simulation_base.ini`
+         - `telescope.ini`
       2. 初期値
-        - `SampleSimBase.ini`
+         - `sample_simulation_base.ini`
         ```
         Simulation start date[UTC] : 2017/12/01 11:00:00.0
 	    Simulation finish time[sec] : 1500
 	    姿勢Quaternion : q_i2b=[0 0 0 1]^T
         ```
-        - `Telescope.ini`
+        - `telescope.ini`
         ```
         姿勢Quaternion : q_b2c=[0 0 0 1]^T
 	    太陽禁止角[deg] : 60
@@ -154,14 +149,14 @@
 	    X方向1ピクセル当たり視野角[deg] : 0.02
 	    Y方向1ピクセル当たり視野角[deg] : 0.02
         ```
-        - `SampleEnvironment.ini`
+        - `sample_simulation_base.ini`
         ```
         [HIPPARCOS_CATALOGUE]
         max_magnitude = 5.0
         calculation = ENABLE
         logging = DISABLE
         ```
-        なお，SampleCase.cppのメイン関数内において，外乱トルクはコメントアウトしている．
+        なお，`sample_case.cpp`のメイン関数内において，外乱トルクはコメントアウトしている．
 
    3. 結果
         1. 禁止角判定

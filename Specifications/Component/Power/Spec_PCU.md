@@ -1,14 +1,14 @@
-# Specification of PCU
+# Specification of PowerControlUnit class
 
 ## 1.  Overview
 1. Functions
-   - `PCU` class is a base class of power control units and manages multiple `PowerPorts`.
+   - `PowerControlUnit` class is a base class of power control units and manages multiple `PowerPorts`.
 2. Related files
-   - Main file: `PCU.cpp, .h`
-   - Related file: `PowerPort.cpp, .h`
+   - Main file: `power_control_unit.cpp, .hpp`
+   - Related file: `power_port.cpp, .hpp`
 3. How to use
-   - **Example**: The `SampleComponents` in the `s2e-core/Simulation/Spacecraft/SampleSpacecraft` is useful to know how to use this class.
-   - Users can make their original `PCU` class by inheriting this base class.
+   - **Example**: The `sample_components` in the `s2e-core/simulation_sample/spacecraft` is useful to know how to use this class.
+   - Users can make their original `PowerControlUnit` class by inheriting this base class.
    - Users need to override the `MainRoutine`, `GetLogHeader`, and `GetLogValue` functions to define the behavior of their PCUs. 
 ## 2. Explanation of Algorithm
 1. ConnectPort
