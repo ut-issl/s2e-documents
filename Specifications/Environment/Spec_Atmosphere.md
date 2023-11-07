@@ -9,8 +9,6 @@
     + `Atmosphere` class is defined.
   + `src/environment/local/local_environment.cpp, .hpp`
     + `Atmosphere` class is used here as a member variable of `LocalEnvironment` class.
-  + `src/environment/local/initialize_local_environment.cpp, .hpp`
-    + `Atmosphere` class is instanced here based on the `.ini` file for the environment.
   + `src/library/external/nrlmsise00/wrapper_nrlmsise00.cpp, .hpp`
     + An air density is calculated using an external library, NRLMSISE00 atmosphere model.
 
@@ -19,6 +17,8 @@
     + Model
       + `STANDARD`
         + The air density is calculated using scale height.
+      + `HARRIS_PRIESTER`
+        + The air density is calculated using the Harris-Priester model.
       + `NRLMSISE00`
         + The air density is calculated using the NRLMSISE00 model.
         + If users use this model, the following additional parameters must be set in the `.ini` file.
@@ -53,7 +53,7 @@
 
 + NRLMSISE00
   1. Read Space weather table
-     + F10.7 and Kp/Ap index, which indicates the solar activity cycle, are necessary as inputs for NRLMSISE00.  
+     + `F10.7` and `Kp/Ap` index, which indicates the solar activity cycle, are necessary as inputs for NRLMSISE00.  
      These parameters, which are only during the simulation period, are read from SpaceWeather.txt.
      + Note
        + If SpaceWeather.txt cannot be read, the atmosphere model is automatically set to STANDARD.
@@ -84,21 +84,21 @@
      2. initial values
         + Case1 : Default initialize files
         ```
-        StartYMDHMS=2020/01/01 11:00:00.0
-        EndTimeSec=200
-        StepTimeSec=0.1
-        OrbitPropagateStepTimeSec=0.1
-        LogPeriod = 5
-        SimulationSpeed = 0
+        simulation_start_time_utc = 2020/01/01 11:00:00.0
+        simulation_duration_s = 200
+        simulation_step_s = 0.1
+        orbit_update_period_s = 0.1
+        log_output_period_s = 0.1
+        simulation_speed_setting = 0
         ```
         + Case2 : Start year only was changed to 2015.
         ```
-        StartYMDHMS=2015/01/01 11:00:00.0
-        EndTimeSec=200
-        StepTimeSec=0.1
-        OrbitPropagateStepTimeSec=0.1
-        LogPeriod = 5
-        SimulationSpeed = 0
+        simulation_start_time_utc = 2015/01/01 11:00:00.0
+        simulation_duration_s = 200
+        simulation_step_s = 0.1
+        orbit_update_period_s = 0.1
+        log_output_period_s = 0.1
+        simulation_speed_setting = 0
         ```
         + Especially, we chose following TLE for orbit calculation
         ```
