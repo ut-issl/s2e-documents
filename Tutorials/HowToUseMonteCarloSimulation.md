@@ -6,19 +6,19 @@
 - The feature provides a framework to randomize arbitrary parameters in each class. 
 - Users can set the mean value and standard deviation for the randomized parameters with `simulation_base.ini` file of each user.
   - Please see the specification document for [Monte Carlo Simulation](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for a detailed description.
-- This tutorial explains how to randomly change the initial value of the angular velocity.
-  - There are sample codes in `SampleCodes\monte_carlo_simulation`.
+- This tutorial explains how to randomly change the initial value of the spacecraft angular velocity.
+  - There are sample codes in [s2e-user-example/sample/how-to-use-monte-carlo-simulation](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-use-monte-carlo-simulation).
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 ## 2. Edit Simulation Case
-- To use the MCSim, users have to edit their `user_case.hpp` and `user_case.cpp`
+- To use the Monte Carlo simulation, users have to edit their `user_case.hpp` and `user_case.cpp`
 - `user_case.hpp`
   - Add header including
     ```c++
     #include <./simulation/monte_carlo_simulation/monte_carlo_simulation_executor.hpp>
     ```
-  - Add private member variables for MCSimExecutor and string.
+  - Add private member variables for `MonteCarloSimulationExecutor`.
     ```c++
     MonteCarloSimulationExecutor &monte_carlo_simulator_;
     ```
@@ -38,7 +38,7 @@
     ```
   - Edit `InitializeTargetObjects` function
     - Edit log file name definition and       
-    - Add MCSim initialization
+    - Add `MonteCarloSimulationExecutor` initialization
       ```c++
       // Monte Carlo Simulation
       monte_carlo_simulator_.SetSeed();
@@ -76,7 +76,7 @@
       }
       ```
 
-## 3. Edit `S2E_USER` code
+## 3. Edit `s2e_user.cpp` code
 - To use the Monte Carlo Simulator, users have to edit their `s2e_user.cpp`
 - Add header file
   ```c++
@@ -115,7 +115,7 @@
   delete mc_simulator;
   ```
 
-## 4. Initialize file for MCSim
+## 4. Initialize file for Monte Carlo simulator
 
 - Edit `user_simulation_base.ini` to add the following description
   ```c++
