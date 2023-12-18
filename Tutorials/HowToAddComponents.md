@@ -5,13 +5,15 @@
 - In the [How To Make New Simulation Scenario](./HowToMakeNewSimulationScenario.md) tutorial, we have made an `s2e-user` directory for our simulation scenario.
 - This tutorial explains how to add components to your scenario.
 - A similar procedure is available for other components in the `s2e-core`.
+  - Please see the components listed in the [components directory](https://github.com/ut-issl/s2e-core/tree/develop/src/components).
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 
 
 ## 2. Add a Gyro sensor
 
-- This chapter explains how to add a gyro sensor component to your `s2e-user` simulation case.
+- This chapter explains how to add a gyro sensor component to your `s2e-user` simulation case step by step.
+- Users can find the sample code of this section in [s2e-user-example/sample/how-to-add-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-components).
 
 1. Open & edit `user_components.hpp`
    - Add the following descriptions at the one line below of `#include <components/real/cdh/on_board_computer.hpp>`
