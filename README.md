@@ -40,6 +40,7 @@
    1. [Getting Started](./Tutorials/GettingStarted.md)
 
    - <details><summary> Tutorials without any external hardware </summary>
+
      - Users can refer the [s2e-user-example](https://github.com/ut-issl/s2e-user-example) to see sample codes of the following tutorials. 
 
      1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
@@ -54,6 +55,7 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
+   
      - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.  
      
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
