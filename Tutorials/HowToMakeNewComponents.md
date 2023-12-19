@@ -19,7 +19,7 @@
     - The main features of the components such as observation, generate force, noise addition, communication, etc... should be written in this function.
   - `PowerOffRoutine` is also important especially for actuators. This function is called when the component power line is turned off. Users can stop force and torque generation and initialize the component states.
 - Power related functions
-  - `SetPowerState`, `GetCurrent` are power related functions. If you want to emulate power consumption and switch control, you need to use the functions.
+  - `SetPowerState` and `GetCurrent` are power related functions. If you want to emulate power consumption and switch control, you need to use the functions.
 - `ILoggable` class
   - This base class has two important virtual functions `GetLogHeader` and `GetLogValue`, for CSV log output.
   - These functions are registered into the log output list when the components are added in `UserComponents::LogSetUp` 
@@ -28,29 +28,23 @@
   - These base classes also support a feature to execute HILS function.
 
 
-## 3. Make a simple clock sensor
+## 3. Make a simple clock sensor without initialize file
 
 - This chapter explains how to make a simple clock sensor, which observes the simulation elapsed time with a bias noise.
+- Users can find the sample codes in [s2e-user-example/sample/how-to-make-new-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-make-new-components).
+  - The sample codes already including the initialize file for the `ClockSensor`. Please edit the code a bit to learn the procedure step by step.
 
-1. Copy the following files in the directory `./Tutorials/SampleCode/clock_sensor` to the directory `s2e-user/src/components`.
-   - `clock_sensor.cpp`
-   - `clock_sensor.hpp`
+1. The `clock_sensor.cpp, .hpp` are created in the `components` directory. 
+   - The `ClockSensor` class counts clock with a constant bias noise.
+   - The class inherits the `Component` and the `ILoggable` base classes as explained above.
 
-1. Edit `./s2e-user/CMakeList.txt` to add target source files for the compiler. Please add the following description in `set(SOURCE_FILES)`
+1. The `user_components.hpp` and `user_components.cpp` are edit similar procedure with the [How To Add Components](./HowToAddComponents.md)
 
-   ```
-   src/components/clock_sensor.cpp
-   ```
-
-1. Build `s2e-user` and check there is no error.
-
-1. Edit `user_components.hpp` and `user_components.cpp` as referring [How To Add Components](./HowToAddComponents.md)
-
-   - The constructor of the `ClockSensor` requires arguments as `prescaler`, `clock_generator`, `simulation_time`, and `bias_sec`.
-   - `prescaler` and `bias_sec` are user setting parameters for the sensor, and you can freely set these values.
+   - The constructor of the `ClockSensor` requires arguments as `prescaler`, `clock_generator`, `simulation_time`, and `bias_s`.
+   - `prescaler` and `bias_s` are user setting parameters for the sensor, and you can freely set these values.
    - `clock_generator` is an argument for the `Component` base class.
-   - `simulation_time` is a specific argument for the `ClockSensor` to get time information. `SimulationTime` class is managed in the `GlobalEnvironment`, and the `GlobalEnvironment` is instantiated in the `SimulationCase` class.
-   - You need to edit the `user_components.cpp` as follows.
+   - `simulation_time` is a specific argument for the `ClockSensor` to get true time information. The `SimulationTime` class is managed in the `GlobalEnvironment`, and the `GlobalEnvironment` is instantiated in the `SimulationCase` class.
+   - We need to add the following codes to `user_components.cpp`.
      - Instantiate the `ClockSensor` in the constructor.
      ```c++
      clock_sensor_ = new ClockSensor(10, clock_generator, global_environment->GetSimulationTime(), 0.001);
@@ -66,29 +60,19 @@
 
 1. Build `s2e-user` and execute it
 
-1. Check the log file to confirm the output of the `clock_sensor`
-   - The output of the clock sensor has an offset error, and the update frequency is decided by the `prescaler` and the `component_update_period_s` in the base ini file.
+1. Check the log file to confirm the output of the `clock_sensor_observed_time[sec]`
+   - The output of the clock sensor has an offset error defined by the `bias_s` value, and the update frequency is decided by the `prescaler` and the `component_update_period_s` in the base ini file.
 
 ## 4. Make an initialize file for the clock sensor
 
 - Usually, we want to change the parameters of components such as noise properties, mounting coordinates, and others without rebuilding. So this section explains how to make an initialize file for the `ClockSensor`.
 
-1. Copy the following files in the directory `./Tutorials/SampleCode/clock_sensor` to the directory `s2e-user/src/components`.
-   - `initialize_clock_sensor.cpp`
-   - `initialize_clock_sensor.hpp`
-
-1. Edit `./s2e-user/CMakeList.txt` to add target source files for the compiler. Please add the following description in `set(SOURCE_FILES)`
-
-   ```
-   src/components/initialize_clock_sensor.cpp
-   ```
-
+1. The initialize function `InitClockSensor` is defined in the `clock_sensor.hpp`.
+   - The initialize function requires arguments as `clock_generator`, `simulation_time`, and `file_name`.
+   - `clock_generator` and `simulation_time` are same argument with the constructor of the `ClockGenerator`.
+   - `file_name` is the file path to the initialize file for the `ClockSensor`. 
+   
 1. Edit the `user_components.hpp` and `user_components.cpp` as follows
-   - `user_components.hpp`
-     - Replace include files from `clock_sensor.hpp` to as follows
-       ```c++
-       #include "../../components/initialize_clock_sensor.hpp"
-       ```
    - `user_components.cpp`
      - Edit making instance of the `clock_sensor` at the constructor
        ```c++
@@ -97,14 +81,18 @@
        configuration_->main_logger_->CopyFileToLogDirectory(file_name);
        clock_sensor_ = new ClockSensor(InitClockSensor(clock_generator, global_environment->GetSimulationTime(), file_name));
        ```
+       - The first line get the file path of the initialize file of the clock sensor.
+       - The second line copy the initialize file to the log output directory to save the simulation setting.
+       - The third line make the instance of the `ClockSensor`.
 
-1. Copy `clock_sensor.ini` into `s2e-user/data/initialize_files/components` from `./Tutorial/SampleCodes/clock_sensor`
+1. Make `clock_sensor.ini` into `s2e-user/data/initialize_files/components` from `./Tutorial/SampleCodes/clock_sensor`
 
 1. Edit `user_satellite.ini` to add the following line at the [COMPONENT_FILES] section of the file
 
    ```c++
-   clock_sensor_file = ../../data/initialize_files/components/clock_sensor.ini
+   clock_sensor_file = INI_FILE_DIR_FROM_EXE/components/clock_sensor.ini
    ```
+   - The keyword `INI_FILE_DIR_FROM_EXE` is defined in the `CMakeList.txt` to handle the relative path to the initialize files.
 
 1. Build `s2e-user` and execute it
 
