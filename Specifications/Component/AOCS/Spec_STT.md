@@ -60,13 +60,14 @@
 - The angle between pointing direction and earth center = 15deg
   - STT flag is always 1, since the angle $\theta_{es}$ between the sight direction and the earth's edge direction is 15 - 8.6 = 6.4deg < 10deg. 
 
-  ![](./figs/stt_flag_15.png)
+![](./figs/stt_flag_15.png)
 
 - The angle between pointing direction and earth center = 20deg
   - STT flag is always 0, since the angle $\theta_{es}$ between the sight direction and the earth's edge direction is 20 - 8.6 = 11.4deg > 10deg.
 
-  ![](./figs/stt_flag_20.png)
+![](./figs/stt_flag_20.png)
 
 - The angle between pointing direction and earth center = 30deg
   - STT flag is always 0, since the angle $\theta_{es}$ between the sight direction and the earth's edge direction is 30 - 8.6 = 21.4deg > 10deg.
-  ![](./figs/stt_flag_30.png)
+    
+![](./figs/stt_flag_30.png)
