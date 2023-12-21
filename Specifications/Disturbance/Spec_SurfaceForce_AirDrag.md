@@ -84,13 +84,13 @@
   - $\theta$ is the angle between the normal vector and the velocity vector
   - $\cos{\theta}$ and $\sin{\theta}$ are calculated in `SurfaceForce` base class.
 
-  ```math
-  \begin{align}
-    S &= \sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
-    S_{n} &= S\cos{\theta}\\
-    S_{t} &= S\sin{\theta}\\
-  \end{align}
-  ```
+```math
+\begin{align}
+  S &= \sqrt{\frac{Mv^{2}}{2kT_{w}}}\\
+  S_{n} &= S\cos{\theta}\\
+  S_{t} &= S\sin{\theta}\\
+\end{align}
+```
 
 - $\Pi(x)$ and $\chi(x)$ are defined as follows
   - where `erf` is the [Gauss error function](https://en.wikipedia.org/wiki/Error_function).
