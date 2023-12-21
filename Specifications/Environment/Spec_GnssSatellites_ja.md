@@ -1,19 +1,19 @@
 # 姿勢シミュレータ仕様書 - GNSS - 
 
 ## 1. 概要
-1. 機能
-    - .sp3や.clk_30sなどのGNSS衛星の軌道, クロックバイアスに関するデータを読み取り, 他クラスで使用できるためのクラス.
-    - `sample_gnss.ini` により読みだすファイル名と範囲を決定します
+### 1. 機能
+- .sp3や.clk_30sなどのGNSS衛星の軌道, クロックバイアスに関するデータを読み取り, 他クラスで使用できるためのクラス.
+- `sample_gnss.ini` により読みだすファイル名と範囲を決定します
 
-2. 関連ファイル
-    - `src/environment/global/globalEnvironment.cpp, .hpp`
-        - GnssSatellites クラスが定義されています. また, 各種GET関数も実装されています.
-    - `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
-        - GnssSatellites クラスのための初期化ファイルとなっています. 初期化の内容については `sample_gnss.ini`  ファイル内に記述されています. 
-    - `ExtLibraries/sp3`
-        - 軌道やクロックバイアスの生成に必要なファイル群(.sp3, .clk_30s)などが入っています.
+### 2. 関連ファイル
+- `src/environment/global/globalEnvironment.cpp, .hpp`
+  - GnssSatellites クラスが定義されています. また, 各種GET関数も実装されています.
+- `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
+  - GnssSatellites クラスのための初期化ファイルとなっています. 初期化の内容については `sample_gnss.ini`  ファイル内に記述されています. 
+- `ExtLibraries/sp3`
+  - 軌道やクロックバイアスの生成に必要なファイル群(.sp3, .clk_30s)などが入っています.
 
-3. .sp3ファイルなどのダウンロードに関して
+### 3. .sp3ファイルなどのダウンロードに関して
 - まだダウンロードをする際に使用するスクリプトを書いていません. ディレクトリ分けなどを参考に`ftp://igs.ensg.ign.fr/pub/igs/products/`や`http://mgmds01.tksc.jaxa.jp/`等のサイトから各自ダウンロードしてください. ディレクトリ分けは以下の様になっていることを想定しています.
 ```
 ExtLibraries  

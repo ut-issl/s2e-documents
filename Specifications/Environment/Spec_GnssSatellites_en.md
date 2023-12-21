@@ -1,19 +1,19 @@
 # Specification for GNSS
 
 ## 1. Overview
-1. function
-    - A class to read data about orbit and clock bias of GNSS satellites such as .sp3 and .clk_30s and use them in other classes.
-    - Determine the file name of GNSS satellites' data and time from `[GNSS_SATELLITES]` in `sample_gnss.ini`.
+### 1. function
+- A class to read data about orbit and clock bias of GNSS satellites such as .sp3 and .clk_30s and use them in other classes.
+- Determine the file name of GNSS satellites' data and time from `[GNSS_SATELLITES]` in `sample_gnss.ini`.
 
-2. Related files
-    - `src/environment/global/globalEnvironment.cpp, .hpp`
-      - GnssSatellites class is defined. Various GET functions are also implemented.
-    - `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
-      - This makes the instance of the GnssSatellites class. The initialization is described in the `sample_gnss.ini` file. 
-    - `ExtLibraries/sp3`
-      - It contains a set of files (.sp3, .clk_30s) necessary for generating orbits and clock biases.
+### 2. Related files
+- `src/environment/global/globalEnvironment.cpp, .hpp`
+  - GnssSatellites class is defined. Various GET functions are also implemented.
+- `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
+  - This makes the instance of the GnssSatellites class. The initialization is described in the `sample_gnss.ini` file. 
+- `ExtLibraries/sp3`
+  - It contains a set of files (.sp3, .clk_30s) necessary for generating orbits and clock biases.
 
-3. About downloading .sp3 files, etc.
+### 3. About downloading .sp3 files, etc.
 - The author has not yet written script files to download .sp3 or .clk. Users can download them from `ftp://igs.ensg.ign.fr/pub/igs/products/`, `http://mgmds01.tksc.jaxa.jp/`, etc., referring to the directory classification. The directories are assumed to be as follows.
 ```
 ExtLibraries  
