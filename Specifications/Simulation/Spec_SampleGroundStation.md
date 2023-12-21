@@ -24,14 +24,14 @@
 - `sample_ground_station.cpp`
 - Write detailed process of the override functions
 - Constructor
-- Initialize `GroundStation` and call the `SampleGroundStation::Initialize` function.
+  - Initialize `GroundStation` and call the `SampleGroundStation::Initialize` function.
 - Destructor
-- Delete components.
+  - Delete components.
 - `LogSetup` function
-- Set log you need.
+  - Set log you need.
 - `Update` function
-- Call the `GroundStation::Update` function.
-- Call the ground station component's `Update` functions.
+  - Call the `GroundStation::Update` function.
+  - Call the ground station component's `Update` functions.
 
 ## 3. Results of verifications
 NA
