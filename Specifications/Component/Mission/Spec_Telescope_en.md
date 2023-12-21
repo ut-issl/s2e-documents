@@ -72,14 +72,16 @@
   - The X-axis of the image sensor coordinate corresponds with the Z-axis of the component coordinate.
   - The Y-axis of the image sensor coordinate corresponds with the Y-axis of the component coordinate.
 - Then, the inclination angle from the X-axis of the celestial body's direction in the XZ plane of the component coordinate is calculated using $(x_c, y_c, z_c)$ as follows:
-  ```math
-  tan^{-1}⁡\frac{z_c}{x_c}
-  ```
+
+```math
+tan^{-1}⁡\frac{z_c}{x_c}
+```
 
 - In the same way, the inclination angle from the X-axis of the celestial body's direction in the XY plane of the component coordinate is calculated as follows:
-  ```math
-  tan^{-1}⁡\frac{y_c}{x_c}
-  ```
+
+```math
+tan^{-1}⁡\frac{y_c}{x_c}
+```
 
 - They are written as `arg_x` and `arg_y` in the code. In this manual, $\theta_x$ and $\theta_y$ are used for them. If $\theta_x$ is within FOV_x and $\theta_y$ is within FOV_y, the celestial body is judged to be in the field of view.  
 
