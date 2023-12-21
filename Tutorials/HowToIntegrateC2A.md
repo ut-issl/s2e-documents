@@ -2,34 +2,34 @@
 
 ## 1.  Overview
 - [C2A](https://github.com/ut-issl/c2a-core) (Command Centric Architecture) is an architecture for spacecraft flight software developed by [ISSL](https://www.space.t.u-tokyo.ac.jp/nlab/index.html).
-- S2E can execute [C2A](https://github.com/ut-issl/c2a-core) as a flight software for onboard algorithm development and debugging.
+- S2E can execute [C2A](https://github.com/ut-issl/c2a-core) as flight software for onboard algorithm development and debugging.
 - This document describes how to integrate the C2A within S2E.
 - Notes
   - C2A is written in C language, but S2E builds C2A as C++.
 - The supported version of this document
-  - Please confirm that the version of the documents and s2e-core is compatible.
+  - Please confirm that the version of the documents and s2e-core are compatible.
 
 ## 2. Overview of C2A execution in S2E
-- Directory construction
+- Directory Construction
   - Make `FlightSW` directory at same directory with `s2e-core` and `s2e-user`.
   - Make a `c2a-user` directory in `FlightSW` and set the C2A source code you want to use.
     ```
-    ├─ExtLibraries
-    ├─FlightSW
-    │  └─c2a-user
-    │    └─src_user
-    │    └─src_core
-    ├─s2e-core
-    └─s2e-user
+    ├─ FlightSW
+    │  └─ c2a-user
+    │    └─ src_user
+    │    └─ src_core
+    └─ s2e-user-example
+      ├─ s2e-core
+      └─ ExtLibraries
     ```
   - Edit `s2e-user/CMakeLists.txt` as follows.
     - `set(C2A_NAME "c2a_oss")`
       - Edit the directory name `c2a_oss` according to your situation.
-      - In the case of above directory structure, you need to edit as `c2a-user`
+      - In the case of the above directory structure, you need to edit as `c2a-user`
     - `option(USE_C2A "Use C2A" OFF)`
       - Turn on the `USE_C2A` flag as `option(USE_C2A "Use C2A" ON)`
 - Notes
-  - In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to add a on board computer, which can execute the C2A.
+  - In the default setting of S2E, C2A is built but isn't executed. To execute the C2A, users need to add an onboard computer, which can execute the C2A.
   - The `s2e-core` has the [ObcWithC2a](https://github.com/ut-issl/s2e-core/blob/develop/src/components/real/cdh/on_board_computer_with_c2a.hpp) class as a component, and users can use it to execute the C2A.
   - Users can use the `ObcWithC2a` class in the `UserComponents` class, the same as other components.
 - Build the `s2e_user`
@@ -38,12 +38,11 @@
 
 ## 3. How to build C2A in S2E with the sample codes
 - Sample codes
-  - A sample of s2e-user: [s2e-user-for-c2a-core](https://github.com/ut-issl/s2e-user-for-c2a-core)
+  - A sample of s2e-user: [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a)
   - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user) in `c2a-core`.
+
 - Preparing development environment
-  - Clone the `s2e-core v6.0.1`.
-    - Please set the environment for that the s2e-core can work without C2A.
-  - Clone `s2e-user-for-c2a-core v2.0.0` at same directory with `s2e-core`. 
+  - Clone the `s2e-user-example` and switch the branch to `sample/how-to-integrate-c2a`.
   - Make `FlightSW` directory at same directory with `s2e-core`.
   - Clone `c2a-core v3.8.0` in the `FlightSW` directory.
   - Execute setup script
@@ -53,7 +52,17 @@
   - **For users who don't use Windows**
     - open `c2a-core/Examples/minimum_user/CMakeLists.txt` and edit `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" ON)` to `option(USE_SCI_COM_WINGS "Use SCI_COM_WINGS" OFF)`
     - This setting turns off the feature to communicate with [WINGS](https://github.com/ut-issl/wings) ground station. Currently, this feature is available only for Windows users.
-  - Build and execute the `s2e-user-for-c2a-core`.
+  - Please check the following directory construction
+    ```
+    ├─ FlightSW
+    │  └─ c2a-core
+    │    └─ Examples
+    │      └─ minimum_user
+    └─ s2e-user-example
+      ├─ s2e-core
+      └─ ExtLibraries
+    ```
+  - Build and execute the `s2e-user-example`.
   - Users can see the following output in a terminal. The `CYCLE: TOTAL` value is incremented.
 
     ![](./figs/C2aBuild.JPG)
@@ -83,20 +92,21 @@
 
 
 # 5. Example of S2E-C2A communication
-- This section shows an example of communication between a component in S2E and an application in C2A. The sample codes are in `Tutorials/SampleCodes/c2a_integration`.
+- This section shows an example of communication between a component in S2E and an application in C2A. 
+- The sample codes
+  - S2E: [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a)
+  - C2A: [Tutorials/SampleCodes/c2a_integration/](./SampleCodes/c2a_integration/c2a_src_user/)
 - Preparation
   - See `Ch. 3 How to build C2A in S2E with the sample codes`.
 - Modification of the S2E side
   - Users can use the [ExampleSerialCommunicationWithObc](https://github.com/ut-issl/s2e-core/blob/v6.0.0/src/components/examples/example_serial_communication_with_obc.hpp) class in `s2e-core` as a test component to communicate with C2A.
-  - Please refer the sample codes in `Tutorials/SampleCodes/c2a_integration/s2e_src`.
-    - The directory structure of `s2e_src` is same with that of `s2e-user-for-c2a-core`. 
-  - Add `ExampleSerialCommunicationWithObc` as a component in `c2a_core_sample_components.cpp and .hpp`.
-    - Or simply just copy the source codes in `c2a_integration/s2e_src` to `s2e-user-for-c2a-core`.
+  - Please refer the sample codes in [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a).
+  - Add `ExampleSerialCommunicationWithObc` as a component in `user_components.cpp and .hpp`.
     - In this example, the `ObcWithC2a` is executed as 1kHz, and the `ExampleSerialCommunicationWithObc` is executed as 1Hz.
  - Modification of the C2A side
    - Please refer the sample codes in `Tutorials/SampleCodes/c2a_integration/c2a_src_user`. 
-     - The directory structure of `c2a_src_user` is same with that of `c2a-core/Examples/minimum_user/src/src_user`.
-   - We need to add a new driver instance application to communicate with the `EXP` component.
+     - The directory structure of `c2a_src_user` is the same with that of `c2a-core/Examples/minimum_user/src/src_user`.
+   - We need to add a new driver instance application to communicate with the `ExampleSerialCommunicationWithObc` component.
      - Copy `Application/DriverInstances/di_s2e_uart_test.c and .h`
      - Edit `CMakeLists.txt` in the Application directory to add `di_s2e_uart_test.c` as a compile target.
    - Edit `app_registry.c, h` and `app_headers.h` in the `Application` directory to register the applications of `di_s2e_uart_test`.

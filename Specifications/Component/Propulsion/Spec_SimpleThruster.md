@@ -9,15 +9,13 @@
    - According to the thruster output, users can set the thrust duty to the value between 0 and 1.
 
 2. files
-    - `SimpleThruster.cpp` , `SimpleThruster.h`
+    - `simple_thruster.cpp` , `simple_thruster.hpp`
       + Definitions and declarations of the class
-    - `InitSimpleThruster.cpp`
-      + Interface functions for the initialization
-    - `Thruster.ini`
+    - `thruster.ini`
       +  Parameters for a/multiple thruster(s)
 
 3. how to use
-    - Set the parameters written in `Thruster.ini` by `InitSimpleThruster.cpp`.
+    - Set the parameters written in `thruster.ini`.
       + Users can set multiple thrusters.
     - Create an instance by `SimpleThruster` function.
     - Add `calc_thrust` function to `GenerateForce_b()` in `SatComponents` class and `calc_torque` function to `GenerateTorque_b()` in `SatComponents` class
@@ -34,10 +32,10 @@
     2. input and output
         - input
           + Thruster duty ratio
-          + Maximum thrust magnitude `max_mag`
-          + Thrust magnitude error `mag_err`
-          + Thrust direction `thruster_dir`
-          + Thrust direction error `deg_err `
+          + Maximum thrust magnitude `thrust_magnitude_N`
+          + Thrust direction `thruster_direction_b`
+          + Thrust magnitude error `thrust_error_standard_deviation_N`
+          + Thrust direction error `direction_error_standard_deviation_deg`
         - output
           + Thrust magnitude and direction
     3. algorithms
@@ -79,7 +77,7 @@
         - Torque by thruster is calculated from the thrust vector and the vector between the center of mass of the spacecraft and thruster.
     2. input and output
         - input
-          + Thruster position `thruster_pos`
+          + Thruster position `thruster_position_b_m`
           + Mass center of spacecraft
           + Thrust magnitude and direction
         - output
@@ -99,16 +97,16 @@
 ## 3. Results of verifications
 1. Case1
   - input
-    + Position `thruster_pos` : [0m, 0m, 0.1m]
-    + Direction `thruster_dir` : [0, 0, 1]
-    + Thrust magnitude `max_mag` : 0.001N 
-    + Thrust magnitude error `mag_err` : 0.0N
-    + Thrust direction error `deg_err` : 0.0deg
+    + Position `thruster_position_b_m` : [0m, 0m, 0.1m]
+    + Direction `thruster_direction_b` : [0, 0, 1]
+    + Thrust magnitude `thrust_magnitude_N` : 0.001N 
+    + Thrust magnitude error `thrust_error_standard_deviation_N` : 0.0N
+    + Thrust direction error `direction_error_standard_deviation_deg` : 0.0deg
     + Simulation time: 100sec
         
   - result
     + Force Mean: [0,0,0.001] N
-    + Force STDDEV: [0,0,0] N
+    + Force Std Dev: [0,0,0] N
 
       <div align="center">
       <figure id="thrust_force1">
@@ -118,7 +116,7 @@
       </div>
 
     + Torque Mean: [0,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque1">
@@ -130,15 +128,15 @@
         
 2. Case2
   - input
-    + Position `thruster_pos` : [0, 0, 0.1] m
-    + Direction `thruster_dir` : [0, 0, 1]
-    + Thrust magnitude `max_mag` : 0.001N 
-    + Thrust magnitude error `mag_err` : 0.00001N
-    + Thrust direction error `deg_err` : 0.0deg
+    + Position `thruster_position_b_m` : [0, 0, 0.1] m
+    + Direction `thruster_direction_b` : [0, 0, 1]
+    + Thrust magnitude `thrust_magnitude_N` : 0.001N 
+    + Thrust magnitude error `thrust_error_standard_deviation_N` : 0.00001N
+    + Thrust direction error `direction_error_standard_deviation_deg` : 0.0deg
     + Simulation time: 100sec 
   - result
     + Force Mean: [0,0,0.999611e-3] N
-    + Force STDDEV: [0,0,1.09804e-5] N
+    + Force Std Dev: [0,0,1.09804e-5] N
 
       <div align="center">
       <figure id="thrust_force2">
@@ -148,7 +146,7 @@
       </div>
 
     + Torque Mean: [0,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque2">
@@ -159,15 +157,15 @@
 
 3. Case3
   - input
-    + Position `thruster_pos` : [0, 0, 0.1] m
-    + Direction `thruster_dir` : [0, 0, 1]
-    + Thrust magnitude `max_mag` : 0.001N 
-    + Thrust magnitude error `mag_err` : 0.0N
-    + Thrust direction error `deg_err` : 10.0deg
+    + Position `thruster_position_b_m` : [0, 0, 0.1] m
+    + Direction `thruster_direction_b` : [0, 0, 1]
+    + Thrust magnitude `thrust_magnitude_N` : 0.001N 
+    + Thrust magnitude error `thrust_error_standard_deviation_N` : 0.0N
+    + Thrust direction error `direction_error_standard_deviation_deg` : 10.0deg
     + Simulation time: 100sec
   - result
     + Force Mean: [-4.93e-6, -1.04e-5, 0.9834e-3] N
-    + Force STDDEV: [1.0e-4, 9.79e-5, 1.216e-5] N
+    + Force Std Dev: [1.0e-4, 9.79e-5, 1.216e-5] N
 
       <div align="center">
       <figure id="thrust_force3">
@@ -177,7 +175,7 @@
       </div>
 
     + Torque Mean: [1.04e-6,-4.94e-7,0] Nm
-    + Torque STDDEV: [1.29e-5, 1.26e-5, 0] Nm
+    + Torque Std Dev: [1.29e-5, 1.26e-5, 0] Nm
 
       <div align="center">
       <figure id="thrust_torque3">
@@ -188,15 +186,15 @@
 
 4. Case4
   - input
-    + Position `thruster_pos` : [0, 0.1, 0] m
-    + Direction `thruster_dir` : [0, 0, 1]
-    + Thrust magnitude `max_mag` : 0.001N 
-    + Thrust magnitude error `mag_err` : 0.0N
-    + Thrust direction error `deg_err` : 10.0deg
+    + Position `thruster_position_b_m` : [0, 0.1, 0] m
+    + Direction `thruster_direction_b` : [0, 0, 1]
+    + Thrust magnitude `thrust_magnitude_N` : 0.001N 
+    + Thrust magnitude error `thrust_error_standard_deviation_N` : 0.0N
+    + Thrust direction error `direction_error_standard_deviation_deg` : 0.0deg
     + Simulation time: 100sec
   - result
     + Force Mean: [0,0,0.001] N
-    + Force STDDEV: [0,0,0] N
+    + Force Std Dev: [0,0,0] N
 
       <div align="center">
       <figure id="thrust_force4">
@@ -206,7 +204,7 @@
       </div>
 
     + Torque Mean: [0.0001,0,0] Nm
-    + Torque STDDEV: [0,0,0] Nm
+    + Torque Std Dev: [0,0,0] Nm
 
       <div align="center">
       <figure id="thrust_torque4">

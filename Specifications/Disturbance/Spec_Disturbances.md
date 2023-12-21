@@ -10,8 +10,6 @@
 2. Related files
    - `src/disturbances/disturbances.hpp`
    - `src/disturbances/disturbances.cpp`
-   - `src/disturbances/initialize_disturbances.hpp`
-   - `src/disturbances/initialize_disturbances.cpp`
 
 3. How to use
    - When you make a new disturbance class, you need to register the new disturbance class in the `InitializeInstances` function.

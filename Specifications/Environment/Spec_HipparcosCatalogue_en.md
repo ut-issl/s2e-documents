@@ -12,8 +12,6 @@
   2. files
      + `HipparcosCatalogue.cpp` ，`HipparcosCatalogue.hpp`
        * Definitions and declarations of the class
-     + `initialize_global_environment.cpp`
-       * The initialize function is defined here.
      + `sample_simulation_base.ini`
        * Parameters for initialization
      + `hip_main.csv`

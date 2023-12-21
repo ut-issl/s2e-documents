@@ -9,7 +9,6 @@
    - `solar_radiation_pressure_disturbance.cpp`, `solar_radiation_pressure_disturbance.hpp` : The `SolarRadiationPressureDisturbance` class is defined.
    - `surface_force.cpp`, `surface_force.hpp` : The base class `SurfaceForce` is defined.
      - **Note**: `SurfaceForce` class inherits `SimpleDisturbance` class, and `SimpleDisturbance` class inherits `Disturbance` class. So, please refer them if users want to understand the structure deeply.
-   - `initialize_disturbances.cpp`, `initialize_disturbances.hpp` : Interface functions for the initialization
    - `disturbance.ini` : Initialization file
 
 3. How to use

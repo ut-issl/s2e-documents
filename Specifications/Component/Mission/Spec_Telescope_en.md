@@ -17,24 +17,20 @@
          - output position of its image on the image sensor, if it is in the field of view.
      + `ObserveStars`
        * Function to output some HIP IDs of the brightest stars in the field of view, using `HipparcosCatalogue`.
-       * Specify how many stars this function outputs in `Telescope.ini`.
+       * Specify how many stars this function outputs in `telescope.ini`.
 
 
 2. files
-    - `Telescope.cpp` , `Telescope.h`
+    - `telescope.cpp` , `telescope.hpp`
       + Definitions and declarations of the class
-    - `InitTelescope.cpp`
-      + Interface functions for the initialization
-    - `HipparcosCatalogue.cpp` , `HipparcosCatalogue.h`
+    - `hipparcos_catalogue.cpp` , `hipparcos_catalogue.hpp`
       + Definitions and declarations of the class to read Hipparcos catalogue.
-    - `InitHipparcosCatalogue.cpp`
-      + Interface functions for the initialization of the `HipparcosCatalogue`
 
 3. how to use
-    - Set the parameters in `Telescope.ini`
-    - Create instance by using initialization function `InitTelescope`
+    - Set the parameters in `telescope.ini`
+    - Create instance by using initialization function `InitTelescope`.
       + Each telescope is numbered as "Telescope1,…"
-    - To use `HipparcosCatalogue` data, `hip_main.csv` is necessary. `s2e-core/scripts/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e-core/scripts/`:
+    - To use `HipparcosCatalogue` data, `hip_main.csv` is necessary. `s2e-core/scripts/Common/download_HIPcatalogue.sh` is the script to download it. Run the following code using Git bash in `s2e-core/scripts/`:
     ```
     bash download_HIPcatalogue.sh 
     ```
@@ -47,26 +43,26 @@
    2. input and output
       - input
         + The position vector of the celestial body in the body-fixed coordinate.
-          * This position vector is provided by `CelesInfo`.
+          * This position vector is provided by `CelestialInformation`.
         + The forbidden angle about the celestial body
-          + Specify the forbidden angle in `Telescope.ini`.
+          + Specify the forbidden angle in `telescope.ini`.
       - output
         + true: The celestial body is in forbidden angle
         + false: The celestial body is  not in forbidden angle
 
    3. process to judge
-      - The judging process is calculated in the telescope's component coordinate. $q_{b2c}$ is the quaternion to convert from the body coordinate(B) to the component coordinate(C). Specify $q_{b2c}$ in `Telescope.ini`. The X-axis of the component coordinate is defined as the line of sight of the telescope.
+      - The judging process is calculated in the telescope's component coordinate. $q_{b2c}$ is the quaternion to convert from the body coordinate(B) to the component coordinate(C). Specify $q_{b2c}$ in `telescope.ini`. The X-axis of the component coordinate is defined as the line of sight of the telescope.
 
 2. `Observe`
    1. overview
-      - This function judges whether the celestial bodies(provided by `CelesInfo`) are in the field of view and outputs the position of them on the image sensor if they are in the field of view
+      - This function judges whether the celestial bodies(provided by `CelestialInformation`) are in the field of view and outputs the position of them on the image sensor if they are in the field of view
       - If they are not in the field of view, this function outputs $(-1,-1)$.
 
    2. input and output
       - input
         + The reference to the position of the celestial body on the image sensor
         + The position vector of the celestial body in the body-fixed coordinate
-          * `CelesInfo` provides the position vector.
+          * `CelestialInformation` provides the position vector.
       - output
         + (void)
           * This function rewrites the "reference to the celestial body's position on the image sensor" given as the input.
@@ -90,7 +86,7 @@
 
         <div align="center">
         <figure id="coordinate">
-        <img src="./figs/coordinate.JPG" width=400 alt="The relationship between the component coodinate(C) and the sensor coodinate(imgsensor)">
+        <img src="./figs/coordinate.JPG" width=400 alt="The relationship between the component coordinate(C) and the sensor coordinate(imgsensor)">
         <figcaption>Fig. 1. The relationship between the component coordinate(C) and the sensor coordinate(imgsensor)</figcaption>
         </figure>
         </div>
@@ -135,17 +131,16 @@ In this section, the output of the functions when some angular velocity is input
       - input $ω_b=[0.1~0~0]^T$ ． 
    2. conditions for the verification
       1. input files
-         - `SampleSimBase.ini`
-         - `Telescope.ini`
-         - `SampleEnvironment.ini`
+         - `sample_simulation_base.ini`
+         - `telescope.ini`
       2. initial condition
-         - `SampleSimBase.ini`
+         - `sample_simulation_base.ini`
         ```
         Simulation start date[UTC] : 2017/12/01 11:00:00.0
         Simulation finish time[sec] : 1500
         Quaternion : q_i2b=[0 0 0 1]^T
         ```
-        - `Telescope.ini`
+        - `telescope.ini`
         ```
         q_b2c=[0 0 0 1]^T
         sun_forbidden_angle = 60
@@ -156,7 +151,7 @@ In this section, the output of the functions when some angular velocity is input
         x_fov_par_pix = 0.02
         y_fov_par_pix = 0.02
         ```
-        - `SampleEnvironment.ini`
+        - `sample_simulation_base.ini`
         ```
         [HIPPARCOS_CATALOGUE]
         max_magnitude = 5.0
@@ -164,7 +159,7 @@ In this section, the output of the functions when some angular velocity is input
         logging = DISABLE
         ```
    
-        The disturbance torque in the main function of `SampleCase.cpp` is commented out.
+        The disturbance torque in the main function of `sample_case.cpp` is commented out.
       
    3. result
       1. judge for forbidden angle

@@ -5,7 +5,7 @@
 - The branch construction
   - main
     - Documents for the latest stable version of s2e-core
-      - Current version supports [s2e-core v6.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v6.0.0)
+      - Current version supports [s2e-core v7.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v7.0.0)
       - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
       - The `major` version number is compatible with s2e-core's `major` version number.
@@ -38,7 +38,10 @@
 1. Tutorials  
    - We strongly recommend to sequentially follow the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
+
    - <details><summary> Tutorials without any external hardware </summary>
+
+     - Users can refer the [s2e-user-example](https://github.com/ut-issl/s2e-user-example) to see sample codes of the following tutorials. 
 
      1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
      1. [How To Add Components](./Tutorials/HowToAddComponents.md)
@@ -52,6 +55,7 @@
      </details>
 
    - <details><summary> Tutorials with external hardware for HILS test </summary>
+   
      - **NOTE**: Currently, these tutorials don't follow the major update v6.0.0.  
      
      1. [How To Perform UART HILS Test](./Tutorials/HowToPerformUartHilsTest.md)
@@ -132,6 +136,7 @@
             1. [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
             1. [Star sensor](./Specifications/Component/AOCS/Spec_STT.md)
             1. Sun sensor: TBW
+            1. MTQ-Magnetometer interference: TBW
 
             </details>
 
@@ -149,7 +154,9 @@
             - `communication` directory manages components for communication of spacecraft and ground stations.
 
             1. Antenna: TBW
+            1. Antenna Radiation pattern: TBW
             1. GS calculator: TBW
+            1. WINGS command sender to C2A: TBW
 
             </details>
 
@@ -210,7 +217,8 @@
          1. [Surface force](./Specifications/Disturbance/Spec_SurfaceForce.md)
             1. [Air Drag](./Specifications/Disturbance/Spec_SurfaceForce_AirDrag.md)
             1. [Solar Radiation Pressure](./Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.md)
-      
+         1. Lunar Gravity field: TBW
+     
       </details>
 
    1. <details><summary> Dynamics </summary>
@@ -221,6 +229,7 @@
          1. [Overview of Attitude calculation](./Specifications/Dynamics/Spec_Attitude.md)
          1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
          1. [Kepler Orbit](./Specifications/Dynamics/Spec_KeplerOrbit.md)
@@ -228,8 +237,14 @@
          1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
          1. [Encke's method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
-      1. Thermal: not supported now.
-      
+
+      1. Thermal
+         1. Heater: TBW
+         1. Heater Controller: TBW
+         1. Heat load: TBW
+         1. Node: TBW
+         1. Temperature: TBW
+
       </details>
 
    1. <details><summary> Environment </summary>
@@ -246,7 +261,8 @@
       1. Global Environment
          1. [Global Environment](./Specifications/Environment/Spec_GlobalEnvironment.md)
          1. [Celestial Information](./Specifications/Environment/Spec_CelestialInformation.md)
-         1. [Celestial Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
+         1. [Earth Rotation](./Specifications/Environment/Spec_CelestialRotation.md)
+         1. Moon Rotation: TBW
          1. [Clock Generator](./Specifications/Environment/Spec_ClockGenerator.md)
          1. [GNSS Satellites](./Specifications/Environment/Spec_GnssSatellites_en.md), ([Japanese version](./Specifications/Environment/Spec_GnssSatellites_ja.md))
          1. [Hipparcos Catalogue](./Specifications/Environment/Spec_HipparcosCatalogue_en.md), ([Japanese version](./Specifications/Environment/Spec_HipparcosCatalogue_ja.md))
@@ -264,6 +280,16 @@
 
    1. <details><summary> Library </summary>
 
+      1. Atmosphere
+         1. Simple air density model: TBW
+         1. Harris-Priester model: TBW
+
+      1. Communication
+         1. COM port interface: TBW
+
+      1. Control Utilities
+         1. First order lag: TBW
+
       1. External
          - External library related source codes.
          1. IGRF (International Geomagnetic Reference Field): TBW
@@ -274,29 +300,43 @@
       1. Geodesy
          1. Geodetic Position: TBW
 
-      1. Communication
-         1. COM port interface: TBW
-
-      1. <details><summary> math </summary>
-
-         1. MatVec (Matrix and Vector) : TBW
-         1. Matrix: TBW
-         1. ODE (Ordinary Differential Equation): TBW
-         1. Quaternion: TBW
-         1. Vector: TBW
-         1. s2e_math: TBW
-
-         </details>
+      1. Gravity
+         1. Gravity potential: TBW
 
       1. Initialize
          1. Initialize file access: TBW
+         1. WINGS operation file: TBW
+         1. C2A command database:TBW
 
       1. Logger
          1. Loggable: TBW
          1. Log Utility: TBW
          1. Logger: TBW
 
-      1. optics
+      1. <details><summary> math </summary>
+
+         1. Constants : TBW
+         1. Matrix: TBW
+         1. Matrix and Vector : TBW
+         1. Ordinary Differential Equation: TBW
+            - This library will be replaced by `Numerical integration`.
+         1. Quaternion: TBW
+         1. S2E math: TBW
+         1. Vector: TBW
+
+         </details>
+
+      1. Numerical integration
+         1. Runge Kutta method: TBW
+            1. 4th order Runge Kutta method: TBW
+            1. Embedded Runge Kutta method: TBW
+               1. Runge Kutta Fehlberg: TBW
+               1. 5th order Dormand and Prince: TBW
+         1. Numerical integrator: TBW
+         1. Numerical integrator manager: TBW
+         1. ODE examples: TBW
+
+      1. Optics
          1. Gaussian Beam Base: TBW
 
       1. Orbit
@@ -304,19 +344,22 @@
          1. Orbital Elements: TBW
          1. Relative Orbit Models: TBW
 
+      1. Planet rotation
+         1. Moon rotation utilities: TBW
+
       1. Randomization
          1. Global randomization: TBW
          1. Normal randomization: TBW
-         1. Minimal standard linear congruential generator
-         1. Minimal standard linear congruential generator with shuffle
-         1. Random walk
+         1. Minimal standard linear congruential generator: TBW
+         1. Minimal standard linear congruential generator with shuffle: TBW
+         1. Random walk: TBW
 
       1. utilities
-         1. Macros: TBW
          1. Endian: TBW
-         1. SLIP: TBW
+         1. Macros: TBW
          1. Quantization: TBW
          1. Ring Buffer: TBW
+         1. SLIP: TBW
       
       </details>
 

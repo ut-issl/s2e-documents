@@ -16,7 +16,7 @@
         + `sample_simulation_base.ini`
             * 初期化ファイル
         + `hip_main.csv`
-            * ヒッパルコス星表の元データ． `s2e-core` 外の `ExtLibralies`  に保存される．使用しやすいように，HIP ID順ではなく，視等級の小さい順にソートされている．
+            * ヒッパルコス星表の元データ． `s2e-core` 外の `ExtLibraries`  に保存される．使用しやすいように，HIP ID順ではなく，視等級の小さい順にソートされている．
     3. 外部ライブラリのダウンロードに関して
         + まずは`hip_main.csv` のダウンロードを済ませる必要がある．このためのスクリプトとして `s2e-core/scripts/download_HIPcatalogue.sh`を用意した．Git Bashなどを利用して，このスクリプトがあるディレクトリで以下を実行することで，必要なcsvファイルをダウンロードすることができる．
             * Macユーザーは，Mac標準のターミナルからではなく，Docker内のUbuntuのターミナルから実行する必要がある．（ `sed` の仕様がMacとLinuxで違うので，正しいcsvファイルを生成することができないため．参考：<https://qiita.com/catfist/items/1156ae0c7875f61417ee>）

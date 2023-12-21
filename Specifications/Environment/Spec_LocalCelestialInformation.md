@@ -9,8 +9,7 @@
      - `LocalCelestialInformation` class is defined. 
    - `src/environment/local/local_environment.cpp, .hpp`
      - `LocalCelestialInformation` class is used here as a member variable of `LocalEnvironment` class.
-   - `src/environment/local/initialize_local_environment.cpp, .hpp`
-     - `LocalCelestialInformation` class is instanced here based on the `.ini` file for the environment.
+
 3. How to use
    - Call ` UpdateAllObjectsInformation` function to calculates the celestial bodies position and velocity.
    - Users can get calculated values by using the following functions:

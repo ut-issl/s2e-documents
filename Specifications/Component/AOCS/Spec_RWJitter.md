@@ -1,7 +1,7 @@
-# Specification for RW jitter
+# Specification for ReactionWheelJitter class
 
 ## 1.  Overview
-- `RWJitter` class simulates the high-frequency jitter of Reaction Wheels.
+- `ReactionWheelJitter` class simulates the high-frequency jitter of Reaction Wheels.
 - This class uses:
   + Angular velocity of the RW
   + Parameters of RW disturbance measured by experiments
@@ -10,31 +10,31 @@
   + RW jitter forces and torques in the body frame
 
 1. functions
-   - `CalcJitter(double angular_velocity)` 
-     + Simulates the jitter
+   - `CalcJitter` 
+     + Simulates the reaction wheel jitter
      + (If Enabled) Calls `AddStructuralResonance()`. This function adds the effect of structural resonance to the high-frequency disturbance of RW. You can choose to consider the effect of structural resonance or not.
 
 2. files
-   - `RWJitter.cpp`, `RWJitter.h`
-   - `RW.ini`
-   - `radial_force_harmonics_coef.csv`,`radial_torque_harmonics_coef.csv` 
+   - `reaction_wheel_jitter.cpp`, `reaction_wheel_jitter.hpp`
+   - `reaction_wheel.ini`
+   - `radial_force_harmonics_coefficients.csv`,`radial_torque_harmonics_coefficients.csv` 
      + These files contain the harmonic coefficients from experiments.
 
 3. how to use
-   - Set the harmonics coefficients in `radial_force_harmonics_coef.csv` and `radial_torque_harmonics_coef.csv`
+   - Set the harmonics coefficients in `radial_force_harmonics_coefficients.csv` and `radial_torque_harmonics_coefficients.csv`
    - The first column is an array of the $h_i$( $i$-th harmonic number). The second column is an array of the $C_i$ (amplitude of the $i$-th harmonic).
-   - Set parameters in `RW.ini`
+   - Set parameters in `reaction_wheel.ini`
    - When only the static imbalance and dynamic imbalance(correspond to $C_i$ at $h_i\ne1$) is known according to the spec sheet, edit the files as follows.
-     + `radial_force_harmonics_coef.csv`
+     + `radial_force_harmonics_coefficients.csv`
        * Set $h_1$(the line 1 of the first column) as $1.0$.
        * Set $C_1$(the line 1 of the second column) as the static imbalance on the spec sheet.
-     + `radial_torque_harmonics_coef.csv`
+     + `radial_torque_harmonics_coefficients.csv`
        * Set $h_1$(the line 1 of the first column) as $1.0$.
        * Set $C_1$(the line 1 of the second column) as the dynamic imbalance on the spec sheet.
-     + `RW.ini`
+     + `reaction_wheel.ini`
        * Set `harmonics_degree = 1`.
     - Set the jitter update period to an appropriate value.
-      + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `Simbase.ini` and `fast_prescaler` in `RW.ini`.
+      + Jitter update period is equal to the product of `CompoUpdateIntervalSec` in `simulation_base.ini` and `fast_prescaler` in `reaction_wheel.ini`.
       + For correct calculation, the update period of the jitter should be set to approximately 0.1ms.
       + A larger update period is not a problem, but it will cause aliasing in the jitter waveform.
 
@@ -123,10 +123,10 @@
             -   The RW model is rotated at 4000 rpm, 6000 rpm, and 8000 rpm, and the disturbance torque is compared with the actual experiment.
         2. initial condition
             1. input files
-                - `SampleSimbase.ini`
-                - `RW.ini`
+                - `sample_simulation_base.ini`
+                - `reaction_wheel.ini`
             2. initial condition
-                - `SampleSimbase.ini`
+                - `sample_simulation_base.ini`
                 ```
                 EndTimeSec = 0.5
                 StepTimeSec = 0.0001
@@ -134,7 +134,7 @@
                 LogOutputIntervalSec = 0.0001
                 ```
 
-                - `RW.ini`
+                - `reaction_wheel.ini`
                 ```
                 fast_prescaler = 1
                 max_angular_velocity = 9000.0

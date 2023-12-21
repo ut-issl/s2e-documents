@@ -1,8 +1,8 @@
-# Specification of SensorBase class
+# Specification of Sensor class
 
 ## 1.  Overview
 1. Functions
-   - The `SensorBase` class is a base class to provide common features for sensors.
+   - The `Sensor` class is a base class to provide common features for sensors.
    - This class adds the following noises and output limits.
      - Constant offset noise
      - Normal random noise
@@ -10,12 +10,12 @@
      - Scale factor noise and cross-talk between axes
 
 2. Related files
-   - Main file: `SensorBase.cpp, .h`
-   - Used Libraries: `Vector.h`, `Matrix.h`, `NormalRand.h`, `RandomWalk.h`
+   - Main file: `sensor_base.cpp, .hpp`
+   - Used Libraries: `vector.hpp`, `matrix.hpp`, `normal_randomization.hpp`, `random_walk.hpp`
 
 3. How to use
    - Inherit this class by your sensor class.
-   - The `GYRO` and `MagSensor` in `S2E_CORE` are useful as usage examples.
+   - The `GyroSensor` and `Magnetometer` in `S2E_CORE` are useful as usage examples.
 
 ## 2. Explanation of Algorithm
 1. Constructor
@@ -28,13 +28,13 @@
         - `range_to_zero_c`: The output is set as zero when the true value is larger than this value.
         - This feature is optional. If you don't want to use the value, please set this huge value.
         - `range_to_zero_c` should be larger than `range_to_const_c`.
-      - `bias_c`: Constant offset noise
-      - `nr_stddev_c`: Standard deviation for normal random noise
+      - `bias_noise_c`: Constant offset noise
+      - `normal_random_standard_deviation_c`: Standard deviation for normal random noise
       - Random Walk noise parameters
-        - `rw_stepwidth`: Step width for Random Walk propagation (unit: sec)
+        - `random_walk_step_width_s`: Step width for Random Walk propagation (unit: sec)
           - It should be the same as the update frequency of the sensor.
-        - `rw_stddev_c`: Standard deviation for Random Walk
-        - `rw_limit_c`: Soft limit of Random Walk
+        - `random_walk_standard_deviation_c`: Standard deviation for Random Walk
+        - `random_walk_limit_c`: Soft limit of Random Walk
       - **Note**: The number of elements for all parameters can be set by using the `template` feature.
       - **Note**: All parameters are defined in the component frame.
       - **Note**: Normally, the unit of the parameters is the same as the unit of true value. Users also can change the unit by using the scale factor matrix.
@@ -53,28 +53,28 @@
    4. note
       - N/A
 ## 3. Results of verifications
-- We verified the `SensorBase` class with the following parameters.
+- We verified the `Sensor` class with the following parameters.
 - Default parameters
   - `scale_factor` = Unit matrix
   - `range_to_const_c` = 5
   - `range_to_zero_c` = 10
-  - `bias_c` = 0.0
-  - `nr_stddev_c` = 0.0
-  - `rw_stepwidth`= 0.1 sec
-  - `rw_stddev_c` = 0.0
-  - `rw_limit_c` = 0.0
+  - `bias_noise_c` = 0.0
+  - `normal_random_standard_deviation_c` = 0.0
+  - `random_walk_step_width_s`= 0.1 sec
+  - `random_walk_standard_deviation_c` = 0.0
+  - `random_walk_limit_c` = 0.0
   - input value: 0.0
-- Case 1: `bias_c` = 1.0, others = default
+- Case 1: `bias_noise_c` = 1.0, others = default
   - The bottom figure shows the result of the output data.
   - We verified the constant offset noise calculation is correct according to the data.
   <div align="center">
   <figure id="bias_1">
   <img src="./figs/bias_1.png" width=400>
-  <figcaption>Result of constant offset noise (bias_c = 1.0).</figcaption>
+  <figcaption>Result of constant offset noise (bias_noise_c = 1.0).</figcaption>
   </figure>
   </div>
 
-- Case 2: `nr_stddev_c` = 1.0, others = default
+- Case 2: `normal_random_standard_deviation_c` = 1.0, others = default
   - The simulation time is 1000sec, and the log output period is 0.1sec.
   - The bottom figure shows the result of the output data.
   - The calculated average and standard deviation from the output data are shown as follows.
@@ -84,11 +84,11 @@
   <div align="center">
   <figure id="normal_random_noise_1">
   <img src="./figs/normal_random_noise_1.png" width=400>
-  <figcaption>Result of normal random noise (nr_stddev_c = 1.0).</figcaption>
+  <figcaption>Result of normal random noise (normal_random_standard_deviation_c = 1.0).</figcaption>
   </figure>
   </div>
 
-- Case 3: `rw_stddev_c` = 0.3, `rw_limit_c` = 0.05, others = default
+- Case 3: `random_walk_standard_deviation_c` = 0.3, `random_walk_limit_c` = 0.05, others = default
   - The simulation time is 200sec, and the log output period is 0.5sec.
   - The bottom figure shows the result of the output data.
   - The output data randomly varies inside the limit value.
@@ -97,7 +97,7 @@
   <div align="center">
   <figure id="random_walk_03_005">
   <img src="./figs/random_walk_03_005.png" width=400>
-  <figcaption>Result of Random Walk noise (rw_stddev_c = 0.3, rw_limit_c = 0.05).</figcaption>
+  <figcaption>Result of Random Walk noise (random_walk_standard_deviation_c = 0.3, random_walk_limit_c = 0.05).</figcaption>
   </figure>
   </div>
 

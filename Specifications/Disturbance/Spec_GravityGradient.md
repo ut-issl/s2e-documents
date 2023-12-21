@@ -7,7 +7,6 @@
 
 2. related files
    - `gravity_gradient.cpp`, `gravity_gradient.hpp` : Definitions and declarations of the class
-   - `initialize_Disturbance.cpp`, `initialize_Disturbance.hpp` : Interface functions for the initialization
    - `disturbance.ini` : Initialization file
 
 3. how to use

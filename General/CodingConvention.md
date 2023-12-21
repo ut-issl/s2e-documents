@@ -1,6 +1,6 @@
 # Coding Convention of S2E
 
-## Fomatter
+## Formatter
 - We use [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) for S2E. 
   - We selected `Google` base style with small modifications.
   - Details are written in [.clang-format](https://github.com/ut-issl/s2e-core/blob/develop/.clang-format).

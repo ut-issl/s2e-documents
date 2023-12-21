@@ -1,9 +1,9 @@
 # How to Visualize Simulation Results
 
 ## 1.  Overview
-The S2E generates the CSV format log file as the simulation results at the `data/log` directory. Users can use them to check the result of thier simulation with the following methods.  
+The S2E generates the CSV format log file as the simulation results at the `data/log` directory. Users can use them to check the result of their simulation with the following methods.  
 - Open the CSV file with a spreadsheet application like Excel, and make charts to analyze and/or visualize the results.
-- Open the CSV file with user's handmaded programs to analyze and/or visualize the resutls.
+- Open the CSV file with user's handmade programs to analyze and/or visualize the results.
 - Use the `Plot Scripts` provided by the `S2E-CORE` to visualize the results.
 
 We are trying to increase the `Plot Scripts` to share the analysis method with many users and to improve the usability of S2E. We are welcome to add new `Plot Scripts` by users.

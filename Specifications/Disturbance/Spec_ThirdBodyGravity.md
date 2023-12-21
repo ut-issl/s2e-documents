@@ -65,23 +65,23 @@
     
     2. initial values 
         ```
-        StartYMDHMS=2020/01/01 11:00:00.0
-        EndTimeSec=86400
-        StepTimeSec=10
-        OrbitPropagateStepTimeSec=10
-        LogPeriod = 5
-        SimulationSpeed = 0
+        simulation_start_time_utc = 2020/01/01 11:00:00.0
+        simulation_duration_s = 86400
+        simulation_step_s = 10
+        orbit_update_period_s = 10
+        log_output_period_s = 5
+        simulation_speed_setting = 0
         ```
         - Since the effect of third body gravity increases as one moves away from the central object, it is verified for GEO.
 
         ```
-        init_position(0) = 42241095.67425744
-        init_position(1) = 0
-        init_position(2) = 0
+        initial_position_i_m(0) = 42241095.67425744
+        initial_position_i_m(1) = 0
+        initial_position_i_m(2) = 0
 
-        init_velocity(0) = 0
-        init_velocity(1) = 2.978E+4
-        init_velocity(1) = 3071.859163190527
+        initial_velocity_i_m_s(0) = 0
+        initial_velocity_i_m_s(1) = 2.978E+4
+        initial_velocity_i_m_s(1) = 3071.859163190527
         ```
 
         - All the disturbance calculations, except for the third-object gravity, are set to DISABLE.

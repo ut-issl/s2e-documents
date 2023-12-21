@@ -9,7 +9,6 @@
    - `air_drag.cpp`, `air_drag.hpp` : The `AirDrag` class is defined.
    - `surface_force.cpp`, `surface_force.hpp` : The base class `SurfaceForce` is defined.
      - **Note**: `SurfaceForce` class inherits `SimpleDisturbance` class, and `SimpleDisturbance` class inherits `Disturbance` class. So, please refer them if users want to understand the structure deeply.
-   - `initialize_disturbances.cpp`, `initialize_disturbances.hpp` : Interface functions for the initialization
    - `disturbance.ini` : Initialization file
 
 3. How to use
@@ -120,9 +119,9 @@
    
      | parameters/results          | Case 1  | Case 2  | Case 3  |
      | --------------------------- | ------- | ------- | ------- |
-     | $\sigma_{d}$              | 0.8     | 0.6     | 0.4     |
-     | $\theta$ rad              | 0.202   | 0.202   | 0.202   |
-     | $v$ m/s                   | 7420    | 7420    | 7420    |
+     | $\sigma_{d}$                | 0.8     | 0.6     | 0.4     |
+     | $\theta$ rad                | 0.202   | 0.202   | 0.202   |
+     | $v$ m/s                     | 7420    | 7420    | 7420    |
      | Out-plane force (S2E)       | 2.30297 | 2.68680 | 3.07062 |
      | Out-plane force (reference) | 2.30297 | 2.68680 | 3.07062 |
      | Out-plane force (S2E)       | 0.31514 | 0.23636 | 0.15757 |

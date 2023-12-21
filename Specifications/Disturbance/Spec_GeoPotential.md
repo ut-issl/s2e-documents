@@ -1,19 +1,19 @@
-# Specification of Geo Potential Calculation
+# Specification of Geopotential Calculation
 
 ## 1.  Overview
 
 1. Functions
-   - The `GeoPotential` class calculates the gravity acceleration of the earth with the [EGM96](https://cddis.nasa.gov/926/egm96/) geo-potential model.
+   - The `Geopotential` class calculates the gravity acceleration of the earth with the [EGM96](https://cddis.nasa.gov/926/egm96/) geo-potential model.
 
 2. Related files
-   - `src/disturbances/geopotential.cpp`
-   - `src/disturbances/geopotential.hpp`
+   - `src/disturbances/geopotential.cpp, .hpp`
+   - `src/library/gravity/gravity_potential.cpp, .hpp`
    - `s2e-core/ExtLibraries/GeoPotential/egm96_to360.ascii`
      - The EGM96 geopotential coefficients file was downloaded from [NASA's EMG96 website](https://cddis.nasa.gov/926/egm96/getit.html), but we cannot access it now.
 
 3. How to use   
-   - Make an instance of the `GeoPotential` class in `InitializeInstances` function in `disturbances.cpp`
-     - Create an instance by using the initialization function `InitGeoPotential`
+   - Make an instance of the `Geopotential` class in `InitializeInstances` function in `disturbances.cpp`
+     - Create an instance by using the initialization function `InitGeopotential`
    - Choose an orbit propagator mode that considers disturbances.
    - Edit the `disturbance.ini` file
      - Select `ENABLE` for `calculation` and `logging`
@@ -226,12 +226,12 @@ When $m>=0$, following correction factors are useful for z acceleration
       2. initial values
          - Default initialize files
            ```
-           StartYMDHMS=2020/01/01 11:00:00.0
-           EndTimeSec=200
-           StepTimeSec=0.1
-           OrbitPropagateStepTimeSec=0.1
-           LogPeriod = 5
-           SimulationSpeed = 0
+           simulation_start_time_utc = 2020/01/01 11:00:00.0
+           simulation_duration_s = 200
+           simulation_step_s = 0.1
+           orbit_update_period_s = 0.1
+           log_output_period_s = 5
+           simulation_speed_setting = 0
            ```
       
          - Especially, we chose following TLE for orbit calculation
@@ -285,7 +285,7 @@ When $m>=0$, following correction factors are useful for z acceleration
       
       - The `time_ms_` is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.
       - Environment
-        - Corei7-8650U(2.11GHz)
+        - Core i7-8650U(2.11GHz)
         - VS2017 32bit debug
       
    2. conditions for the verification
