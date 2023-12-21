@@ -49,7 +49,7 @@ Users can change the $\mu$ for other planet with the constructor.
 #### 3. results
 - The order of the gg torque is $10^7$, which seems a proper value.
 
-   ![](./figs/test_ggtorque.png)
+![](./figs/test_ggtorque.png)
 
 ## 4. References
 

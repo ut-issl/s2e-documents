@@ -58,7 +58,7 @@ N_{line}=\frac{1}{2}(n+1)(n+2)-3
 
 ### 2. Calculate Legendre polynomials with recursion algorithm
 
-1. overview
+#### 1. overview
 - We chose to use the recursion algorithm written in chapter 3.2.4 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807) since the calculation of the Legendre polynomials for spherical harmonics is time-consuming.
   - However, the original equation in the book is unnormalized form, and it is not suitable with the normalized coefficients. 
   - For a small degree, users can directly use the normalized function $N_{n,m}$  to unnormalize the coefficients or to normalize the functions $V_{n,m}$ and $V_{n,m}$ . But for a large degree, the factorial calculation in the $N_{n,m}$ reaches a huge value, which standard `double` variables cannot handle.
@@ -67,7 +67,7 @@ N_{line}=\frac{1}{2}(n+1)(n+2)-3
   - `v_w_nn_update`
   - `v_w_nm_update`
 
-2. inputs and outputs
+#### 2. inputs and outputs
 - Inputs
   - Both functions
     - Satellite position in ECEF frame $x, y, z$
@@ -78,7 +78,7 @@ N_{line}=\frac{1}{2}(n+1)(n+2)-3
   - `v_w_nn_update`: $V_{n,n}$ and $W_{n,n}$
   - `v_w_nm_update`: $V_{n,m}$ and $W_{n,m}$
 
-3. algorithm
+#### 3. algorithm
 
 For unnormalized algorithms, see chapter 3.2.4 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807).
 
@@ -164,15 +164,19 @@ The recurrence relations for normalized V and W are derived as  follows
 
 #### 2. inputs and outputs
 - Input
-  - normalized Coefficients: $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ 
-  - normalized function: $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$
+  - normalized coefficients
+    - $\bar{C}_{n,m}$
+    - $\bar{S}_{n,m}$ 
+  - normalized function
+    - $\bar{V}_{n,m}$
+    - $\bar{W}_{n,m}$
 - Output
   - Gravity acceleration in ECEF frame 
 #### 3. algorithm
 
 For unnormalized algorithms, See  chapter 3.2.5 of [Satellite Orbits](https://www.springer.com/jp/book/9783540672807). 
 
-When we use the normalized coefficients $\bar{C}_{n,m}$ and $\bar{S}_{n,m}$ and $\bar{V}_{n,m}$ and $\bar{W}_{n,m}$ functions,  the acceleration calculation is described like follows
+When we use the normalized coefficients and normalized functions, the acceleration calculation is described like follows
 ```math
 \begin{align}
 \ddot{x}_{n,m} &= -\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1}\\
