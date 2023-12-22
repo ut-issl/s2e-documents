@@ -2,16 +2,16 @@
 
 ## 1.  Overview
 
-1. Functions
-   - The `SampleSpacecraft` class is is an example of making the user defined spacecraft with the `Spacecraft` class.
+### 1. Functions
+- The `SampleSpacecraft` class is is an example of making the user defined spacecraft with the `Spacecraft` class.
 
-2. Related files
-   - `src/simulation_sample/spacecraft/sample_spacecraft.cpp, .hpp`
-     - The `SampleSpacecraft` class is defined here.
-   - `src/simulation/spacecraft/spacecraft.cpp, .hpp`
-     - The `Spacecraft` class is defined here.
-   - `src/simulation_sample/case/sample_case.cpp, .hpp`
-     - The instance of the `SampleSpacecraft` class is made in this class.
+### 2. Related files
+- `src/simulation_sample/spacecraft/sample_spacecraft.cpp, .hpp`
+  - The `SampleSpacecraft` class is defined here.
+- `src/simulation/spacecraft/spacecraft.cpp, .hpp`
+  - The `Spacecraft` class is defined here.
+- `src/simulation_sample/case/sample_case.cpp, .hpp`
+  - The instance of the `SampleSpacecraft` class is made in this class.
 
 
 ## 2. How to make user defined spacecraft

@@ -1,57 +1,65 @@
 # Specification of Sensor class
 
 ## 1.  Overview
-1. Functions
-   - The `Sensor` class is a base class to provide common features for sensors.
-   - This class adds the following noises and output limits.
-     - Constant offset noise
-     - Normal random noise
-     - Random Walk noise
-     - Scale factor noise and cross-talk between axes
+### 1. Functions
+- The `Sensor` class is a base class to provide common features for sensors.
+- This class adds the following noises and output limits.
+  - Constant offset noise
+  - Normal random noise
+  - Random Walk noise
+  - Scale factor noise and cross-talk between axes
 
-2. Related files
-   - Main file: `sensor_base.cpp, .hpp`
-   - Used Libraries: `vector.hpp`, `matrix.hpp`, `normal_randomization.hpp`, `random_walk.hpp`
+### 2. Related files
+- Main file: `sensor_base.cpp, .hpp`
+- Used Libraries: `vector.hpp`, `matrix.hpp`, `normal_randomization.hpp`, `random_walk.hpp`
 
-3. How to use
-   - Inherit this class by your sensor class.
-   - The `GyroSensor` and `Magnetometer` in `S2E_CORE` are useful as usage examples.
+### 3. How to use
+- Inherit this class by your sensor class.
+- The `GyroSensor` and `Magnetometer` in `S2E_CORE` are useful as usage examples.
 
 ## 2. Explanation of Algorithm
-1. Constructor
-   1. overview
-      - Users can set sensor noise parameters by using the Constructor.
-   2. inputs
-      - `scale_factor`: Scale factor matrix to express scale factor noise and cross-talk      
-      - Range related parameters
-        - `range_to_const_c`: The output value cannot over this value
-        - `range_to_zero_c`: The output is set as zero when the true value is larger than this value.
-        - This feature is optional. If you don't want to use the value, please set this huge value.
-        - `range_to_zero_c` should be larger than `range_to_const_c`.
-      - `bias_noise_c`: Constant offset noise
-      - `normal_random_standard_deviation_c`: Standard deviation for normal random noise
-      - Random Walk noise parameters
-        - `random_walk_step_width_s`: Step width for Random Walk propagation (unit: sec)
-          - It should be the same as the update frequency of the sensor.
-        - `random_walk_standard_deviation_c`: Standard deviation for Random Walk
-        - `random_walk_limit_c`: Soft limit of Random Walk
-      - **Note**: The number of elements for all parameters can be set by using the `template` feature.
-      - **Note**: All parameters are defined in the component frame.
-      - **Note**: Normally, the unit of the parameters is the same as the unit of true value. Users also can change the unit by using the scale factor matrix.
-   3. algorithm
-      - The values of the `range_to_const_c` and `range_to_zero_c` are checked here with the `RangeCheck` function.
-   4. note
-      - N/A
-2. Measure
-   1. overview
-      - This function adds all noises, and the output is clipped by the `Clip` function not to over the ranges.
-   2. inputs and outputs
-      - input: True value on the component frame
-      - output: Measured value on the component frame
-   3. algorithm
-      - N/A 
-   4. note
-      - N/A
+### 1. Constructor
+#### 1. overview
+- Users can set sensor noise parameters by using the Constructor.
+
+#### 2. inputs
+- `scale_factor`: Scale factor matrix to express scale factor noise and cross-talk      
+- Range related parameters
+  - `range_to_const_c`: The output value cannot over this value
+  - `range_to_zero_c`: The output is set as zero when the true value is larger than this value.
+  - This feature is optional. If you don't want to use the value, please set this huge value.
+  - `range_to_zero_c` should be larger than `range_to_const_c`.
+- `bias_noise_c`: Constant offset noise
+- `normal_random_standard_deviation_c`: Standard deviation for normal random noise
+- Random Walk noise parameters
+  - `random_walk_step_width_s`: Step width for Random Walk propagation (unit: sec)
+    - It should be the same as the update frequency of the sensor.
+  - `random_walk_standard_deviation_c`: Standard deviation for Random Walk
+  - `random_walk_limit_c`: Soft limit of Random Walk
+- **Note**: The number of elements for all parameters can be set by using the `template` feature.
+- **Note**: All parameters are defined in the component frame.
+- **Note**: Normally, the unit of the parameters is the same as the unit of true value. Users also can change the unit by using the scale factor matrix.
+
+#### 3. algorithm
+- The values of the `range_to_const_c` and `range_to_zero_c` are checked here with the `RangeCheck` function.
+
+#### 4. note
+- N/A
+
+### 2. Measure
+#### 1. overview
+- This function adds all noises, and the output is clipped by the `Clip` function not to over the ranges.
+
+#### 2. inputs and outputs
+- input: True value on the component frame
+- output: Measured value on the component frame
+
+#### 3. algorithm
+- N/A 
+
+#### 4. note
+- N/A
+
 ## 3. Results of verifications
 - We verified the `Sensor` class with the following parameters.
 - Default parameters
