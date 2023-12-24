@@ -131,7 +131,7 @@
             - The `aocs` directory manages components like sensors and actuators for the AOCS subsystem.
 
             1. GNSS Receiver: TBW
-            1. GYRO Sensor: TBW
+            1. [GYRO Sensor](./Specifications/Component/AOCS/spec_gyro_sensor.md)
             1. Magnetometer: TBW
             1. Magnetorquer: TBW
             1. Reaction wheel: TBW
