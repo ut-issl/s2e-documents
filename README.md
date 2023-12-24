@@ -132,7 +132,7 @@
 
             1. GNSS Receiver: TBW
             1. [GYRO Sensor](./Specifications/Component/AOCS/spec_gyro_sensor.md)
-            1. Magnetometer: TBW
+            1. [Magnetometer](./Specifications/Component/AOCS/spec_magnetometer.md)
             1. Magnetorquer: TBW
             1. Reaction wheel: TBW
             1. [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
