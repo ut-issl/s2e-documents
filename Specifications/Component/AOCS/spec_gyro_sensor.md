@@ -8,6 +8,7 @@
 ### 2. files
 - `gyro_sensor.cpp, gyro_sensor.hpp`: Definitions and declarations of the class
 - `gyro_sensor.ini`: Initialization file
+- `plot_gyro_sensor.py`: An example of Python script to plot gyro sensor output
 
 ### 3. how to use
 - Set the parameters in `gyro_sensor.ini`.
