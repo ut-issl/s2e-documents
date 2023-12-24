@@ -13,6 +13,7 @@
   + Definitions and declarations of the class
 - `thruster.ini`
   +  Parameters for a/multiple thruster(s)
+- `plot_simple_thruster.py`: An example of a Python script to plot simple thruster output
 
 ### 3. how to use
 - Set the parameters written in `thruster.ini`.
