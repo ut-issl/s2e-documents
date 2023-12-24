@@ -115,6 +115,8 @@
       1. <details><summary> Ideal </summary>
 
          - `ideal` directory manages source codes of idealized components which are used in initial analysis phase in research and satellite development.
+         - Angular velocity Observer: TBW
+         - Attitude Observer: TBW
          - Force Generator: TBW
          - Torque Generator: TBW
 
@@ -155,7 +157,7 @@
 
             1. Antenna: TBW
             1. Antenna Radiation pattern: TBW
-            1. GS calculator: TBW
+            1. Ground Station calculator: TBW
             1. WINGS command sender to C2A: TBW
 
             </details>
@@ -300,6 +302,12 @@
       1. Geodesy
          1. Geodetic Position: TBW
 
+      1. GNSS (Global Navigation Satellite System)
+         1. ANTEX file reader: TBW
+         1. Bias SINEX file reader: TBW
+         1. GNSS satellite number: TBW
+         1. SP3 file reader: TBW
+
       1. Gravity
          1. Gravity potential: TBW
 
@@ -343,6 +351,7 @@
          1. Kepler Orbit: TBW
          1. Orbital Elements: TBW
          1. Relative Orbit Models: TBW
+         1. Interpolation orbit: TBW
 
       1. Planet rotation
          1. Moon rotation utilities: TBW
