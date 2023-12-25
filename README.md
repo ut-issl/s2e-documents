@@ -118,7 +118,7 @@
          - Angular velocity Observer: TBW
          - Attitude Observer: TBW
          - [Force Generator](./Specifications/Component/AOCS/spec_force_generator.md)
-         - Torque Generator: TBW
+         - [Torque Generator](./Specifications/Component/AOCS/spec_torque_generator.md)
 
          </details>
 
