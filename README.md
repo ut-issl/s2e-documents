@@ -138,7 +138,7 @@
                - [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
             1. [Star sensor](./Specifications/Component/AOCS/Spec_STT.md)
             1. [Sun sensor](./Specifications/Component/AOCS/spec_sun_sensor.md)
-            1. MTQ-Magnetometer interference: TBW
+            1. [MTQ-Magnetometer interference](./Specifications/Component/AOCS/spec_mtq_magnetometer_interference)
 
             </details>
 
