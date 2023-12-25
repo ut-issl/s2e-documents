@@ -115,7 +115,7 @@
       1. <details><summary> Ideal </summary>
 
          - `ideal` directory manages source codes of idealized components which are used in the initial analysis phase in research and satellite development.
-         - Angular velocity Observer: TBW
+         - [Angular Velocity Observer](./Specifications/Component/AOCS/spec_angular_velocity_observer.md)
          - [Attitude Observer](./Specifications/Component/AOCS/spec_attitude_observer.md)
          - [Force Generator](./Specifications/Component/AOCS/spec_force_generator.md)
          - [Torque Generator](./Specifications/Component/AOCS/spec_torque_generator.md)
