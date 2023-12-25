@@ -134,8 +134,8 @@
             1. [GYRO Sensor](./Specifications/Component/AOCS/spec_gyro_sensor.md)
             1. [Magnetometer](./Specifications/Component/AOCS/spec_magnetometer.md)
             1. [Magnetorquer](./Specifications/Component/AOCS/spec_magnetorquer.md)
-            1. Reaction wheel: TBW
-            1. [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
+            1. [Reaction wheel](./Specifications/Component/AOCS/spec_reaction_wheel.md)
+               - [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
             1. [Star sensor](./Specifications/Component/AOCS/Spec_STT.md)
             1. [Sun sensor](./Specifications/Component/AOCS/spec_sun_sensor.md)
             1. MTQ-Magnetometer interference: TBW
