@@ -24,7 +24,7 @@
 
 ### 1. MainRoutine
 #### 1. Overview
-- The `MainRoutine` function adds output noise to the ordered magnetic moment and calculates generated force.
+- The `MainRoutine` function adds output noise to the ordered force and calculates generated force.
 
 #### 2. Inputs and Outputs
 - NA
