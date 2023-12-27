@@ -5,7 +5,7 @@
 - The branch construction
   - main
     - Documents for the latest stable version of s2e-core
-      - Current version supports [s2e-core v7.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v7.0.0)
+      - The Current version supports [s2e-core v7.2.0](https://github.com/ut-issl/s2e-core/releases/tag/v7.2.0)
       - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
       - The `major` version number is compatible with s2e-core's `major` version number.
@@ -13,7 +13,7 @@
     - Documents for the latest `develop` branch of s2e-core
     - This version is only for s2e-core developers
   - feature/branch-name
-    - Writing documents before merge with the `develop`
+    - Writing documents before merging with the `develop`
   - hotfix/branch-name
     - Fix typos, misdescription, etc.
 - If you have any questions or comments for S2E, feel free to ask us on the [discussions page of s2e-core](https://github.com/ut-issl/s2e-core/discussions).
@@ -24,24 +24,24 @@
    1. [Coding Convention of S2E](./General/CodingConvention.md)
    1. [Naming Rule for User Interface](./General/NamingRuleForUserInterface.md)
    1. [Format of S2E Documents](./General/DocumentFormat.md)
-   1. Mandatory set up and How to Build the S2E  
+   1. Mandatory Setup and How to Build the S2E  
 	   1. [How to build with Visual Studio](./General/HowToCompileWithVisualStudio.md)
 	   1. [How to build with Ubuntu in Docker](./General/HowToCompileWithUbuntuInDocker.md) for **both Windows and Mac** users
 	   1. How to build with other compilers will be written
    1. Set up of External Libraries  
       **NOTE**: Currently, this setting sequence is included in the mandatory setups described above. So users don't need to see the following documents.
-      1. [How to download CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
+      1. [How to download the CSPICE Library](./General/HowToDwnloadCSPCElibrary.md)
 	   1. [How to download and make NRLMSISE00 Library](./General/HowToDownloadNRLMSISE00library.md)
    1. Visualization of Simulation Results
       1. [How to Visualize Simulation Results](./General/HowToVisualizeSimulationResults.md)
 
 1. Tutorials  
-   - We strongly recommend to sequentially follow the tutorials without external hardware at first.
+   - We strongly recommend sequentially following the tutorials without external hardware at first.
    1. [Getting Started](./Tutorials/GettingStarted.md)
 
    - <details><summary> Tutorials without any external hardware </summary>
 
-     - Users can refer the [s2e-user-example](https://github.com/ut-issl/s2e-user-example) to see sample codes of the following tutorials. 
+     - Users can refer to the [s2e-user-example](https://github.com/ut-issl/s2e-user-example) to see sample codes of the following tutorials. 
 
      1. [How To Make New Simulation Scenario](./Tutorials/HowToMakeNewSimulationScenario.md)
      1. [How To Add Components](./Tutorials/HowToAddComponents.md)
@@ -88,7 +88,7 @@
 
       1. <details><summary> Ports </summary>
 
-         - `ports` directory manages source codes to emulate connection of components including communication and power ports.
+         - `ports` directory manages source codes to emulate the connection of components including communication and power ports.
 
          1. GPIO Port: TBW
          1. I2C Port: TBW
@@ -101,8 +101,8 @@
 
       1. <details><summary> Examples </summary>
 
-         - `examples` directory manages example source codes to show how to make user defined components.
-         - Please do not use these classes directory for your simulation analysis.
+         - `examples` directory manages example source codes to show how to make user-defined components.
+         - Please do not use these class directories for your simulation analysis.
 
          1. Change structure: TBW
          1. I2C controller for HILS: TBW
@@ -114,7 +114,9 @@
 
       1. <details><summary> Ideal </summary>
 
-         - `ideal` directory manages source codes of idealized components which are used in initial analysis phase in research and satellite development.
+         - `ideal` directory manages source codes of idealized components which are used in the initial analysis phase in research and satellite development.
+         - Angular velocity Observer: TBW
+         - Attitude Observer: TBW
          - Force Generator: TBW
          - Torque Generator: TBW
 
@@ -122,11 +124,11 @@
 
       1. <details><summary> Real </summary>
 
-         - `real` directory manages source codes to emulate well used components in a normal satellite mission.
+         - `real` directory manages source codes to emulate well-used components in a normal satellite mission.
 
          1. <details><summary> AOCS (Attitude and Orbit Control System) </summary>
 
-            - `aocs` directory manages components like sensor and actuators for AOCS subsystem.
+            - The `aocs` directory manages components like sensors and actuators for the AOCS subsystem.
 
             1. GNSS Receiver: TBW
             1. GYRO Sensor: TBW
@@ -142,7 +144,7 @@
 
          1. <details><summary> CDH (Command and Data Handling) </summary>
 
-            - `cdh` directory manages components for CDH subsystem.
+            - The `cdh` directory manages components for the CDH subsystem.
 
             1. On Board Computer: TBW
             1. OBC with C2A: TBW
@@ -155,14 +157,14 @@
 
             1. Antenna: TBW
             1. Antenna Radiation pattern: TBW
-            1. GS calculator: TBW
+            1. Ground Station calculator: TBW
             1. WINGS command sender to C2A: TBW
 
             </details>
 
          1. <details><summary> Mission </summary>
 
-            - `mission` directory manages mission specific components like science instruments of spacecraft.
+            - The `mission` directory manages mission-specific components like science instruments of spacecraft.
 
             1. [Telescope](./Specifications/Component/Mission/Spec_Telescope_en.md) ([Japanese version](./Specifications/Component/Mission/Spec_Telescope_ja.md))
 
@@ -170,7 +172,7 @@
 
          1. <details><summary> Power </summary>
 
-            - `power` directory manages components for power subsystem.
+            - The `power` directory manages components for the power subsystem.
 
             1. Battery: TBW
             1. CSV scenario interface: TBW
@@ -182,7 +184,7 @@
 
          1. <details><summary> Propulsion </summary>
 
-            - `propulsion` directory manages components for propulsion subsystem.
+            - The `propulsion` directory manages components for the propulsion subsystem.
 
             1. [Simple Thruster](./Specifications/Component/Propulsion/Spec_SimpleThruster.md)
 
@@ -194,7 +196,7 @@
 
       1. <details><summary> Products </summary>
 
-         - `products` directory manages source codes to emulate specific products published in the world. The telemetry and command interfaces are also emulated based on ICDs.
+         - The `products` directory manages source codes to emulate specific products published in the world. The telemetry and command interfaces are also emulated based on ICDs.
          - Users can use them for a practical simulation for satellite development.
          - TBW
 
@@ -204,7 +206,7 @@
 
    1. <details><summary> Disturbances </summary>
 
-      - `disturbances` directory manages source codes to calculate disturbances acting on spacecraft on orbit.
+      - The `disturbances` directory manages source codes to calculate disturbances acting on spacecraft in orbit.
 
       1. Base classes
          1. [Disturbance](./Specifications/Disturbance/Spec_Disturbance.md)
@@ -223,10 +225,10 @@
 
    1. <details><summary> Dynamics </summary>
 
-      - `dynamics` directory manages source codes to calculate dynamics behavior of spacecraft.
+      - The `dynamics` directory manages source codes to calculate the dynamics behavior of spacecraft.
 
       1. Attitude
-         1. [Overview of Attitude calculation](./Specifications/Dynamics/Spec_Attitude.md)
+         1. [Overview of Attitude Calculation](./Specifications/Dynamics/Spec_Attitude.md)
          1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
 
@@ -252,7 +254,7 @@
       - `environment` directory manages source codes to calculate space environment simulation.
 
       1. Overview of Environment calculation
-         - We divided space environment into two categories: `global` and `local`.
+         - We divided the space environment into two categories: `global` and `local`.
          - `global` directory manages space environment calculations which are shared with all spacecraft and ground stations in the simulation scenario.
            - e.g., planet position vector in the inertial frame.
          - `local` directory manages space environment calculations only for a spacecraft at its position and attitude.
@@ -291,7 +293,7 @@
          1. First order lag: TBW
 
       1. External
-         - External library related source codes.
+         - External library-related source codes.
          1. IGRF (International Geomagnetic Reference Field): TBW
          1. inih: TBW
          1. nrlmsise00: TBW
@@ -300,13 +302,19 @@
       1. Geodesy
          1. Geodetic Position: TBW
 
+      1. GNSS (Global Navigation Satellite System)
+         1. ANTEX file reader: TBW
+         1. Bias SINEX file reader: TBW
+         1. GNSS satellite number: TBW
+         1. SP3 file reader: TBW
+
       1. Gravity
          1. Gravity potential: TBW
 
       1. Initialize
          1. Initialize file access: TBW
          1. WINGS operation file: TBW
-         1. C2A command database:TBW
+         1. C2A command database: TBW
 
       1. Logger
          1. Loggable: TBW
@@ -315,9 +323,9 @@
 
       1. <details><summary> math </summary>
 
-         1. Constants : TBW
+         1. Constants: TBW
          1. Matrix: TBW
-         1. Matrix and Vector : TBW
+         1. Matrix and Vector: TBW
          1. Ordinary Differential Equation: TBW
             - This library will be replaced by `Numerical integration`.
          1. Quaternion: TBW
@@ -343,6 +351,7 @@
          1. Kepler Orbit: TBW
          1. Orbital Elements: TBW
          1. Relative Orbit Models: TBW
+         1. Interpolation orbit: TBW
 
       1. Planet rotation
          1. Moon rotation utilities: TBW
@@ -365,7 +374,7 @@
 
    1. <details><summary> Simulation </summary>
 
-      - `simulation` directory manages source codes to define simulation scenario.
+      - `simulation` directory manages source codes to define the simulation scenario.
 
       1. [Simulation Configuration](./Specifications/Simulation/Spec_SimulationConfiguration.md)
 
@@ -396,7 +405,7 @@
 
    1. <details><summary> Simulation Sample </summary>
 
-      - `simulation_sample` directory manages example source codes for user defined simulation scenario. Users can copy and modify this directory to make user defined simulation scenario.
+      - `simulation_sample` directory manages example source codes for user-defined simulation scenarios. Users can copy and modify this directory to make user-defined simulation scenarios.
 
       1. Case
          1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
