@@ -115,10 +115,10 @@
       1. <details><summary> Ideal </summary>
 
          - `ideal` directory manages source codes of idealized components which are used in the initial analysis phase in research and satellite development.
-         - Angular velocity Observer: TBW
-         - Attitude Observer: TBW
-         - Force Generator: TBW
-         - Torque Generator: TBW
+         - [Angular Velocity Observer](./Specifications/Component/AOCS/spec_angular_velocity_observer.md)
+         - [Attitude Observer](./Specifications/Component/AOCS/spec_attitude_observer.md)
+         - [Force Generator](./Specifications/Component/AOCS/spec_force_generator.md)
+         - [Torque Generator](./Specifications/Component/AOCS/spec_torque_generator.md)
 
          </details>
 
@@ -131,14 +131,14 @@
             - The `aocs` directory manages components like sensors and actuators for the AOCS subsystem.
 
             1. GNSS Receiver: TBW
-            1. GYRO Sensor: TBW
-            1. Magnetometer: TBW
-            1. Magnetorquer: TBW
-            1. Reaction wheel: TBW
-            1. [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
+            1. [GYRO Sensor](./Specifications/Component/AOCS/spec_gyro_sensor.md)
+            1. [Magnetometer](./Specifications/Component/AOCS/spec_magnetometer.md)
+            1. [Magnetorquer](./Specifications/Component/AOCS/spec_magnetorquer.md)
+            1. [Reaction wheel](./Specifications/Component/AOCS/spec_reaction_wheel.md)
+               - [Reaction wheel jitter](./Specifications/Component/AOCS/Spec_RWJitter.md)
             1. [Star sensor](./Specifications/Component/AOCS/Spec_STT.md)
-            1. Sun sensor: TBW
-            1. MTQ-Magnetometer interference: TBW
+            1. [Sun sensor](./Specifications/Component/AOCS/spec_sun_sensor.md)
+            1. [MTQ-Magnetometer interference](./Specifications/Component/AOCS/spec_mtq_magnetometer_interference)
 
             </details>
 
