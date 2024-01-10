@@ -37,10 +37,11 @@
    - In this base file, other initialize files are defined.
    - You can see simulation conditions as time definitions, randomize seed definitions, etc. 
 4. Open `sample_satellite.ini`, which is the file to set the spacecraft parameters.
-4. Edit the value of angular momentum `initial_angular_velocity_b_rad_s(0-2)` in the `[Attitude]` section as you want.
-5. Rerun the `s2e-core` **without a rebuild**
-6. Check the new log file in `./data/sample/logs` to confirm the initial angular velocity is changed as you want.
-7. Of course, you can change other values similarly.
+5. Edit the value of angular momentum `initial_angular_velocity_b_rad_s(0-2)` in the `[Attitude]` section as you want.
+6. Edit the value of `initialize_mode` from `CONTROLLED` to `MANUAL`.
+7. Rerun the `s2e-core` **without a rebuild**
+8. Check the new log file in `./data/sample/logs` to confirm the initial angular velocity is changed as you want.
+9. Of course, you can change other values similarly.
 
 ## 5. Edit Simulation Conditions: Disturbances
 
