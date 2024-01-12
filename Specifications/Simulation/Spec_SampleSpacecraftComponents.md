@@ -2,18 +2,18 @@
 
 ## 1.  Overview
 
-1. Functions
-   - The `SampleSpacecraftComponents` class is an example of component list mounted on the `SampleSpacecraft`.
+### 1. Functions
+- The `SampleSpacecraftComponents` class is an example of component list mounted on the `SampleSpacecraft`.
 
-2. Related files
-   - `src/simulation_sample/spacecraft/sample_spacecraft_components.cpp, .hpp`
-     - `SampleSpacecraftComponents` is defined here.
-   - `src/simulation_sample/spacecraft/sample_ground_station.cpp, .hpp`
-     - The instance of the `SampleSpacecraftComponent` class is made in this class.
+### 2. Related files
+- `src/simulation_sample/spacecraft/sample_spacecraft_components.cpp, .hpp`
+  - `SampleSpacecraftComponents` is defined here.
+- `src/simulation_sample/spacecraft/sample_ground_station.cpp, .hpp`
+  - The instance of the `SampleSpacecraftComponent` class is made in this class.
 
-3. How to use
-   - See [Sample Spacecraft](./Spec_Samplespacecraft.md) because the `SampleSpacecraftComponent` is used in the `SampleSpacecraft`.
-   - Details: TBW
+### 3. How to use
+- See [Sample Spacecraft](./Spec_Samplespacecraft.md) because the `SampleSpacecraftComponent` is used in the `SampleSpacecraft`.
+- Details: TBW
 
 ## 2. How to make user defined components list installed on spacecraft
 - `sample_components.hpp`
