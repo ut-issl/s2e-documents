@@ -1,0 +1,586 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kepler Orbit Propagation - S2E documents</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../Overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">General Information</li><li class="chapter-item expanded "><a href="../../General/CodingConvention.html"><strong aria-hidden="true">1.</strong> Coding Convention</a></li><li class="chapter-item expanded "><a href="../../General/DocumentFormat.html"><strong aria-hidden="true">2.</strong> Format of Documents</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Setup Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../General/HowToCompileWithVisualStudio.html"><strong aria-hidden="true">3.1.</strong> How to compile with Visual Studio</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWithUbuntuInDocker.html"><strong aria-hidden="true">3.2.</strong> How to compile with Ubuntu in Docker</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWith_OSX.html"><strong aria-hidden="true">3.3.</strong> How to compile with OSX Environment</a></li><li class="chapter-item expanded "><a href="../../General/HowToDownloadNRLMSISE00library.html"><strong aria-hidden="true">3.4.</strong> How to download and make NRLMSISE00 Library</a></li><li class="chapter-item expanded "><a href="../../General/HowToDwnloadCSPCElibrary.html"><strong aria-hidden="true">3.5.</strong> How to download CSPICE Library</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../../Tutorials/GettingStarted.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewSimulationScenario.html"><strong aria-hidden="true">5.</strong> How To Make New Simulation Scenario</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddComponents.html"><strong aria-hidden="true">6.</strong> How To Add Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewComponents.html"><strong aria-hidden="true">7.</strong> How To Make New Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToUseMonteCarloSimulation.html"><strong aria-hidden="true">8.</strong> How To Use Monte Carlo Simulation</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddControlAlgorithms.html"><strong aria-hidden="true">9.</strong> How To Add Control Algorithms</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToIntegrateC2A.html"><strong aria-hidden="true">10.</strong> How To Integrate C2A</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformUartHilsTest.html"><strong aria-hidden="true">11.</strong> How To Perform UART HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformI2cHilsTest.html"><strong aria-hidden="true">12.</strong> How To Perform I2C HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToSimulateMultipleSatellites.html"><strong aria-hidden="true">13.</strong> How to simulate multiple satellites</a></li><li class="chapter-item expanded affix "><li class="part-title">Specifications</li><li class="chapter-item expanded "><a href="../../Specifications/OverallStructure/OverallStructure.html"><strong aria-hidden="true">14.</strong> Overall Structure</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Component</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">15.1.</strong> Abstract</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ComponentBase.html"><strong aria-hidden="true">15.1.1.</strong> Component Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ObcCommunicationBase.html"><strong aria-hidden="true">15.1.2.</strong> OBC Communication Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_SensorBase.html"><strong aria-hidden="true">15.1.3.</strong> Sensor Base</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> AOCS</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_STT.html"><strong aria-hidden="true">15.2.1.</strong> STT</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_RWJitter.html"><strong aria-hidden="true">15.2.2.</strong> RW Jitter</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> CDH</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Logic</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.5.</strong> Mission</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Mission/Spec_Telescope_en.html"><strong aria-hidden="true">15.5.1.</strong> Telescope</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.6.</strong> Power</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Power/Spec_PCU.html"><strong aria-hidden="true">15.6.1.</strong> PCU</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.7.</strong> Propulsion</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html"><strong aria-hidden="true">15.7.1.</strong> SimpleThruster</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.8.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Disturbance</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GeoPotential.html"><strong aria-hidden="true">16.1.</strong> GeoPotential</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GGTorque.html"><strong aria-hidden="true">16.2.</strong> Gravity Gradient Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_MagDisturbance.html"><strong aria-hidden="true">16.3.</strong> Magnetic Disturbance Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce.html"><strong aria-hidden="true">16.4.</strong> Surface force</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_AirDrag.html"><strong aria-hidden="true">16.4.1.</strong> Air Drag</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.html"><strong aria-hidden="true">16.4.2.</strong> Solar Radiation Pressure</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_ThirdBodyGravity.html"><strong aria-hidden="true">16.5.</strong> Third Body Gravity</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Dynamics</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> Attitute</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_AttitudeDynamics.html"><strong aria-hidden="true">17.1.1.</strong> Attitude Dynamics</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_ControlledAttitude.html"><strong aria-hidden="true">17.1.2.</strong> Controlled Attitude</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Orbit.html"><strong aria-hidden="true">17.2.</strong> Orbit</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_KeplerOrbit.html" class="active"><strong aria-hidden="true">17.2.1.</strong> Kepler Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Sgp4.html"><strong aria-hidden="true">17.2.2.</strong> SGP4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Rk4Orbit.html"><strong aria-hidden="true">17.2.3.</strong> RK4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_EnckeMethod.html"><strong aria-hidden="true">17.2.4.</strong> Orbit Propagation with Encke's Method</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_RelativeOrbit.html"><strong aria-hidden="true">17.2.5.</strong> Relative Orbit</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_SRPEnvironment.html"><strong aria-hidden="true">18.1.</strong> SRP Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_Atmosphere.html"><strong aria-hidden="true">18.2.</strong> Atmosphere</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_MagEnvironment.html"><strong aria-hidden="true">18.3.</strong> Magnetic Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_HipparcosCatalogue_en.html"><strong aria-hidden="true">18.4.</strong> Hipparcos Catalogue</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_GnssSatellites_en.html"><strong aria-hidden="true">18.5.</strong> GNSS Satellites</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_CelestialRotation.html"><strong aria-hidden="true">18.6.</strong> Celestial Rotation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">19.</strong> Interface</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Interface/Spec_PowerPort.html"><strong aria-hidden="true">19.1.</strong> Power Port</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">20.</strong> Library</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">21.</strong> Simulation</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Simulation/Spec_MonteCarloSimulation.html"><strong aria-hidden="true">21.1.</strong> Monte Carlo Simulation</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">S2E documents</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="specification-for-kepler-orbit-propagation"><a class="header" href="#specification-for-kepler-orbit-propagation">Specification for Kepler Orbit Propagation</a></h1>
+<h2 id="1--overview"><a class="header" href="#1--overview">1.  Overview</a></h2>
+<h3 id="1-functions"><a class="header" href="#1-functions">1. Functions</a></h3>
+<ul>
+<li>The <code>KeplerOrbit</code> class calculates the satellite position and velocity with the simple two-body problem. We ignored any disturbances and generated forces by the satellite.</li>
+<li>This orbit propagation mode provides the simplest and fastest orbit calculation for any orbit(LEO, GEO, Deep Space, and so on.).</li>
+</ul>
+<h3 id="2-files"><a class="header" href="#2-files">2. Files</a></h3>
+<ul>
+<li><code>src/dynamics/orbit/orbit.hpp, cpp</code>
+<ul>
+<li>Definition of <code>Orbit</code> base class</li>
+</ul>
+</li>
+<li><code>src/dynamics/orbit/initialize_orbit.hpp, .cpp</code>
+<ul>
+<li>Make an instance of orbit class.	</li>
+</ul>
+</li>
+<li><code>src/dynamics/orbit/kepler_orbit_propagation.hpp, .cpp</code></li>
+<li>Libraries
+<ul>
+<li><code>src/library/orbit/kepler_orbit.cpp, hpp</code></li>
+<li><code>src/library/orbit/orbital_elements.cpp, hpp</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-how-to-use"><a class="header" href="#3-how-to-use">3. How to use</a></h3>
+<ul>
+<li>Select <code>propagate_mode = KEPLER</code> in the spacecraft's ini file.</li>
+<li>Select <code>initialize_mode</code> as you want.
+<ul>
+<li><code>DEFAULT</code>             : Use default initialize method (<code>RK4</code> and <code>ENCKE</code> use position and velocity, <code>KEPLER</code> uses init_mode_kepler)</li>
+<li><code>POSITION_VELOCITY_I</code> : Initialize with position and velocity in the inertial frame</li>
+<li><code>ORBITAL_ELEMENTS</code>    : Initialize with orbital elements</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-explanation-of-algorithm"><a class="header" href="#2-explanation-of-algorithm">2. Explanation of Algorithm</a></h2>
+<h3 id="1-keplerorbitcalcconstkeplermotion-function"><a class="header" href="#1-keplerorbitcalcconstkeplermotion-function">1. <code>KeplerOrbit::CalcConstKeplerMotion</code> function</a></h3>
+<h4 id="1-overview"><a class="header" href="#1-overview">1. Overview</a></h4>
+<ul>
+<li>This function calculates the following constant values.
+<ul>
+<li>Mean motion</li>
+<li>Frame conversion matrix from in-plane position to the inertial frame position</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-inputs-and-outputs"><a class="header" href="#2-inputs-and-outputs">2. Inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>Orbital Elements</li>
+<li>$\mu$ : The standard gravitational parameter of the central body</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>$n$ : Mean motion</li>
+<li>$R_{p2i}$ : Frame conversion matrix from in-plane position to the inertial frame position</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm"><a class="header" href="#3-algorithm">3. Algorithm</a></h4>
+<ul>
+<li>Mean motion
+\[
+n = \sqrt{\frac{\mu}{a^3}}
+\]</li>
+<li>Frame conversion matrix from in-plane position to ECI position
+\[
+R_{p2i} = R_z(-\Omega)R_x(-i)R_z(-\omega)
+\]
+\[
+R_x(\theta) = \begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp;  \cos{\theta} &amp; \sin{\theta} \\
+0 &amp; -\sin{\theta} &amp; \cos{\theta}
+\end{pmatrix}
+\]
+\[
+R_z(\theta) = \begin{pmatrix}
+\cos{\theta} &amp; \sin{\theta} &amp; 0 \\
+-\sin{\theta} &amp; \cos{\theta} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\]</li>
+</ul>
+<h3 id="2-keplerorbitcalcorbit-function"><a class="header" href="#2-keplerorbitcalcorbit-function">2. <code>KeplerOrbit::CalcOrbit</code> function</a></h3>
+<h4 id="1-overview-1"><a class="header" href="#1-overview-1">1. Overview</a></h4>
+<ul>
+<li>This function calculates the position and velocity of the spacecraft in the inertial frame at the designated time.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-1"><a class="header" href="#2-inputs-and-outputs-1">2. Inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>$t$ : Time in Julian day</li>
+<li>Orbital Elements</li>
+<li>Constants</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>$\boldsymbol{r}_{i}$ : Position in the inertial frame</li>
+<li>$\boldsymbol{v}_{i}$ : Velocity in the inertial frame</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-1"><a class="header" href="#3-algorithm-1">3. Algorithm</a></h4>
+<ul>
+<li>Calculate mean anomaly $l$[rad]
+\[
+l = n * (t-t_{epoch})
+\]</li>
+<li>Calculate eccentric anomaly $u$[rad] by solving the Kepler Equation
+<ul>
+<li>Details are described in <code>KeplerOrbit::SolveKeplerFirstOrder</code></li>
+</ul>
+</li>
+<li>Calculate two dimensional position $x^{*}$, $y^{*}$ and velocity $\dot{x}^{*}$, $\dot{y}^{*}$ in the orbital plane
+\[
+\begin{align}
+x^* &amp;= a(\cos{u}-e)\\
+y^* &amp;= a\sqrt{1-e^2}\sin{u}\\
+\dot{x}^* &amp;= -an\frac{\sin{u}}{1^e\cos{u}}\\
+\dot{y}^* &amp;= an\sqrt{1-e^2}\frac{\cos{u}}{1^e\cos{u}}\\
+\end{align}
+\]</li>
+<li>Convert to the inertial frame
+\[
+\begin{align}
+\boldsymbol{r}_{i} &amp;= R_{p2i}\begin{bmatrix} x^* \\
+y^* \\
+0
+\end{bmatrix}\\
+\boldsymbol{v}_{i} &amp;= R_{p2i}\begin{bmatrix} \dot{x}^* \\
+\dot{y}^* \\
+0
+\end{bmatrix}\\
+\end{align}
+\]</li>
+</ul>
+<h3 id="3-keplerorbitsolvekeplerfirstorder-function"><a class="header" href="#3-keplerorbitsolvekeplerfirstorder-function">3. <code>KeplerOrbit::SolveKeplerFirstOrder</code> function</a></h3>
+<h4 id="1-overview-2"><a class="header" href="#1-overview-2">1. Overview</a></h4>
+<ul>
+<li>This function solves the Kepler Equation with the first-order iterative method.</li>
+<li>Note: This method is not suited to the high eccentricity orbit. It is better to use the Newton-Raphson method for such a case.
+<ul>
+<li>From <code>v6.0.0</code> we have <code>SolveKeplerNewtonMethod</code> and use it. The detail of the method will be write.</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-inputs-and-outputs-2"><a class="header" href="#2-inputs-and-outputs-2">2. Inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>$e$ : eccentricity</li>
+<li>$l$ : mean anomaly [rad]</li>
+<li>$\epsilon$ : threshold for convergence [rad]</li>
+<li>Limit of iteration</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>$u$ : eccentric anomaly [rad]</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-2"><a class="header" href="#3-algorithm-2">3. Algorithm</a></h4>
+<ul>
+<li>Set the initial value of eccentric anomaly as follows
+<ul>
+<li>$u_0=l$</li>
+</ul>
+</li>
+<li>Calculate $u_{n+1}$ with the following equation
+\[
+u_{n+1} = l + e\sin{u_n}
+\]</li>
+<li>Iterate the calculation until the following conditions are satisfied
+<ul>
+<li>$|u_{n+1} - u_{n}| &lt; \epsilon$</li>
+<li>The iteration number over the limit of iteration</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-orbitalelementscalcoefromposvel-function"><a class="header" href="#4-orbitalelementscalcoefromposvel-function">4. <code>OrbitalElements::CalcOeFromPosVel</code> function</a></h3>
+<h4 id="1-overview-3"><a class="header" href="#1-overview-3">1. Overview</a></h4>
+<ul>
+<li>This function calculates the orbital elements from the initial position and velocity in the inertial frame.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-3"><a class="header" href="#2-inputs-and-outputs-3">2. Inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>$\mu$ : The standard gravitational parameter of the central body</li>
+<li>$t$ : Time in Julian day</li>
+<li>$\boldsymbol{r}_{i}$ : Initial position in the inertial frame</li>
+<li>$\boldsymbol{v}_{i}$ : Initial velocity in the inertial frame</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>orbital element</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-3"><a class="header" href="#3-algorithm-3">3. Algorithm</a></h4>
+<ul>
+<li>$\boldsymbol{h}_{i}$ : Angular momentum vector of the orbit
+\[
+\boldsymbol{h}_{i} = \boldsymbol{r}_{i} \times \boldsymbol{v}_{i}
+\]</li>
+<li>$a$ : Semi-major axis
+\[
+a = \frac{\mu}{2\frac{\mu}{r} - v^2}
+\]</li>
+<li>$i$ : Inclination
+\[
+i = \cos^{-1}{h_z}
+\]</li>
+<li>$\Omega$ : Right Ascension of the Ascending Node (RAAN)
+<ul>
+<li>Note: This equation is not support $i = 0$ case.
+\[
+\Omega = \sin^{-1}\left(\frac{h_x}{\sqrt{h_x^2 + h_y^2}}\right)
+\]</li>
+</ul>
+</li>
+<li>$x_{p}, y_{p}$ : Position in the orbital plane
+\[
+\begin{align}
+x_{p} &amp;= r_{ix} \cos{\Omega} + r_{iy} \sin{\Omega};\\
+y_{p} &amp;= (-r_{ix} \sin{\Omega} + r_{iy} \cos{\Omega})\cos{i} + r_{iz}\sin{i}
+\end{align}
+\]</li>
+<li>$\dot{x}_{p}, \dot{y}_{p}$ : Velocity in the orbital plane
+\[
+\begin{align}
+\dot{x}_{p} &amp;= v_{ix} \cos{\Omega} + v_{iy} \sin{\Omega};\\
+\dot{y}_{p} &amp;= (-v_{ix} \sin{\Omega} + v_{iy} \cos{\Omega})\cos{i} + v_{iz}\sin{i}
+\end{align}
+\]</li>
+<li>$e$ : Eccentricity
+\[
+\begin{align}
+c_1 &amp;= \frac{h}{\mu}\dot{y}_p - \frac{x_p}{r}\\
+c_2 &amp;= -\frac{h}{\mu}\dot{x}_p - \frac{y_p}{r}\\
+e &amp;= \sqrt{c_1^2 + c_2^2}
+\end{align}
+\]</li>
+<li>$\omega$ : Argument of Perigee
+\[
+\omega = \tan^{-1}\left(\frac{c_2}{c_1}\right)
+\]</li>
+<li>$t_{epoch}$ : Epoch [Julian day]
+\[
+\begin{align}
+f &amp;= \tan^{-1}\left(\frac{y_p}{x_p}\right) - \omega\\
+u &amp;= \tan^{-1}\frac{\frac{r \sin{f}}{\sqrt{1-e^2}}}{r\cos{f} + ae}\\
+\end{align}
+\]
+\[
+\begin{align}
+n &amp;= \sqrt{\frac{\mu}{a^3}}\\
+dt &amp;= \frac{u - e\sin{u}}{n}\\
+t_{epoch} &amp;= t - \frac{dt}{24<em>60</em>60}
+\end{align}
+\]</li>
+</ul>
+<h2 id="3-results-of-verifications"><a class="header" href="#3-results-of-verifications">3. Results of verifications</a></h2>
+<h3 id="1-comparison-with-rk4"><a class="header" href="#1-comparison-with-rk4">1. Comparison with RK4</a></h3>
+<h4 id="1-overview-4"><a class="header" href="#1-overview-4">1. Overview</a></h4>
+<ul>
+<li>We compared the calculated orbit result between RK4 mode and Kepler mode. In the RK4 mode, all disturbances are disabled since the Kepler mode ignores them.</li>
+<li>In the Kepler mode, we verified the correctness of both initialize modes (<code>ORBITAL_ELEMENTS</code> and <code>POSITION_VELOCITY_I</code>).</li>
+</ul>
+<h4 id="2-conditions-for-the-verification"><a class="header" href="#2-conditions-for-the-verification">2. Conditions for the verification</a></h4>
+<ul>
+<li>sample_simulation_base.ini
+<ul>
+<li>The following values are modified from the default.
+<pre><code>EndTimeSec = 10000
+LogOutPutIntervalSec = 5
+</code></pre>
+</li>
+</ul>
+</li>
+<li>SampleDisturbance.ini
+<ul>
+<li>All disturbances are disabled.</li>
+</ul>
+</li>
+<li>SampleSat.ini
+<ul>
+<li>The following values are modified from the default.
+<ul>
+<li><code>propagate_mode</code> is changed for each mode.</li>
+<li>Orbital elements for Kepler
+<pre><code>semi_major_axis_m = 6794500.0
+eccentricity = 0.0015
+inclination_rad = 0.9012
+raan_rad = 0.1411
+arg_perigee_rad = 1.7952
+epoch_jday = 2.458940966402607e6
+</code></pre>
+</li>
+<li>Initial position and velocity (compatible value with the orbital elements)
+<pre><code>init_position(0) = 1791860.131
+init_position(1) = 4240666.743
+init_position(2) = 4985526.129
+init_velocity(0) = -7349.913889
+init_velocity(1) = 631.6563971
+init_velocity(2) = 2095.780148
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-results"><a class="header" href="#3-results">3. Results</a></h4>
+<ul>
+<li>
+<p>The following figure shows the orbit calculation result of Kepler mode with <code>ORBITAL_ELEMENTS</code> initialize mode.</p>
+<ul>
+<li>The result looks correct.</li>
+</ul>
+<div align="center">
+<img src="./figs/orbit_kepler_oe.jpg" width=80% alt="">
+</div>
+</li>
+<li>
+<p>The difference between Kepler mode with <code>ORBITAL_ELEMENTS</code> initialize mode and RK4 mode is shown in the following figure.</p>
+<ul>
+<li>The error between them is small (less than 10m), and we confirmed that the calculation of Kepler orbit is correct.</li>
+</ul>
+<div align="center">
+<img src="./figs/orbit_kepler_oe_vs_rk4.jpg" width=80% alt="">
+</div>
+</li>
+<li>
+<p>The following figure shows the difference between Kepler orbit calculation with <code>ORBITAL_ELEMENTS</code>  and <code>POSITION_VELOCITY_I</code> initialize mode.</p>
+<ul>
+<li>The error between them is small (less than 10m), and we confirmed that the initializing method is correct.</li>
+</ul>
+<div align="center">
+<img src="./figs/orbit_kepler_oe_vs_posvel.jpg" width=80% alt="">
+</div>
+</li>
+</ul>
+<h2 id="4-references"><a class="header" href="#4-references">4. References</a></h2>
+<ul>
+<li>Hiroshi Kinoshita, &quot;Celestial mechanisms and orbital dynamics&quot;, ch.2, 1998 (written in Japanese)</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Specifications/Dynamics/Spec_Orbit.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Specifications/Dynamics/Spec_Sgp4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Specifications/Dynamics/Spec_Orbit.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Specifications/Dynamics/Spec_Sgp4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

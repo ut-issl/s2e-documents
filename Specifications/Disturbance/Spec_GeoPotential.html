@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>GeoPotential - S2E documents</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../Overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">General Information</li><li class="chapter-item expanded "><a href="../../General/CodingConvention.html"><strong aria-hidden="true">1.</strong> Coding Convention</a></li><li class="chapter-item expanded "><a href="../../General/DocumentFormat.html"><strong aria-hidden="true">2.</strong> Format of Documents</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Setup Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../General/HowToCompileWithVisualStudio.html"><strong aria-hidden="true">3.1.</strong> How to compile with Visual Studio</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWithUbuntuInDocker.html"><strong aria-hidden="true">3.2.</strong> How to compile with Ubuntu in Docker</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWith_OSX.html"><strong aria-hidden="true">3.3.</strong> How to compile with OSX Environment</a></li><li class="chapter-item expanded "><a href="../../General/HowToDownloadNRLMSISE00library.html"><strong aria-hidden="true">3.4.</strong> How to download and make NRLMSISE00 Library</a></li><li class="chapter-item expanded "><a href="../../General/HowToDwnloadCSPCElibrary.html"><strong aria-hidden="true">3.5.</strong> How to download CSPICE Library</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../../Tutorials/GettingStarted.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewSimulationScenario.html"><strong aria-hidden="true">5.</strong> How To Make New Simulation Scenario</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddComponents.html"><strong aria-hidden="true">6.</strong> How To Add Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewComponents.html"><strong aria-hidden="true">7.</strong> How To Make New Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToUseMonteCarloSimulation.html"><strong aria-hidden="true">8.</strong> How To Use Monte Carlo Simulation</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddControlAlgorithms.html"><strong aria-hidden="true">9.</strong> How To Add Control Algorithms</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToIntegrateC2A.html"><strong aria-hidden="true">10.</strong> How To Integrate C2A</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformUartHilsTest.html"><strong aria-hidden="true">11.</strong> How To Perform UART HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformI2cHilsTest.html"><strong aria-hidden="true">12.</strong> How To Perform I2C HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToSimulateMultipleSatellites.html"><strong aria-hidden="true">13.</strong> How to simulate multiple satellites</a></li><li class="chapter-item expanded affix "><li class="part-title">Specifications</li><li class="chapter-item expanded "><a href="../../Specifications/OverallStructure/OverallStructure.html"><strong aria-hidden="true">14.</strong> Overall Structure</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Component</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">15.1.</strong> Abstract</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ComponentBase.html"><strong aria-hidden="true">15.1.1.</strong> Component Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ObcCommunicationBase.html"><strong aria-hidden="true">15.1.2.</strong> OBC Communication Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_SensorBase.html"><strong aria-hidden="true">15.1.3.</strong> Sensor Base</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> AOCS</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_STT.html"><strong aria-hidden="true">15.2.1.</strong> STT</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_RWJitter.html"><strong aria-hidden="true">15.2.2.</strong> RW Jitter</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> CDH</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Logic</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.5.</strong> Mission</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Mission/Spec_Telescope_en.html"><strong aria-hidden="true">15.5.1.</strong> Telescope</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.6.</strong> Power</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Power/Spec_PCU.html"><strong aria-hidden="true">15.6.1.</strong> PCU</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.7.</strong> Propulsion</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html"><strong aria-hidden="true">15.7.1.</strong> SimpleThruster</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.8.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Disturbance</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GeoPotential.html" class="active"><strong aria-hidden="true">16.1.</strong> GeoPotential</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GGTorque.html"><strong aria-hidden="true">16.2.</strong> Gravity Gradient Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_MagDisturbance.html"><strong aria-hidden="true">16.3.</strong> Magnetic Disturbance Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce.html"><strong aria-hidden="true">16.4.</strong> Surface force</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_AirDrag.html"><strong aria-hidden="true">16.4.1.</strong> Air Drag</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.html"><strong aria-hidden="true">16.4.2.</strong> Solar Radiation Pressure</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_ThirdBodyGravity.html"><strong aria-hidden="true">16.5.</strong> Third Body Gravity</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Dynamics</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> Attitute</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_AttitudeDynamics.html"><strong aria-hidden="true">17.1.1.</strong> Attitude Dynamics</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_ControlledAttitude.html"><strong aria-hidden="true">17.1.2.</strong> Controlled Attitude</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Orbit.html"><strong aria-hidden="true">17.2.</strong> Orbit</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_KeplerOrbit.html"><strong aria-hidden="true">17.2.1.</strong> Kepler Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Sgp4.html"><strong aria-hidden="true">17.2.2.</strong> SGP4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Rk4Orbit.html"><strong aria-hidden="true">17.2.3.</strong> RK4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_EnckeMethod.html"><strong aria-hidden="true">17.2.4.</strong> Orbit Propagation with Encke's Method</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_RelativeOrbit.html"><strong aria-hidden="true">17.2.5.</strong> Relative Orbit</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_SRPEnvironment.html"><strong aria-hidden="true">18.1.</strong> SRP Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_Atmosphere.html"><strong aria-hidden="true">18.2.</strong> Atmosphere</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_MagEnvironment.html"><strong aria-hidden="true">18.3.</strong> Magnetic Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_HipparcosCatalogue_en.html"><strong aria-hidden="true">18.4.</strong> Hipparcos Catalogue</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_GnssSatellites_en.html"><strong aria-hidden="true">18.5.</strong> GNSS Satellites</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_CelestialRotation.html"><strong aria-hidden="true">18.6.</strong> Celestial Rotation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">19.</strong> Interface</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Interface/Spec_PowerPort.html"><strong aria-hidden="true">19.1.</strong> Power Port</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">20.</strong> Library</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">21.</strong> Simulation</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Simulation/Spec_MonteCarloSimulation.html"><strong aria-hidden="true">21.1.</strong> Monte Carlo Simulation</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">S2E documents</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="specification-of-geopotential-calculation"><a class="header" href="#specification-of-geopotential-calculation">Specification of Geopotential Calculation</a></h1>
+<h2 id="1--overview"><a class="header" href="#1--overview">1.  Overview</a></h2>
+<h3 id="1-functions"><a class="header" href="#1-functions">1. Functions</a></h3>
+<ul>
+<li>The <code>Geopotential</code> class calculates the gravity acceleration of the earth with the <a href="https://cddis.nasa.gov/926/egm96/">EGM96</a> geo-potential model.</li>
+</ul>
+<h3 id="2-related-files"><a class="header" href="#2-related-files">2. Related files</a></h3>
+<ul>
+<li><code>src/disturbances/geopotential.cpp, .hpp</code></li>
+<li><code>src/library/gravity/gravity_potential.cpp, .hpp</code></li>
+<li><code>s2e-core/ExtLibraries/GeoPotential/egm96_to360.ascii</code>
+<ul>
+<li>The EGM96 geopotential coefficients file was downloaded from <a href="https://cddis.nasa.gov/926/egm96/getit.html">NASA's EMG96 website</a>, but we cannot access it now.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-how-to-use"><a class="header" href="#3-how-to-use">3. How to use</a></h3>
+<ul>
+<li>Make an instance of the <code>Geopotential</code> class in <code>InitializeInstances</code> function in <code>disturbances.cpp</code>
+<ul>
+<li>Create an instance by using the initialization function <code>InitGeopotential</code></li>
+</ul>
+</li>
+<li>Choose an orbit propagator mode that considers disturbances.</li>
+<li>Edit the <code>disturbance.ini</code> file
+<ul>
+<li>Select <code>ENABLE</code> for <code>calculation</code> and <code>logging</code></li>
+<li>Select <code>degree</code> of calculation
+<ul>
+<li>When the <code>degree</code> is smaller than 1, it is overwritten as 0.</li>
+<li>When the <code>degree</code> is larger than 360, it is overwritten as 360.</li>
+<li><strong>NOTE</strong>: The calculation time is related to the selected degree.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-explanation-of-algorithm"><a class="header" href="#2-explanation-of-algorithm">2. Explanation of Algorithm</a></h2>
+<ul>
+<li>The base algorithm is referred to <a href="https://www.springer.com/jp/book/9783540672807">Satellite Orbits</a> chapter 3.2.</li>
+</ul>
+<h3 id="1-read-coefficients"><a class="header" href="#1-read-coefficients">1. Read coefficients</a></h3>
+<h4 id="1-overview"><a class="header" href="#1-overview">1. overview</a></h4>
+<ul>
+<li>This function reads the geopotential coefficients from the EGM96 file <code>egm96_to360.ascii</code>.</li>
+<li>The file doesn't have coefficients for <code>n=0,m=0</code>, <code>n=1,m=0</code>, and <code>n=1,m=1</code>. </li>
+<li>All coefficients are completely normalized by following normalization function $N_{n,m}$</li>
+</ul>
+<p>\[
+N_{n,m}=\sqrt{\frac{(n+m)!}{(2-\delta_{0m})(2n+1)(n-m)!}}\\
+\]</p>
+<ul>
+<li>where $\delta_{0m}$ is the Kronecker delta.</li>
+</ul>
+<h4 id="2-inputs-and-outputs"><a class="header" href="#2-inputs-and-outputs">2. inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>file path of <code>egm96_to360.ascii</code></li>
+<li>maximum degree for geopotential calculation</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li><strong>Return</strong>: reading is succeeded or not.</li>
+<li>Normalized coefficient  $C_{n,m}$ and $S_{n,m}$ </li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>algorithm</li>
+</ol>
+<ul>
+<li>The file format of <code>egm96_to360.ascii</code> is <code>n,m,Cnm,Snm,sigmaCnm,sigmaSnm</code> in line with space  delimiter. In this calculation, the <code>sigmaCnm</code> and <code>sigmaSnm</code> are not used.</li>
+<li>The total number of reading lines is defined as the following equation
+\[
+N_{line}=\frac{1}{2}(n+1)(n+2)-3
+\]
+<ul>
+<li>where $n$ is maximum degree, and -3 is for the coefficients of <code>n=0,m=0</code>, <code>n=1,m=0</code>, and <code>n=1,m=1</code>, which are not in the file. </li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>note</li>
+</ol>
+<ul>
+<li><strong>When the reading file process is failed</strong>, the maximum degree is set to zero, and a simple Kepler calculation will be executed.</li>
+</ul>
+<h3 id="2-calculate-legendre-polynomials-with-recursion-algorithm"><a class="header" href="#2-calculate-legendre-polynomials-with-recursion-algorithm">2. Calculate Legendre polynomials with recursion algorithm</a></h3>
+<h4 id="1-overview-1"><a class="header" href="#1-overview-1">1. overview</a></h4>
+<ul>
+<li>We chose to use the recursion algorithm written in chapter 3.2.4 of <a href="https://www.springer.com/jp/book/9783540672807">Satellite Orbits</a> since the calculation of the Legendre polynomials for spherical harmonics is time-consuming.
+<ul>
+<li>However, the original equation in the book is unnormalized form, and it is not suitable with the normalized coefficients. </li>
+<li>For a small degree, users can directly use the normalized function $N_{n,m}$  to unnormalize the coefficients or to normalize the functions $V_{n,m}$ and $V_{n,m}$ . But for a large degree, the factorial calculation in the $N_{n,m}$ reaches a huge value, which standard <code>double</code> variables cannot handle.</li>
+<li>To avoid that, the normalized recursion algorithm was derived as described in Section 3.</li>
+</ul>
+</li>
+<li>There are the following two functions:
+<ul>
+<li><code>v_w_nn_update</code></li>
+<li><code>v_w_nm_update</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-inputs-and-outputs-1"><a class="header" href="#2-inputs-and-outputs-1">2. inputs and outputs</a></h4>
+<ul>
+<li>Inputs
+<ul>
+<li>Both functions
+<ul>
+<li>Satellite position in ECEF frame $x, y, z$</li>
+<li>degree and order as $n$ and $m$</li>
+</ul>
+</li>
+<li><code>v_w_nn_update</code>: $V_{n-1,n-1}$ and $W_{n-1,n-1}$</li>
+<li><code>v_w_nm_update</code>: $V_{n-1,m}, W_{n-1,m}, V_{n-2,m}$, and $W_{n-2,m}$</li>
+</ul>
+</li>
+<li>Outputs
+<ul>
+<li><code>v_w_nn_update</code>: $V_{n,n}$ and $W_{n,n}$</li>
+<li><code>v_w_nm_update</code>: $V_{n,m}$ and $W_{n,m}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm"><a class="header" href="#3-algorithm">3. algorithm</a></h4>
+<p>For unnormalized algorithms, see chapter 3.2.4 of <a href="https://www.springer.com/jp/book/9783540672807">Satellite Orbits</a>.</p>
+<p>For normalized algorithm, we use following normalizing relation for Legendre polynomials,</p>
+<p>\[
+\begin{align}
+\bar{P}_{n,m} &amp;= \frac{1}{N_{n,m}}P_{n,m}\\
+\bar{V}_{n,m} &amp;= \frac{1}{N_{n,m}}V_{n,m}\\
+\bar{W}_{n,m} &amp;= \frac{1}{N_{n,m}}W_{n,m}\\
+\end{align}
+\]</p>
+<p>The recursion calculation of V and W can be changed to a normalized version as follows</p>
+<p>\[
+\begin{align}
+N_{m,m}\bar{V}_{m,m} &amp;= (2m-1)(\frac{xR_{e}}{r^2}N_{m-1,m-1}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}N_{m-1,m-1}\bar{W}_{m-1,m-1})\\
+\bar{V}_{m,m} &amp;= \frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\\
+\bar{W}_{m,m} &amp;= \frac{N_{m-1,m-1}}{N_{m,m}}(2m-1)(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\\
+\end{align}
+\]</p>
+<p>\[
+\begin{align}
+N_{n,m}\bar{V}_{n,m} &amp;= \frac{2n-1}{n-m}(\frac{zR_{e}}{r^2}N_{n-1,m}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}N_{n-2,m}\bar{V}_{n-2,m})\\
+\bar{V}_{n,m} &amp;= \frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{V}_{n-2,m}\\
+\bar{W}_{n,m} &amp;= \frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\frac{N_{n-1,m}}{N_{n,m}}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\frac{N_{n-2,m}}{N_{n,m}}\bar{W}_{n-2,m}\\
+\end{align}
+\]</p>
+<p>The recurrence relation of normalize function can be expressed as follows</p>
+<p>\[
+\begin{align}
+N_{0,0} &amp;= 1\\
+N_{m,m} &amp;= (2m-1)\sqrt{\frac{2m}{2m+1}}N_{m-1,m-1}\quad(m\geq1)\\
+N_{n,m} &amp;= \sqrt{\frac{2n-1}{2n+1}}\sqrt{\frac{n+m}{n-m}}N_{n-1,m}\quad(n\geq1,0\leq m \leq n)
+\end{align}
+\]</p>
+<p>So, the divisions of the normalized functions are described as follows
+\[
+\begin{align}
+\frac{N_{0,0}}{N_{1,1}} &amp;= \sqrt{2m+1}=\sqrt{3}\\
+\frac{N_{m-1,m-1}}{N_{m,m}} &amp;= \frac{1}{2m-1}\sqrt{\frac{2m+1}{2m}}\quad(m\geq2)\\
+\frac{N_{n-1,m}}{N_{n,m}} &amp;= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}\quad(n\geq1,0\leq m \leq n)\\
+\frac{N_{n-2,m}}{N_{n,m}} &amp;= \frac{N_{n-2,m}}{N_{n-1,m}}\frac{N_{n-1,m}}{N_{n,m}}\\
+\frac{N_{n-2,m}}{N_{n,m}} &amp;= \sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\frac{N_{n-1,m}}{N_{n,m}}\quad(n\geq2,0\leq m \leq n)
+\end{align}
+\]
+The recurrence relations for normalized V and W are derived as  follows
+\[
+\begin{align}
+\bar{V}_{0,0} &amp;= \frac{Re}{r}\\
+\bar{W}_{0,0} &amp;= 0\\
+\bar{V}_{1,1} &amp;= \sqrt{3}(2m-1)(\frac{xR_{e}}{r^2}\bar{V}_{0,0}-\frac{yR_e}{r^2}\bar{W}_{0,0})\\
+\end{align}
+\]
+\[
+\begin{align}
+\bar{V}_{m,m} &amp;= \sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{V}_{m-1,m-1}-\frac{yR_e}{r^2}\bar{W}_{m-1,m-1})\quad(m\geq2)\\
+\bar{W}_{m,m} &amp;= \sqrt{\frac{2m+1}{2m}}(\frac{xR_{e}}{r^2}\bar{W}_{m-1,m-1}+\frac{yR_e}{r^2}\bar{V}_{m-1,m-1})\quad(m\geq2)\\
+\end{align}
+\]
+\[
+\begin{align}
+\bar{V}_{n,m} &amp;= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\bar{W}_{n,m} &amp;= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m})\quad(n=1,0\leq m \leq n)\\
+\end{align}
+\]
+\[
+\begin{align}
+\bar{V}_{n,m} &amp;= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{V}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{V}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\bar{W}_{n,m} &amp;= \sqrt{\frac{2n+1}{2n-1}}\sqrt{\frac{n-m}{n+m}}(\frac{2n-1}{n-m}\frac{zR_{e}}{r^2}\bar{W}_{n-1,m}-\frac{n+m-1}{n-m}\frac{R_e^2}{r^2}\sqrt{\frac{2n-1}{2n-3}}\sqrt{\frac{n-m-1}{n+m-1}}\bar{W}_{n-2,m})\quad(n\geq2,0\leq m \leq n)\\
+\end{align}
+\]</p>
+<h3 id="3-calculate-acceleration-calcaccelerationecef"><a class="header" href="#3-calculate-acceleration-calcaccelerationecef">3. Calculate acceleration: <code>CalcAccelerationECEF</code></a></h3>
+<h4 id="1-overview-2"><a class="header" href="#1-overview-2">1. overview</a></h4>
+<ul>
+<li>This function calculates gravity acceleration</li>
+</ul>
+<h4 id="2-inputs-and-outputs-2"><a class="header" href="#2-inputs-and-outputs-2">2. inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>normalized coefficients
+<ul>
+<li>$\bar{C}_{n,m}$</li>
+<li>$\bar{S}_{n,m}$ </li>
+</ul>
+</li>
+<li>normalized function
+<ul>
+<li>$\bar{V}_{n,m}$</li>
+<li>$\bar{W}_{n,m}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>Gravity acceleration in ECEF frame </li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-1"><a class="header" href="#3-algorithm-1">3. algorithm</a></h4>
+<p>For unnormalized algorithms, See  chapter 3.2.5 of <a href="https://www.springer.com/jp/book/9783540672807">Satellite Orbits</a>. </p>
+<p>When we use the normalized coefficients and normalized functions, the acceleration calculation is described like follows
+\[
+\begin{align}
+\ddot{x}_{n,m} &amp;= -\frac{GM}{Re^{2}}\bar{C}_{n,0}\bar{V}_{n+1,1}\\
+&amp;= -\frac{GM}{Re^{2}} C_{n,0}V_{n+1,1} \frac{N_{n,0}}{N_{n+1,1}}\quad(m=0)
+\end{align}
+\]
+The division of normalized function $\frac{N_{n,0}}{N_{n+1,1}}$ should be removed, so we have to multiply following correction factors into the equation. </p>
+<p>When $m=0$, following correction factors are useful for x and y acceleration
+\[
+\begin{align}
+\frac{N_{n+1,1}}{N_{n,0}}=\sqrt{\frac{1}{2}}\sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+2)(n+1)}
+\end{align}
+\]
+When $m=1$, following correction factors are useful for x and y acceleration
+\[
+\begin{align}
+\frac{N_{n+1,0}}{N_{n,1}}=\sqrt{2}\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{n(n+1)}}\quad(m=1)\\
+\end{align}
+\]
+When $m&gt;1$, following correction factors are useful for x and y acceleration
+\[
+\begin{align}
+\frac{N_{n+1,m+1}}{N_{n,m}} &amp;= \sqrt{\frac{2n+1}{2n+3}}\sqrt{(n+m+1)(n+m+2)}\\
+\frac{N_{n+1,m-1}}{N_{n,m}} &amp;= \sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{1}{(n-m+1)(n-m+2)}}\\
+\end{align}
+\]
+When $m&gt;=0$, following correction factors are useful for z acceleration
+\[
+\begin{align}
+\frac{N_{n+1,m}}{N_{n,m}}=\sqrt{\frac{2n+1}{2n+3}}\sqrt{\frac{n+m+1}{n-m+1}}
+\end{align}
+\]</p>
+<h4 id="4-note"><a class="header" href="#4-note">4. note</a></h4>
+<ul>
+<li>To accelerate the calculation, the double <code>for loop</code> of acceleration calculation and the recursion loop need to be integrated in future.</li>
+</ul>
+<h2 id="3-results-of-verifications"><a class="header" href="#3-results-of-verifications">3. Results of verifications</a></h2>
+<h4 id="1-calculation-accuracy"><a class="header" href="#1-calculation-accuracy">1. Calculation accuracy</a></h4>
+<h5 id="1-overview-3"><a class="header" href="#1-overview-3">1. overview</a></h5>
+<ul>
+<li>The  calculated gravity acceleration is compared with <a href="https://jp.mathworks.com/help/aerotbx/ug/gravitysphericalharmonic.html">Matlab's Gravity Spherical Harmonics</a> calculation.</li>
+<li>The satellite position in the ECEF frame calculated by S2E is inputted to the  <code>CalcAccelerationECEF</code> and <code>gravitysphericalharmonic( r, 'EGM96',360, 'Error' );</code> function of Matlab.
+<ul>
+<li>Both calculations use EGM96.</li>
+<li>The degree of Matlab is fixed to 360, the degree of S2E is changed to check the relationship between the degree and the accuracy.</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-conditions-for-the-verification"><a class="header" href="#2-conditions-for-the-verification">2. conditions for the verification</a></h5>
+<ul>
+<li>
+<p>input files</p>
+<ul>
+<li>Default initialize files</li>
+</ul>
+</li>
+<li>
+<p>initial values</p>
+<ul>
+<li>
+<p>Default initialize files</p>
+<pre><code>simulation_start_time_utc = 2020/01/01 11:00:00.0
+simulation_duration_s = 200
+simulation_step_s = 0.1
+orbit_update_period_s = 0.1
+log_output_period_s = 5
+simulation_speed_setting = 0
+</code></pre>
+</li>
+<li>
+<p>Especially, we chose following TLE for orbit calculation</p>
+<pre><code>tle1=1 38666U 12003B   12237.00000000 +.00000100  00000-0  67980-4 0 00008
+tle2=2 38666 098.6030 315.4100 0000010 300.0000 180.0000 14.09465034  0011
+</code></pre>
+</li>
+<li>
+<p>Inputted satellite position in ECEF frame</p>
+<img src="./figs/PositionInECEF.jpg" alt="PositionInECEF" style="zoom: 90%;" />
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>results</li>
+</ol>
+<ul>
+<li>Calculated gravity acceleration by <code>gravitysphericalharmonic(r,'EGM96',360,'Error' )</code></li>
+</ul>
+<img src="./figs/AccelerationECEF_Matlab.jpg" alt="AccelerationECEF_Matlab" style="zoom: 90%;" />
+<ul>
+<li>Difference between <code>CalcAccelerationECEF</code> output when <code>degree=0=1</code> and Matlab's output (<code>degree = 360</code>) 
+<ul>
+<li>You can see significant error since <code>CalcAccelerationECEF</code> does not care about high-order gravity potential.</li>
+</ul>
+</li>
+</ul>
+<img src="./figs/AccelerationDiffECEF_S2E_deg0.jpg" alt="AccelerationDiffECEF_S2E_deg0" style="zoom: 90%;" />
+<ul>
+<li>Difference between <code>CalcAccelerationECEF</code> output when <code>degree=360 and Matlab's output (</code>degree = 360`) 
+<ul>
+<li>The error is relatively small</li>
+</ul>
+</li>
+</ul>
+<img src="./figs/AccelerationDiffECEF_S2E_deg360.jpg" alt="AccelerationDiffECEF_S2E_deg360" style="zoom: 90%;" />
+<ul>
+<li>Finally, the relationship between degree and accuracy is summarized.
+<ul>
+<li>The error is limited to 1e-8 [m/s2]. The cause of the error should be considered when users need accurate orbit propagation.</li>
+</ul>
+</li>
+</ul>
+<img src="./figs/SummaryAccuracy.jpg" alt="SummaryAccuracy" style="zoom: 90%;" />
+<ol start="4">
+<li>Note
+<ul>
+<li>To check the accuracy of the calculation, the resolution of <code>log output</code> should be larger than 10.
+<ul>
+<li>In this case, the author chose the resolution as 15.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-calculation-speed"><a class="header" href="#2-calculation-speed">2. Calculation speed</a></h4>
+<h5 id="1-overview-4"><a class="header" href="#1-overview-4">1. overview</a></h5>
+<ul>
+<li>The author has checked the relationship between the degree and the calculation speed.</li>
+<li><code>chrono</code> class was used as follows</li>
+</ul>
+<pre><code class="language-c++">  chrono::system_clock::time_point start, end;
+  start = chrono::system_clock::now();
+
+  debug_pos_ecef_m_ = spacecraft.dynamics_-&gt;orbit_-&gt;GetPosition_ecef_m();
+  CalcAccelerationEcef(dynamics.GetOrbit().GetPosition_ecef_m());
+
+  end = chrono::system_clock::now();
+  time_ms_ = static_cast&lt;double&gt;(chrono::duration_cast&lt;chrono::microseconds&gt;(end - start).count() / 1000.0);
+</code></pre>
+<ul>
+<li>The <code>time_ms_</code> is logged every log output step, and 400 data of the calculation time is saved. The averaged value of the 400 data is evaluated here.</li>
+<li>Environment
+<ul>
+<li>Core i7-8650U(2.11GHz)</li>
+<li>VS2017 32bit debug</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-conditions-for-the-verification-1"><a class="header" href="#2-conditions-for-the-verification-1">2. conditions for the verification</a></h5>
+<ul>
+<li>input files
+<ul>
+<li>Same with accuracy verification</li>
+</ul>
+</li>
+<li>initial values
+<ul>
+<li>Same with accuracy verification</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-results"><a class="header" href="#3-results">3. results</a></h5>
+<ul>
+<li>When <code>degree=0=1</code>, the calculation time is just <code>0.018 msec</code>.</li>
+<li>When <code>degree=2 and 10</code>, the calculation time is <code>0.035 msec and 0.2 msec</code>, respectively.</li>
+<li>When <code>degree=360</code>, the calculation time reaches  <code>110 msec</code>, but it is faster than the calculation time of  <code>gravitysphericalharmonic( r, 'EGM96',360, 'Error' )</code>, which is <code>700 ms</code>.</li>
+</ul>
+<img src="./figs/SummaryCalculationTime.jpg" alt="SummaryCalculationTime" style="zoom: 90%;" />
+<ol start="4">
+<li>Note</li>
+</ol>
+<ul>
+<li></li>
+</ul>
+<h2 id="4-references"><a class="header" href="#4-references">4. References</a></h2>
+<ol>
+<li>Oliver Montenbruck, and Eberhard Gill, &quot;<a href="https://www.springer.com/jp/book/9783540672807">Satellite Orbits</a>&quot;, Springer</li>
+<li><a href="https://cddis.nasa.gov/926/egm96/getit.html">NASA's EMG96 website</a></li>
+<li><a href="https://jp.mathworks.com/help/aerotbx/ug/gravitysphericalharmonic.html">Matlab Gravity Spherical Harmonics</a></li>
+<li><a href="https://ai-solutions.com/_help_Files/gravity_model_files.htm">Summary of gravity models</a></li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Specifications/Disturbance/Spec_GGTorque.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Specifications/Disturbance/Spec_GGTorque.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

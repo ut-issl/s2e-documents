@@ -1,0 +1,640 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Relative Orbit - S2E documents</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../Overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">General Information</li><li class="chapter-item expanded "><a href="../../General/CodingConvention.html"><strong aria-hidden="true">1.</strong> Coding Convention</a></li><li class="chapter-item expanded "><a href="../../General/DocumentFormat.html"><strong aria-hidden="true">2.</strong> Format of Documents</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Setup Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../General/HowToCompileWithVisualStudio.html"><strong aria-hidden="true">3.1.</strong> How to compile with Visual Studio</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWithUbuntuInDocker.html"><strong aria-hidden="true">3.2.</strong> How to compile with Ubuntu in Docker</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWith_OSX.html"><strong aria-hidden="true">3.3.</strong> How to compile with OSX Environment</a></li><li class="chapter-item expanded "><a href="../../General/HowToDownloadNRLMSISE00library.html"><strong aria-hidden="true">3.4.</strong> How to download and make NRLMSISE00 Library</a></li><li class="chapter-item expanded "><a href="../../General/HowToDwnloadCSPCElibrary.html"><strong aria-hidden="true">3.5.</strong> How to download CSPICE Library</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../../Tutorials/GettingStarted.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewSimulationScenario.html"><strong aria-hidden="true">5.</strong> How To Make New Simulation Scenario</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddComponents.html"><strong aria-hidden="true">6.</strong> How To Add Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewComponents.html"><strong aria-hidden="true">7.</strong> How To Make New Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToUseMonteCarloSimulation.html"><strong aria-hidden="true">8.</strong> How To Use Monte Carlo Simulation</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddControlAlgorithms.html"><strong aria-hidden="true">9.</strong> How To Add Control Algorithms</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToIntegrateC2A.html"><strong aria-hidden="true">10.</strong> How To Integrate C2A</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformUartHilsTest.html"><strong aria-hidden="true">11.</strong> How To Perform UART HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformI2cHilsTest.html"><strong aria-hidden="true">12.</strong> How To Perform I2C HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToSimulateMultipleSatellites.html"><strong aria-hidden="true">13.</strong> How to simulate multiple satellites</a></li><li class="chapter-item expanded affix "><li class="part-title">Specifications</li><li class="chapter-item expanded "><a href="../../Specifications/OverallStructure/OverallStructure.html"><strong aria-hidden="true">14.</strong> Overall Structure</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Component</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">15.1.</strong> Abstract</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ComponentBase.html"><strong aria-hidden="true">15.1.1.</strong> Component Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ObcCommunicationBase.html"><strong aria-hidden="true">15.1.2.</strong> OBC Communication Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_SensorBase.html"><strong aria-hidden="true">15.1.3.</strong> Sensor Base</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> AOCS</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_STT.html"><strong aria-hidden="true">15.2.1.</strong> STT</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_RWJitter.html"><strong aria-hidden="true">15.2.2.</strong> RW Jitter</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> CDH</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Logic</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.5.</strong> Mission</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Mission/Spec_Telescope_en.html"><strong aria-hidden="true">15.5.1.</strong> Telescope</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.6.</strong> Power</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Power/Spec_PCU.html"><strong aria-hidden="true">15.6.1.</strong> PCU</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.7.</strong> Propulsion</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html"><strong aria-hidden="true">15.7.1.</strong> SimpleThruster</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.8.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Disturbance</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GeoPotential.html"><strong aria-hidden="true">16.1.</strong> GeoPotential</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GGTorque.html"><strong aria-hidden="true">16.2.</strong> Gravity Gradient Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_MagDisturbance.html"><strong aria-hidden="true">16.3.</strong> Magnetic Disturbance Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce.html"><strong aria-hidden="true">16.4.</strong> Surface force</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_AirDrag.html"><strong aria-hidden="true">16.4.1.</strong> Air Drag</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.html"><strong aria-hidden="true">16.4.2.</strong> Solar Radiation Pressure</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_ThirdBodyGravity.html"><strong aria-hidden="true">16.5.</strong> Third Body Gravity</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Dynamics</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> Attitute</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_AttitudeDynamics.html"><strong aria-hidden="true">17.1.1.</strong> Attitude Dynamics</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_ControlledAttitude.html"><strong aria-hidden="true">17.1.2.</strong> Controlled Attitude</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Orbit.html"><strong aria-hidden="true">17.2.</strong> Orbit</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_KeplerOrbit.html"><strong aria-hidden="true">17.2.1.</strong> Kepler Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Sgp4.html"><strong aria-hidden="true">17.2.2.</strong> SGP4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Rk4Orbit.html"><strong aria-hidden="true">17.2.3.</strong> RK4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_EnckeMethod.html"><strong aria-hidden="true">17.2.4.</strong> Orbit Propagation with Encke's Method</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_RelativeOrbit.html" class="active"><strong aria-hidden="true">17.2.5.</strong> Relative Orbit</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_SRPEnvironment.html"><strong aria-hidden="true">18.1.</strong> SRP Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_Atmosphere.html"><strong aria-hidden="true">18.2.</strong> Atmosphere</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_MagEnvironment.html"><strong aria-hidden="true">18.3.</strong> Magnetic Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_HipparcosCatalogue_en.html"><strong aria-hidden="true">18.4.</strong> Hipparcos Catalogue</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_GnssSatellites_en.html"><strong aria-hidden="true">18.5.</strong> GNSS Satellites</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_CelestialRotation.html"><strong aria-hidden="true">18.6.</strong> Celestial Rotation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">19.</strong> Interface</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Interface/Spec_PowerPort.html"><strong aria-hidden="true">19.1.</strong> Power Port</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">20.</strong> Library</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">21.</strong> Simulation</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Simulation/Spec_MonteCarloSimulation.html"><strong aria-hidden="true">21.1.</strong> Monte Carlo Simulation</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">S2E documents</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="specification-for-relative-orbit-propagation"><a class="header" href="#specification-for-relative-orbit-propagation">Specification for Relative Orbit propagation</a></h1>
+<h2 id="1-overview"><a class="header" href="#1-overview">1. Overview</a></h2>
+<h3 id="1-functions"><a class="header" href="#1-functions">1. functions</a></h3>
+<ul>
+<li>The <code>RelativeOrbit</code> class calculates the position of a satellite with respect to a reference satellite. This class calculates the position both in the LVLH frame and inertial frame. Users can choose the update method between:
+<ul>
+<li>relative dynamics propagation using RK4</li>
+<li>update using STM(State Transition Matrix)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-related-files"><a class="header" href="#2-related-files">2. Related files</a></h3>
+<ul>
+<li><code>src/dynamics/orbit/orbit.hpp, cpp</code>
+<ul>
+<li>Definition of <code>Orbit</code> base class</li>
+</ul>
+</li>
+<li><code>src/dynamics/orbit/initialize_orbit.hpp, .cpp</code>
+<ul>
+<li>Make an instance of orbit class.</li>
+</ul>
+</li>
+<li><code>src/dynamics/orbit/relative_orbit.hpp, .cpp</code>
+<ul>
+<li>Definition of the class</li>
+</ul>
+</li>
+<li>Libraries
+<ul>
+<li><code>src/library/orbit/relative_orbit_models.hpp, .cpp</code></li>
+</ul>
+<ul>
+<li>Library to store equations for various relative dynamics</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-how-to-use"><a class="header" href="#3-how-to-use">3. How to use</a></h3>
+<ul>
+<li>
+<p>Relative orbit propagation is available only when multiple satellites are simulated.</p>
+<ul>
+<li>The sample case in S2E_CORE simulates a single satellite. For an example of simulating multiple satellites, please refer to the <a href="../../Tutorials/HowToSimulateMultipleSatellites.html">tutorial</a>. </li>
+</ul>
+</li>
+<li>
+<p>Confirm the instance of <code>RelativeInformation</code> is the member of each satellite.</p>
+</li>
+<li>
+<p>Set up the configuration of the <code>[ORBIT]</code> section in the <code>sample_spacecraft.ini</code>.</p>
+<ul>
+<li>Set <code>propagate_mode = RELATIVE</code> to use the relative orbit propagation</li>
+<li>Choose <code>relative_orbit_update_method</code>.
+<ul>
+<li><code>relative_orbit_update_method = 0</code> means the orbit is updated with the propagation of the relative dynamics equation( $\dot{\boldsymbol{x}}=\boldsymbol{Ax}+\boldsymbol{Bu}$ , i.e., Hill equation).</li>
+<li><code>relative_orbit_update_method = 1</code> means the orbit is updated with the STM( $\boldsymbol{x}(t)=\boldsymbol{\Phi}(t,t_0)\boldsymbol{x}(t_0)$ , i.e., Clohessy-Wiltshire solution).</li>
+</ul>
+</li>
+<li>When you choose <code>relative_orbit_update_method = 0</code>, set <code>relative_dynamics_model_type</code>.</li>
+<li>When you choose <code>relative_orbit_update_method = 1</code>, set <code>stm_model_type</code>.</li>
+<li>Set the initial relative position of the satellite in the LVLH frame. LVLH frame definition is:
+<ul>
+<li>$\boldsymbol{x}$ is a direction vector from the reference satellite (&quot;chief&quot; in the figure) radially outward.</li>
+<li>The direction of $\boldsymbol{z}$ corresponds to the angular momentum vector of the reference satellite orbit.</li>
+<li>The direction of $\boldsymbol{y}$ is determined by $\boldsymbol{z}\times\boldsymbol{x}$.</li>
+</ul>
+</li>
+</ul>
+<figure>
+<div align="center">
+<img src="./figs/RelativeOrbit_LVLHdefinition.JPG" width=70% alt="">
+<figcaption>Definition of LVLH frame [1]</figcaption>
+</div>
+</figure>
+<ul>
+<li>Set the ID and ini file name of the reference satellite.
+<ul>
+<li>NOTE: Confirm the <code>propagate_mode</code> of the reference satellite is not 2. The orbit of the reference satellite must be propagated by the methods other than the relative orbit propagation.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-how-to-add-a-new-relative-dynamics-model"><a class="header" href="#4-how-to-add-a-new-relative-dynamics-model">4. How to add a new relative dynamics model</a></h3>
+<ol>
+<li>New Relative Dynamics equation</li>
+</ol>
+<ul>
+<li>Add the name of the dynamics model to the <code>RelativeOrbitModel</code> enum in <code>relative_orbit_models.hpp</code>.</li>
+<li>Add the function to calculate the system matrix like <code>CalcHillSystemMatrix</code> in <code>relative_orbit_models.hpp</code>.</li>
+<li>Edit the <code>CalculateSystemMatrix</code> function in <code>relative_orbit.hpp</code>.</li>
+</ul>
+<ol start="2">
+<li>New STM</li>
+</ol>
+<ul>
+<li>Add the name of the dynamics model to <code>StmModel</code> enum in <code>relative_orbit_models.hpp</code>.</li>
+<li>Add the function to calculate the system matrix as <code>CalcHcwStm</code>in <code>relative_orbit_models.hpp</code>.</li>
+<li>Edit the <code>CalculateStm</code> function in <code>relative_orbit.hpp</code>.</li>
+</ul>
+<h2 id="2-explanation-of-algorithm"><a class="header" href="#2-explanation-of-algorithm">2. Explanation of Algorithm</a></h2>
+<h3 id="1-initializestate"><a class="header" href="#1-initializestate">1. <code>InitializeState</code></a></h3>
+<h4 id="1-overview-1"><a class="header" href="#1-overview-1">1. overview</a></h4>
+<ul>
+<li>The <code>InitializeState</code> function initializes the orbit of the satellite.</li>
+</ul>
+<h4 id="2-inputs-and-outputs"><a class="header" href="#2-inputs-and-outputs">2. inputs and outputs</a></h4>
+<ul>
+<li>input
+<ul>
+<li><code>relative_position_lvlh_m</code>, <code>relative_velocity_lvlh_m_s</code></li>
+</ul>
+<ul>
+<li>The initial state of the satellite</li>
+</ul>
+<ul>
+<li><code>gravity_constant_m3_s2</code>
+<ul>
+<li>The gravity constant of the reference celestial body $\mu$</li>
+</ul>
+</li>
+<li><code>initial_time_s</code>
+<ul>
+<li>Initial simulation time (default value is 0)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output
+<ul>
+<li>none </li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm"><a class="header" href="#3-algorithm">3. algorithm</a></h4>
+<h4 id="4-note"><a class="header" href="#4-note">4. note</a></h4>
+<h3 id="2-calculatesystemmatrix"><a class="header" href="#2-calculatesystemmatrix">2. <code>CalculateSystemMatrix</code></a></h3>
+<h4 id="1-overview-2"><a class="header" href="#1-overview-2">1. overview</a></h4>
+<ul>
+<li>The <code>CalculateSystemMatrix</code> function is used only inside the <code>RelativeOrbit</code> class. This function calls the system matrix calculation function according to <code>relative_dynamics_model_type</code>.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-1"><a class="header" href="#2-inputs-and-outputs-1">2. inputs and outputs</a></h4>
+<ul>
+<li>input
+<ul>
+<li><code>relative_dynamics_model_type</code>
+<ul>
+<li>The type of relative dynamics model</li>
+</ul>
+</li>
+<li><code>reference_sat_orbit</code>
+<ul>
+<li>The orbit of the reference satellite</li>
+</ul>
+</li>
+<li><code>gravity_constant_m3_s2</code> 
+<ul>
+<li>The gravity constant $\mu$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output
+<ul>
+<li>none </li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-1"><a class="header" href="#3-algorithm-1">3. algorithm</a></h4>
+<h4 id="4-note-1"><a class="header" href="#4-note-1">4. note</a></h4>
+<h3 id="3-calculatestm"><a class="header" href="#3-calculatestm">3. <code>CalculateStm</code></a></h3>
+<h4 id="1-overview-3"><a class="header" href="#1-overview-3">1. overview</a></h4>
+<ul>
+<li>The <code>CalculateStm</code> function is used only inside the <code>RelativeOrbit</code> class. This function calls the system matrix calculation function according to <code>stm_model_type</code>.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-2"><a class="header" href="#2-inputs-and-outputs-2">2. inputs and outputs</a></h4>
+<ul>
+<li>input
+<ul>
+<li><code>stm_model_type</code>
+<ul>
+<li>The type of relative dynamics model</li>
+</ul>
+</li>
+<li><code>reference_sat_orbit</code>
+<ul>
+<li>The orbit of the reference satellite</li>
+</ul>
+</li>
+<li><code>gravity_constant_m3_s2</code> 
+<ul>
+<li>The gravity constant $\mu$</li>
+</ul>
+</li>
+<li><code>elapsed_sec</code>
+<ul>
+<li>Elapsed simulation time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output
+<ul>
+<li>none </li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-2"><a class="header" href="#3-algorithm-2">3. algorithm</a></h4>
+<h4 id="4-note-2"><a class="header" href="#4-note-2">4. note</a></h4>
+<h3 id="4-calculatehillsystemmatrix"><a class="header" href="#4-calculatehillsystemmatrix">4. <code>CalculateHillSystemMatrix</code></a></h3>
+<h4 id="1-overview-4"><a class="header" href="#1-overview-4">1. overview</a></h4>
+<ul>
+<li>The <code>CalculateHillSystemMatrix</code> function calculates the system matrix of the Hill equation. </li>
+<li>This function is declared in <code>relative_orbit_models.hpp</code> and is used by the</li>
+</ul>
+<h4 id="2-inputs-and-outputs-3"><a class="header" href="#2-inputs-and-outputs-3">2. inputs and outputs</a></h4>
+<ul>
+<li>input
+<ul>
+<li><code>orbit_radius</code>
+<ul>
+<li>Radius of the reference satellite orbit $R$</li>
+</ul>
+</li>
+<li><code>gravity_constant_m3_s2</code> 
+<ul>
+<li>The gravity constant $\mu$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output
+<ul>
+<li><code>system_matrix</code>
+<ul>
+<li>system matrix</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-3"><a class="header" href="#3-algorithm-3">3. algorithm</a></h4>
+<ul>
+<li>The mean motion of the reference orbit ($n$) is calculated as follows:</li>
+</ul>
+<p>\[
+n=\sqrt{\frac{\mu}{R^3}}
+\]</p>
+<ul>
+<li>Then, the system matrix ($\boldsymbol{A}$) is calculated as follows:</li>
+</ul>
+<p>\[
+\boldsymbol{A}=
+\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+3n^2 &amp; 0 &amp; 0 &amp; 0 &amp; 2n &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; -2n &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; -n^2 &amp; 0 &amp; 0 &amp; 0 \\
+\end{pmatrix}
+\]</p>
+<h4 id="4-note-3"><a class="header" href="#4-note-3">4. note</a></h4>
+<h3 id="5-calculatehcwstm"><a class="header" href="#5-calculatehcwstm">5. <code>CalculateHcwStm</code></a></h3>
+<h4 id="1-overview-5"><a class="header" href="#1-overview-5">1. overview</a></h4>
+<ul>
+<li>The <code>CalculateHcwStm</code> function calculates the Hill-Clohessy-Wiltshire STM. </li>
+<li>This function is declared in <code>relative_orbit_models.hpp</code> and is used by the</li>
+</ul>
+<h4 id="2-inputs-and-outputs-4"><a class="header" href="#2-inputs-and-outputs-4">2. inputs and outputs</a></h4>
+<ul>
+<li>input
+<ul>
+<li><code>orbit_radius</code>
+<ul>
+<li>Radius of the reference satellite orbit $R$</li>
+</ul>
+</li>
+<li><code>gravity_constant_m3_s2</code> 
+<ul>
+<li>The gravity constant $\mu$</li>
+</ul>
+</li>
+<li><code>elapsed_sec</code>
+<ul>
+<li>Elapsed simulation time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output
+<ul>
+<li><code>system_matrix</code>
+<ul>
+<li>system matrix</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-4"><a class="header" href="#3-algorithm-4">3. algorithm</a></h4>
+<ul>
+<li>The mean motion of the reference orbit ($n$) is calculated as follows:</li>
+</ul>
+<p>\[
+n=\sqrt{\frac{\mu}{R^3}}
+\]</p>
+<ul>
+<li>Then, the system matrix ($\boldsymbol{A}$) is calculated as follows:</li>
+</ul>
+<p>\[
+\boldsymbol{\Phi}(t,t0)=
+\begin{pmatrix}
+4-3\cos(nt) &amp; 0 &amp; 0 &amp; \frac{\sin(nt)}{n} &amp; \frac{2}{n}-\frac{2\cos(nt)}{n} &amp; 0 \\
+-6nt+6\sin(nt) &amp; 1 &amp; 0 &amp; -\frac{2}{n}+\frac{2\cos(nt)}{n} &amp; \frac{4\sin(nt)}{n}-3t &amp; 0 \\
+0 &amp; 0 &amp; \cos(nt) &amp; 0 &amp; 0 &amp; \frac{\sin(nt)}{n} \\
+3n\sin(nt) &amp; 0 &amp; 0 &amp; cos(nt) &amp; 2\sin(nt) &amp; 0 \\
+-6n+6n\cos(nt) &amp; 0 &amp; 0 &amp; -2\sin(nt) &amp; -3+4\cos(nt) &amp; 0 \\
+0 &amp; 0 &amp; -n\sin(nt) &amp; 0 &amp; 0 &amp; \cos(nt) \\
+\end{pmatrix}
+\]</p>
+<h4 id="4-note-4"><a class="header" href="#4-note-4">4. note</a></h4>
+<h2 id="3-results-of-verifications"><a class="header" href="#3-results-of-verifications">3. Results of verifications</a></h2>
+<h4 id="1-relative-orbit-propagation"><a class="header" href="#1-relative-orbit-propagation">1. Relative Orbit Propagation</a></h4>
+<h5 id="1-overview-6"><a class="header" href="#1-overview-6">1. overview</a></h5>
+<ul>
+<li>Make sure the relative orbit is correctly propagated using a simple orbit</li>
+</ul>
+<h5 id="2-conditions-for-the-verification"><a class="header" href="#2-conditions-for-the-verification">2. conditions for the verification</a></h5>
+<ul>
+<li>input files
+<ul>
+<li>Initialization files for the two satellites were prepared.
+<ul>
+<li><code>satellite0.ini</code></li>
+<li><code>satellite1.ini</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>initial values
+<ul>
+<li>
+<p>The orbit of the reference satellite (satellite0) is GEO. The initial position of the satellite (satellite1) is $(0\mathrm{m}, 100\mathrm{m}, 0\mathrm{m})^\mathrm{T}$ in LVLH frame. The orbit was propagated for 86400 sec (the period of GEO).</p>
+</li>
+<li>
+<p><code>satellite0.ini</code></p>
+<pre><code>propagate_mode = RK4
+
+//Information used for orbital propagation by the Runge-Kutta method///////////
+//initial satellite position[m] 
+//＊The coordinate system is defined in PlanetSelect.ini
+initial_position_i_m(0) = 4.2164140100E+07  //radius of GEO
+initial_position_i_m(1) = 0
+initial_position_i_m(2) = 0
+//initial satellite velocity[m/s]
+//＊The coordinate system is defined in PlanetSelect.ini
+initial_velocity_i_m_s(0) = 0
+initial_velocity_i_m_s(1) = 3.074661E+03  //Speed of a spacecraft in GEO
+initial_velocity_i_m_s(2) = 0
+///////////////////////////////////////////////////////////////////////////////
+</code></pre>
+</li>
+<li>
+<p><code>satellite1.ini</code></p>
+<pre><code>propagate_mode = RELATIVE
+
+//Information used for relative orbit propagation//////////////////////////////
+//Relative Orbit Update Method (0 means RK4, 1 means STM)
+relative_orbit_update_method = 0
+// RK4 Relative Dynamics model type (only valid for RK4 update)
+// 0: Hill
+relative_dynamics_model_type = 0
+// STM Relative Dynamics model type (only valid for STM update)
+// 0: HCW
+stm_model_type = 0
+// Initial satellite position relative to the reference satellite in LVLH frame[m]
+// * The coordinate system is defined at [PLANET_SELECTION] in SampleSimBase.ini
+initial_relative_position_lvlh_m(0) = 0.0
+initial_relative_position_lvlh_m(1) = 100.0
+initial_relative_position_lvlh_m(2) = 0.0
+// initial satellite velocity relative to the reference satellite in LVLH frame[m/s]
+initial_relative_velocity_lvlh_m_s(0) = 0.0
+initial_relative_velocity_lvlh_m_s(1) = 0.0
+initial_relative_velocity_lvlh_m_s(2) = 0.0
+// information of reference satellite
+reference_satellite_id = 0
+///////////////////////////////////////////////////////////////////////////////
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-results"><a class="header" href="#3-results">3. results</a></h5>
+<ul>
+<li>The position of satellite1 seen from satellite0 in the inertia frame was calculated.</li>
+</ul>
+<div align="center">
+<img src="./figs/RelativeOrbit_verification_i_x.jpg" width=80% alt="">
+</div>
+  <div align="center">
+<img src="./figs/RelativeOrbit_verification_i_y.jpg" width=80% alt="">
+</div>
+<ul>
+<li>They correctly move periodically.</li>
+<li>In this example of verification, the RK4 method is used to propagate relative orbits, but the results were the same when using STM.</li>
+</ul>
+<h2 id="4-references"><a class="header" href="#4-references">4. References</a></h2>
+<ol>
+<li>Kapila, V., Sparks, A. G., Buffington, J. M., &amp; Yan, Q. (2000). Spacecraft formation flying: Dynamics and control. Journal of Guidance, Control, and Dynamics, 23(3), 561-564.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Specifications/Dynamics/Spec_EnckeMethod.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Specifications/Environment/Spec_SRPEnvironment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Specifications/Dynamics/Spec_EnckeMethod.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Specifications/Environment/Spec_SRPEnvironment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

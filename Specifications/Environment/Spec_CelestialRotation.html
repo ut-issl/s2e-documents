@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Celestial Rotation - S2E documents</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../Overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">General Information</li><li class="chapter-item expanded "><a href="../../General/CodingConvention.html"><strong aria-hidden="true">1.</strong> Coding Convention</a></li><li class="chapter-item expanded "><a href="../../General/DocumentFormat.html"><strong aria-hidden="true">2.</strong> Format of Documents</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Setup Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../General/HowToCompileWithVisualStudio.html"><strong aria-hidden="true">3.1.</strong> How to compile with Visual Studio</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWithUbuntuInDocker.html"><strong aria-hidden="true">3.2.</strong> How to compile with Ubuntu in Docker</a></li><li class="chapter-item expanded "><a href="../../General/HowToCompileWith_OSX.html"><strong aria-hidden="true">3.3.</strong> How to compile with OSX Environment</a></li><li class="chapter-item expanded "><a href="../../General/HowToDownloadNRLMSISE00library.html"><strong aria-hidden="true">3.4.</strong> How to download and make NRLMSISE00 Library</a></li><li class="chapter-item expanded "><a href="../../General/HowToDwnloadCSPCElibrary.html"><strong aria-hidden="true">3.5.</strong> How to download CSPICE Library</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="../../Tutorials/GettingStarted.html"><strong aria-hidden="true">4.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewSimulationScenario.html"><strong aria-hidden="true">5.</strong> How To Make New Simulation Scenario</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddComponents.html"><strong aria-hidden="true">6.</strong> How To Add Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToMakeNewComponents.html"><strong aria-hidden="true">7.</strong> How To Make New Components</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToUseMonteCarloSimulation.html"><strong aria-hidden="true">8.</strong> How To Use Monte Carlo Simulation</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToAddControlAlgorithms.html"><strong aria-hidden="true">9.</strong> How To Add Control Algorithms</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToIntegrateC2A.html"><strong aria-hidden="true">10.</strong> How To Integrate C2A</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformUartHilsTest.html"><strong aria-hidden="true">11.</strong> How To Perform UART HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToPerformI2cHilsTest.html"><strong aria-hidden="true">12.</strong> How To Perform I2C HILS Test</a></li><li class="chapter-item expanded "><a href="../../Tutorials/HowToSimulateMultipleSatellites.html"><strong aria-hidden="true">13.</strong> How to simulate multiple satellites</a></li><li class="chapter-item expanded affix "><li class="part-title">Specifications</li><li class="chapter-item expanded "><a href="../../Specifications/OverallStructure/OverallStructure.html"><strong aria-hidden="true">14.</strong> Overall Structure</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Component</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">15.1.</strong> Abstract</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ComponentBase.html"><strong aria-hidden="true">15.1.1.</strong> Component Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_ObcCommunicationBase.html"><strong aria-hidden="true">15.1.2.</strong> OBC Communication Base</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/Abstract/Spec_SensorBase.html"><strong aria-hidden="true">15.1.3.</strong> Sensor Base</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> AOCS</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_STT.html"><strong aria-hidden="true">15.2.1.</strong> STT</a></li><li class="chapter-item expanded "><a href="../../Specifications/Component/AOCS/Spec_RWJitter.html"><strong aria-hidden="true">15.2.2.</strong> RW Jitter</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> CDH</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Logic</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.5.</strong> Mission</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Mission/Spec_Telescope_en.html"><strong aria-hidden="true">15.5.1.</strong> Telescope</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.6.</strong> Power</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Power/Spec_PCU.html"><strong aria-hidden="true">15.6.1.</strong> PCU</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.7.</strong> Propulsion</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Component/Propulsion/Spec_SimpleThruster.html"><strong aria-hidden="true">15.7.1.</strong> SimpleThruster</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.8.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Disturbance</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GeoPotential.html"><strong aria-hidden="true">16.1.</strong> GeoPotential</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_GGTorque.html"><strong aria-hidden="true">16.2.</strong> Gravity Gradient Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_MagDisturbance.html"><strong aria-hidden="true">16.3.</strong> Magnetic Disturbance Torque</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce.html"><strong aria-hidden="true">16.4.</strong> Surface force</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_AirDrag.html"><strong aria-hidden="true">16.4.1.</strong> Air Drag</a></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_SurfaceForce_SolarRadiation.html"><strong aria-hidden="true">16.4.2.</strong> Solar Radiation Pressure</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Disturbance/Spec_ThirdBodyGravity.html"><strong aria-hidden="true">16.5.</strong> Third Body Gravity</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> Dynamics</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> Attitute</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_AttitudeDynamics.html"><strong aria-hidden="true">17.1.1.</strong> Attitude Dynamics</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_ControlledAttitude.html"><strong aria-hidden="true">17.1.2.</strong> Controlled Attitude</a></li></ol></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Orbit.html"><strong aria-hidden="true">17.2.</strong> Orbit</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_KeplerOrbit.html"><strong aria-hidden="true">17.2.1.</strong> Kepler Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Sgp4.html"><strong aria-hidden="true">17.2.2.</strong> SGP4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_Rk4Orbit.html"><strong aria-hidden="true">17.2.3.</strong> RK4 Orbit Propagation</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_EnckeMethod.html"><strong aria-hidden="true">17.2.4.</strong> Orbit Propagation with Encke's Method</a></li><li class="chapter-item expanded "><a href="../../Specifications/Dynamics/Spec_RelativeOrbit.html"><strong aria-hidden="true">17.2.5.</strong> Relative Orbit</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> Thermal</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">18.</strong> Environment</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_SRPEnvironment.html"><strong aria-hidden="true">18.1.</strong> SRP Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_Atmosphere.html"><strong aria-hidden="true">18.2.</strong> Atmosphere</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_MagEnvironment.html"><strong aria-hidden="true">18.3.</strong> Magnetic Environment</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_HipparcosCatalogue_en.html"><strong aria-hidden="true">18.4.</strong> Hipparcos Catalogue</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_GnssSatellites_en.html"><strong aria-hidden="true">18.5.</strong> GNSS Satellites</a></li><li class="chapter-item expanded "><a href="../../Specifications/Environment/Spec_CelestialRotation.html" class="active"><strong aria-hidden="true">18.6.</strong> Celestial Rotation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">19.</strong> Interface</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Interface/Spec_PowerPort.html"><strong aria-hidden="true">19.1.</strong> Power Port</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">20.</strong> Library</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">21.</strong> Simulation</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Specifications/Simulation/Spec_MonteCarloSimulation.html"><strong aria-hidden="true">21.1.</strong> Monte Carlo Simulation</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">S2E documents</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="specification-of-earth-rotation"><a class="header" href="#specification-of-earth-rotation">Specification of Earth Rotation</a></h1>
+<h2 id="1--overview"><a class="header" href="#1--overview">1.  Overview</a></h2>
+<h3 id="1-functions"><a class="header" href="#1-functions">1. Functions</a></h3>
+<ul>
+<li>The <code>EarthRotation</code> class calculates the rotational motion of the Earth.</li>
+</ul>
+<h3 id="2-related-files"><a class="header" href="#2-related-files">2. Related files</a></h3>
+<ul>
+<li><code>src/environment/global/earth_rotation.cpp, .hpp</code>
+<ul>
+<li><code>EarthRotation</code> class is defined here.</li>
+</ul>
+</li>
+<li><code>src/environment/global/celestial_information.cpp, .hpp</code>
+<ul>
+<li><code>EarthRotation</code> class is used here.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-how-to-use"><a class="header" href="#3-how-to-use">3. How to use</a></h3>
+<ul>
+<li>Make an instance of the <code>EarthRotation</code> class in <code>CelestialInformation</code> class.</li>
+<li>Select rotation mode in <code>sample_simulation_base.ini</code>
+<ul>
+<li><code>IDLE</code> : no motion ( $\mathrm{DCM_{ECItoECEF}}$ is set as the unit matrix)
+<ul>
+<li>If the rotation mode input is neither <code>FULL</code> nor <code>SIMPLE</code>, the <code>IDLE</code> mode is set.</li>
+</ul>
+</li>
+<li><code>SIMPLE</code> : axial rotation only ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}$ )</li>
+<li><code>FULL</code> : Precession and Nutation are taken into account ( $\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}$ )
+<ul>
+<li>$\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-explanation-of-algorithm"><a class="header" href="#2-explanation-of-algorithm">2. Explanation of Algorithm</a></h2>
+<p>The algorithm is based on <a href="https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote32/tn32.pdf;jsessionid=22C15057833E870494CC905A5B05180C.live1?__blob=publicationFile&amp;v=1">IERS Conventions 2003</a>.</p>
+<h3 id="1-update"><a class="header" href="#1-update">1. <code>Update</code></a></h3>
+<h4 id="1-overview"><a class="header" href="#1-overview">1. overview</a></h4>
+<ul>
+<li>This function calculates the coordinate transformation from ECI to ECEF, calling <code>Rotation</code> and <code>Precession</code> and <code>Nutation</code> functions.
+\[
+\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
+\]</li>
+<li>where $\bf{R}$, $\bf{N}$, $\bf{P}$ stand for the DCM of axial rotation, nutation, precession, respectively.</li>
+</ul>
+<h4 id="2-inputs-and-outputs"><a class="header" href="#2-inputs-and-outputs">2. inputs and outputs</a></h4>
+<ul>
+<li>Input
+<ul>
+<li>Julian date</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>the DCM of the coordinate transformation from ECI to ECEF</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm"><a class="header" href="#3-algorithm">3. algorithm</a></h4>
+<p>\[
+\mathrm{jdTT} = \mathrm{julian, date} + \mathrm{dtUT1UTC}
+\]</p>
+<ul>
+<li>where Julian date is the input, dtUT1UTC is the time difference between UT1 and UTC
+<ul>
+<li>dtUT1UTC = 32.184 [s]</li>
+</ul>
+</li>
+</ul>
+<p>\[
+\mathrm{tTT} = \frac{\mathrm{jdTT} - \mathrm{JDJ2000}}{\mathrm{JC}}
+\]</p>
+<ul>
+<li>
+<p>where tTT is Julian century for terrestrial time, JDJ2000 is Julian Date @ J2000, JC is Julian Century</p>
+<ul>
+<li>JDJ2000 = 2451545.0 [day]</li>
+<li>JC = 36525 [day/century]</li>
+</ul>
+</li>
+<li>
+<p>By using tTT, we get the DCM of precession ( $\bf{P}$ ) and nutation ( $\bf{N}$ )  with <code>Precession</code> and <code>Nutation</code> functions.</p>
+</li>
+<li>
+<p>$\varepsilon$, $\Delta \varepsilon$, $\Delta \psi$ are calculated in <code>Nutation</code> function.</p>
+</li>
+</ul>
+<p>\[
+\begin{align}
+\mathrm{E_q} &amp;= \Delta \psi \cos{(\varepsilon + \Delta \varepsilon)} \\
+\mathrm{GAST} &amp;= \mathrm{GMST} + \mathrm{E_q}
+\end{align}
+\]</p>
+<ul>
+<li>
+<p>where GAST is Greenwich Apparent Sidereal Time, GMST is Greenwich Mean Sidereal Time</p>
+</li>
+<li>
+<p>GAST is calculated from julian date in <code>gstime</code> function in <code>src/Library/sgp4/sgp4unit.h</code>.</p>
+</li>
+<li>
+<p>By using GMST, We get the DCM of axial rotation ( $\bf{R}$ ) with the <code>Rotation</code> function. The coordinate transformation from ECI to ECEF is calculated.
+\[
+\mathrm{DCM_{ECItoECEF}} = \bf{R}\bf{N}\bf{P}
+\]</p>
+</li>
+</ul>
+<h4 id="4-note"><a class="header" href="#4-note">4. note</a></h4>
+<ul>
+<li>If rotation mode is <code>Simple</code>, only axial rotation is calculated.</li>
+</ul>
+<h3 id="2-axialrotation"><a class="header" href="#2-axialrotation">2. <code>AxialRotation</code></a></h3>
+<h4 id="1-overview-1"><a class="header" href="#1-overview-1">1. overview</a></h4>
+<ul>
+<li>This function calculates the axial rotation of the central object.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-1"><a class="header" href="#2-inputs-and-outputs-1">2. inputs and outputs</a></h4>
+<ul>
+<li>Input 
+<ul>
+<li>Greenwich Apparent Sidereal Time (GAST)</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>the DCM of axial rotation ( $\bf{R}$ )</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-1"><a class="header" href="#3-algorithm-1">3. algorithm</a></h4>
+<p>\[
+\bf{R} = 
+\begin{pmatrix}
+\cos{\mathrm{(GAST)}} &amp; \sin{\mathrm{(GAST)}} &amp; 0 \\</p>
+<ul>
+<li>\sin{\mathrm{(GAST)}} &amp; \cos{\mathrm{(GAST)}} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\]</li>
+</ul>
+<h3 id="3-precession"><a class="header" href="#3-precession">3. <code>Precession</code></a></h3>
+<h4 id="1-overview-2"><a class="header" href="#1-overview-2">1. overview</a></h4>
+<ul>
+<li>This function calculates the precession of the central object.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-2"><a class="header" href="#2-inputs-and-outputs-2">2. inputs and outputs</a></h4>
+<ul>
+<li>Input 
+<ul>
+<li>Julian century for terrestrial time (tTT)</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>the DCM of precession ( $\bf{P}$ )</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-2"><a class="header" href="#3-algorithm-2">3. algorithm</a></h4>
+<ul>
+<li>Precession angles are calculated as follows.<br />
+\[
+\begin{align}
+\zeta &amp;= 2306.2181&quot; \mathrm{tTT} + 0.30188&quot; \mathrm{tTT}^2 + 0.017998&quot; \mathrm{tTT}^3 \\
+\theta &amp;= 2004.3109&quot; \mathrm{tTT} - 0.42665&quot; \mathrm{tTT}^2 - 0.041833&quot; \mathrm{tTT}^3 \\
+z &amp;= 2306.2181&quot; \mathrm{tTT} + 1.09468&quot; \mathrm{tTT}^2 + 0.018203&quot; \mathrm{tTT}^3 \\
+\end{align}
+\]
+\[
+\bf{P} = 
+\begin{pmatrix}
+\cos{(-z)} &amp; \sin{(-z)} &amp; 0 \\
+<ul>
+<li>\sin{(-z)} &amp; \cos{(-z)} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+\cos{\theta} &amp; 0 &amp; - \sin{\theta} \\
+0 &amp; 1 &amp; 0 \\
+\sin{\theta} &amp; 0 &amp; \cos{\theta}
+\end{pmatrix}
+\begin{pmatrix}
+\cos{(-\zeta)} &amp; \sin{(-\zeta)} &amp; 0  \\</li>
+<li>\sin{(-\zeta)} &amp; \cos{(-\zeta)} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\]</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-nutation"><a class="header" href="#4-nutation">4. <code>Nutation</code></a></h3>
+<h4 id="1-overview-3"><a class="header" href="#1-overview-3">1. overview</a></h4>
+<ul>
+<li>This function calculates the nutation of the central object.</li>
+</ul>
+<h4 id="2-inputs-and-outputs-3"><a class="header" href="#2-inputs-and-outputs-3">2. inputs and outputs</a></h4>
+<ul>
+<li>Input 
+<ul>
+<li>Julian century for terrestrial time (tTT)</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>Return: the DCM of precession ( $\bf{N}$ )</li>
+<li>$\varepsilon$: mean obliquity of the ecliptic</li>
+<li>$\Delta \varepsilon$: nutation in obliquity</li>
+<li>$\Delta \psi$: nutation in longitude</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-algorithm-3"><a class="header" href="#3-algorithm-3">3. algorithm</a></h4>
+<p>Delaunay angles are calculated as follows.
+\[
+\begin{align}
+l &amp;= 134.96340251^\circ + 1717915923.2178&quot;\mathrm{tTT} + 31.8792&quot;\mathrm{tTT}^2 + 0.051635&quot;\mathrm{tTT}^3 - 0.00024470&quot;\mathrm{tTT}^4 \\
+l' &amp;= 357.52910918^\circ + 129596581.0481&quot;\mathrm{tTT} - 0.5532&quot;\mathrm{tTT}^2 + 0.000136&quot;\mathrm{tTT}^3 - 0.00001149&quot;\mathrm{tTT}^4 \\
+F  &amp;= 93.27209062^\circ + 1739527262.8478&quot;\mathrm{tTT} - 12.7512&quot;\mathrm{tTT}^2 - 0.001037&quot;\mathrm{tTT}^3 + 0.00000417&quot;\mathrm{tTT}^4 \\
+D  &amp;= 297.85019547^\circ + 1602961601.2090&quot;\mathrm{tTT} - 6.3706&quot;\mathrm{tTT}^2+0.006593&quot;\mathrm{tTT}^3 -0.00003169&quot;\mathrm{tTT}^4 \\
+\Omega &amp;= 125.04455501^\circ - 6962890.5431&quot;\mathrm{tTT} + 7.4722&quot;\mathrm{tTT}^2+0.007702&quot;\mathrm{tTT}^3-0.00005939&quot;\mathrm{tTT}^4 \\
+\end{align}
+\]</p>
+<ul>
+<li>l : mean anomaly of the moon</li>
+<li>l' : mean anomaly of the sun</li>
+<li>F : mean argument of latitude of the moon</li>
+<li>D : mean elongation of the moon from the sun</li>
+<li>$\Omega$ : mean longitude of ascending node of the moon</li>
+</ul>
+<p>$\varepsilon$ and $\Delta \varepsilon$ and $\Delta \psi$ are calculated as follows.</p>
+<p>\[
+\begin{align}
+\varepsilon &amp;= 23^\circ26'21&quot;.448 - 46&quot;.8150\mathrm{tTT} - 0&quot;.00059\mathrm{tTT}^2 + 0&quot;.001813\mathrm{tTT}^3 \\
+\Delta \epsilon &amp;= 9.205\cos{\Omega} + 0.573\cos{2L'} - 0.090\cos{2\Omega} + 0.098\cos{2L}+0.007\cos{l'} - 0.001\cos{l} + 0.022\cos{(2L'+l')} + 0.013\cos{(2L+l)}-0.010\cos({2L'-l')} , [\mathrm{arcsec}] \\
+\Delta \psi &amp;= -17.206\sin{\Omega} - 1.317\sin{2L'} + 0.207\sin{2\Omega} - 0.228\sin{2L} + 0.148\sin{l'}+0.071\sin{l}-0.052\sin{(2L'+l')} - 0.030\sin{(2L+l)}+0.022\sin{(2L'-l')} , [\mathrm{arcsec}] \\
+\end{align}
+\]</p>
+<p>where $L = F + \Omega$，$L' = L - D$</p>
+<p>\[
+\bf{N} = 
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)} &amp; \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} \\
+0 &amp; - \sin{\left(-(\varepsilon + \Delta \varepsilon)\right)} &amp; \cos{\left(-(\varepsilon + \Delta \varepsilon)\right)}
+\end{pmatrix}
+\begin{pmatrix}
+\cos{(-\Delta \psi)} &amp; \sin{(-\Delta \psi)} &amp; 0 \\</p>
+<ul>
+<li>\sin{(-\Delta \psi)} &amp; \cos{(-\Delta \psi)} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; \cos{\varepsilon} &amp; \sin{\varepsilon} \ 
+0 &amp; - \sin{\varepsilon} &amp; \cos{\varepsilon}
+\end{pmatrix}
+\]</li>
+</ul>
+<h2 id="3-results-of-verifications"><a class="header" href="#3-results-of-verifications">3. Results of verifications</a></h2>
+<h3 id="1-mathrmdcm_ecitoecef-calculation-in-update-function"><a class="header" href="#1-mathrmdcm_ecitoecef-calculation-in-update-function">1. $\mathrm{DCM_{ECItoECEF}}$ calculation in <code>Update</code> function</a></h3>
+<h4 id="1-overview-4"><a class="header" href="#1-overview-4">1. overview</a></h4>
+<ul>
+<li>The $\mathrm{DCM_{ECItoECEF}}$ calculation is compared with <a href="https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055">Matlab's dcmeci2ecef function</a></li>
+</ul>
+<h4 id="2-conditions-for-the-verification"><a class="header" href="#2-conditions-for-the-verification">2. conditions for the verification</a></h4>
+<ul>
+<li>input value
+<ul>
+<li>Simulation time
+<ul>
+<li>200, 20000, 100000 [s]</li>
+</ul>
+</li>
+<li>other conditions 
+<ul>
+<li>default initialize files
+<ul>
+<li>UTC = 2020/01/01 12:00:00</li>
+<li>Step Time 0.1 [s]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-results"><a class="header" href="#3-results">3. results</a></h4>
+<ul>
+<li>
+<p>Results of calculation time in S2E</p>
+<img src="./figs/Result_ECIECEF_S2E_time.png"  style = "zoom: 75%" />
+</li>
+</ul>
+<p>If you want to reduce the calculation time, it is recommended to select <code>Simple</code> mode rather than <code>Idle</code> mode. Note again that if the rotation mode input is neither <code>Full</code> nor <code>Simple</code>, the <code>Idle</code> mode is set.</p>
+<ul>
+<li>
+<p>Results of S2E in <code>Simple</code> rotation mode</p>
+<img src="./figs/Result_ECIECEF_S2E_Simple.png"  style = "zoom: 75%" />
+</li>
+<li>
+<p>Results of S2E in <code>Full</code> rotation mode</p>
+<img src="./figs/Result_ECIECEF_S2E_Full.png"  style = "zoom: 75%" />
+</li>
+<li>
+<p>Results of Matlab</p>
+<img src="./figs/Result_ECIECEF_Matlab.png"  style = "zoom: 75%" />
+</li>
+</ul>
+<p>The results of <code>Full</code> rotation mode and Matlab agree well. Note that Matlab is based on the IAU-2000/2005 reference system, while S2E is based on IERS Conventions 2003.</p>
+<h2 id="4-references"><a class="header" href="#4-references">4. References</a></h2>
+<ol>
+<li>天体の回転運動理論入門講義ノート, 福島 登志夫, 2007.(written in Japanese)</li>
+<li>天体の位置計算, 長沢 工, 2001.(written in Japanese)</li>
+<li>IERS Conventions 2003, D. D. McCarthy and G Petit, 2003.</li>
+<li><a href="https://jp.mathworks.com/help/aerotbx/ug/dcmeci2ecef.html#d123e38055">MATLAB dcmeci2ecef</a>, retrieved June 18, 2021.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Specifications/Environment/Spec_GnssSatellites_en.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Specifications/Interface/Spec_PowerPort.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Specifications/Environment/Spec_GnssSatellites_en.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Specifications/Interface/Spec_PowerPort.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
