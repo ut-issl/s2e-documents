@@ -239,6 +239,7 @@
          1. [SGP4 Orbit Propagation with TLE](./Specifications/Dynamics/Spec_Sgp4.md)
          1. [Encke's method](./Specifications/Dynamics/Spec_EnckeMethod.md)
          1. [Relative Orbit](./Specifications/Dynamics/Spec_RelativeOrbit.md)
+         1. [Orbit Propagation with Time Series File](./Specifications/Dynamics/Spec_TimeSeriesFileOrbit.md)
 
       1. Thermal
          1. Heater: TBW
