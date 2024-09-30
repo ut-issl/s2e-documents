@@ -45,7 +45,7 @@
 
 ## 3. Results of verifications
 
-### 1. Verification of the error of Fourth Order Runge-Kutta method (RK4)
+### 1. Verification of the orbit propagation with a time series file
 #### 1. Overview
 - We calculated the orbit using a sample time series file (`/settings/sample_satellite/orbit_files/time_series_orbit.csv`).
 - The output of the simulation was compared with the sample time series data.
@@ -58,12 +58,15 @@
   simulation_step_s = 10
   ```
 - `number_of_interpolation` was set to 5.
-- The interpolation method was set to polynominal method.
+- The interpolation method was set to the polynominal method.
 
 #### 3. results
+The enlarged views confirm that the interpolation is properly performed in both the position and velocity diagrams.
 <div align="center">
   <img src="./figs/time_series_file_position.png" width = 400 alt="time_series_file_position">
+  <img src="./figs/time_series_file_position_enlarged.png" width = 400 alt="time_series_file_position_enlarged">
   <img src="./figs/time_series_file_velocity.png" width = 400 alt="time_series_file_velocity">
+  <img src="./figs/time_series_file_velocity_enlarged.png" width = 400 alt="time_series_file_velocity_enlarged">
   </figure>
 </div>
 
