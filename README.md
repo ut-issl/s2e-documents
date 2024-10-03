@@ -5,7 +5,7 @@
 - The branch construction
   - main
     - Documents for the latest stable version of s2e-core
-      - The Current version supports [s2e-core v7.2.0](https://github.com/ut-issl/s2e-core/releases/tag/v7.2.0)
+      - The Current version supports [s2e-core v8.0.0](https://github.com/ut-issl/s2e-core/releases/tag/v8.0.0)
       - If there are several patch update versions, please use the latest one to avoid bugs.
     - The old versions are managed with `release/tag/v.*.*.*`
       - The `major` version number is compatible with s2e-core's `major` version number.
@@ -231,6 +231,7 @@
          1. [Overview of Attitude Calculation](./Specifications/Dynamics/Spec_Attitude.md)
          1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
+         1. Attitude with Cantilever Vibration: TBW
 
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
@@ -278,30 +279,33 @@
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
          1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField.md)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
+         1. Earth Albedo: TBW
 
       </details>
 
-   1. <details><summary> Library </summary>
+   1. <details><summary> Logger </summary>
+
+         1. Loggable: TBW
+         1. Log Utility: TBW
+         1. Logger: TBW
+
+      </details>
+
+   1. <details><summary> Math Physics </summary>
 
       1. Atmosphere
          1. Simple air density model: TBW
          1. Harris-Priester model: TBW
-
-      1. Communication
-         1. COM port interface: TBW
+         1. NRLMSISE00: TBW
 
       1. Control Utilities
          1. First order lag: TBW
 
-      1. External
-         - External library-related source codes.
-         1. IGRF (International Geomagnetic Reference Field): TBW
-         1. inih: TBW
-         1. nrlmsise00: TBW
-         1. sgp4: TBW
-
       1. Geodesy
          1. Geodetic Position: TBW
+
+      1. Geomagnetic
+         1. IGRF (International Geomagnetic Reference Field): TBW
 
       1. GNSS (Global Navigation Satellite System)
          1. ANTEX file reader: TBW
@@ -311,16 +315,6 @@
 
       1. Gravity
          1. Gravity potential: TBW
-
-      1. Initialize
-         1. Initialize file access: TBW
-         1. WINGS operation file: TBW
-         1. C2A command database: TBW
-
-      1. Logger
-         1. Loggable: TBW
-         1. Log Utility: TBW
-         1. Logger: TBW
 
       1. <details><summary> math </summary>
 
@@ -353,6 +347,7 @@
          1. Orbital Elements: TBW
          1. Relative Orbit Models: TBW
          1. Interpolation orbit: TBW
+         1. sgp4: TBW
 
       1. Planet rotation
          1. Moon rotation utilities: TBW
@@ -363,14 +358,15 @@
          1. Minimal standard linear congruential generator: TBW
          1. Minimal standard linear congruential generator with shuffle: TBW
          1. Random walk: TBW
-
-      1. utilities
-         1. Endian: TBW
-         1. Macros: TBW
-         1. Quantization: TBW
-         1. Ring Buffer: TBW
-         1. SLIP: TBW
       
+      </details>
+
+   1. <details><summary> Setting file reader </summary>
+
+         1. Initialize file access: TBW
+         1. WINGS operation file: TBW
+         1. C2A command database: TBW
+
       </details>
 
    1. <details><summary> Simulation </summary>
@@ -420,6 +416,17 @@
          1. [Sample Components](./Specifications/Simulation/Spec_SampleSpacecraftComponents.md)
          1. SamplePortConfiguration: TBW
       
+      </details>
+
+   1. <details><summary> Utilities </summary>
+
+         1. Endian: TBW
+         1. Macros: TBW
+         1. Quantization: TBW
+         1. Ring Buffer: TBW
+         1. SLIP: TBW
+         1. COM port interface: TBW
+
       </details>
 
 1. [Troubleshooting](./General/Troubleshooting.md)
