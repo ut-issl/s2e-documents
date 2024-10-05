@@ -52,6 +52,7 @@
    - Users can select any value.
 
 9. Add the following descriptions at the bottom line of `[COMPONENT_FILES]` to set the initialize file for the gyro sensor.
+   - The keyword `SETTINGS_DIR_FROM_EXE` is defined in the `CMakeList.txt` to handle the relative path to the setting files.
 
    ```c++
    gyro_file = SETTINGS_DIR_FROM_EXE/user_satellite/components/gyro_sensor_xxx.ini
