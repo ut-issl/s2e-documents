@@ -16,15 +16,15 @@
 - `user_case.hpp`
   - Add header including
     ```c++
-    #include <./simulation/monte_carlo_simulation/monte_carlo_simulation_executor.hpp>
+    #include "simulation/monte_carlo_simulation/monte_carlo_simulation_executor.hpp"
     ```
   - Add private member variables for `MonteCarloSimulationExecutor`.
     ```c++
-    MonteCarloSimulationExecutor &monte_carlo_simulator_;
+    s2e::simulation::MonteCarloSimulationExecutor &monte_carlo_simulator_;
     ```
   - Replace the constructor of UserCase class to add arguments for Monte Carlo simulation.
     ```c++
-    UserCase(const std::string initialize_base_file, MonteCarloSimulationExecutor &monte_carlo_simulator, const std::string log_path);
+    UserCase(const std::string initialize_base_file, s2e::simulation::MonteCarloSimulationExecutor &monte_carlo_simulator, const std::string log_path);
     ```
 - `user_case.cpp`
   - Add header including
@@ -33,17 +33,17 @@
     ```
   - Replace the constructor as follows
     ```c++
-    UserCase::UserCase(const std::string initialize_base_file, MonteCarloSimulationExecutor &monte_carlo_simulator, const std::string log_path)
+    UserCase::UserCase(const std::string initialize_base_file, s2e::simulation::MonteCarloSimulationExecutor &monte_carlo_simulator, const std::string log_path)
     : SimulationCase(initialize_base_file, monte_carlo_simulator, log_path), monte_carlo_simulator_(monte_carlo_simulator) {}
     ```
   - Edit `InitializeTargetObjects` function
     - Edit log file name definition and       
-    - Add `MonteCarloSimulationExecutor` initialization
+    - Add `s2e::simulation::MonteCarloSimulationExecutor` initialization
       ```c++
       // Monte Carlo Simulation
       monte_carlo_simulator_.SetSeed();
       monte_carlo_simulator_.RandomizeAllParameters();
-      SimulationObject::SetAllParameters(monte_carlo_simulator_);
+      s2e::simulation::SimulationObject::SetAllParameters(monte_carlo_simulator_);
       monte_carlo_simulator_.AtTheBeginningOfEachCase();
       ```  
   - Add log settings for the Monte Carlo simulation  
@@ -58,9 +58,9 @@
       {
         std::string str_tmp = "";
 
-        str_tmp += WriteScalar("elapsed_time", "s");
-        str_tmp += WriteVector("spacecraft_angular_velocity", "b", "rad/s", 3);
-        str_tmp += WriteVector("spacecraft_quaternion", "i2b", "-", 4);
+        str_tmp += s2e::logger::WriteScalar("elapsed_time", "s");
+        str_tmp += s2e::logger::WriteVector("spacecraft_angular_velocity", "b", "rad/s", 3);
+        str_tmp += s2e::logger::WriteVector("spacecraft_quaternion", "i2b", "-", 4);
 
         return str_tmp;
       }
@@ -68,9 +68,9 @@
       {
         std::string str_tmp = "";
 
-        str_tmp += WriteScalar(global_environment_->GetSimulationTime().GetElapsedTime_s());
-        str_tmp += WriteVector(spacecraft_->GetDynamics().GetAttitude().GetAngularVelocity_b_rad_s(), 3);
-        str_tmp += WriteQuaternion(spacecraft_->GetDynamics().GetAttitude().GetQuaternion_i2b());
+        str_tmp += s2e::logger::WriteScalar(global_environment_->GetSimulationTime().GetElapsedTime_s());
+        str_tmp += s2e::logger::WriteVector(spacecraft_->GetDynamics().GetAttitude().GetAngularVelocity_b_rad_s(), 3);
+        str_tmp += s2e::logger::WriteQuaternion(spacecraft_->GetDynamics().GetAttitude().GetQuaternion_i2b());
 
         return str_tmp;
       }
@@ -84,16 +84,16 @@
   ```
 - If you find description below
   ```c++
-  #include "library/logger/logger.hpp"
+  #include "logger/logger.hpp"
   ```
   rewrite as the following description 
   ```c++
-  #include "library/logger/initialize_log.hpp"
+  #include "logger/initialize_log.hpp"
   ```
-- Make an instance of `MonteCarloSimulatorExecutor` and Logger for Monte Carlo log
+- Make an instance of `s2e::simulation::MonteCarloSimulatorExecutor` and Logger for Monte Carlo log
   ```c++
-  MonteCarloSimulationExecutor *mc_simulator = InitMonteCarloSimulation(ini_file);
-  Logger *log_mc_sim = InitMonteCarloLog(ini_file, mc_simulator->IsEnabled());
+  MonteCarloSimulationExecutor *mc_simulator = s2e::simulation::InitMonteCarloSimulation(ini_file);
+  Logger *log_mc_sim = s2e::logger::InitMonteCarloLog(ini_file, mc_simulator->IsEnabled());
   ```
 - Add while loop for Monte Carlo simulation as follows
   ```c++
@@ -127,7 +127,7 @@
   log_enable = ENABLE
 
   // Number of execution
-  number_of_executions = 3
+  number_of_executions = 10
 
   [MONTE_CARLO_RANDOMIZATION]
   parameter(0) = attitude0.angular_velocity_b_rad_s
