@@ -6,7 +6,7 @@
 
 - The `GnssReceiver` class simulates a GNSS receiver.
 - It determines whether GNSS navigation data is available from the antenna direction and the selected antenna model.
-- When GNSS navigation data is available, it outputs the spacecraft position and velocity in the Earth-Centered Earth-Fixed (ECEF) frame with independent white noise on each axis. It also converts the measured position to geodetic latitude, longitude, and altitude.
+- When GNSS navigation data is available, it outputs the receiver position and velocity in the Earth-Centered Earth-Fixed (ECEF) frame with independent white noise on each axis. It also converts the measured position to geodetic latitude, longitude, and altitude.
 - It maintains the current UTC and GPS time. In the cone antenna model, it also calculates information about each visible GNSS satellite.
 
 ### 2. Files
@@ -141,4 +141,23 @@ In the `SIMPLE` model, individual satellites are not counted, so the number of v
 
 ## 5. Results of verification
 
-- Not available.
+The following figures compare the true and measured receiver positions in the ECEF frame. They also show the GNSS visibility flag and the number of visible satellites.
+
+### 1. `SIMPLE` antenna model
+
+![](./figs/gnss-receiver-output-simple-antenna.png)
+
+- The visibility flag changes according to whether the antenna boresight points toward the anti-Earth hemisphere.
+- While the visibility flag is true, the measured ECEF position follows the true position with the configured observation noise.
+- While the visibility flag is false, the measured position retains its last observed value.
+- The number of visible satellites remains zero because the `SIMPLE` model does not calculate the visibility of individual satellites.
+
+### 2. `CONE` antenna model
+
+![](./figs/gnss-receiver-output-cone-antenna.png)
+
+- The number of visible satellites changes according to Earth occultation and the antenna cone angle.
+- The visibility flag is true when four or more satellites are visible and false when fewer than four satellites are visible.
+- The measured ECEF position follows the true position with observation noise while the visibility flag is true. When the flag is false, the last observed position is retained until GNSS navigation data becomes available again.
+
+These results confirm the visibility determination and position update behavior of both antenna models.
