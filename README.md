@@ -280,7 +280,7 @@
          1. [Atmosphere](./Specifications/Environment/Spec_Atmosphere.md)
          1. [Geomagnetic field](./Specifications/Environment/Spec_GeomagneticField.md)
          1. [Solar Radiation Pressure Environment](./Specifications/Environment/Spec_SRPEnvironment.md)
-         1. Earth Albedo: TBW
+         1. [Earth Albedo](./Specifications/Environment/Spec_EarthAlbedo.md)
 
       </details>
 
