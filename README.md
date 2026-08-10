@@ -232,7 +232,7 @@
          1. [Overview of Attitude Calculation](./Specifications/Dynamics/Spec_Attitude.md)
          1. [Attitude RK4](./Specifications/Dynamics/Spec_Rk4Attitude.md)
          1. [Controlled Attitude](./Specifications/Dynamics/Spec_ControlledAttitude.md)
-         1. Attitude with Cantilever Vibration: TBW
+         1. [Attitude with Cantilever Vibration](./Specifications/Dynamics/Spec_AttitudeWithCantileverVibration.md)
 
       1. Orbit
          1. [Overview of Orbit calculation](./Specifications/Dynamics/Spec_Orbit.md)
