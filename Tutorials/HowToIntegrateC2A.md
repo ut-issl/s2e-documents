@@ -38,7 +38,7 @@
 
 ## 3. How to build C2A in S2E with the sample codes
 - Sample codes
-  - A sample of s2e-user: [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a)
+  - A sample of s2e-user: [s2e-user-example/sample/how-to-integrate-c2a-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a-v8)
   - A sample of c2a-user: [C2A minimum user](https://github.com/ut-issl/c2a-core/tree/develop/Examples/minimum_user) in `c2a-core`.
 
 - Preparing development environment
@@ -94,13 +94,13 @@
 # 5. Example of S2E-C2A communication
 - This section shows an example of communication between a component in S2E and an application in C2A. 
 - The sample codes
-  - S2E: [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a)
+  - S2E: [s2e-user-example/sample/how-to-integrate-c2a-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a-v8)
   - C2A: [Tutorials/SampleCodes/c2a_integration/](./SampleCodes/c2a_integration/c2a_src_user/)
 - Preparation
   - See `Ch. 3 How to build C2A in S2E with the sample codes`.
 - Modification of the S2E side
   - Users can use the [ExampleSerialCommunicationWithObc](https://github.com/ut-issl/s2e-core/blob/v6.0.0/src/components/examples/example_serial_communication_with_obc.hpp) class in `s2e-core` as a test component to communicate with C2A.
-  - Please refer the sample codes in [s2e-user-example/sample/how-to-integrate-c2a](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a).
+  - Please refer the sample codes in [s2e-user-example/sample/how-to-integrate-c2a-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-integrate-c2a-v8).
   - Add `ExampleSerialCommunicationWithObc` as a component in `user_components.cpp and .hpp`.
     - In this example, the `ObcWithC2a` is executed as 1kHz, and the `ExampleSerialCommunicationWithObc` is executed as 1Hz.
  - Modification of the C2A side
