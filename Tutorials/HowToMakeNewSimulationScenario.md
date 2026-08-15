@@ -49,6 +49,7 @@
 2. Download mandatory `ExtLibraries` (CSPICE and NRLMSISE-00).
    - Users need to use the `CMakeList.txt` in the `s2e-user-example/s2e-core/ExtLibraries` to download the mandatory external libraries.
    - The construction procedure is same with the s2e-core. Please see a `How To Build` document suit with your platform.
+     - Please carefully check the `EXT_LIB_DIR` and `SETTINGS_DIR` and change the path if needed. 
    - Please check the following directories and files are made.
      ```
      └─ s2e-user-example
