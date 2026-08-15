@@ -31,7 +31,7 @@
 ## 3. Make a simple clock sensor without initialize file
 
 - This chapter explains how to make a simple clock sensor, which observes the simulation elapsed time with a bias noise.
-- Users can find the sample codes in [s2e-user-example/sample/how-to-make-new-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-make-new-components).
+- Users can find the sample codes in [s2e-user-example/sample/how-to-make-new-components-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-make-new-components-v8).
   - The sample codes already including the initialize file for the `ClockSensor`. Please edit the code a bit to learn the procedure step by step.
 
 1. The `clock_sensor.cpp, .hpp` are created in the `components` directory. 

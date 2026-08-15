@@ -7,7 +7,7 @@
 - Users can set the mean value and standard deviation for the randomized parameters with `simulation_base.ini` file of each user.
   - Please see the specification document for [Monte Carlo Simulation](../Specifications/Simulation/Spec_MonteCarloSimulation.md) for a detailed description.
 - This tutorial explains how to randomly change the initial value of the spacecraft angular velocity.
-  - There are sample codes in [s2e-user-example/sample/how-to-use-monte-carlo-simulation](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-use-monte-carlo-simulation).
+  - There are sample codes in [s2e-user-example/sample/how-to-use-monte-carlo-simulation-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-use-monte-carlo-simulation-v8).
 - The supported version of this document
   - Please confirm that the version of the documents and s2e-core is compatible.
 

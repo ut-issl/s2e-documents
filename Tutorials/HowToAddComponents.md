@@ -13,7 +13,7 @@
 ## 2. Add a Gyro sensor
 
 - This chapter explains how to add a gyro sensor component to your `s2e-user` simulation case step by step.
-- Users can find the sample code of this section in [s2e-user-example/sample/how-to-add-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-components).
+- Users can find the sample code of this section in [s2e-user-example/sample/how-to-add-components-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-components-v8).
 
 1. Open & edit `user_components.hpp`
    - Add the following descriptions at the one line below of `#include <components/real/cdh/on_board_computer.hpp>`
