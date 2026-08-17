@@ -21,7 +21,7 @@
 - This chapter introduces how to add a control algorithm without sensors and actuators.
 - This method directly measures the satellite's physical quantity and generates torque and force acting on the satellite.
 - To do that, users need to edit the `Update` function in the `UserSat.cpp`.
-  - A sample code is in [s2e-user-example/sample/how-to-add-control-algorithm-direct-method](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-control-algorithm-direct-method)
+  - A sample code is in [s2e-user-example/sample/how-to-add-control-algorithm-direct-method-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-control-algorithm-direct-method-v8)
 - The `UserSatellite` class already has satellite attitude, orbit, and local environment information since it inherits the `Spacecraft` base class. So users can easily access these values.
 - To measure physical quantities, users can use getter functions defined in the `Attitude`, `Orbit`, and `LocalEnvironment` classes as `dynamics_->GetAttitude().GetAngularVelocity_b_rad_s()`.
 - To generate torque and force, users can use `dynamics_->AddTorque_b_Nm` and `dynamics_->AddForce_b_N`.
@@ -43,7 +43,7 @@
 ## 4. Component method: Using real components
 - This chapter introduces a method to add a control algorithm using realistic sensors and actuators. - This method measures a satellite's physical quantity via sensors, generates torque and force via actuators, and executes control algorithms on OBC.
 - This tutorial assumes the spacecraft has a three-axis gyro sensor, a reaction wheel, and an OBC.
-- The sample codes are in [s2e-user-example/sample/how-to-add-control-algorithm-using-real-component](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-control-algorithm-using-real-component).
+- The sample codes are in [s2e-user-example/sample/how-to-add-control-algorithm-using-real-component-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-control-algorithm-using-real-component-v8).
 - Firstly, users need to make the `UserOnBoardComputer` class to emulate the OBC.
   - Copy the `user_on_board_computer` files to the `s2e-user/src/components` from the `component_method/src/components`, and add the `user_on_board_computer.cpp` to the `set(SOURCE_FILES)` in the `CMakeLists.txt` to compile it.
   - The `UserOnBoardComputer` class has the `UserComponents` class as a member, and users can access all components to get sensing information or set the output of actuators.

@@ -18,7 +18,7 @@
 
 ## 3. Check log output 
 
-1. Check `./data/sample/logs` to find CSV log output file  
+1. Check `./logs` to find CSV log output file  
    - The file name includes executed time as `YYMMDD_HHMMSS_default.csv`
    - The included executed time is defined by the user computer settings.
 2. Open the CSV log file
@@ -31,33 +31,34 @@
    
 ## 4. Edit Simulation Conditions
 
-1. Move to `./data/sample/initialize_files`  directory  
+1. Move to `./settings`  directory  
 2. You can find the several **initialize** files ([INI files](https://en.wikipedia.org/wiki/INI_file)). In these initialize files, simulation conditions are defined, and you can change the conditions without rebuild of S2E by editing the initialize files.
 3. Open `sample_simulation_base.ini`, which is the base file of the initialize files.
    - In this base file, other initialize files are defined.
    - You can see simulation conditions as time definitions, randomize seed definitions, etc. 
-4. Open `sample_satellite.ini`, which is the file to set the spacecraft parameters.
+4. Open `./sample_satellite/satellite.ini`, which is the file to set the spacecraft parameters.
 5. Edit the value of angular momentum `initial_angular_velocity_b_rad_s(0-2)` in the `[Attitude]` section as you want.
 6. Set the value of `initialize_mode` to `MANUAL` if it is `CONTROLLED`.
 7. Rerun the `s2e-core` **without a rebuild**
-8. Check the new log file in `./data/sample/logs` to confirm the initial angular velocity is changed as you want.
+8. Check the new log file in `./logs` to confirm the initial angular velocity is changed as you want.
 9. Of course, you can change other values similarly.
 
 ## 5. Edit Simulation Conditions: Disturbances
 
-1. Move to `./data/sample/ini`  directory again  
-2. Open `sample_disturbance.ini`, which defines conditions to calculate orbital disturbance torques and forces
+1. Move to `./settings`  directory again  
+2. Open `./sample_satellite/disturbance.ini`, which defines conditions to calculate orbital disturbance torques and forces
    - Currently, S2E supports the following disturbances:
      - Gravity Gradient torque
      - Magnetic Disturbance torque
      - Air drag torque and force
      - Solar radiation pressure torque and force
      - Geo Potential acceleration
+     - Lunar Gravity Field
      - Third body gravity acceleration
 3. You can select `ENABLE` or `DISABLE` of calculation and log output for each disturbance
 4. Edit all `calculation` parameters of each disturbance as `calculation = DISABLE`
 5. Rerun the `s2e-core` **without a rebuild**
-6. Check the new log file in `./data/sample/logs` to confirm the spacecraft is not affected by any disturbance torque and the angular velocity and quaternion are not changed. You can also plot by following command and see all the disturbance torque and force are zero. (assuming you already created a `pipenv` virtual environment)
+6. Check the new log file in `./logs` to confirm the spacecraft is not affected by any disturbance torque and the angular velocity and quaternion are not changed. You can also plot by following command and see all the disturbance torque and force are zero. (assuming you already created a `pipenv` virtual environment)
    ```
    # Windows
    cd scripts/Plot
@@ -70,8 +71,8 @@
 
 ## 6. Edit Simulation Conditions: Orbit
 
-1. Move to `./data/sample/ini`  directory  
-1. Open `sample_satellite.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
+1. Move to `./settings`  directory  
+1. Open `./sample_satellite/satellite.ini` and see the `[Orbit]` section, which defines conditions to calculate orbit motion
    - Currently, S2E supports several types of orbit propagation. Please see [Orbit](./Specifications/Dynamics/Spec_Orbit.md) specification documents for more details.
 1. Please set the parameters as follow:
    - `propagate_mode = SGP4`: SGP4 Propagator
@@ -97,20 +98,21 @@
      tle2=2 33493  98.2516 327.9413 0016885   9.3461 350.8072 15.01563916753462
      ```
 1. Rerun the `s2e-core` **without a rebuild**
-1. Check the new log file in `./data/sample/logs` to confirm the spacecraft position in ECI frame `spacecraft_position_i` is changed.
+1. Check the new log file in `./logs` to confirm the spacecraft position in ECI frame `spacecraft_position_i` is changed.
 1. To visualize the orbit result, execute the `plot_satellite_orbit_on_miller.py` and `plot_orbit_eci.py`. You can see the different plots as follows.  
   ![](./figs/GettingStarted_PlotPrismOrbitInMiller.JPG)
   ![](./figs/GettingStarted_PlotPrismOrbit3d.JPG)
 
 ## 7. Edit Simulation Conditions: Environment
 
-1. Move to `./data/sample/ini`  directory  
-2. Open `sample_local_environment.ini`, which defines conditions to calculate the environment around the spacecraft
+1. Move to `./settings`  directory  
+2. Open `./sample_satellite/local_environment.ini`, which defines conditions to calculate the environment around the spacecraft
    - Currently, S2E supports the following environment models:
      - Celestial information: CSPICE
      - Geomagnetic field model: IGRF with random variation
      - Solar power model: Considering solar distance and eclipse
+     - Earth Albedo: The simplest model
      - Air density: NRLMSISE-00 model with random variation
 3. Edit values of `magnetic_field_random_walk_standard_deviation_nT, magnetic_field_random_walk_limit_nT, magnetic_field_white_noise_standard_deviation_nT` 
 4. Rerun the `s2e-core` **without a rebuild**
-5. Check the new log file in `./data/sample/logs` to confirm the magnetic field at the spacecraft position in ECI frame `geomagnetic_field_at_spacecraft_position_i`, the magnetic field in body frame `geomagnetic_field_at_spacecraft_position_b`, and magnetic disturbance torque in body frame `magnetic_disturbance_torque_b` are changed.
+5. Check the new log file in `./logs` to confirm the magnetic field at the spacecraft position in ECI frame `geomagnetic_field_at_spacecraft_position_i`, the magnetic field in body frame `geomagnetic_field_at_spacecraft_position_b`, and magnetic disturbance torque in body frame `magnetic_disturbance_torque_b` are changed.

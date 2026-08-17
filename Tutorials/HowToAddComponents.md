@@ -13,7 +13,7 @@
 ## 2. Add a Gyro sensor
 
 - This chapter explains how to add a gyro sensor component to your `s2e-user` simulation case step by step.
-- Users can find the sample code of this section in [s2e-user-example/sample/how-to-add-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-components).
+- Users can find the sample code of this section in [s2e-user-example/sample/how-to-add-components-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-add-components-v8).
 
 1. Open & edit `user_components.hpp`
    - Add the following descriptions at the one line below of `#include <components/real/cdh/on_board_computer.hpp>`
@@ -22,20 +22,20 @@
      ```
    - Add the following descriptions at the one line below of `  OnBoardComputer *obc_;  //!< Onboard Computer`
      ```c++
-     GyroSensor *gyro_sensor_;  //!< Gyro sensor
+     s2e::components::GyroSensor *gyro_sensor_;  //!< Gyro sensor
      ```
 
 4. Open and edit `user_components.cpp`
    - Edit the constructor function as follows to create an instance of the `GyroSensor` class at the one line below of `obc_ = new OnBoardComputer(clock_generator);`.
      ``` c++
      // Common
-     IniAccess iniAccess = IniAccess(configuration_->spacecraft_file_list_[spacecraft_id]);
+     s2e::setting_file_reader::IniAccess iniAccess = s2e::setting_file_reader::IniAccess(configuration_->spacecraft_file_list_[spacecraft_id]);
      const double compo_step_sec = global_environment_->GetSimulationTime().GetComponentStepTime_s();
 
      // Initialize of GYRO class
      std::string file_name = iniAccess.ReadString("COMPONENT_FILES", "gyro_file");
      configuration_->main_logger_->CopyFileToLogDirectory(file_name);
-     gyro_sensor_ = new GyroSensor(InitGyroSensor(clock_generator, 1, file_name, compo_step_sec, dynamics));
+     gyro_sensor_ = new s2e::components::GyroSensor(InitGyroSensor(clock_generator, 1, file_name, compo_step_sec, dynamics));
      ```
 
    - Add the following descriptions at the one line up of `delete obc_;` in the destructor.
@@ -45,16 +45,17 @@
 
    - Edit the `LogSetup` function as follows to register log output
      ``` c++
-     void UserComponents::LogSetup(Logger &logger) { logger.AddLogList(gyro_sensor_); }
+     void UserComponents::LogSetup(s2e::logger::Logger &logger) { logger.AddLogList(gyro_sensor_); }
      ```
 
 8. Open `user_satellite.ini` and edit `initial_angular_velocity_b_rad_s` to add initial angular velocity.
    - Users can select any value.
 
 9. Add the following descriptions at the bottom line of `[COMPONENT_FILES]` to set the initialize file for the gyro sensor.
+   - The keyword `SETTINGS_DIR_FROM_EXE` is defined in the `CMakeList.txt` to handle the relative path to the setting files.
 
    ```c++
-   gyro_file = ../../data/initialize_files/components/gyro_sensor_xxx.ini
+   gyro_file = SETTINGS_DIR_FROM_EXE/user_satellite/components/gyro_sensor_xxx.ini
    ```
 
 10. Build the `s2e-user` and execute it
@@ -80,7 +81,7 @@
 2. Add the following descriptions at the one line below of `GyroSensor *gyro_sensor_;`
 
    ```c++
-   GyroSensor *gyro_sensor_2_;  //!< Gyro sensor 2
+   s2e::components::GyroSensor *gyro_sensor_2_;  //!< Gyro sensor 2
    ```
 
 3. Open `user_components.cpp`
@@ -102,7 +103,7 @@
 6. Edit the `LogSetUp` function as follows to register log output
 
    ``` c++
-   void UserComponents::LogSetup(Logger &logger) {
+   void UserComponents::LogSetup(s2e::logger::Logger &logger) {
      logger.AddLogList(gyro_sensor_);
      logger.AddLogList(gyro_sensor_2_);
    }
@@ -113,10 +114,10 @@
 8. Add the following descriptions at the bottom line of `[COMPONENT_FILES]` to set the initialize file for the gyro sensor
 
    ```c++
-   gyro_file_2 = ../../data/initialize_files/components/gyro_sensor_yyy.ini
+   gyro_file_2 = SETTINGS_DIR_FROM_EXE/user_satellite/components/gyro_sensor_yyy.ini
    ```
 
-9. Copy the `data/initialize_files/components/gyro_sensor_xxx.ini` file and rename it as `gyro_sensor_yyy.ini`
+9. Copy the `settings/user_satellite/components/gyro_sensor_xxx.ini` file and rename it as `gyro_sensor_yyy.ini`
 
 10. Edit `gyro_sensor_yyy.ini` to custom the noise performance of the second gyro sensor
     - Edit sensor ID like `[GYRO_SENSOR_1]` to `[GYRO_SENSOR_2]`
