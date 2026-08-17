@@ -2,58 +2,36 @@
 
 ## 1. 概要
 ### 1. 機能
-- .sp3や.clk_30sなどのGNSS衛星の軌道, クロックバイアスに関するデータを読み取り, 他クラスで使用できるためのクラス.
-- `sample_gnss.ini` により読みだすファイル名と範囲を決定します
+- .sp3や.clk_30sなどのGNSS衛星の軌道, クロックバイアスに関するデータを読み取り, 他クラスで使用するためのクラス。
+- `settings/environment/sample_gnss.ini` により、利用するファイルや期間などを設定します。
 
 ### 2. 関連ファイル
-- `src/environment/global/globalEnvironment.cpp, .hpp`
+- `src/environment/global/global_environment.cpp, .hpp`
   - GnssSatellites クラスが定義されています. また, 各種GET関数も実装されています.
-- `src/environment/global/initialize_gnss_satellites.cpp, .hpp`
-  - GnssSatellites クラスのための初期化ファイルとなっています. 初期化の内容については `sample_gnss.ini`  ファイル内に記述されています. 
-- `ExtLibraries/sp3`
-  - 軌道やクロックバイアスの生成に必要なファイル群(.sp3, .clk_30s)などが入っています.
+- `src/environment/global/gnss_satellites.cpp, .hpp`
+  - GnssSatellites クラスとその初期化関数が定義されています。初期化の内容については `sample_gnss.ini`  ファイル内に記述されています. 
+- `settings/environment/gnss/`
+  - 軌道やクロックバイアスの生成に必要なファイル群(.sp3, .clk_30s)などを保管します。
 
 ### 3. .sp3ファイルなどのダウンロードに関して
-- まだダウンロードをする際に使用するスクリプトを書いていません. ディレクトリ分けなどを参考に`ftp://igs.ensg.ign.fr/pub/igs/products/`や`http://mgmds01.tksc.jaxa.jp/`等のサイトから各自ダウンロードしてください. ディレクトリ分けは以下の様になっていることを想定しています.
-```
-ExtLibraries  
-    |  
-   sp3  
-    ├── CODE  
-    │   └── final  
-    ├── IGS  
-    │   ├── igl    
-    │   ├── igr
-    │   │   └── clk
-    │   ├── igs  
-    │   │   └── clk_30s
-    │   └── igu
-    ├── JAXA
-    │   ├── final
-    │   ├── madoca
-    │   ├── rapid
-    │   └── ultra_rapid
-    └── QZSS
-        ├── final
-        ├── rapid
-        └── ultra_rapid
-```
-
+- まだダウンロードをする際に使用するスクリプトを書いていません. IGS: `ftp://igs.ensg.ign.fr/pub/igs/products/`やJAXA: `http://mgmds01.tksc.jaxa.jp/`等のサイトから各自ダウンロードしてください. 
+- `settings/environment/gnss/`内部のディレクトリ構成は、自由に設定でき、`sample_gnss.ini`内で設定します。
+- ファイルのヘッダーはダウンロード元の情報を参考にしてください。
 
 ## 2. 使い方
 - `sample_gnss.ini` 内で読みだす方法やパラメーター設定等を行う
-    - `directory_path`: 固定
-    - `calculation`: 使用するかどうか
-    - `true_position_file_sort`: GNSS衛星の座標の真値を生成するファイルの種類を選択
-    - `true_position_first`: 読み出す最初のファイル
-    - `true_position_last`: 読み出す最後のファイル
-    - `true_position_interpolation_method`: 補間方法の選択
-    - `true_position_interpolation_number`: 補間で行う点数の選択, なので関数の次数はこれ-1になる.
-    - `true_clock_file_extension`: .sp3を使用するかそれとも.clk_30sなどのクロック限定のファイルから選択するか  
+    - `directory_path`: ダウンロードしてきた暦ファイルによって、自由にディレクトリを設定する。
+    - `calculation`: GNSS衛星配置を計算しない場合はdisableにすることで、計算が軽くなる。
+    - `logging`: GNSS衛星の位置情報をログに保存するかどうか
+      - 衛星数が多いので、ログファイルが大きくなります。
+    - `file_name_header`： 暦ファイル名のヘッダー
+    - `orbit_data_period`：暦ファイルの周期
+    - `clock_file_name_footer`：クロックファイル名のフッター
+    - `start_date`：暦ファイルの開始日（Year + Day of year）
+    - `end_date`：暦ファイルの終了日（Year + Day of year）
+    
 
-  以下同様です
-
-- 用意されている各`Get`関数でGNSS衛星の各座標やクロックバイアスなどを取り出すことが出来ます. 
+- 用意されている各`Get`関数でGNSS衛星の位置情報やクロックバイアスなどを取り出すことが出来ます. 
 
 ## 3. アルゴリズム
 基本的に内挿で軌道を生成していますが, 一部データが欠けていることがよくあるのでそれに対応しています. 座標に関しては利用可能な座標から抽出して内挿で軌道を生成し, クロックバイアスに関しては厳密に周辺の値のみを取り出して生成しています. 

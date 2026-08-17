@@ -12,7 +12,7 @@
 ## 2. Overview of component expression in S2E
 
 - Source codes emulating components are stored in the `s2e-core/src/components` directory.
-- All components need to inherit the base class `Component` for general functions of components, and most of the components also inherit the base class `ILoggable` for the log output function.
+- All components need to inherit the base class `s2e::components::Component` for general functions of components, and most of the components also inherit the base class `s2e::logger::ILoggable` for the log output function.
 - `Component` class
   - The base class has an important virtual function `MainRoutine`, and subclasses need to define it in their codes.
     - When an instance of the component class is created, the `MainRoutine` function is registered in the `TickToComponent`, and it will be automatically executed in the `Spacecraft` class.
@@ -31,19 +31,19 @@
 ## 3. Make a simple clock sensor without initialize file
 
 - This chapter explains how to make a simple clock sensor, which observes the simulation elapsed time with a bias noise.
-- Users can find the sample codes in [s2e-user-example/sample/how-to-make-new-components](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-make-new-components).
+- Users can find the sample codes in [s2e-user-example/sample/how-to-make-new-components-v8](https://github.com/ut-issl/s2e-user-example/tree/sample/how-to-make-new-components-v8).
   - The sample codes already including the initialize file for the `ClockSensor`. Please edit the code a bit to learn the procedure step by step.
 
 1. The `clock_sensor.cpp, .hpp` are created in the `components` directory. 
    - The `ClockSensor` class counts clock with a constant bias noise.
-   - The class inherits the `Component` and the `ILoggable` base classes as explained above.
+   - The class inherits the `s2e::components::Component` and the `s2e::logger::ILoggable` base classes as explained above.
 
 1. The `user_components.hpp` and `user_components.cpp` are edit similar procedure with the [How To Add Components](./HowToAddComponents.md)
 
    - The constructor of the `ClockSensor` requires arguments as `prescaler`, `clock_generator`, `simulation_time`, and `bias_s`.
    - `prescaler` and `bias_s` are user setting parameters for the sensor, and you can freely set these values.
-   - `clock_generator` is an argument for the `Component` base class.
-   - `simulation_time` is a specific argument for the `ClockSensor` to get true time information. The `SimulationTime` class is managed in the `GlobalEnvironment`, and the `GlobalEnvironment` is instantiated in the `SimulationCase` class.
+   - `clock_generator` is an argument for the `s2e::components::Component` base class.
+   - `simulation_time` is a specific argument for the `ClockSensor` to get true time information. The `s2e::environment::SimulationTime` class is managed in the `s2e::environment::GlobalEnvironment`, and the `s2e::environment::GlobalEnvironment` is instantiated in the `s2e::simulation::SimulationCase` class.
    - We need to add the following codes to `user_components.cpp`.
      - Instantiate the `ClockSensor` in the constructor.
      ```c++
@@ -85,14 +85,14 @@
        - The second line copy the initialize file to the log output directory to save the simulation setting.
        - The third line make the instance of the `ClockSensor`.
 
-1. Make `clock_sensor.ini` into `s2e-user/data/initialize_files/components` from `./Tutorial/SampleCodes/clock_sensor`
+1. Make `clock_sensor.ini` in `s2e-user/settings/user_satellite/components` to set parameters for the `ClockSensor`.
 
 1. Edit `user_satellite.ini` to add the following line at the [COMPONENT_FILES] section of the file
 
    ```c++
-   clock_sensor_file = INI_FILE_DIR_FROM_EXE/components/clock_sensor.ini
+   clock_sensor_file = SETTINGS_DIR_FROM_EXE/user_satellite/components/clock_sensor.ini
    ```
-   - The keyword `INI_FILE_DIR_FROM_EXE` is defined in the `CMakeList.txt` to handle the relative path to the initialize files.
+   - The keyword `SETTINGS_DIR_FROM_EXE` is defined in the `CMakeList.txt` to handle the relative path to the setting files.
 
 1. Build `s2e-user` and execute it
 
