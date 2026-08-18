@@ -401,24 +401,6 @@
       
       </details>
 
-   1. <details><summary> Simulation Sample </summary>
-
-      - `simulation_sample` directory manages example source codes for user-defined simulation scenarios. Users can copy and modify this directory to make user-defined simulation scenarios.
-
-      1. Case
-         1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
-
-      1. Ground Station
-         1. [Sample Ground Station](./Specifications/Simulation/Spec_SampleGroundStation.md)
-         1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
-
-      1. Spacecraft
-         1. [Sample Spacecraft](./Specifications/Simulation/Spec_SampleSpacecraft.md)
-         1. [Sample Components](./Specifications/Simulation/Spec_SampleSpacecraftComponents.md)
-         1. SamplePortConfiguration: TBW
-      
-      </details>
-
    1. <details><summary> Utilities </summary>
 
          1. Endian: TBW
@@ -429,5 +411,23 @@
          1. COM port interface: TBW
 
       </details>
+
+1. <details><summary> Example </summary>
+
+   - `example` directory manages example source codes for user-defined simulation scenarios. Users can copy and modify this directory to make user-defined simulation scenarios.
+
+   1. Case
+      1. [Sample Case](./Specifications/Simulation/Spec_SampleCase.md)
+
+   1. Ground Station
+      1. [Sample Ground Station](./Specifications/Simulation/Spec_SampleGroundStation.md)
+      1. [Sample Ground Station Components](./Specifications/Simulation/Spec_SampleGroundStationComponents.md)
+
+   1. Spacecraft
+      1. [Sample Spacecraft](./Specifications/Simulation/Spec_SampleSpacecraft.md)
+      1. [Sample Components](./Specifications/Simulation/Spec_SampleSpacecraftComponents.md)
+      1. SamplePortConfiguration: TBW
+      
+   </details>
 
 1. [Troubleshooting](./General/Troubleshooting.md)
