@@ -412,22 +412,22 @@
 
       </details>
 
-1. <details><summary> Example </summary>
+   1. <details><summary> Example </summary>
 
-   - `example` directory manages example source codes for user-defined simulation scenarios. Users can copy and modify this directory to make user-defined simulation scenarios.
+      - `example` directory manages example source codes for user-defined simulation scenarios. Users can copy and modify this directory to make user-defined simulation scenarios.
 
-   1. Case
-      1. [Sample Case](./Specifications/Example/Spec_SampleCase.md)
+      1. Case
+         1. [Sample Case](./Specifications/Example/Spec_SampleCase.md)
 
-   1. Ground Station
-      1. [Sample Ground Station](./Specifications/Example/Spec_SampleGroundStation.md)
-      1. [Sample Ground Station Components](./Specifications/Example/Spec_SampleGroundStationComponents.md)
+      1. Ground Station
+         1. [Sample Ground Station](./Specifications/Example/Spec_SampleGroundStation.md)
+         1. [Sample Ground Station Components](./Specifications/Example/Spec_SampleGroundStationComponents.md)
 
-   1. Spacecraft
-      1. [Sample Spacecraft](./Specifications/Example/Spec_SampleSpacecraft.md)
-      1. [Sample Components](./Specifications/Example/Spec_SampleSpacecraftComponents.md)
-      1. SamplePortConfiguration: TBW
+      1. Spacecraft
+         1. [Sample Spacecraft](./Specifications/Example/Spec_SampleSpacecraft.md)
+         1. [Sample Components](./Specifications/Example/Spec_SampleSpacecraftComponents.md)
+         1. SamplePortConfiguration: TBW
       
-   </details>
+      </details>
 
 1. [Troubleshooting](./General/Troubleshooting.md)
